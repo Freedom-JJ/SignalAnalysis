@@ -133,7 +133,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dockWidget_chartDataViewer->close();
     ui->dockWidget_windowList->close();
     ui->dockWidget_valueViewer->close();
-
+    ui->dockWidget_set->close(); //这个窗口需要借鉴
     /*******wzx********************/
 }
 
