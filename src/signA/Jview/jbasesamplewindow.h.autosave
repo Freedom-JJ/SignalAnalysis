@@ -1,0 +1,41 @@
+#ifndef JBASESAMPLEWINDOW_H
+#define JBASESAMPLEWINDOW_H
+
+#include <QWidget>
+#include <QChart>
+#include <QChartView>
+
+/**
+ * @brief 该抽象类的目的是,打好四个窗口的模板,不做任何槽和信号连接
+ */
+
+QT_CHARTS_USE_NAMESPACE
+class JBaseSampleWindow : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit JBaseSampleWindow(QWidget *parent = nullptr);
+    /**
+     * @brief 添加charts进去，charts需要用的series需要在外部实现
+     * @param charts
+     */
+    void addCharts(QVector<QChart *> *charts);
+    void init(QWidget * parent);
+
+    virtual void show()=0;
+    
+    
+    
+private:
+    
+    
+public:
+    QVector<QChartView *> *chartView = new QVector<QChartView *>(4) ;
+    
+    
+    
+signals:
+
+};
+
+#endif // JBASESAMPLEWINDOW_H

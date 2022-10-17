@@ -1,0 +1,40 @@
+warning: source images is not a readable file or directory... skipping.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/qwt.dox:106: warning: included file COPYING is not found. Check your EXAMPLE_PATH
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:6: warning: image file bode-blue-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:7: warning: image file bode-rosy-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:10: warning: image file cpuplot-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:11: warning: image file scatterplot-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:14: warning: image file cpuplot-oily-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:15: warning: image file curves.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:18: warning: image file friedberg-tube-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:19: warning: image file friedberg-bars-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:27: warning: image file spectrogram-rgb-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:28: warning: image file spectrogram-hue-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:31: warning: image file spectrogram-value-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:32: warning: image file spectrogram-saturation-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:35: warning: image file spectrogram-contour1-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:36: warning: image file spectrogram-contour2-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:43: warning: image file distrowatch-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:44: warning: image file tvplot-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:47: warning: image file barchart-grouped-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:48: warning: image file barchart-stacked-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:55: warning: image file scatterplot-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:56: warning: image file itemeditor-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:59: warning: image file stockchart-600x400.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:67: warning: image file radio.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:70: warning: image file sliders.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:73: warning: image file sysinfo.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:76: warning: image file dials1.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/screenshots.dox:79: warning: image file dials2.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/src/qwt_analog_clock.h:19: warning: image file analogclock.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/src/qwt_compass.h:50: warning: image file dials1.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/src/qwt_date.h:103: warning: parameters of member QwtDate::@0 are not (all) documented
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/src/qwt_dial.h:26: warning: image file dials2.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/src/qwt_knob.h:805: warning: image file knob.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/src/qwt_plot.h:44: warning: image file plot.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/src/qwt_plot_spectrogram.h:31: warning: image file spectrogram3.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/src/qwt_slider.h:25: warning: image file sliders.png is not found in IMAGE_PATH: assuming external image.
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/src/qwt_thermo.h:27: warning: image file sysinfo.png is not found in IMAGE_PATH: assuming external image.
+error: Problems running latex. Check your installation or look for typos in _formulas.tex and check _formulas.log!
+error: Problems running dvips. Check your installation!
+E:/cloudDisk/Qt/sa/src/3rdParty/qwt/doc/qwt.dox:23: warning: image file plot.png is not found in IMAGE_PATH: assuming external image.

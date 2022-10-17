@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/default">
+        <file>theme/default/main.qss</file>
+        <file>theme/default/ribbon.qss</file>
+    </qresource>
+    <qresource prefix="/dark"/>
+</RCC>

@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>ico/import_csv.png</file>
+        <file>ico/import_txt.png</file>
+        <file>ico/parser.png</file>
+        <file>ico/delete.png</file>
+        <file>ico/open.png</file>
+        <file>ico/remove.png</file>
+        <file>ico/ok.png</file>
+    </qresource>
+</RCC>
