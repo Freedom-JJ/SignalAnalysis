@@ -1,5 +1,14 @@
 # 提交时需注意：
-不上传Debug文件夹（太大了）
+1. 不上传Debug文件夹（太大了）
+2. 除了自己新建的代码外，不要上传不必要的untracked文件
+# 运行步骤：
+
+1. git clone https://codeup.aliyun.com/633fb2c0bd947c7ec67c1c93/SignalAnalysis2.git
+2. 编译器版本为Qt 5.9.9 MinGW 32bit,构建模式为Debug
+3. 构建目录建议选择为src\Debug ,使用Shadow build 
+4. 打开src\sa3rdParty.pro文件，build
+5. 打开src\sa.pro文件，build然后run，此时应该能够正常运行
+
 
 # 简介
 
