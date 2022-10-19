@@ -4,16 +4,12 @@
 #include <QObject>
 #include <QDebug>
 #include "jdataviewecho.h"
-#include "Signal/BaseEchoSignal.h"
-class randDataWithDemo : public JDataViewEcho,public BaseEchoSignal
+class randDataWithDemo : public JDataViewEcho
 {
     Q_OBJECT
 public:
     randDataWithDemo();
-    std::map<QString, QVector<double>> getNextData() override;
-    void PushEchoSignal(double* chartPoints) override;
-
-    std::map<QString,QVector<double>> PopEchoSignal() override;
+    map<QString, QVector<double>> getNextData() override;
 };
 
 #endif // RANDDATAWITHDEMO_H

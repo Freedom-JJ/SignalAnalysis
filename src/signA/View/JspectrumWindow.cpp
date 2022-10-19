@@ -77,8 +77,12 @@ void JSpectrumWindow::stop(){
 
 }
 void JSpectrumWindow::refresh(){
-    qDebug()<<"refresh"<<endl;
+    //qDebug()<<"refresh"<<endl;
     auto data = this->data->PopEchoSignal();
+
+    if(data.size()==0){
+        return;
+    }
     auto iter = data.begin();
     int index = 0;
     static int key = 10000;
@@ -94,7 +98,7 @@ void JSpectrumWindow::refresh(){
     }
     key++;
 }
-void JSpectrumWindow::setDataViewEcho(BaseEchoSignal *data) {
+void JSpectrumWindow::setDataViewEcho(std::shared_ptr<BaseEchoSignal> data) {//BaseEchoSignal *data
     this->data = data;
 }
 void JSpectrumWindow::setInterval(int mec){

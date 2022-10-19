@@ -1,8 +1,8 @@
 #include "aircraftcasingvibratesystem.h"
 
-AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystem()
+AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystem(): staticEchoSignal(new StaticSpectralEchoSignal())
 {
 
 }
 
-AirCraftCasingVibrateSystem theApp;
+

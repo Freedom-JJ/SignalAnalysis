@@ -38,7 +38,7 @@ public:
         cond.notify_one();
     }
 
-    int size(){
+    unsigned int size(){
            std::lock_guard<std::mutex> lk(mut);
            return data_queue.size();
        }

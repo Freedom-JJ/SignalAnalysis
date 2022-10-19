@@ -21,13 +21,3 @@ map<QString , QVector<double>> randDataWithDemo::getNextData(){
     qDebug()<<"qq:"<<qq<<endl;
     return res;
 }
-
-void randDataWithDemo::PushEchoSignal(double *chartPoints)
-{
-
-}
-
-std::map<QString, QVector<double> > randDataWithDemo::PopEchoSignal()
-{
-    return this->getNextData();
-}

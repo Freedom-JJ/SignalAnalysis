@@ -16,21 +16,19 @@
 #include <QDebug>
 #include "mainwindow.h"
 #include "Signal/StaticSpectralEchoSignal.h"
-
 class MainWindow;
+class StaticSpectralEchoSignal;
+
 class GetDataThread : public QThread
 {
 public:
-    GetDataThread(class MainWindow* dt):data_thread(dt){
-
+    GetDataThread(class MainWindow* dt) : data_thread(dt){
     }
 
     void run() override;
 
 public:
     MainWindow *data_thread;
-
-
 };
 
 #endif // GETDATATHREAD_H

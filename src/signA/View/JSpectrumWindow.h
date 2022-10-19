@@ -42,7 +42,7 @@ public:
 
      void start();
      void stop();
-     void setDataViewEcho(BaseEchoSignal *data) ;
+     void setDataViewEcho(std::shared_ptr<BaseEchoSignal> data) ;
      void setInterval(int mec) ;
      /**
       * @brief 设置频谱范围
@@ -52,7 +52,7 @@ public:
 private:
      QVector<QCustomPlot *> *customPlot = new QVector<QCustomPlot *> (4);
      QTimer *timer ;
-     BaseEchoSignal *data;
+     std::shared_ptr<BaseEchoSignal> data;
      QVector<double> * xAxis = new QVector<double>(10000);
      int range = 0;
 };

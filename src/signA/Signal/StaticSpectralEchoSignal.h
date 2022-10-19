@@ -17,9 +17,16 @@
 #include "Utils/ThreadSafeQueue.h"
 #include "Utils/SmartFFTWComplexArray.h"
 #include "Utils/FFTWUtil.h"
+#include "Utils/aircraftcasingvibratesystem.h"
+#include "Utils/GetDataThread.h"
+#include "../mainwindow.h"
 class StaticSpectralEchoSignal : public BaseEchoSignal
 {
 public:
+    friend class AirCraftCasingVibrateSystem;
+    friend class GetDataThread;
+    friend class MainWindow;
+
     StaticSpectralEchoSignal();
 
     /**
@@ -32,8 +39,13 @@ public:
      */
     std::map<QString,QVector<double>> PopEchoSignal();
 
+    /**
+    * @brief ：清空回显队列
+    */
+    void clearEchoSignal();
 
-public:
+
+private:
     ThreadSafeQueue<double*> m_staticSpectralEchoSignalQueue;
 
 };
