@@ -79,6 +79,13 @@ void JSpectrumWindow::stop(){
 void JSpectrumWindow::refresh(){
     qDebug()<<"refresh"<<endl;
     auto data = this->data->PopEchoSignal();
+
+    if (data.size()==0){
+        qDebug()<<"没有数据退出"<<endl;
+        return;
+    }
+
+
     auto iter = data.begin();
     int index = 0;
     static int key = 10000;
