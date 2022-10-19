@@ -11,5 +11,6 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
 AboutDialog::~AboutDialog()
 {
+    //test
     delete ui;
 }
