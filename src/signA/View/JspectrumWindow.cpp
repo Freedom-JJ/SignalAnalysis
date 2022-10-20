@@ -93,18 +93,23 @@ void JSpectrumWindow::refresh(){
     static int key = 10000;
 
     for (auto it = data.begin(); it != data.end(); ++it) {
+        index = this->bindCustonPlot[it->first];
         this->customPlot->at(index)->graph(0)->data()->clear();
         this->customPlot->at(index)->graph(0)->addData(*xAxis,it->second);
         this->customPlot->at(index)->graph(0)->keyAxis()->setRange(0,10000);
         this->customPlot->at(index)->graph(0)->rescaleValueAxis();
         this->customPlot->at(index)->graph(0)->rescaleKeyAxis();
         this->customPlot->at(index)->replot(); //为什么放外面跑就实现不了
-        index++;
     }
     key++;
 }
 void JSpectrumWindow::setDataViewEcho(std::map<QString,std::shared_ptr<StaticSpectralEchoSignal>> mapData) {
     this->mapData = mapData;
+    auto it = mapData->begin();
+    for(int index = 0 ;it != mapData->end();i++,index++){
+        this->bindCustonPlot[it->first] = index;
+    }
+
 }
 void JSpectrumWindow::setInterval(int mec){
     this->timer->setInterval(mec);
