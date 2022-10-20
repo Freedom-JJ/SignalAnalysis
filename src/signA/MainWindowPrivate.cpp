@@ -905,10 +905,8 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
 //-------------------jdh动态图刷新-----------------------------------------
     this->spectrunView = new JSpectrumWindow(dockWidgetContents_7);
 //    auto data = new randDataWithDemo();
-
-    auto data = new randDataWithDemo();
-    spectrunView->setDataViewEcho(data);
-    spectrunView->start();
+//    spectrunView->setDataViewEcho(data);
+//    spectrunView->start();
 
 
 

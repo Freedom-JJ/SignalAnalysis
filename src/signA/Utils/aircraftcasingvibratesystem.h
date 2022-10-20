@@ -13,8 +13,14 @@
 #define AIRCRAFTCASINGVIBRATESYSTEM_H
 #include <QString>
 #include <QMap>
+#include <vector>
+#include <map>
 #include "ThreadSafeQueue.h"
 #include "Signal/StaticSpectralEchoSignal.h"
+#include <QScopedPointer>
+#include "Controller/SignalController.h"
+class StaticSpectralEchoSignal;
+
 class AirCraftCasingVibrateSystem
 {
 public:
@@ -36,11 +42,22 @@ public:
 
 
     int m_icollectState = 0; //采集状态 0 ：停止采集 1：开始采集 2：暂停采集
+
     int data_length = 20000;
+
+    int m_icollectSignalsStoreCount = 20000; //采集信号的存储数量。
+
     bool m_bisSave = false;//保存状态
-    StaticSpectralEchoSignal staticEchoSignal;
 
+    std::shared_ptr<StaticSpectralEchoSignal> staticEchoSignal;
 
+    bool m_bThread; //采集标志位
+
+    std::vector<QString> m_vchannelCodes;    //通道集合
+
+    std::map<QString,ThreadSafeQueue<double>> m_mpcolllectioinDataQueue; //采集的数据
+
+    SignalController m_signalController;
 
 /**********************************************************************************/
 

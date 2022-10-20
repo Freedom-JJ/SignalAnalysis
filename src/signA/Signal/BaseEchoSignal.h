@@ -24,6 +24,8 @@ public:
 
     virtual std::map<QString,QVector<double>> PopEchoSignal()=0;
 
+    virtual void clearEchoSignal()=0;
+
 public:
 
 };

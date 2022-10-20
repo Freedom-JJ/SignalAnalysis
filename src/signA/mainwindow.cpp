@@ -100,6 +100,9 @@ MainWindow::MainWindow(QWidget *parent) :
     , m_nProjectCount(0)
     , m_figureRightClickChart(nullptr)
     , m_nUserChartCount(0)
+    , theApp(new AirCraftCasingVibrateSystem())
+    , sampleThread(new GetDataThread(this))
+    , mainSaveData(new SaveCollectionDataThread(this))
 {
     saAddLog("start app");
 
@@ -125,7 +128,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     /*******wzx********************/
-    sampleThread = new GetDataThread(this);
 
     ui->dockWidget_valueManage->close();
     ui->dockWidget_message->close();
@@ -133,7 +135,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dockWidget_chartDataViewer->close();
     ui->dockWidget_windowList->close();
     ui->dockWidget_valueViewer->close();
-    ui->dockWidget_set->close(); //这个窗口需要借鉴
+
     /*******wzx********************/
 }
 
@@ -468,7 +470,10 @@ void MainWindow::initUI()
         , this, &MainWindow::onChartTitleChanged);
 
     ui->menuBar->showContextCategory(ui->tableRibbonContextCategory);
+
+    //connect(this->sampleThread.data(), &GetDataThread::dataReady, this, &MainWindow::OnDataReady);
 }
+
 
 
 void MainWindow::initPlugin()
@@ -1236,58 +1241,52 @@ void MainWindow::appendRecentOpenFilesPath(const QString& path)
 /*****************************wzx**************************************/
 //采集事件函数
 void MainWindow::OnButtonStartCapture(){
-//    int oldcollectState = theApp->m_icollectState;
-//    //如果当前状态为正在采集
-//    if (theApp->m_icollectState == 1) return;
-//    //设置当前状态为正在采集状态
-//    theApp->m_icollectState = 1;
+    int oldcollectState = theApp->m_icollectState;
+    //如果当前状态为正在采集
+    if (theApp->m_icollectState == 1) return;
+    //设置当前状态为正在采集状态
+    theApp->m_icollectState = 1;
 
-//    //设置单个数据长度
-//    int dataCount = 20000;
+    //设置单个数据长度
+    int dataCount = 20000;
 
-//    if(oldcollectState == 2){
-//        return;
-//    }
-//    m_vchannelCodes.clear();
-//    for(int i=0;i<4;i++){
-//        QString channelCode = "0-" + QString::number(i);
-//        m_vchannelCodes[i] = channelCode;
-//    }
+    if(oldcollectState == 2){
+        return;
+    }
 
-//    //初始化采集窗口
-////    InitCaptureViewVector();
-////    for (int i = 0; i < theApp.m_vsignalCaptureView.size(); i++){//
-////            theApp.m_vsignalCaptureView[i]->openTimer2RefershView();
-////        }
+    theApp->m_vchannelCodes = vector<QString>(4);
+    for(int i=0;i<4;i++){
+        QString channelCode = "0-" + QString::number(i);
+        theApp->m_vchannelCodes[i] = channelCode;
+    }
+    qDebug()<<"m_vchannelCodes-size"<<theApp->m_vchannelCodes.size()<<endl;
+    // 初始化采集队列
+    for (int i = 0; i < theApp->m_vchannelCodes.size(); i++){
+       theApp->m_mpcolllectioinDataQueue.insert(std::pair<QString, ThreadSafeQueue<double>>(theApp->m_vchannelCodes[i], ThreadSafeQueue<double>()));
+    }
 
-//    // 初始化采集队列
-//    for (int i = 0; i < m_vchannelCodes.size(); i++){
-//        m_mpcolllectioinDataQueue.insert(std::pair<QString, ThreadSafeQueue<double>>(m_vchannelCodes[i], ThreadSafeQueue<double>()));
-//    }
-//    m_bThread = true;
+    qDebug()<<"mapsize"<<theApp->m_mpcolllectioinDataQueue.size()<<endl;
+    this->theApp->m_bThread = true;
 
-    //sampleThread->start();
+    this->theApp->staticEchoSignal->m_staticSpectralEchoSignalQueue.clear();//清空回显队列
+    sampleThread->start();//开启采集线程
 
-    //auto data = new randDataWithDemo();
-    auto data = new StaticSpectralEchoSignal();
-
-    ui->spectrunView->setDataViewEcho(data);
-    ui->spectrunView->start();
+    ui->spectrunView->setDataViewEcho(this->theApp->staticEchoSignal);//回显信号对象传入
+    ui->spectrunView->start();//开始显示
 
 
-    //mainSaveData->OpenThread2SaveCollectionData();
+    mainSaveData->start();
 
-//    vector<vector<double>> res = theApp.staticEchoSignal.PopEchoSignal();
-//    for(int i=0;i<res[0].size();i++){
-//        qDebug()<<"数据来了"<<res[0][i]<<endl;
-//    }
 
 }
 
 void MainWindow::OnButtonStopCapture(){
 
-    //delete sampleThread;
+    theApp->m_icollectState = 0;
     ui->spectrunView->stop();
+    //sampleThread->quit();
+    theApp->staticEchoSignal->clearEchoSignal();
+
 
 }
 

@@ -1,5 +1,6 @@
 HEADERS += \
     $$PWD/Controller/AirCraftCasingVibrateSystemController.h \
+    $$PWD/Controller/SignalController.h \
     $$PWD/Controller/usercontroller.h \
     $$PWD/Dao/mapper/pdattribute.h \
     $$PWD/Dao/mapper/pddatabase.h \
@@ -32,6 +33,7 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/Controller/AirCraftCasingVibrateSystemController.cpp \
+    $$PWD/Controller/SignalController.cpp \
     $$PWD/Controller/usercontroller.cpp \
     $$PWD/Dao/mapper/pdattribute.cpp \
     $$PWD/Dao/mapper/pddatabase.cpp \

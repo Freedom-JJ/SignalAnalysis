@@ -25,7 +25,7 @@ class MainWindowPrivate;
 #include <QSettings>
 #include "SAResourDefine.h"
 #include <SAMdiSubWindow.h>
-
+#include <QPair>
 #include "progressStateWidget.h"
 #include "View/AirCraftCasingVibrateSystemView.h"
 #include <map>
@@ -42,9 +42,7 @@ class MainWindowPrivate;
 
 #include "Utils/SaveCollectionDataThread.h"
 #include "Utils/GetDataThread.h"
-#include "Utils/aircraftcasingvibratesystem.h"
 #include "Utils/SaveCollectionDataThread.h"
-#include "Signal/StaticSpectralEchoSignal.h"
 #include "Dao/mapper/pdsql.h"
 #include "Dao/mapper/pdattribute.h"
 #include "Controller/usercontroller.h"
@@ -65,6 +63,8 @@ class QwtPlotItem;
 class SAAbstractDataImportInterface;
 class SARectRegionSelectEditor;
 class SaveCollectionDataThread;
+class StaticSpectralEchoSignal;
+class AirCraftCasingVibrateSystem;
 using std::vector;
 using std::map;
 ///
@@ -90,19 +90,11 @@ private:
 /******************************wzx*******************************************************/
 
 public:
-    AirCraftCasingVibrateSystem theApp;
+    QScopedPointer<AirCraftCasingVibrateSystem> theApp;
 
-    vector<QString> m_vchannelCodes;//通道集合
+    QScopedPointer<GetDataThread> sampleThread;
 
-   // map<QString,StaticSpectralEchoSignal*> m_mcollectionDataEchoSignal;
-
-    map<QString,ThreadSafeQueue<double>> m_mpcolllectioinDataQueue; //采集的数据
-
-    bool m_bThread; //采集标志位
-
-    GetDataThread *sampleThread;
-
-    SaveCollectionDataThread *mainSaveData;//用于保存磁盘的对象
+    QScopedPointer<SaveCollectionDataThread> mainSaveData;//用于保存磁盘的对象
 
     void CreateCaptureWindow(); //创建采集窗口（队列等初始化操作）
 
@@ -791,6 +783,7 @@ private:
     unsigned int m_nUserChartCount;
     QStringList m_recentOpenFiles;                          ///< 记录最近打开的文件
     QStringList m_recentOpenProjectFolders;                 ///< 记录最近打开的项目目录
+
 };
 
 
