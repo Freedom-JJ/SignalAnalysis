@@ -51,6 +51,7 @@ public:
      void setRange(int count);
 private:
      QVector<QCustomPlot *> *customPlot = new QVector<QCustomPlot *> (4);
+     std::map<QString ,int> bindCustonPlot;
      QTimer *timer ;
      std::map<QString,std::shared_ptr<StaticSpectralEchoSignal>> mapData;
      QVector<double> * xAxis = new QVector<double>(10000);
