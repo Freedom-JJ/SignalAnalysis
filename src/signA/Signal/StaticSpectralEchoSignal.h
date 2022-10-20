@@ -37,7 +37,7 @@ public:
     /**
      * @brief ：从回显队列中取出数据
      */
-    std::map<QString,QVector<double>> PopEchoSignal();
+    QVector<double> PopEchoSignal();
 
     /**
     * @brief ：清空回显队列
@@ -45,7 +45,7 @@ public:
     void clearEchoSignal();
 
 
-private:
+public:
     ThreadSafeQueue<double*> m_staticSpectralEchoSignalQueue;
 
 };

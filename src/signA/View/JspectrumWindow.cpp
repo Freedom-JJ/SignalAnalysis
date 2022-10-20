@@ -78,7 +78,13 @@ void JSpectrumWindow::stop(){
 }
 void JSpectrumWindow::refresh(){
     //qDebug()<<"refresh"<<endl;
-    auto data = this->data->PopEchoSignal();
+
+    std::map<QString,QVector<double>> data;
+    for(auto it = mapData.begin();it!=mapData.end();it++){
+        std::shared_ptr<StaticSpectralEchoSignal> signalPtr = it->second;
+        QVector<double> singleChannelVector = signalPtr->PopEchoSignal();;
+        data[it->first] = singleChannelVector;
+    }
 
     if(data.size()==0){
         return;
@@ -98,8 +104,8 @@ void JSpectrumWindow::refresh(){
     }
     key++;
 }
-void JSpectrumWindow::setDataViewEcho(std::shared_ptr<BaseEchoSignal> data) {//BaseEchoSignal *data
-    this->data = data;
+void JSpectrumWindow::setDataViewEcho(std::map<QString,std::shared_ptr<StaticSpectralEchoSignal>> mapData) {
+    this->mapData = mapData;
 }
 void JSpectrumWindow::setInterval(int mec){
     this->timer->setInterval(mec);

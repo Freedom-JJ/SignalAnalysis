@@ -28,15 +28,15 @@ public:
 
     bool m_isAlarm;//是否报警
     double m_alarmLimit;//报警上限
-    const int SHOW_CHANNEL_USE = 3; 	/// 通道使用标志
-    const int SHOW_CHANNEL_MEASURETYPE = 4; /// 通道测量类型1
-    const int SHOW_CHANNEL_FULLVALUE = 5; 	/// 满度量程1
-    const int SHOW_CHANNEL_SENSECOEF = 6; 	/// 传感器灵敏度1
-    const int SHOW_CHANNEL_UPFREQ = 10; 	/// 上限频率1
-    const int SHOW_CHANNEL_DOWNFREQ = 11; 	/// 下限频率1
-    const int SHOW_CHANNEL_ACQ_INPUTMODE = 12; 	/// 输入方式1
-    const int SHOW_CHANNEL_ANTIFILTER = 14; 	/// 抗混滤波器
-    const int SHOW_ELC_PRESSURE = 90;        ///电压测量范围1
+    static const int SHOW_CHANNEL_USE = 3; 	/// 通道使用标志
+    static const int SHOW_CHANNEL_MEASURETYPE = 4; /// 通道测量类型1
+    static const int SHOW_CHANNEL_FULLVALUE = 5; 	/// 满度量程1
+    static const int SHOW_CHANNEL_SENSECOEF = 6; 	/// 传感器灵敏度1
+    static const int SHOW_CHANNEL_UPFREQ = 10; 	/// 上限频率1
+    static const int SHOW_CHANNEL_DOWNFREQ = 11; 	/// 下限频率1
+    static const int SHOW_CHANNEL_ACQ_INPUTMODE = 12; 	/// 输入方式1
+    static const int SHOW_CHANNEL_ANTIFILTER = 14; 	/// 抗混滤波器
+    static const int SHOW_ELC_PRESSURE = 90;        ///电压测量范围1
 
 /******************************王泽鑫10月3日周更改****************************************************/
 
@@ -49,15 +49,19 @@ public:
 
     bool m_bisSave = false;//保存状态
 
-    std::shared_ptr<StaticSpectralEchoSignal> staticEchoSignal;
+    std::vector<QString> m_vchannelCodes;    //通道集合
+
+    //std::shared_ptr<StaticSpectralEchoSignal> staticEchoSignal;
+
+    std::map<QString,std::shared_ptr<StaticSpectralEchoSignal>> echoSignalQueue;
 
     bool m_bThread; //采集标志位
-
-    std::vector<QString> m_vchannelCodes;    //通道集合
 
     std::map<QString,ThreadSafeQueue<double>> m_mpcolllectioinDataQueue; //采集的数据
 
     SignalController m_signalController;
+
+    void AirCraftCasingVibrateSystemInit();
 
 /**********************************************************************************/
 

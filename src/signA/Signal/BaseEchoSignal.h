@@ -14,6 +14,7 @@
 #include <vector>
 #include <map>
 #include <QString>
+#include <memory>
 
 class BaseEchoSignal
 {
@@ -22,7 +23,7 @@ public:
 
     virtual void PushEchoSignal(double* chartPoints)=0;
 
-    virtual std::map<QString,QVector<double>> PopEchoSignal()=0;
+    virtual QVector<double> PopEchoSignal()=0;
 
     virtual void clearEchoSignal()=0;
 

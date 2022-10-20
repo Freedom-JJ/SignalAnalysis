@@ -12,20 +12,13 @@ void StaticSpectralEchoSignal::PushEchoSignal(double *chartPoints){
 
 }
 
-std::map<QString,QVector<double>> StaticSpectralEchoSignal::PopEchoSignal(){
+QVector<double> StaticSpectralEchoSignal::PopEchoSignal(){
 
     if(this->m_staticSpectralEchoSignalQueue.size()==0){
-        std::map<QString,QVector<double>> map_tem;
-//        map_tem.insert(std::make_pair(QString::fromStdString("0"),QVector<double>(10000,0)));
-//        map_tem.insert(std::make_pair(QString::fromStdString("1"),QVector<double>(10000,0)));
-//        map_tem.insert(std::make_pair(QString::fromStdString("2"),QVector<double>(10000,0)));
-//        map_tem.insert(std::make_pair(QString::fromStdString("3"),QVector<double>(10000,0)));
+        QVector<double> map_tem;
         return map_tem;
     }
-
-    std::map<QString,QVector<double>> echoSignal;
-    for(int code = 0 ; code < 4 ; code ++){
-    QVector<double> tem;
+    QVector<double> echoSignal;
     double* fftinput = *this->m_staticSpectralEchoSignalQueue.wait_and_pop();
     int pointCount = _msize(fftinput) / sizeof(*fftinput);
     int line = pointCount / 2;
@@ -34,16 +27,12 @@ std::map<QString,QVector<double>> StaticSpectralEchoSignal::PopEchoSignal(){
     fftw_complex * out = fftwOutput.GeFFTWComplexArray();
 
     for(int j = 0 ; j < line ; j++){
-        tem.append(2 * sqrt(out[j][0] * out[j][0] + out[j][1] * out[j][1]));
+        echoSignal.append(2 * sqrt(out[j][0] * out[j][0] + out[j][1] * out[j][1]));
     }
-
-    echoSignal[QString::number(code)] = tem;
-    tem.clear();
 
     delete fftinput;
     fftinput = nullptr;
 
-    }
     return echoSignal;
 }
 

@@ -1254,11 +1254,7 @@ void MainWindow::OnButtonStartCapture(){
         return;
     }
 
-    theApp->m_vchannelCodes = vector<QString>(4);
-    for(int i=0;i<4;i++){
-        QString channelCode = "0-" + QString::number(i);
-        theApp->m_vchannelCodes[i] = channelCode;
-    }
+
     qDebug()<<"m_vchannelCodes-size"<<theApp->m_vchannelCodes.size()<<endl;
     // 初始化采集队列
     for (int i = 0; i < theApp->m_vchannelCodes.size(); i++){
@@ -1268,10 +1264,10 @@ void MainWindow::OnButtonStartCapture(){
     qDebug()<<"mapsize"<<theApp->m_mpcolllectioinDataQueue.size()<<endl;
     this->theApp->m_bThread = true;
 
-    this->theApp->staticEchoSignal->m_staticSpectralEchoSignalQueue.clear();//清空回显队列
+    //this->theApp->staticEchoSignal->m_staticSpectralEchoSignalQueue.clear();//清空回显队列
     sampleThread->start();//开启采集线程
 
-    ui->spectrunView->setDataViewEcho(this->theApp->staticEchoSignal);//回显信号对象传入
+    ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
     ui->spectrunView->start();//开始显示
 
 
@@ -1285,7 +1281,7 @@ void MainWindow::OnButtonStopCapture(){
     theApp->m_icollectState = 0;
     ui->spectrunView->stop();
     //sampleThread->quit();
-    theApp->staticEchoSignal->clearEchoSignal();
+    //theApp->staticEchoSignal->clearEchoSignal();
 
 
 }

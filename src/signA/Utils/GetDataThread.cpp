@@ -9,7 +9,7 @@ void GetDataThread::run(){
     float r = 0;
     while(true){
 
-        for(int i=0;i<4;i++){
+        for(int i=0;i<data_thread->theApp->m_vchannelCodes.size();i++){
 
             double * fftwInputArray = new double[20000];
             QString channelCode = "0-" + QString::number(i);
@@ -20,13 +20,15 @@ void GetDataThread::run(){
 
                 data_thread->theApp->m_mpcolllectioinDataQueue[channelCode].push(sumsignal);
                 fftwInputArray[k] = sumsignal;
-                r += 1;
+                r += 0.01;
 
             }
-            data_thread->theApp->staticEchoSignal->PushEchoSignal(fftwInputArray);
-            //unsigned int size = data_thread->theApp->staticEchoSignal->m_staticSpectralEchoSignalQueue.size();
-        }
+            //data_thread->theApp->staticEchoSignal->PushEchoSignal(fftwInputArray);
+            data_thread->theApp->echoSignalQueue[channelCode]->PushEchoSignal(fftwInputArray);
+
         msleep(100);
+    }
+
     }
 
 
