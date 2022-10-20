@@ -81,8 +81,7 @@ void JSpectrumWindow::refresh(){
 
     std::map<QString,QVector<double>> data;
     for(auto it = mapData.begin();it!=mapData.end();it++){
-        std::shared_ptr<StaticSpectralEchoSignal> signalPtr = it->second;
-        QVector<double> singleChannelVector = signalPtr->PopEchoSignal();;
+        QVector<double> singleChannelVector = it->second->PopEchoSignal();;
         data[it->first] = singleChannelVector;
     }
 

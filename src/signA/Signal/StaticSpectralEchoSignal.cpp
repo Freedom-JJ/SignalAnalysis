@@ -14,10 +14,10 @@ void StaticSpectralEchoSignal::PushEchoSignal(double *chartPoints){
 
 QVector<double> StaticSpectralEchoSignal::PopEchoSignal(){
 
-    if(this->m_staticSpectralEchoSignalQueue.size()==0){
-        QVector<double> map_tem;
-        return map_tem;
-    }
+//    if(this->m_staticSpectralEchoSignalQueue.size()==0){
+//        QVector<double> map_tem;
+//        return map_tem;
+//    }
     QVector<double> echoSignal;
     double* fftinput = *this->m_staticSpectralEchoSignalQueue.wait_and_pop();
     int pointCount = _msize(fftinput) / sizeof(*fftinput);
