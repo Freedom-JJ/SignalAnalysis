@@ -27,7 +27,6 @@ class MainWindowPrivate;
 #include <SAMdiSubWindow.h>
 #include <QPair>
 #include "progressStateWidget.h"
-#include "View/AirCraftCasingVibrateSystemView.h"
 #include <map>
 #include <SAMdiSubWindowManager.h>
 

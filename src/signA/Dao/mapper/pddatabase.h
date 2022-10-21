@@ -69,7 +69,7 @@ protected:
     bool SelectObjectsByCondition(vector<vector<string>> &selectedValueVector, string strSqlQueryWhere = "");
     bool SelectObjectsByCondition(vector<vector<string>> &selectedValueVector, int iStartNumber, int iRecordCount, string strSqlQueryWhere = "");
 
-private:
+public:
     vector<PDAttribute *> m_allFieldsVector;//存放全部字段指针。
     PDSQL* pdsql;//数据库连接
     string m_strSqlQuery = "";//数据库操作语句insql_str
