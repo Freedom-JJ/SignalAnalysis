@@ -1,0 +1,27 @@
+2022-10-23 09:30:56,normal,start app,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,107,1
+2022-10-23 09:30:56,debug,start main app init,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,109,5
+2022-10-23 09:30:56,debug,init ui and menu elapsed: 636 ms,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,114,5
+2022-10-23 09:30:56,debug,start load plugin,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,116,5
+2022-10-23 09:30:56,debug,loaded plugins elapsed: 8 ms,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,118,5
+2022-10-23 09:30:56,debug,start load setting,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,122,5
+2022-10-23 09:30:56,debug,start use skin:normal,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,setSkin,898,5
+2022-10-23 09:30:56,debug,end use skin elapsed: 0 ms,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,setSkin,912,5
+2022-10-23 09:30:56,debug,loaded settings elapsed: 0 ms,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,124,5
+2022-10-23 09:43:17,normal,start app,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,107,1
+2022-10-23 09:43:17,debug,start main app init,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,109,5
+2022-10-23 09:43:18,debug,init ui and menu elapsed: 589 ms,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,114,5
+2022-10-23 09:43:18,debug,start load plugin,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,116,5
+2022-10-23 09:43:18,debug,loaded plugins elapsed: 8 ms,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,118,5
+2022-10-23 09:43:18,debug,start load setting,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,122,5
+2022-10-23 09:43:18,debug,start use skin:normal,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,setSkin,898,5
+2022-10-23 09:43:18,debug,end use skin elapsed: 0 ms,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,setSkin,912,5
+2022-10-23 09:43:18,debug,loaded settings elapsed: 0 ms,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,124,5
+2022-10-23 10:21:11,normal,start app,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,107,1
+2022-10-23 10:21:11,debug,start main app init,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,109,5
+2022-10-23 10:21:12,debug,init ui and menu elapsed: 691 ms,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,114,5
+2022-10-23 10:21:12,debug,start load plugin,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,116,5
+2022-10-23 10:21:12,debug,loaded plugins elapsed: 7 ms,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,118,5
+2022-10-23 10:21:12,debug,start load setting,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,122,5
+2022-10-23 10:21:12,debug,start use skin:normal,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,setSkin,898,5
+2022-10-23 10:21:12,debug,end use skin elapsed: 0 ms,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,setSkin,912,5
+2022-10-23 10:21:12,debug,loaded settings elapsed: 0 ms,..\..\..\..\qt_project_git\SignalAnalysis2\src\signA\mainwindow.cpp,MainWindow,124,5

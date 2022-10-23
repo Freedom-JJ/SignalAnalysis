@@ -36,6 +36,8 @@ void ConsumerThread::run(){
     QDataStream outputStream(&f);
     outputStream.setVersion(QDataStream::Qt_5_9);
 
+    QVector<QVector<double>> sumSignal;
+
     ThreadSafeQueue<double> saveData;
 
     while (consumer->theApp->m_icollectState){
@@ -48,15 +50,26 @@ void ConsumerThread::run(){
             //qDebug()<<"\n队列长度%d\n", m_mpcolllectioinDataQueue[signalCode].size()<<endl;
             saveData.push(*(consumer->theApp->m_mpcolllectioinDataQueue[signalCode].wait_and_pop()));
             if (saveData.size() == consumer->theApp->m_icollectSignalsStoreCount){
-                consumer->theApp->m_signalController.SaveCollectionData2Binary(outputStream, saveData);
-            }
+                consumer->theApp->m_signalController.SaveCollectionData2Vector(sumSignal,saveData);
         }
-        }
+      }
+    }
         //点完停止采集之后，还有数据需要保存！！！
-        while (consumer->theApp->m_mpcolllectioinDataQueue[signalCode].size() > 0){
-            saveData.push(*(consumer->theApp->m_mpcolllectioinDataQueue[signalCode].wait_and_pop()));
-            consumer->theApp->m_signalController.SaveCollectionData2Binary(outputStream, saveData);
+    QVector<double> restVector;     //保存剩余的数据
+
+    while (consumer->theApp->m_mpcolllectioinDataQueue[signalCode].size() > 0){
+        if(restVector.size()==20000){
+            sumSignal.append(restVector);
+            QVector<double>().swap(restVector);
         }
+        saveData.push(*(consumer->theApp->m_mpcolllectioinDataQueue[signalCode].wait_and_pop()));
+        shared_ptr<double> signal = saveData.wait_and_pop();
+        restVector.append(*signal);
+
+    }
+    sumSignal.append(restVector);
+
+    outputStream<<sumSignal;
 
     f.close();
 

@@ -21,3 +21,16 @@ Result SignalController::SaveCollectionData2Binary(QDataStream &outputStream, Th
     outputStream << saveData;
     return Result(true, "success");
 }
+
+Result SignalController::SaveCollectionData2Vector(QVector<QVector<double> > &sumSignalVector, ThreadSafeQueue<double> &acquireSignal){
+    int saveCount = acquireSignal.size();
+    QVector<double> saveData(saveCount);
+    for (int i = 0; i < saveCount; i++){
+        //循环采集数据的队列去保存数据
+        shared_ptr<double> signal = acquireSignal.wait_and_pop();
+        saveData[i] = *signal;
+    }
+
+    sumSignalVector.append(saveData);
+    return Result(true, "success");
+}
