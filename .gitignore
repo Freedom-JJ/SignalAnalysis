@@ -30,3 +30,6 @@
 *.app
 
 *.pro.user
+
+*.Release
+*.Debug

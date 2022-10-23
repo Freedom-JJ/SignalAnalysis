@@ -3,9 +3,11 @@
 JSpectrumWindow::JSpectrumWindow(QWidget *parent)
 {
     this->timer = new QTimer();
-    this->setRange(10000);
     this->init(parent);
+    this->setXAxisRange(10000);
     setInterval(50);
+    setYAxisRange(0,20000);
+    setY_isScale(true);
     connect(this->timer,&QTimer::timeout,this,&JSpectrumWindow::refresh);
 }
 
@@ -18,23 +20,13 @@ JSpectrumWindow::JSpectrumWindow(QWidget *parent)
  */
 void JSpectrumWindow::init(QWidget *parent){
     auto layout = new QGridLayout(parent);
-    QVector<QVector<double>> y(4);
-    for (int i = 0; i < 10000; ++i) {
-        (*xAxis)[i] = i;
-        for (int j = 0; j < 4; ++j) {
-            double signal ;
-            if(i < 2000 || i > 5000){
-                signal = sin(i) +20;
-            }else
-                signal = sin(i) + 10;
-            y[j].append(1);
-        }
+    for (int var = 0; var < 10000; ++var) {
+        (*xAxis)[var] = var;
     }
-
     for (int var = 0; var < 4; ++var) {
         (*this->customPlot)[var] = new QCustomPlot();
         this->customPlot->at(var)->addGraph();
-        this->customPlot->at(var)->graph(0)->addData(*xAxis,y[var],true);
+//        this->customPlot->at(var)->graph(0)->addData(*xAxis,y[var],true);
 //        connect(customPlot->at(var)->xAxis,SIGNAL(rangeChanged(QCPRange)),
 //                   customPlot->at(var)->xAxis2,SLOT(setRange(QCPRange)));
 //           connect(customPlot->at(var)->yAxis,SIGNAL(rangeChanged(QCPRange)),
@@ -90,8 +82,6 @@ void JSpectrumWindow::refresh(){
     }
     auto iter = data.begin();
     int index = 0;
-    static int key = 10000;
-
     for (auto it = data.begin(); it != data.end(); ++it) {
         index = this->bindCustonPlot[it->first];
          if(it->second.size() == 0){
@@ -99,12 +89,18 @@ void JSpectrumWindow::refresh(){
          }
         this->customPlot->at(index)->graph(0)->data()->clear();
         this->customPlot->at(index)->graph(0)->addData(*xAxis,it->second);
-        this->customPlot->at(index)->graph(0)->keyAxis()->setRange(0,10000);
-        this->customPlot->at(index)->graph(0)->rescaleValueAxis();
-        this->customPlot->at(index)->graph(0)->rescaleKeyAxis();
+        if (yIsRescale == true){
+            this->customPlot->at(index)->graph(0)->rescaleValueAxis();
+            this->customPlot->at(index)->graph(0)->rescaleKeyAxis();
+        }else{
+            this->customPlot->at(index)->graph(0)->valueAxis()->setRange(yStart,yStop);
+            this->customPlot->at(index)->graph(0)->keyAxis()->setRange(0.0,this->range/1.0);
+        }
+
+//        this->customPlot->at(index)->graph(0)->rescaleKeyAxis();
         this->customPlot->at(index)->replot(); //为什么放外面跑就实现不了
     }
-    key++;
+
 }
 void JSpectrumWindow::setDataViewEcho(std::map<QString,std::shared_ptr<StaticSpectralEchoSignal>> mapData) {
     this->mapData = mapData;
@@ -117,6 +113,23 @@ void JSpectrumWindow::setDataViewEcho(std::map<QString,std::shared_ptr<StaticSpe
 void JSpectrumWindow::setInterval(int mec){
     this->timer->setInterval(mec);
 }
-void JSpectrumWindow::setRange(int count){
+
+/**
+ * @brief 设置四个窗口的Y轴范围
+ * @param start
+ * @param end
+ */
+void JSpectrumWindow::setYAxisRange(double start, double end)
+{
+    yStart = start;
+    yStop = end;
+
+}
+
+void JSpectrumWindow::setY_isScale(bool scale)
+{
+    yIsRescale = scale;
+}
+void JSpectrumWindow::setXAxisRange(int count){
     this->range = count;
 }
