@@ -46,7 +46,8 @@ HEADERS += \
     $$PWD/View/jsampleview.h \
     $$PWD/View/jvoiceranddata.h \
     $$PWD/View/jvoicesampleview.h \
-    $$PWD/View/qcustomplot.h
+    $$PWD/View/qcustomplot.h \
+    $$PWD/View/spectrum.h
 
 
 SOURCES += \
@@ -94,7 +95,11 @@ SOURCES += \
     $$PWD/View/jsampleview.cpp \
     $$PWD/View/jvoiceranddata.cpp \
     $$PWD/View/jvoicesampleview.cpp \
-    $$PWD/View/qcustomplot.cpp
+    $$PWD/View/qcustomplot.cpp \
+    $$PWD/View/spectrum.cpp
 
 
 DISTFILES +=
+
+FORMS += \
+    $$PWD/View/spectrum.ui
