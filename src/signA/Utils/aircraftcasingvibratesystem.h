@@ -38,7 +38,7 @@ public:
     static const int SHOW_CHANNEL_ANTIFILTER = 14; 	/// 抗混滤波器
     static const int SHOW_ELC_PRESSURE = 90;        ///电压测量范围1
 
-/******************************王泽鑫10月3日周更改****************************************************/
+/******************************王泽鑫10月24日周更改****************************************************/
 
 
     int m_icollectState = 0; //采集状态 0 ：停止采集 1：开始采集 2：暂停采集
@@ -47,13 +47,17 @@ public:
 
     int m_icollectSignalsStoreCount = 20000; //采集信号的存储数量。
 
-    bool m_bisSave = false;//保存状态
+    bool m_bisSave = false; //保存状态
+
+    bool m_blocalSignalExist = true;    //回放的文件是否存在
+
+    volatile int m_iplaybackState = 0;  //回放状态   0 : 不回放 1：开始回放 2：:暂停回放
 
     std::vector<QString> m_vchannelCodes;    //通道集合
 
-    //std::shared_ptr<StaticSpectralEchoSignal> staticEchoSignal;
+    std::map<QString,QString> dataUrl;  //文件路径
 
-    std::map<QString,std::shared_ptr<StaticSpectralEchoSignal>> echoSignalQueue;
+    std::map<QString,std::shared_ptr<StaticSpectralEchoSignal>> echoSignalQueue; //采集回显map
 
     bool m_bThread; //采集标志位
 

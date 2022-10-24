@@ -26,7 +26,7 @@ void GetDataThread::run(){
             //data_thread->theApp->staticEchoSignal->PushEchoSignal(fftwInputArray);
             data_thread->theApp->echoSignalQueue[channelCode]->PushEchoSignal(fftwInputArray);
 
-        msleep(100);
+            msleep(100);
     }
 
     }

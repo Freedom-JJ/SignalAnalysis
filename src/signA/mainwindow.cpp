@@ -236,10 +236,10 @@ void MainWindow::initUI()
     //采集功能
     connect(ui->actionStartCapture,&QAction::triggered,this,&MainWindow::OnButtonStartCapture);
     connect(ui->actionStopCapture,&QAction::triggered,this,&MainWindow::OnButtonStopCapture);
-//    connect(ui->actionStartCapture,&QAction::triggered,ui->sampleView,&JSampleView::startSampleWithTimer);
-//    connect(ui->actionStopCapture,&QAction::triggered,ui->sampleView,&JSampleView::stopSample);
 
-
+    //回放功能
+    connect(ui->actionStartPlayBack,&QAction::triggered,this,&MainWindow::OnButtonStartPlayBack);
+    connect(ui->actionStopPlayBack,&QAction::triggered,this,&MainWindow::OnButtonStopPlayBack);
 	//////////////////////////////////////////////////////////////////////////
 	//model
 	//////////////////////////////////////////////////////////////////////////
@@ -1254,7 +1254,6 @@ void MainWindow::OnButtonStartCapture(){
         return;
     }
 
-
     qDebug()<<"m_vchannelCodes-size"<<theApp->m_vchannelCodes.size()<<endl;
     // 初始化采集队列
     for (int i = 0; i < theApp->m_vchannelCodes.size(); i++){
@@ -1268,11 +1267,12 @@ void MainWindow::OnButtonStartCapture(){
     sampleThread->start();//开启采集线程
 
     ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
+    ui->spectrunView->setY_isScale(false);
+    ui->spectrunView->setYAxisRange(0,50000);
+    ui->spectrunView->setXAxisRange(10000);
     ui->spectrunView->start();//开始显示
 
-
     mainSaveData->start();
-
 
 }
 
@@ -1284,12 +1284,38 @@ void MainWindow::OnButtonStopCapture(){
     for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
         it->second->clearEchoSignal();
     }
-    //theApp->staticEchoSignal->clearEchoSignal();
-
 
 }
 
+void MainWindow::OnButtonStartPlayBack(){
 
+//    if (theApp->m_blocalSignalExist){
+//        //设置视图的刷新状态
+//        theApp->m_iplaybackState = 1;
+        for(int i=0;i<4;i++){
+            PlayBackThread *playConsumer = new PlayBackThread(this,theApp->m_vchannelCodes[i]);
+            playConsumer->GetDataUrl(theApp->dataUrl[theApp->m_vchannelCodes[i]]);
+            playBackVector.push_back(playConsumer);
+        }
+        for (int i = 0; i < 4; i++){
+            playBackVector[i]->start();
+        }
+
+//        for (int i = 0; i < theApp->playBackVector.size(); i++){
+//            theApp->playBackVector[i]->wait();
+//        }
+
+//        ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
+//        ui->spectrunView->start();//开始显示
+
+//        }
+
+}
+
+//回放
+void MainWindow::OnButtonStopPlayBack(){
+
+}
 /*****************************wzx**************************************/
 
 

@@ -45,17 +45,40 @@ public:
      void setDataViewEcho(std::map<QString,std::shared_ptr<StaticSpectralEchoSignal>> mapData) ;
      void setInterval(int mec) ;
      /**
+      * @brief setYAxisRange 四个窗口的Y轴范围
+      * @param start
+      * @param end
+      */
+     void setYAxisRange(double start , double end);
+     /**
+      * @brief setY_isScale,设置Y轴是否动态收缩
+      * @param scale
+      */
+     void setY_isScale(bool scale);
+     /**
       * @brief 设置频谱范围
       * @param count为最大频谱，0为最小，那么就是总共count+1跟谱线
       */
-     void setRange(int count);
+     void setXAxisRange(int count);
 private:
      QVector<QCustomPlot *> *customPlot = new QVector<QCustomPlot *> (4);
      std::map<QString ,int> bindCustonPlot;
      QTimer *timer ;
      std::map<QString,std::shared_ptr<StaticSpectralEchoSignal>> mapData;
      QVector<double> * xAxis = new QVector<double>(10000);
+     /**
+      * @brief x轴的范围
+      */
      int range = 0;
+     /**
+      * @brief yIsRescale,Y轴是否缩放
+      */
+     bool yIsRescale = true;
+     /**
+      * @brief 当Y轴不需要自动缩放时，使用这两个值
+      */
+     double yStart;
+     double yStop;
 };
 
 #endif // JSPECTRUMWINDOW_H

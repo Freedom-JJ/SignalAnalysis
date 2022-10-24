@@ -124,15 +124,15 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     actionDefaultscale->setObjectName(QStringLiteral("actionDefaultscale"));
     actionDefaultscale->setIcon(QIcon(":/figureSet/icons/figureSet/ShowLegend.png"));
 
-    actionStopSample = new QAction(mainWinowPtr);
-    actionStopSample->setObjectName(QStringLiteral("actionStopSample"));
-    actionStopSample->setCheckable(true);
-    actionStopSample->setIcon(QIcon(":/icons/icons/selectionRegionDataMove.png"));
+    actionStopPlayBack = new QAction(mainWinowPtr);
+    actionStopPlayBack->setObjectName(QStringLiteral("actionStopPlayBack"));
+    actionStopPlayBack->setCheckable(true);
+    actionStopPlayBack->setIcon(QIcon(":/icons/icons/selectionRegionDataMove.png"));
 
-    actionStartSample = new QAction(mainWinowPtr);
-    actionStartSample->setObjectName(QStringLiteral("actionStartSample"));
-    actionStartSample->setCheckable(true);
-    actionStartSample->setIcon(QIcon(":/icons/icons/selectionRegionDataMove.png"));
+    actionStartPlayBack = new QAction(mainWinowPtr);
+    actionStartPlayBack->setObjectName(QStringLiteral("actionStartPlayBack"));
+    actionStartPlayBack->setCheckable(true);
+    actionStartPlayBack->setIcon(QIcon(":/icons/icons/selectionRegionDataMove.png"));
 
     actionOpen = new QAction(mainWinowPtr);
     actionOpen->setObjectName(QStringLiteral("actionOpen"));
@@ -751,8 +751,8 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
 
     //Grid pannel
     chartGridCategoryWindowPannel = operateRibbonCategory->addPannel("采样");
-    chartGridCategoryWindowPannel->addLargeAction(actionStartSample);
-    chartGridCategoryWindowPannel->addLargeAction(actionStopSample);
+    chartGridCategoryWindowPannel->addLargeAction(actionStartPlayBack);
+    chartGridCategoryWindowPannel->addLargeAction(actionStopPlayBack);
 
     //figure Opt pannel
     figureOptRibbonPannel = operateRibbonCategory->addPannel("回放");
@@ -1020,8 +1020,8 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
     actionAutomaticscale->setText(QApplication::translate("MainWindow", "自动刻度", 0));
     actionDefaultscale->setText(QApplication::translate("MainWindow", "默认刻度", 0));
 
-    actionStartSample->setText(QApplication::translate("MainWindow", "开始采样", 0));
-    actionStopSample->setText(QApplication::translate("MainWindow", "停止采样", 0));
+    actionStartPlayBack->setText(QApplication::translate("MainWindow", "开始回放", 0));
+    actionStopPlayBack->setText(QApplication::translate("MainWindow", "停止回放", 0));
 
     menuRecentOpenFile->setTitle(QApplication::translate("MainWindow", "Recent Open Files", 0));
     menuRecentOpenProject->setTitle(QApplication::translate("MainWindow", "Recent Open Projects", 0));
@@ -1203,8 +1203,8 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
 
     operateCategoryDataViewPannel->setWindowTitle(QApplication::translate("MainWindow", "显示", 0));
     chartLegendCategoryWindowPannel->setWindowTitle(QApplication::translate("MainWindow", "观测", 0));
-    chartGridCategoryWindowPannel->setWindowTitle(QApplication::translate("MainWindow", "采样", 0));
-    figureOptRibbonPannel->setWindowTitle(QApplication::translate("MainWindow", "回放", 0));
+    chartGridCategoryWindowPannel->setWindowTitle(QApplication::translate("MainWindow", "回放", 0));
+    figureOptRibbonPannel->setWindowTitle(QApplication::translate("MainWindow", "采样", 0));
     menuShowCrowdedGrid->setTitle(QApplication::translate("MainWindow", "Crowded", 0));
 
     ribbonApplicationButton->setText(QApplication::translate("MainWindow", "振动采集系统", 0));
