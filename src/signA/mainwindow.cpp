@@ -1287,11 +1287,12 @@ void MainWindow::OnButtonStopCapture(){
 
 }
 
+//回放
 void MainWindow::OnButtonStartPlayBack(){
 
-//    if (theApp->m_blocalSignalExist){
-//        //设置视图的刷新状态
-//        theApp->m_iplaybackState = 1;
+    if (theApp->m_blocalSignalExist){
+        //设置视图的刷新状态
+        theApp->m_iplaybackState = 1;
         for(int i=0;i<4;i++){
             PlayBackThread *playConsumer = new PlayBackThread(this,theApp->m_vchannelCodes[i]);
             playConsumer->GetDataUrl(theApp->dataUrl[theApp->m_vchannelCodes[i]]);
@@ -1301,18 +1302,18 @@ void MainWindow::OnButtonStartPlayBack(){
             playBackVector[i]->start();
         }
 
-//        for (int i = 0; i < theApp->playBackVector.size(); i++){
-//            theApp->playBackVector[i]->wait();
-//        }
+        for (int i = 0; i < playBackVector.size(); i++){
+           playBackVector[i]->wait();
+        }
 
-//        ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
-//        ui->spectrunView->start();//开始显示
+        ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
+        ui->spectrunView->start();//开始显示
 
-//        }
+        }
 
 }
 
-//回放
+
 void MainWindow::OnButtonStopPlayBack(){
 
 }

@@ -4,9 +4,9 @@ void PlayBackThread::run(){
 
 
     int collectionPoints = playThread->theApp->data_length;
-    QString data_url = playThread->theApp->dataUrl[this->signalCode];
+    //QString data_url = playThread->theApp->dataUrl[this->signalCode];
 
-    QFile file(data_url);
+    QFile file(DataUrl);
     if(!file.open(QIODevice::ReadOnly))
     {
         std::cerr << "Cannot open file for reading: "
