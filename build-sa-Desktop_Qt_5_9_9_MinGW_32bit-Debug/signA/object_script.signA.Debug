@@ -34,6 +34,7 @@ INPUT(
 ./debug\StaticSpectralEchoSignal.o
 ./debug\FFTWUtil.o
 ./debug\GetDataThread.o
+./debug\PlayBackThread.o
 ./debug\SaveCollectionDataThread.o
 ./debug\SmartFFTWComplexArray.o
 ./debug\aircraftcasingvibratesystem.o

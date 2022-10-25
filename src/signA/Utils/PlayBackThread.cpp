@@ -1,12 +1,40 @@
 #include "PlayBackThread.h"
 
+void SumPlayBackThread::run(){
+
+    if (sumPlayThread->theApp->m_blocalSignalExist){
+        //设置视图的刷新状态
+        sumPlayThread->theApp->m_iplaybackState = 1;
+
+        auto iter = sumPlayThread->theApp->dataUrl.begin();
+        while (iter!= sumPlayThread->theApp->dataUrl.end()){
+            PlayBackThread *everyBackConsumer  = new PlayBackThread(sumPlayThread,iter->first,iter->second);
+            playBackThreadVector.push_back(everyBackConsumer);
+            iter++;
+        }
+
+        qDebug()<<"threadsize------------------------------------------------------"<<playBackThreadVector.size()<<endl;;
+        for (int i = 0; i < playBackThreadVector.size();i++){
+            playBackThreadVector[i]->start();
+        }
+        for (int i = 0; i < playBackThreadVector.size();i++){
+            playBackThreadVector[i]->wait();
+        }
+
+        }
+
+    sumPlayThread->theApp->m_iplaybackState = 0;
+
+
+}
+
 void PlayBackThread::run(){
 
 
     int collectionPoints = playThread->theApp->data_length;
-    //QString data_url = playThread->theApp->dataUrl[this->signalCode];
+    QString data_url = playThread->theApp->dataUrl[this->signalCode];
 
-    QFile file(DataUrl);
+    QFile file(data_url);
     if(!file.open(QIODevice::ReadOnly))
     {
         std::cerr << "Cannot open file for reading: "
@@ -27,13 +55,10 @@ void PlayBackThread::run(){
 
         playThread->theApp->echoSignalQueue[signalCode]->PushEchoSignal(fftwInputArray);
 
-        delete fftwInputArray;
-        fftwInputArray = nullptr;
         msleep(600);
     }
 
+
 }
 
-void PlayBackThread::GetDataUrl(QString dataUrl){
-    this->DataUrl = dataUrl;
-}
+

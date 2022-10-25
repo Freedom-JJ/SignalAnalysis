@@ -63,6 +63,7 @@ class QwtPlotItem;
 class PlayBackThread;
 class SAAbstractDataImportInterface;
 class SARectRegionSelectEditor;
+class SumPlayBackThread;
 class SaveCollectionDataThread;
 class StaticSpectralEchoSignal;
 class AirCraftCasingVibrateSystem;
@@ -97,7 +98,7 @@ public:
 
     QScopedPointer<SaveCollectionDataThread> mainSaveData;//用于保存磁盘的对象
 
-    std::vector<PlayBackThread*> playBackVector;
+    QScopedPointer<SumPlayBackThread> mainPlayBack;//用于回放数据的对象
 
     void CreateCaptureWindow(); //创建采集窗口（队列等初始化操作）
 

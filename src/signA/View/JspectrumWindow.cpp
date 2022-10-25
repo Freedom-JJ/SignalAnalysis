@@ -72,10 +72,15 @@ void JSpectrumWindow::refresh(){
     //qDebug()<<"refresh"<<endl;
 
     std::map<QString,QVector<double>> data;
+
     for(auto it = mapData.begin();it!=mapData.end();it++){
         QVector<double> singleChannelVector = it->second->PopEchoSignal();;
         data[it->first] = singleChannelVector;
     }
+
+//    if ((mainSpectrum->theApp->m_iplaybackState==0)&&data.size()==0){
+//            this->timer->stop();
+//        }
 
     if(data.size()==0){
         return;
@@ -132,4 +137,8 @@ void JSpectrumWindow::setY_isScale(bool scale)
 }
 void JSpectrumWindow::setXAxisRange(int count){
     this->range = count;
+}
+
+void JSpectrumWindow::setMainWindowObject(MainWindow *vw){
+    this->mainSpectrum = vw;
 }

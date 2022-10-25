@@ -4,6 +4,39 @@
 #include <QThread>
 #include <QDebug>
 /******************************************************************************
+ * Copyright 2022/10/25 Co., Ltd.
+ * All right reserved. See COPYRIGHT for detailed Information.
+ *
+ * @file       SumPlayBackThread
+ * @brief      概述：回放总线程
+ *
+ * @author     wangzexin<wangzexin19990311@163.com>
+ * @date       2022/10/25
+ * @location   哈尔滨理工大学人工智能实验室
+ *****************************************************************************/
+
+class PlayBackThread;
+class SumPlayBackThread : public QThread
+{
+
+public:
+
+    SumPlayBackThread(class MainWindow *spt):sumPlayThread(spt){
+
+    }
+
+    void run() override;
+
+
+public:
+    MainWindow *sumPlayThread;
+
+    std::vector<PlayBackThread*> playBackThreadVector;
+
+};
+
+
+/******************************************************************************
  * Copyright 2022/10/23 Co., Ltd.
  * All right reserved. See COPYRIGHT for detailed Information.
  *
@@ -17,13 +50,12 @@
 class PlayBackThread : public QThread
 {
 public:
-    PlayBackThread(class MainWindow *pt , QString sc):playThread(pt) , signalCode(sc){
+    PlayBackThread(class MainWindow *pt , QString sc , QString url):playThread(pt) , signalCode(sc), DataUrl(url){
 
     }
 
     void run() override;
 
-    void GetDataUrl(QString dataUrl);
 
 public:
     MainWindow *playThread;

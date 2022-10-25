@@ -103,6 +103,7 @@ MainWindow::MainWindow(QWidget *parent) :
     , theApp(new AirCraftCasingVibrateSystem())
     , sampleThread(new GetDataThread(this))
     , mainSaveData(new SaveCollectionDataThread(this))
+    , mainPlayBack(new SumPlayBackThread(this))
 {
     saAddLog("start app");
 
@@ -135,6 +136,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dockWidget_chartDataViewer->close();
     ui->dockWidget_windowList->close();
     ui->dockWidget_valueViewer->close();
+
+    ui->spectrunView->setMainWindowObject(this);
+
 
     /*******wzx********************/
 }
@@ -1290,31 +1294,26 @@ void MainWindow::OnButtonStopCapture(){
 //回放
 void MainWindow::OnButtonStartPlayBack(){
 
-    if (theApp->m_blocalSignalExist){
-        //设置视图的刷新状态
-        theApp->m_iplaybackState = 1;
-        for(int i=0;i<4;i++){
-            PlayBackThread *playConsumer = new PlayBackThread(this,theApp->m_vchannelCodes[i]);
-            playConsumer->GetDataUrl(theApp->dataUrl[theApp->m_vchannelCodes[i]]);
-            playBackVector.push_back(playConsumer);
-        }
-        for (int i = 0; i < 4; i++){
-            playBackVector[i]->start();
-        }
+    mainPlayBack->start();
 
-        for (int i = 0; i < playBackVector.size(); i++){
-           playBackVector[i]->wait();
-        }
+    ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
+//    ui->spectrunView->setY_isScale(false);
+//    ui->spectrunView->setYAxisRange(0,50000);
+//    ui->spectrunView->setXAxisRange(10000);
+    ui->spectrunView->start();//开始显示
 
-        ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
-        ui->spectrunView->start();//开始显示
-
-        }
 
 }
 
 
 void MainWindow::OnButtonStopPlayBack(){
+
+    theApp->m_iplaybackState = 0;
+    mainPlayBack->quit();
+    ui->spectrunView->stop();
+    for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
+        it->second->clearEchoSignal();
+    }
 
 }
 /*****************************wzx**************************************/
