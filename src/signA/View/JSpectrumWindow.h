@@ -40,6 +40,7 @@ public:
      */
      void refresh();
 
+     void setMainWindowObject(MainWindow *vw);
      void start();
      void stop();
      void setDataViewEcho(std::map<QString,std::shared_ptr<StaticSpectralEchoSignal>> mapData) ;
@@ -66,6 +67,7 @@ private:
      QTimer *timer ;
      std::map<QString,std::shared_ptr<StaticSpectralEchoSignal>> mapData;
      QVector<double> * xAxis = new QVector<double>(10000);
+     MainWindow *mainSpectrum;
      /**
       * @brief x轴的范围
       */

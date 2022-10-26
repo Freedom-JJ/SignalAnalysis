@@ -39,6 +39,7 @@ class MainWindowPrivate;
 #include "SAAbstractRegionSelectEditor.h"
 #include "SAAddLineChartSetDialog.h"
 
+#include "Utils/PlayBackThread.h"
 #include "Utils/SaveCollectionDataThread.h"
 #include "Utils/GetDataThread.h"
 #include "Utils/SaveCollectionDataThread.h"
@@ -59,8 +60,10 @@ class SAFigureWindow;
 class SAChart2D;
 class QwtPlotItem;
 
+class PlayBackThread;
 class SAAbstractDataImportInterface;
 class SARectRegionSelectEditor;
+class SumPlayBackThread;
 class SaveCollectionDataThread;
 class StaticSpectralEchoSignal;
 class AirCraftCasingVibrateSystem;
@@ -94,6 +97,8 @@ public:
     QScopedPointer<GetDataThread> sampleThread;
 
     QScopedPointer<SaveCollectionDataThread> mainSaveData;//用于保存磁盘的对象
+
+    QScopedPointer<SumPlayBackThread> mainPlayBack;//用于回放数据的对象
 
     void CreateCaptureWindow(); //创建采集窗口（队列等初始化操作）
 
@@ -340,7 +345,13 @@ private slots:
 
     //采集槽函数
     void OnButtonStartCapture();
+
     void OnButtonStopCapture();
+
+    //回放槽函数
+    void OnButtonStartPlayBack();
+
+    void OnButtonStopPlayBack();
 
     //焦点变换触发的槽
     void onFocusChanged(QWidget *old, QWidget *now);

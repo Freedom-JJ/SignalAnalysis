@@ -75,8 +75,8 @@ public:
     QAction *actionPeakcursor;///峰值光标
     QAction *actionAutomaticscale;///自动刻度
     QAction *actionDefaultscale;///默认刻度
-    QAction *actionStartSample;///自动刻度
-    QAction *actionStopSample;///默认刻度
+    QAction *actionStartPlayBack;///开始回放
+    QAction *actionStopPlayBack;///停止回放
 
     QAction *actionOpen;
     QAction *actionClearRecentOpenFileHistroy;      ///< 清除最近打开文件记录

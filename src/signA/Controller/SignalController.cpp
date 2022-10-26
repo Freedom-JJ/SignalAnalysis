@@ -34,3 +34,13 @@ Result SignalController::SaveCollectionData2Vector(QVector<QVector<double> > &su
     sumSignalVector.append(saveData);
     return Result(true, "success");
 }
+
+bool SignalController::GetCollectionData(QDataStream &inputStream, int pointCount,double *&fftwInputArray){
+    QVector<double> signal;
+    inputStream >> signal;
+    fftwInputArray = new double[pointCount];
+    for(int i=0;i<signal.size();i++){
+        fftwInputArray[i]=signal[i];
+    }
+
+}

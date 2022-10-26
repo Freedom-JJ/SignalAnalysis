@@ -103,6 +103,7 @@ MainWindow::MainWindow(QWidget *parent) :
     , theApp(new AirCraftCasingVibrateSystem())
     , sampleThread(new GetDataThread(this))
     , mainSaveData(new SaveCollectionDataThread(this))
+    , mainPlayBack(new SumPlayBackThread(this))
 {
     saAddLog("start app");
 
@@ -135,6 +136,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dockWidget_chartDataViewer->close();
     ui->dockWidget_windowList->close();
     ui->dockWidget_valueViewer->close();
+
+    ui->spectrunView->setMainWindowObject(this);
+
 
     /*******wzx********************/
 }
@@ -236,10 +240,10 @@ void MainWindow::initUI()
     //采集功能
     connect(ui->actionStartCapture,&QAction::triggered,this,&MainWindow::OnButtonStartCapture);
     connect(ui->actionStopCapture,&QAction::triggered,this,&MainWindow::OnButtonStopCapture);
-//    connect(ui->actionStartCapture,&QAction::triggered,ui->sampleView,&JSampleView::startSampleWithTimer);
-//    connect(ui->actionStopCapture,&QAction::triggered,ui->sampleView,&JSampleView::stopSample);
 
-
+    //回放功能
+    connect(ui->actionStartPlayBack,&QAction::triggered,this,&MainWindow::OnButtonStartPlayBack);
+    connect(ui->actionStopPlayBack,&QAction::triggered,this,&MainWindow::OnButtonStopPlayBack);
 	//////////////////////////////////////////////////////////////////////////
 	//model
 	//////////////////////////////////////////////////////////////////////////
@@ -1254,7 +1258,6 @@ void MainWindow::OnButtonStartCapture(){
         return;
     }
 
-
     qDebug()<<"m_vchannelCodes-size"<<theApp->m_vchannelCodes.size()<<endl;
     // 初始化采集队列
     for (int i = 0; i < theApp->m_vchannelCodes.size(); i++){
@@ -1268,11 +1271,12 @@ void MainWindow::OnButtonStartCapture(){
     sampleThread->start();//开启采集线程
 
     ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
+    ui->spectrunView->setY_isScale(false);
+    ui->spectrunView->setYAxisRange(0,50000);
+    ui->spectrunView->setXAxisRange(10000);
     ui->spectrunView->start();//开始显示
 
-
     mainSaveData->start();
-
 
 }
 
@@ -1284,12 +1288,34 @@ void MainWindow::OnButtonStopCapture(){
     for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
         it->second->clearEchoSignal();
     }
-    //theApp->staticEchoSignal->clearEchoSignal();
+
+}
+
+//回放
+void MainWindow::OnButtonStartPlayBack(){
+
+    mainPlayBack->start();
+
+    ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
+//    ui->spectrunView->setY_isScale(false);
+//    ui->spectrunView->setYAxisRange(0,50000);
+//    ui->spectrunView->setXAxisRange(10000);
+    ui->spectrunView->start();//开始显示
 
 
 }
 
 
+void MainWindow::OnButtonStopPlayBack(){
+
+    theApp->m_iplaybackState = 0;
+    mainPlayBack->quit();
+    ui->spectrunView->stop();
+    for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
+        it->second->clearEchoSignal();
+    }
+
+}
 /*****************************wzx**************************************/
 
 
