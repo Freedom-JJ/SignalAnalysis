@@ -26,6 +26,7 @@ void JSpectrumWindow::init(QWidget *parent){
     for (int var = 0; var < 4; ++var) {
         (*this->customPlot)[var] = new QCustomPlot();
         this->customPlot->at(var)->addGraph();
+        this->customPlot->at(var)->graph()->setPen(QPen(QColor(Qt::red)));
 //        this->customPlot->at(var)->graph(0)->addData(*xAxis,y[var],true);
 //        connect(customPlot->at(var)->xAxis,SIGNAL(rangeChanged(QCPRange)),
 //                   customPlot->at(var)->xAxis2,SLOT(setRange(QCPRange)));
@@ -76,10 +77,6 @@ void JSpectrumWindow::refresh(){
         QVector<double> singleChannelVector = it->second->PopEchoSignal();;
         data[it->first] = singleChannelVector;
     }
-
-//    if ((mainSpectrum->theApp->m_iplaybackState==0)&&data.size()==0){
-//            this->timer->stop();
-//        }
 
     if(data.size()==0){
         return;
