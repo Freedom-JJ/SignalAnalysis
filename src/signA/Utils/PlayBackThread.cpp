@@ -23,6 +23,7 @@ void SumPlayBackThread::run(){
 
         }
 
+    qDebug()<<"所有线程都结束了----------1027"<<endl;
     sumPlayThread->theApp->m_iplaybackState = 0;
 
 
