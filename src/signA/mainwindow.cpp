@@ -1296,11 +1296,13 @@ void MainWindow::OnButtonStartPlayBack(){
 
     mainPlayBack->start();
 
+    connect(mainPlayBack,&SumPlayBackThread::stopRefresh,ui->spectrunView,&JSpectrumWindow::stop);
     ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
 //    ui->spectrunView->setY_isScale(false);
 //    ui->spectrunView->setYAxisRange(0,50000);
 //    ui->spectrunView->setXAxisRange(10000);
     ui->spectrunView->start();//开始显示
+
 
 
 }

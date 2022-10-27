@@ -18,7 +18,7 @@
 class PlayBackThread;
 class SumPlayBackThread : public QThread
 {
-
+    Q_OBJECT
 public:
 
     SumPlayBackThread(class MainWindow *spt):sumPlayThread(spt){
@@ -33,6 +33,11 @@ public:
 
     std::vector<PlayBackThread*> playBackThreadVector;
 
+signals:
+    /**
+     * @brief stopRefresh,回放正常结束（文件读取完）
+     */
+    void stopRefresh();
 };
 
 

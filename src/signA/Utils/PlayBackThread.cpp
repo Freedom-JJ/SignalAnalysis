@@ -23,6 +23,7 @@ void SumPlayBackThread::run(){
 
         }
 
+    emit stopRefresh(); //可以执行,但是界面或者队列已经卡死slots执行不了
     qDebug()<<"所有线程都结束了----------1027"<<endl;
     sumPlayThread->theApp->m_iplaybackState = 0;
 

@@ -98,7 +98,7 @@ public:
 
     QScopedPointer<SaveCollectionDataThread> mainSaveData;//用于保存磁盘的对象
 
-    QScopedPointer<SumPlayBackThread> mainPlayBack;//用于回放数据的对象
+    SumPlayBackThread *  mainPlayBack;//用于回放数据的对象
 
     void CreateCaptureWindow(); //创建采集窗口（队列等初始化操作）
 
