@@ -841,3 +841,41 @@
 2022-10-25 17:52:39,deal type  1  fun  2,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",281,..\..\src\signAServe\SATcpSocket.cpp
 2022-10-25 17:52:59,deal type  1  fun  2,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",281,..\..\src\signAServe\SATcpSocket.cpp
 2022-10-25 17:53:19,deal type  1  fun  2,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",281,..\..\src\signAServe\SATcpSocket.cpp
+2022-10-27 09:34:33,==============start===================,"int qMain(int, char**)",70,..\..\src\signADataProc\main.cpp
+2022-10-27 09:34:33,"create share memory sucess,will update data to share memory",SAServeShareMemoryPrivate::SAServeShareMemoryPrivate(SAServeShareMemory*),41,..\..\src\signAServe\SAServeShareMemory.cpp
+2022-10-27 09:34:33,""开始初始化服务句柄"","int qMain(int, char**)",77,..\..\src\signADataProc\main.cpp
+2022-10-27 09:34:33,"arg: (""C:\\wangzexin\\Graduation\\qt_project_git\\SignalAnalysis2\\src\\bin_qt5.9.9_debug\\signADataProc.exe"", ""18200"")","int qMain(int, char**)",84,..\..\src\signADataProc\main.cpp
+2022-10-27 09:34:33,"listen success,port is: 10099","int qMain(int, char**)",108,..\..\src\signADataProc\main.cpp
+2022-10-27 09:34:33,""服务器建立完成，服务器状态写入共享内存"","int qMain(int, char**)",113,..\..\src\signADataProc\main.cpp
+2022-10-27 09:34:33,""服务器正常运行，时间："" QDateTime(2022-10-27 09:34:33.640 中国标准时间 Qt::TimeSpec(LocalTime)),"int qMain(int, char**)",120,..\..\src\signADataProc\main.cpp
+2022-10-27 09:34:34, >> fun: incomingConnection  line: 130,virtual void SATcpServe::incomingConnection(qintptr),130,..\..\src\signAServe\SATcpServe.cpp
+2022-10-27 09:34:34,incomingConnection: 1096,virtual void SATcpServe::incomingConnection(qintptr),132,..\..\src\signAServe\SATcpServe.cpp
+2022-10-27 09:34:34,create SADataProcSocket,SATcpSocket* create_socket(),26,..\..\src\signADataProc\SADataProcServe.cpp
+2022-10-27 09:34:34,"create socket success:ip ""::ffff:127.0.0.1"" ,port: 15601",virtual void SATcpServe::incomingConnection(qintptr),177,..\..\src\signAServe\SATcpServe.cpp
+2022-10-27 09:34:34,deal type  1  fun  2,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",281,..\..\src\signAServe\SATcpSocket.cpp
+2022-10-27 09:37:16,==============start===================,"int qMain(int, char**)",70,..\..\src\signADataProc\main.cpp
+2022-10-27 09:37:16,"create share memory sucess,will update data to share memory",SAServeShareMemoryPrivate::SAServeShareMemoryPrivate(SAServeShareMemory*),41,..\..\src\signAServe\SAServeShareMemory.cpp
+2022-10-27 09:37:16,""开始初始化服务句柄"","int qMain(int, char**)",77,..\..\src\signADataProc\main.cpp
+2022-10-27 09:37:17,"arg: (""C:\\wangzexin\\Graduation\\qt_project_git\\SignalAnalysis2\\src\\bin_qt5.9.9_debug\\signADataProc.exe"", ""3304"")","int qMain(int, char**)",84,..\..\src\signADataProc\main.cpp
+2022-10-27 09:37:17,"listen success,port is: 10099","int qMain(int, char**)",108,..\..\src\signADataProc\main.cpp
+2022-10-27 09:37:17,""服务器建立完成，服务器状态写入共享内存"","int qMain(int, char**)",113,..\..\src\signADataProc\main.cpp
+2022-10-27 09:37:17,""服务器正常运行，时间："" QDateTime(2022-10-27 09:37:17.078 中国标准时间 Qt::TimeSpec(LocalTime)),"int qMain(int, char**)",120,..\..\src\signADataProc\main.cpp
+2022-10-27 09:37:17, >> fun: incomingConnection  line: 130,virtual void SATcpServe::incomingConnection(qintptr),130,..\..\src\signAServe\SATcpServe.cpp
+2022-10-27 09:37:17,incomingConnection: 1088,virtual void SATcpServe::incomingConnection(qintptr),132,..\..\src\signAServe\SATcpServe.cpp
+2022-10-27 09:37:17,create SADataProcSocket,SATcpSocket* create_socket(),26,..\..\src\signADataProc\SADataProcServe.cpp
+2022-10-27 09:37:17,"create socket success:ip ""::ffff:127.0.0.1"" ,port: 15629",virtual void SATcpServe::incomingConnection(qintptr),177,..\..\src\signAServe\SATcpServe.cpp
+2022-10-27 09:37:17,deal type  1  fun  2,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",281,..\..\src\signAServe\SATcpSocket.cpp
+2022-10-27 15:04:43,==============start===================,"int qMain(int, char**)",70,..\..\src\signADataProc\main.cpp
+2022-10-27 15:04:43,"create share memory sucess,will update data to share memory",SAServeShareMemoryPrivate::SAServeShareMemoryPrivate(SAServeShareMemory*),41,..\..\src\signAServe\SAServeShareMemory.cpp
+2022-10-27 15:04:43,""开始初始化服务句柄"","int qMain(int, char**)",77,..\..\src\signADataProc\main.cpp
+2022-10-27 15:04:43,"arg: (""C:\\wangzexin\\Graduation\\qt_project_git\\SignalAnalysis2\\src\\bin_qt5.9.9_debug\\signADataProc.exe"", ""4620"")","int qMain(int, char**)",84,..\..\src\signADataProc\main.cpp
+2022-10-27 15:04:43,"listen success,port is: 10099","int qMain(int, char**)",108,..\..\src\signADataProc\main.cpp
+2022-10-27 15:04:43,""服务器建立完成，服务器状态写入共享内存"","int qMain(int, char**)",113,..\..\src\signADataProc\main.cpp
+2022-10-27 15:04:43,""服务器正常运行，时间："" QDateTime(2022-10-27 15:04:43.495 中国标准时间 Qt::TimeSpec(LocalTime)),"int qMain(int, char**)",120,..\..\src\signADataProc\main.cpp
+2022-10-27 15:04:43, >> fun: incomingConnection  line: 130,virtual void SATcpServe::incomingConnection(qintptr),130,..\..\src\signAServe\SATcpServe.cpp
+2022-10-27 15:04:43,incomingConnection: 1060,virtual void SATcpServe::incomingConnection(qintptr),132,..\..\src\signAServe\SATcpServe.cpp
+2022-10-27 15:04:43,create SADataProcSocket,SATcpSocket* create_socket(),26,..\..\src\signADataProc\SADataProcServe.cpp
+2022-10-27 15:04:43,"create socket success:ip ""::ffff:127.0.0.1"" ,port: 27932",virtual void SATcpServe::incomingConnection(qintptr),177,..\..\src\signAServe\SATcpServe.cpp
+2022-10-27 15:04:43,deal type  1  fun  2,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",281,..\..\src\signAServe\SATcpSocket.cpp
+2022-10-27 15:05:03,deal type  1  fun  2,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",281,..\..\src\signAServe\SATcpSocket.cpp
+2022-10-27 15:05:23,deal type  1  fun  2,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",281,..\..\src\signAServe\SATcpSocket.cpp

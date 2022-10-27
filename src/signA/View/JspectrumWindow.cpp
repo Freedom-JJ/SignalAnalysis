@@ -71,8 +71,7 @@ void JSpectrumWindow::stop(){
 void JSpectrumWindow::refresh(){
     //qDebug()<<"refresh"<<endl;
 
-    std::map<QString,QVector<double>> data;
-
+    std::map<QString,QVector<double>> data;  
     for(auto it = mapData.begin();it!=mapData.end();it++){
         QVector<double> singleChannelVector = it->second->PopEchoSignal();;
         data[it->first] = singleChannelVector;
