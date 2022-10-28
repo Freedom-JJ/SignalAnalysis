@@ -1,5 +1,7 @@
 **数据库的表已经重新设计，后续可能会更新，对应的sql文件为 "SignalAnalysis2\src\signA\Dao\aricraft_db.sql"（10-28更新）**
+
 ODBC配置：data source name: aricraft_db, user:root, password:root 
+
 日志文件保存在"src\bin_qt5.9.9_debug\log.txt"
 
 # 提交时需注意：
