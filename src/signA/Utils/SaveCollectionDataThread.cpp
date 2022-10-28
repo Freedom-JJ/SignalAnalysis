@@ -48,7 +48,7 @@ void ConsumerThread::run(){
             //qDebug()<<"\n队列长度%d\n", m_mpcolllectioinDataQueue[signalCode].size()<<endl;
             saveData.push(*(consumer->theApp->m_mpcolllectioinDataQueue[signalCode].wait_and_pop()));
             if (saveData.size() == consumer->theApp->m_icollectSignalsStoreCount){
-                consumer->theApp->m_signalController.SaveCollectionData2Binary(outputStream,saveData);
+                //consumer->theApp->m_signalController.SaveCollectionData2Binary(outputStream,saveData);
         }
       }
     }
@@ -60,7 +60,8 @@ void ConsumerThread::run(){
             QVector<double>().swap(restVector);
         }
         saveData.push(*(consumer->theApp->m_mpcolllectioinDataQueue[signalCode].wait_and_pop()));
-        shared_ptr<double> signal = saveData.wait_and_pop();
+
+        std::shared_ptr<double> signal = saveData.wait_and_pop();
         restVector.append(*signal);
 
     }

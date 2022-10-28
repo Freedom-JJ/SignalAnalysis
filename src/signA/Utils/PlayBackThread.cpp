@@ -39,9 +39,9 @@ void PlayBackThread::run(){
     QFile file(data_url);
     if(!file.open(QIODevice::ReadOnly))
     {
-        std::cerr << "Cannot open file for reading: "
-                  << qPrintable(file.errorString())
-                  << std::endl;
+ //       std::cerr << "Cannot open file for reading: "
+ //                << qPrintable(file.errorString())
+ //                << std::endl;
     }
     QDataStream inputStream(&file);
     inputStream.setVersion(QDataStream::Qt_5_9);
@@ -53,7 +53,7 @@ void PlayBackThread::run(){
         }
         ///从文件中拿到collectionPoints条数据
         double * fftwInputArray;//傅里叶输入
-        playThread->theApp->m_signalController.GetCollectionData(inputStream, collectionPoints, fftwInputArray);
+        //playThread->theApp->m_signalController.GetCollectionData(inputStream, collectionPoints, fftwInputArray);
 
         playThread->theApp->echoSignalQueue[signalCode]->PushEchoSignal(fftwInputArray);
 
