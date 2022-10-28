@@ -10,12 +10,12 @@ class SumSignalDao
 public:
     SumSignalDao();
     //返回所有的sumSignal
-    vector<SumSignal> listSumSignals(string query_condition="");
+    vector<SumSignal*> listSumSignals(string query_condition="");
 
     //根据sumSignal的id返回sumSignal
-    SumSignal* getSumSignalById();
+    SumSignal* getSumSignalById(string id);
 
-    string insert(SumSignal* sumSignal, bool insert_id = true);
+    string insert(SumSignal* sumSignal);
 
 };
 

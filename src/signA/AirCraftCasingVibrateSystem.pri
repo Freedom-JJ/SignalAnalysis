@@ -2,6 +2,7 @@ HEADERS += \
     $$PWD/Dao/pdsql.h \
     $$PWD/Dao/pdsqlinitialize.h \
     $$PWD/Dao/postdao.h \
+    $$PWD/Dao/singlesignaldao.h \
     $$PWD/Dao/sumsignaldao.h \
     $$PWD/Dao/userdao.h \
     $$PWD/Domain/post.h \
@@ -36,6 +37,7 @@ SOURCES += \
     $$PWD/Dao/pdsql.cpp \
     $$PWD/Dao/pdsqlinitialize.cpp \
     $$PWD/Dao/postdao.cpp \
+    $$PWD/Dao/singlesignaldao.cpp \
     $$PWD/Dao/sumsignaldao.cpp \
     $$PWD/Dao/userdao.cpp \
     $$PWD/Domain/post.cpp \
@@ -46,6 +48,7 @@ SOURCES += \
     $$PWD/Logger/log.cpp \
     $$PWD/Signal/BaseEchoSignal.cpp \
     $$PWD/Signal/StaticSpectralEchoSignal.cpp \
+    $$PWD/Test/test.cpp \
     $$PWD/Tools/tool.cpp \
     $$PWD/Utils/FFTWUtil.cpp \
     $$PWD/Utils/GetDataThread.cpp \
