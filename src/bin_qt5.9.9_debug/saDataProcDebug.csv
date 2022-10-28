@@ -933,3 +933,15 @@
 2022-10-28 17:11:26,create SADataProcSocket,SATcpSocket* create_socket(),26,..\..\signADataProc\SADataProcServe.cpp
 2022-10-28 17:11:26,"create socket success:ip ""::ffff:127.0.0.1"" ,port: 18266",virtual void SATcpServe::incomingConnection(qintptr),177,..\..\signAServe\SATcpServe.cpp
 2022-10-28 17:11:26,deal type  1  fun  2,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",281,..\..\signAServe\SATcpSocket.cpp
+2022-10-28 18:10:27,==============start===================,"int qMain(int, char**)",70,..\..\signADataProc\main.cpp
+2022-10-28 18:10:27,"create share memory sucess,will update data to share memory",SAServeShareMemoryPrivate::SAServeShareMemoryPrivate(SAServeShareMemory*),41,..\..\signAServe\SAServeShareMemory.cpp
+2022-10-28 18:10:27,""开始初始化服务句柄"","int qMain(int, char**)",77,..\..\signADataProc\main.cpp
+2022-10-28 18:10:27,"arg: (""E:\\newCodes\\QT_ZD\\SignalAnalysis2\\src\\bin_qt5.9.9_debug\\signADataProc.exe"", ""688"")","int qMain(int, char**)",84,..\..\signADataProc\main.cpp
+2022-10-28 18:10:27,"listen success,port is: 10099","int qMain(int, char**)",108,..\..\signADataProc\main.cpp
+2022-10-28 18:10:27,""服务器建立完成，服务器状态写入共享内存"","int qMain(int, char**)",113,..\..\signADataProc\main.cpp
+2022-10-28 18:10:27,""服务器正常运行，时间："" QDateTime(2022-10-28 18:10:27.496 中国标准时间 Qt::TimeSpec(LocalTime)),"int qMain(int, char**)",120,..\..\signADataProc\main.cpp
+2022-10-28 18:10:28, >> fun: incomingConnection  line: 130,virtual void SATcpServe::incomingConnection(qintptr),130,..\..\signAServe\SATcpServe.cpp
+2022-10-28 18:10:28,incomingConnection: 1028,virtual void SATcpServe::incomingConnection(qintptr),132,..\..\signAServe\SATcpServe.cpp
+2022-10-28 18:10:28,create SADataProcSocket,SATcpSocket* create_socket(),26,..\..\signADataProc\SADataProcServe.cpp
+2022-10-28 18:10:28,"create socket success:ip ""::ffff:127.0.0.1"" ,port: 18641",virtual void SATcpServe::incomingConnection(qintptr),177,..\..\signAServe\SATcpServe.cpp
+2022-10-28 18:10:28,deal type  1  fun  2,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",281,..\..\signAServe\SATcpSocket.cpp
