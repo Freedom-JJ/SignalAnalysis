@@ -15,6 +15,10 @@
 
 #include "Logger/log.h"
 #include "Dao/pdsqlinitialize.h"
+#include "QSqlDatabase"
+#include <QSqlDriver>
+#include "Controller/usercontroller.h"
+#include "Test/testUserController.h"
 
 
 //#if defined(_MSC_VER) && (_MSC_VER >= 1600)
@@ -44,6 +48,7 @@ void init_database(){
     int iPort = 3306;
     global_pdsql->SetMysql(strIPp,strUser,strPassword,strDatabase,iPort);
     global_pdsql->OpenSql();
+    qInfo () <<"数据库是否支持事务操作：" << QSqlDatabase::database().driver()->hasFeature(QSqlDriver::Transactions);
 }
 
 //初始化全局日志
@@ -56,6 +61,7 @@ int main(int argc, char *argv[])
     int r(-1);
     init_log();//初始化日志
     init_database();//初始化数据库
+    testUserController();
 
 #if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 #if defined(_MSC_VER) && (_MSC_VER < 1600)

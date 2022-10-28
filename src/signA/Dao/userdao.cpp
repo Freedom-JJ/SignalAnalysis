@@ -30,7 +30,7 @@ User* UserDao::getUserById(long long id)
     }
 }
 
-User *UserDao::getUserByName(string loginName)
+User *UserDao::getUserByLoginName(string loginName)
 {
     string query_condition = "where loginName = '"+ loginName+"'";
     vector<User*> users = listUsers(query_condition);

@@ -1,4 +1,5 @@
 HEADERS += \
+    $$PWD/Controller/usercontroller.h \
     $$PWD/Dao/pdsql.h \
     $$PWD/Dao/pdsqlinitialize.h \
     $$PWD/Dao/postdao.h \
@@ -12,9 +13,11 @@ HEADERS += \
     $$PWD/Domain/sumSignal.h \
     $$PWD/Domain/user.h \
     $$PWD/Logger/log.h \
+    $$PWD/Result/result.h \
     $$PWD/Service/userservice.h \
     $$PWD/Signal/BaseEchoSignal.h \
     $$PWD/Signal/StaticSpectralEchoSignal.h \
+    $$PWD/Test/testUserController.h \
     $$PWD/Tools/tool.h \
     $$PWD/Utils/DataStructure.h \
     $$PWD/Utils/FFTWUtil.h \
@@ -36,6 +39,7 @@ HEADERS += \
 
 
 SOURCES += \
+    $$PWD/Controller/usercontroller.cpp \
     $$PWD/Dao/pdsql.cpp \
     $$PWD/Dao/pdsqlinitialize.cpp \
     $$PWD/Dao/postdao.cpp \
@@ -49,6 +53,7 @@ SOURCES += \
     $$PWD/Domain/sumSignal.cpp \
     $$PWD/Domain/user.cpp \
     $$PWD/Logger/log.cpp \
+    $$PWD/Result/result.cpp \
     $$PWD/Service/userservice.cpp \
     $$PWD/Signal/BaseEchoSignal.cpp \
     $$PWD/Signal/StaticSpectralEchoSignal.cpp \

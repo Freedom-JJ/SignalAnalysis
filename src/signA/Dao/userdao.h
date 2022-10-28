@@ -16,11 +16,10 @@ public:
     User* getUserById(long long id);
 
     //根据用户登陆名返回用户
-    User* getUserByName(string loginName);
+    User* getUserByLoginName(string loginName);
 
     //插入用户，返回用户id
     int insert(User* user,bool insert_id=false);
-
 
 };
 

@@ -33,7 +33,7 @@ Project *ProjectDao::getProjectById(long long id)
 
 vector<Project *> ProjectDao::getProjectsByUserId(long long userId)
 {
-    string query_condition = "where userId = '"+ mlltos(id) +"'";
+    string query_condition = "where userId = '"+ mlltos(userId) +"'";
     vector<Project*> projects = listProjects(query_condition);
     return projects;
 }
