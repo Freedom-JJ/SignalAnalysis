@@ -9,7 +9,7 @@ class UserController
 public:
     UserController();
 
-    Result UserLogin(string loginName);
+    Result UserLogin(User* user);
 
     Result UserRegister(User* user);
 private:

@@ -965,3 +965,57 @@
 2022-10-28 18:32:05,deal type  1  fun  2,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",281,..\..\signAServe\SATcpSocket.cpp
 2022-10-28 18:32:25,deal type  1  fun  2,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",281,..\..\signAServe\SATcpSocket.cpp
 2022-10-28 18:32:45,deal type  1  fun  2,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",281,..\..\signAServe\SATcpSocket.cpp
+2022-10-29 21:27:35,==============start===================,"int qMain(int, char**)",70,..\..\signADataProc\main.cpp
+2022-10-29 21:27:35,"create share memory sucess,will update data to share memory",SAServeShareMemoryPrivate::SAServeShareMemoryPrivate(SAServeShareMemory*),41,..\..\signAServe\SAServeShareMemory.cpp
+2022-10-29 21:27:35,""开始初始化服务句柄"","int qMain(int, char**)",77,..\..\signADataProc\main.cpp
+2022-10-29 21:27:35,"arg: (""E:\\newCodes\\QT_ZD\\SignalAnalysis2\\src\\bin_qt5.9.9_debug\\signADataProc.exe"", ""4660"")","int qMain(int, char**)",84,..\..\signADataProc\main.cpp
+2022-10-29 21:27:35,"listen success,port is: 10099","int qMain(int, char**)",108,..\..\signADataProc\main.cpp
+2022-10-29 21:27:35,""服务器建立完成，服务器状态写入共享内存"","int qMain(int, char**)",113,..\..\signADataProc\main.cpp
+2022-10-29 21:27:35,""服务器正常运行，时间："" QDateTime(2022-10-29 21:27:35.804 中国标准时间 Qt::TimeSpec(LocalTime)),"int qMain(int, char**)",120,..\..\signADataProc\main.cpp
+2022-10-29 21:28:05,==============start===================,"int qMain(int, char**)",70,..\..\signADataProc\main.cpp
+2022-10-29 21:28:05,""开始初始化服务句柄"","int qMain(int, char**)",77,..\..\signADataProc\main.cpp
+2022-10-29 21:28:05,"arg: (""E:\\newCodes\\QT_ZD\\SignalAnalysis2\\src\\bin_qt5.9.9_debug\\signADataProc.exe"", ""1036"")","int qMain(int, char**)",84,..\..\signADataProc\main.cpp
+2022-10-29 21:28:05,"listen success,port is: 10100","int qMain(int, char**)",108,..\..\signADataProc\main.cpp
+2022-10-29 21:28:05,""服务器建立完成，服务器状态写入共享内存"","int qMain(int, char**)",113,..\..\signADataProc\main.cpp
+2022-10-29 21:28:05,""服务器正常运行，时间："" QDateTime(2022-10-29 21:28:05.814 中国标准时间 Qt::TimeSpec(LocalTime)),"int qMain(int, char**)",120,..\..\signADataProc\main.cpp
+2022-10-29 21:29:35,==============start===================,"int qMain(int, char**)",70,..\..\signADataProc\main.cpp
+2022-10-29 21:29:35,""开始初始化服务句柄"","int qMain(int, char**)",77,..\..\signADataProc\main.cpp
+2022-10-29 21:29:35,"arg: (""E:\\newCodes\\QT_ZD\\SignalAnalysis2\\src\\bin_qt5.9.9_debug\\signADataProc.exe"", ""17272"")","int qMain(int, char**)",84,..\..\signADataProc\main.cpp
+2022-10-29 21:29:35,"listen success,port is: 10101","int qMain(int, char**)",108,..\..\signADataProc\main.cpp
+2022-10-29 21:29:35,""服务器建立完成，服务器状态写入共享内存"","int qMain(int, char**)",113,..\..\signADataProc\main.cpp
+2022-10-29 21:29:35,""服务器正常运行，时间："" QDateTime(2022-10-29 21:29:35.527 中国标准时间 Qt::TimeSpec(LocalTime)),"int qMain(int, char**)",120,..\..\signADataProc\main.cpp
+2022-10-29 21:30:28,==============start===================,"int qMain(int, char**)",70,..\..\signADataProc\main.cpp
+2022-10-29 21:30:28,""开始初始化服务句柄"","int qMain(int, char**)",77,..\..\signADataProc\main.cpp
+2022-10-29 21:30:28,"arg: (""E:\\newCodes\\QT_ZD\\SignalAnalysis2\\src\\bin_qt5.9.9_debug\\signADataProc.exe"", ""2792"")","int qMain(int, char**)",84,..\..\signADataProc\main.cpp
+2022-10-29 21:30:28,"listen success,port is: 10102","int qMain(int, char**)",108,..\..\signADataProc\main.cpp
+2022-10-29 21:30:28,""服务器建立完成，服务器状态写入共享内存"","int qMain(int, char**)",113,..\..\signADataProc\main.cpp
+2022-10-29 21:30:28,""服务器正常运行，时间："" QDateTime(2022-10-29 21:30:28.181 中国标准时间 Qt::TimeSpec(LocalTime)),"int qMain(int, char**)",120,..\..\signADataProc\main.cpp
+2022-10-29 21:32:08,==============start===================,"int qMain(int, char**)",70,..\..\signADataProc\main.cpp
+2022-10-29 21:32:08,""开始初始化服务句柄"","int qMain(int, char**)",77,..\..\signADataProc\main.cpp
+2022-10-29 21:32:08,"arg: (""E:\\newCodes\\QT_ZD\\SignalAnalysis2\\src\\bin_qt5.9.9_debug\\signADataProc.exe"", ""13736"")","int qMain(int, char**)",84,..\..\signADataProc\main.cpp
+2022-10-29 21:32:08,"listen success,port is: 10103","int qMain(int, char**)",108,..\..\signADataProc\main.cpp
+2022-10-29 21:32:08,""服务器建立完成，服务器状态写入共享内存"","int qMain(int, char**)",113,..\..\signADataProc\main.cpp
+2022-10-29 21:32:08,""服务器正常运行，时间："" QDateTime(2022-10-29 21:32:08.732 中国标准时间 Qt::TimeSpec(LocalTime)),"int qMain(int, char**)",120,..\..\signADataProc\main.cpp
+2022-10-29 21:33:08,==============start===================,"int qMain(int, char**)",70,..\..\signADataProc\main.cpp
+2022-10-29 21:33:08,""开始初始化服务句柄"","int qMain(int, char**)",77,..\..\signADataProc\main.cpp
+2022-10-29 21:33:08,"arg: (""E:\\newCodes\\QT_ZD\\SignalAnalysis2\\src\\bin_qt5.9.9_debug\\signADataProc.exe"", ""11768"")","int qMain(int, char**)",84,..\..\signADataProc\main.cpp
+2022-10-29 21:33:08,"listen success,port is: 10104","int qMain(int, char**)",108,..\..\signADataProc\main.cpp
+2022-10-29 21:33:08,""服务器建立完成，服务器状态写入共享内存"","int qMain(int, char**)",113,..\..\signADataProc\main.cpp
+2022-10-29 21:33:08,""服务器正常运行，时间："" QDateTime(2022-10-29 21:33:08.910 中国标准时间 Qt::TimeSpec(LocalTime)),"int qMain(int, char**)",120,..\..\signADataProc\main.cpp
+2022-10-29 21:34:00,==============start===================,"int qMain(int, char**)",70,..\..\signADataProc\main.cpp
+2022-10-29 21:34:00,""开始初始化服务句柄"","int qMain(int, char**)",77,..\..\signADataProc\main.cpp
+2022-10-29 21:34:01,"arg: (""E:\\newCodes\\QT_ZD\\SignalAnalysis2\\src\\bin_qt5.9.9_debug\\signADataProc.exe"", ""11188"")","int qMain(int, char**)",84,..\..\signADataProc\main.cpp
+2022-10-29 21:34:01,"listen success,port is: 10105","int qMain(int, char**)",108,..\..\signADataProc\main.cpp
+2022-10-29 21:34:01,""服务器建立完成，服务器状态写入共享内存"","int qMain(int, char**)",113,..\..\signADataProc\main.cpp
+2022-10-29 21:34:01,""服务器正常运行，时间："" QDateTime(2022-10-29 21:34:01.029 中国标准时间 Qt::TimeSpec(LocalTime)),"int qMain(int, char**)",120,..\..\signADataProc\main.cpp
+2022-10-29 21:57:54,==============start===================,"int qMain(int, char**)",70,..\..\signADataProc\main.cpp
+2022-10-29 21:57:54,""开始初始化服务句柄"","int qMain(int, char**)",77,..\..\signADataProc\main.cpp
+2022-10-29 21:57:54,"arg: (""E:\\newCodes\\QT_ZD\\SignalAnalysis2\\src\\bin_qt5.9.9_debug\\signADataProc.exe"", ""4476"")","int qMain(int, char**)",84,..\..\signADataProc\main.cpp
+2022-10-29 21:57:54,"listen success,port is: 10106","int qMain(int, char**)",108,..\..\signADataProc\main.cpp
+2022-10-29 21:57:54,""服务器建立完成，服务器状态写入共享内存"","int qMain(int, char**)",113,..\..\signADataProc\main.cpp
+2022-10-29 21:57:54,""服务器正常运行，时间："" QDateTime(2022-10-29 21:57:54.308 中国标准时间 Qt::TimeSpec(LocalTime)),"int qMain(int, char**)",120,..\..\signADataProc\main.cpp
+2022-10-29 21:58:05, >> fun: incomingConnection  line: 130,virtual void SATcpServe::incomingConnection(qintptr),130,..\..\signAServe\SATcpServe.cpp
+2022-10-29 21:58:05,incomingConnection: 1028,virtual void SATcpServe::incomingConnection(qintptr),132,..\..\signAServe\SATcpServe.cpp
+2022-10-29 21:58:05,create SADataProcSocket,SATcpSocket* create_socket(),26,..\..\signADataProc\SADataProcServe.cpp
+2022-10-29 21:58:05,"create socket success:ip ""::ffff:127.0.0.1"" ,port: 1897",virtual void SATcpServe::incomingConnection(qintptr),177,..\..\signAServe\SATcpServe.cpp
+2022-10-29 21:58:05,deal type  1  fun  2,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",281,..\..\signAServe\SATcpSocket.cpp

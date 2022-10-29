@@ -6,11 +6,16 @@ UserController::UserController()
     this->userService = new UserService();
 }
 
-Result UserController::UserLogin(string loginName)
+Result UserController::UserLogin(User* user)
 {
-    User* user = userService->getUsersByLoginName(loginName);
-    if(user){
-        return Result(200,"登录成功");
+    User* quser = userService->getUsersByLoginName(user->getLoginName());
+    if(quser){
+        if(quser->getLoginPassword()==user->getLoginPassword()){
+            return Result(200,"登录成功");
+        }
+        else{
+            return Result(204,"密码错误，请重新输入");
+        }
     }
     else{
         return Result(203,"该用户不存在，请重新登录");

@@ -19,7 +19,7 @@
 #include <QSqlDriver>
 #include "Controller/usercontroller.h"
 #include "Test/testUserController.h"
-
+#include "loginwindow.h"
 
 //#if defined(_MSC_VER) && (_MSC_VER >= 1600)
 //#pragma execution_character_set("utf-8")
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 #endif
 #endif
     //测试数据库，暂时将界面部分注释
-    /*
+
     QApplication a(argc, argv);
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
     qRegisterMetaType<QAbstractSocket::SocketError>("QAbstractSocket::SocketError");
@@ -84,10 +84,13 @@ int main(int argc, char *argv[])
     //启动服务程序
     start_serve_process(max_start_serve_retry_count);
     //样式设置，数据库测试
-    MainWindow w;
+//    MainWindow w;
+//    w.show();
+    LoginWindow w;
     w.show();
 
-    r = a.exec();*/
+
+    r = a.exec();
 
     return (r);
 }
