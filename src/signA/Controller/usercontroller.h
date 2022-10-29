@@ -1,23 +1,19 @@
 #ifndef USERCONTROLLER_H
 #define USERCONTROLLER_H
-#include "entity/result.h"
-#include "entity/tbuser.h"
-#include "service/userservice.h"
+
+#include "../Service/userservice.h"
+#include "../Result/result.h"
+
 class UserController
 {
-
-private:
-    UserService m_userService;
 public:
-    UserController(PDSQL* pdsql);
-    ~UserController();
+    UserController();
 
+    Result UserLogin(string loginName);
 
-    Result LoginCheck(TbUser &TbUser);
-    /**********************************************************************
-     功能描述： 添加用户
-    ***********************************************************************/
-    Result AddUser(TbUser user);
+    Result UserRegister(User* user);
+private:
+    UserService* userService;
 };
 
 #endif // USERCONTROLLER_H

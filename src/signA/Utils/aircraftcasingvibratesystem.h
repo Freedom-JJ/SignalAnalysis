@@ -18,7 +18,6 @@
 #include "ThreadSafeQueue.h"
 #include "Signal/StaticSpectralEchoSignal.h"
 #include <QScopedPointer>
-#include "Controller/SignalController.h"
 class StaticSpectralEchoSignal;
 
 class AirCraftCasingVibrateSystem
@@ -63,7 +62,7 @@ public:
 
     std::map<QString,ThreadSafeQueue<double>> m_mpcolllectioinDataQueue; //采集的数据
 
-    SignalController m_signalController;
+    //SignalController m_signalController;
 
     void AirCraftCasingVibrateSystemInit();
 
