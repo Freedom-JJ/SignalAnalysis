@@ -32,7 +32,6 @@ INCLUDEPATH += $$PWD
 
 SOURCES += main.cpp\
     SAIconHelper.cpp \
-    loginwindow.cpp \
     mainwindow.cpp \
     progressStateWidget.cpp \
     AboutDialog.cpp \
@@ -46,14 +45,12 @@ SOURCES += main.cpp\
     MainWindowPrivate.cpp \
     SAValueDataTableView.cpp \
     SAChartDataTableView.cpp \
-    SADataClient.cpp \
-    registerwindow.cpp
+    SADataClient.cpp
 
 
 HEADERS  += mainwindow.h \
     DebugInfo.h \
     SAIconHelper.h \
-    loginwindow.h \
     progressStateWidget.h \
     AboutDialog.h \
     SAThemeManager.h \
@@ -69,18 +66,15 @@ HEADERS  += mainwindow.h \
     SAValueDataTableView.h \
     SAChartDataTableView.h \
     SADataClient.h \
-    Hardware_Standard_API.h \
-    registerwindow.h
+    Hardware_Standard_API.h
 
 
 
 
 FORMS    += \
-    loginwindow.ui \
     progressStateWidget.ui \
     AboutDialog.ui \
-    SAInformationStatusWidget.ui \
-    registerwindow.ui
+    SAInformationStatusWidget.ui
 
 #INCLUDEPATH += tmp/moc/release_shared
 OTHER_FILES += \

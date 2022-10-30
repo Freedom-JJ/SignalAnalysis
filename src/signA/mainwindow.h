@@ -43,6 +43,9 @@ class MainWindowPrivate;
 #include "Utils/SaveCollectionDataThread.h"
 #include "Utils/GetDataThread.h"
 #include "Utils/SaveCollectionDataThread.h"
+#include "Dao/mapper/pdsql.h"
+#include "Dao/mapper/pdattribute.h"
+#include "Controller/usercontroller.h"
 
 class QProgressBar;
 class QActionGroup;

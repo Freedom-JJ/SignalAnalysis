@@ -1,40 +1,49 @@
 #include "usercontroller.h"
 
-
-UserController::UserController()
+UserController::UserController(PDSQL* pdsql):m_userService(pdsql)
 {
-    this->userService = new UserService();
+
 }
 
-Result UserController::UserLogin(User* user)
+
+UserController::~UserController()
 {
-    User* quser = userService->getUsersByLoginName(user->getLoginName());
-    if(quser){
-        if(quser->getLoginPassword()==user->getLoginPassword()){
-            return Result(200,"登录成功");
-        }
-        else{
-            return Result(204,"密码错误，请重新输入");
-        }
+}
+
+Result UserController::LoginCheck(TbUser & user){
+
+    if (user.GetLoginName() == ""){
+        return Result(false, "用户名不能为空");
+    }
+    if (user.GetPassWord() == ""){
+        return Result(false, "密码不能为空");
+    }
+    TbUser selectedUser;
+    selectedUser.SetLoginName(user.GetLoginName());
+    bool  isSuccess = m_userService.getOneByCondition(selectedUser);
+    if (!isSuccess){ return Result(false, "用户查询失败"); }
+
+    if (selectedUser.GetPassWord() == user.GetPassWord()){
+        user = selectedUser;
+        return Result(true,"登录成功");
     }
     else{
-        return Result(203,"该用户不存在，请重新登录");
+        return Result(false, "用户名或密码错误");
     }
+
 }
 
-Result UserController::UserRegister(User *user)
+
+Result UserController::AddUser(TbUser user)
 {
-    User* quser = userService->getUsersByLoginName(user->getLoginName());
-    if(quser){
-        return Result(202,"该用户已存在,请重新选择用户名");
-    }
-    int id = userService->addUser(user);
-    if(id ==0 ){
-        return Result(201,"注册失败");
-    }
-    else{
-        return Result(200,"注册成功");
-    }
 
+    if (user.GetLoginName() == ""){
+        return Result(false, "用户名不能为空");
+    }
+    if (user.GetPassWord() == ""){
+        return Result(false, "密码不能为空");
+    }
+    bool  isSuccess = m_userService.AddUser(user);
+    if (!isSuccess){ return Result(false, "注册失败"); }
+    else{ return Result(true, "注册成功"); }
 }
-

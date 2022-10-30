@@ -1,25 +1,37 @@
 HEADERS += \
     $$PWD/Controller/SignalController.h \
+    $$PWD/Controller/channelcontroller.h \
+    $$PWD/Controller/dictionarycontroller.h \
+    $$PWD/Controller/productcontroller.h \
     $$PWD/Controller/usercontroller.h \
-    $$PWD/Dao/pdsql.h \
-    $$PWD/Dao/pdsqlinitialize.h \
-    $$PWD/Dao/postdao.h \
-    $$PWD/Dao/projectdao.h \
-    $$PWD/Dao/singlesignaldao.h \
-    $$PWD/Dao/sumsignaldao.h \
-    $$PWD/Dao/userdao.h \
-    $$PWD/Domain/post.h \
-    $$PWD/Domain/project.h \
-    $$PWD/Domain/singlesignal.h \
-    $$PWD/Domain/sumSignal.h \
-    $$PWD/Domain/user.h \
-    $$PWD/Logger/log.h \
-    $$PWD/Result/result.h \
+    $$PWD/Dao/mapper/pdattribute.h \
+    $$PWD/Dao/mapper/pddatabase.h \
+    $$PWD/Dao/mapper/pdsql.h \
+    $$PWD/Dao/tbchanneldao.h \
+    $$PWD/Dao/tbdictionarydao.h \
+    $$PWD/Dao/tbequipmentdao.h \
+    $$PWD/Dao/tbproductdao.h \
+    $$PWD/Dao/tbproducttypedao.h \
+    $$PWD/Dao/tbsensordao.h \
+    $$PWD/Dao/tbsumsignallabeldao.h \
+    $$PWD/Dao/tbtestlocationdao.h \
+    $$PWD/Dao/tbuserdao.h \
+    $$PWD/Entity/result.h \
+    $$PWD/Entity/tbchannel.h \
+    $$PWD/Entity/tbdictionary.h \
+    $$PWD/Entity/tbequipment.h \
+    $$PWD/Entity/tbproduct.h \
+    $$PWD/Entity/tbproducttype.h \
+    $$PWD/Entity/tbsensor.h \
+    $$PWD/Entity/tbsumsignal.h \
+    $$PWD/Entity/tbtestlocation.h \
+    $$PWD/Entity/tbuser.h \
+    $$PWD/Service/cchannelservice.h \
+    $$PWD/Service/dictionaryservice.h \
+    $$PWD/Service/productservice.h \
     $$PWD/Service/userservice.h \
     $$PWD/Signal/BaseEchoSignal.h \
     $$PWD/Signal/StaticSpectralEchoSignal.h \
-    $$PWD/Test/testUserController.h \
-    $$PWD/Tools/tool.h \
     $$PWD/Utils/DataStructure.h \
     $$PWD/Utils/FFTWUtil.h \
     $$PWD/Utils/GetDataThread.h \
@@ -41,26 +53,38 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/Controller/SignalController.cpp \
+    $$PWD/Controller/channelcontroller.cpp \
+    $$PWD/Controller/dictionarycontroller.cpp \
+    $$PWD/Controller/productcontroller.cpp \
     $$PWD/Controller/usercontroller.cpp \
-    $$PWD/Dao/pdsql.cpp \
-    $$PWD/Dao/pdsqlinitialize.cpp \
-    $$PWD/Dao/postdao.cpp \
-    $$PWD/Dao/projectdao.cpp \
-    $$PWD/Dao/singlesignaldao.cpp \
-    $$PWD/Dao/sumsignaldao.cpp \
-    $$PWD/Dao/userdao.cpp \
-    $$PWD/Domain/post.cpp \
-    $$PWD/Domain/project.cpp \
-    $$PWD/Domain/singlesignal.cpp \
-    $$PWD/Domain/sumSignal.cpp \
-    $$PWD/Domain/user.cpp \
-    $$PWD/Logger/log.cpp \
-    $$PWD/Result/result.cpp \
+    $$PWD/Dao/mapper/pdattribute.cpp \
+    $$PWD/Dao/mapper/pddatabase.cpp \
+    $$PWD/Dao/mapper/pdsql.cpp \
+    $$PWD/Dao/tbchanneldao.cpp \
+    $$PWD/Dao/tbdictionarydao.cpp \
+    $$PWD/Dao/tbequipmentdao.cpp \
+    $$PWD/Dao/tbproductdao.cpp \
+    $$PWD/Dao/tbproducttypedao.cpp \
+    $$PWD/Dao/tbsensordao.cpp \
+    $$PWD/Dao/tbsumsignallabeldao.cpp \
+    $$PWD/Dao/tbtestlocationdao.cpp \
+    $$PWD/Dao/tbuserdao.cpp \
+    $$PWD/Entity/result.cpp \
+    $$PWD/Entity/tbchannel.cpp \
+    $$PWD/Entity/tbdictionary.cpp \
+    $$PWD/Entity/tbequipment.cpp \
+    $$PWD/Entity/tbproduct.cpp \
+    $$PWD/Entity/tbproducttype.cpp \
+    $$PWD/Entity/tbsensor.cpp \
+    $$PWD/Entity/tbsumsignal.cpp \
+    $$PWD/Entity/tbtestlocation.cpp \
+    $$PWD/Entity/tbuser.cpp \
+    $$PWD/Service/cchannelservice.cpp \
+    $$PWD/Service/dictionaryservice.cpp \
+    $$PWD/Service/productservice.cpp \
     $$PWD/Service/userservice.cpp \
     $$PWD/Signal/BaseEchoSignal.cpp \
     $$PWD/Signal/StaticSpectralEchoSignal.cpp \
-    $$PWD/Test/test.cpp \
-    $$PWD/Tools/tool.cpp \
     $$PWD/Utils/FFTWUtil.cpp \
     $$PWD/Utils/GetDataThread.cpp \
     $$PWD/Utils/PlayBackThread.cpp \
@@ -77,8 +101,7 @@ SOURCES += \
     $$PWD/View/spectrum.cpp
 
 
-DISTFILES += \
-    $$PWD/Dao/aricraft_db.sql
+DISTFILES +=
 
 FORMS += \
     $$PWD/View/spectrum.ui

@@ -17,7 +17,6 @@
 #include<QDir>
 #include<QMessageBox>
 #include<QFile>
-#include<memory>
 class ConsumerThread;
 
 class SaveCollectionDataThread : public QThread

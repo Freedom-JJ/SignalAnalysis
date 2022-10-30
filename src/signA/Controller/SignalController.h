@@ -5,7 +5,7 @@
 #include <QFile>
 #include <QDataStream>
 #include <QVector>
-#include "Result/result.h"
+#include "Entity/result.h"
 #include "Utils/ThreadSafeQueue.h"
 
 class SignalController
