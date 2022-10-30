@@ -11,6 +11,11 @@ JSpectrumWindow::JSpectrumWindow(QWidget *parent)
     connect(this->timer,&QTimer::timeout,this,&JSpectrumWindow::refresh);
 }
 
+JSpectrumWindow::~JSpectrumWindow()
+{
+
+}
+
 /**
 
  * 采用一个Barset输入10000个数，创建QBarCategoryAxis，那么总共有4个barset复用一个Category
@@ -27,6 +32,7 @@ void JSpectrumWindow::init(QWidget *parent){
         (*this->customPlot)[var] = new QCustomPlot();
         this->customPlot->at(var)->addGraph();
         this->customPlot->at(var)->graph()->setPen(QPen(QColor(Qt::red)));
+        (*this->textItem)[var] = new QCPItemText(this->customPlot->at(var));
 //        this->customPlot->at(var)->graph(0)->addData(*xAxis,y[var],true);
 //        connect(customPlot->at(var)->xAxis,SIGNAL(rangeChanged(QCPRange)),
 //                   customPlot->at(var)->xAxis2,SLOT(setRange(QCPRange)));
@@ -85,11 +91,21 @@ void JSpectrumWindow::refresh(){
     int index = 0;
     for (auto it = data.begin(); it != data.end(); ++it) {
         index = this->bindCustonPlot[it->first];
-         if(it->second.size() == 0){
+         if(it->second.size() == 0 || it->second.size()>10000){
+             qDebug()<<it->second.size()<<endl;
              break;
          }
         this->customPlot->at(index)->graph(0)->data()->clear();
         this->customPlot->at(index)->graph(0)->addData(*xAxis,it->second);
+
+
+        textItem->at(index)->setPositionAlignment(Qt::AlignTop|Qt::AlignLeft);
+        textItem->at(index)->setText(it->first);
+        textItem->at(index)->setFont(QFont().family()); //设置Font没有边框,设置Pen有边框
+        textItem->at(index)->position->setType(QCPItemPosition::ptAxisRectRatio);
+        textItem->at(index)->position->setCoords(0,0);
+
+
         if (yIsRescale == true){
             this->customPlot->at(index)->graph(0)->rescaleValueAxis();
             this->customPlot->at(index)->graph(0)->rescaleKeyAxis();
@@ -108,6 +124,8 @@ void JSpectrumWindow::setDataViewEcho(std::map<QString,std::shared_ptr<StaticSpe
     auto it = mapData.begin();
     for(int index = 0 ;it != mapData.end();it++,index++){
         this->bindCustonPlot[it->first] = index;
+
+//        item->setFont();
     }
 
 }

@@ -903,7 +903,7 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     dockWidgetContents_7->setObjectName(QStringLiteral("dockWidgetContents_7"));
 
 //-------------------jdh动态图刷新-----------------------------------------
-    this->spectrunView = new JSpectrumWindow(dockWidgetContents_7);
+
 
 
 
@@ -923,9 +923,15 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     mdiArea->setTabsMovable(true);
     mdiArea->setTabShape(QTabWidget::Triangular);
 
+
+
+    auto dockWidgetContents_jj = new QWidget();
+    dockWidgetContents_jj->setObjectName(QStringLiteral("dockWidgetContents_jj"));
+
+    this->spectrunView = new JSpectrumWindow(dockWidgetContents_jj);
 //    verticalLayout_4->addWidget(mdiArea);
 
-    dockWidget_main->setWidget(dockWidgetContents_7);
+    dockWidget_main->setWidget(dockWidgetContents_jj);
     mainWinowPtr->addDockWidget(static_cast<Qt::DockWidgetArea>(4), dockWidget_main);
     dockWidget_valueViewer = new QDockWidget(mainWinowPtr);
     dockWidget_valueViewer->setObjectName(QStringLiteral("dockWidget_valueViewer"));
