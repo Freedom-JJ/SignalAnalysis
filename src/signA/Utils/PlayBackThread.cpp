@@ -53,7 +53,7 @@ void PlayBackThread::run(){
         }
         ///从文件中拿到collectionPoints条数据
         double * fftwInputArray;//傅里叶输入
-        //playThread->theApp->m_signalController.GetCollectionData(inputStream, collectionPoints, fftwInputArray);
+        playThread->theApp->m_signalController.GetCollectionData(inputStream, collectionPoints, fftwInputArray);
 
         playThread->theApp->echoSignalQueue[signalCode]->PushEchoSignal(fftwInputArray);
 

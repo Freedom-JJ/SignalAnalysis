@@ -1,4 +1,5 @@
 HEADERS += \
+    $$PWD/Controller/SignalController.h \
     $$PWD/Controller/usercontroller.h \
     $$PWD/Dao/pdsql.h \
     $$PWD/Dao/pdsqlinitialize.h \
@@ -39,6 +40,7 @@ HEADERS += \
 
 
 SOURCES += \
+    $$PWD/Controller/SignalController.cpp \
     $$PWD/Controller/usercontroller.cpp \
     $$PWD/Dao/pdsql.cpp \
     $$PWD/Dao/pdsqlinitialize.cpp \
