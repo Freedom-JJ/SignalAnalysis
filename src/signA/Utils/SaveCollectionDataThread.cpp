@@ -60,8 +60,7 @@ void ConsumerThread::run(){
             QVector<double>().swap(restVector);
         }
         saveData.push(*(consumer->theApp->m_mpcolllectioinDataQueue[signalCode].wait_and_pop()));
-
-        std::shared_ptr<double> signal = saveData.wait_and_pop();
+        shared_ptr<double> signal = saveData.wait_and_pop();
         restVector.append(*signal);
 
     }

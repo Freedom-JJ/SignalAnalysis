@@ -25,3 +25,30 @@
 2022-10-30 16:02:28,debug,start use skin:normal,..\..\src\signA\mainwindow.cpp,setSkin,902,5
 2022-10-30 16:02:28,debug,end use skin elapsed: 0 ms,..\..\src\signA\mainwindow.cpp,setSkin,916,5
 2022-10-30 16:02:28,debug,loaded settings elapsed: 0 ms,..\..\src\signA\mainwindow.cpp,MainWindow,125,5
+2022-10-30 16:08:04,normal,start app,..\..\src\signA\mainwindow.cpp,MainWindow,108,1
+2022-10-30 16:08:04,debug,start main app init,..\..\src\signA\mainwindow.cpp,MainWindow,110,5
+2022-10-30 16:08:04,debug,init ui and menu elapsed: 183 ms,..\..\src\signA\mainwindow.cpp,MainWindow,115,5
+2022-10-30 16:08:04,debug,start load plugin,..\..\src\signA\mainwindow.cpp,MainWindow,117,5
+2022-10-30 16:08:04,debug,loaded plugins elapsed: 3 ms,..\..\src\signA\mainwindow.cpp,MainWindow,119,5
+2022-10-30 16:08:04,debug,start load setting,..\..\src\signA\mainwindow.cpp,MainWindow,123,5
+2022-10-30 16:08:04,debug,start use skin:normal,..\..\src\signA\mainwindow.cpp,setSkin,902,5
+2022-10-30 16:08:04,debug,end use skin elapsed: 1 ms,..\..\src\signA\mainwindow.cpp,setSkin,916,5
+2022-10-30 16:08:04,debug,loaded settings elapsed: 1 ms,..\..\src\signA\mainwindow.cpp,MainWindow,125,5
+2022-10-30 16:12:31,normal,start app,..\..\src\signA\mainwindow.cpp,MainWindow,108,1
+2022-10-30 16:12:31,debug,start main app init,..\..\src\signA\mainwindow.cpp,MainWindow,110,5
+2022-10-30 16:12:31,debug,init ui and menu elapsed: 180 ms,..\..\src\signA\mainwindow.cpp,MainWindow,115,5
+2022-10-30 16:12:31,debug,start load plugin,..\..\src\signA\mainwindow.cpp,MainWindow,117,5
+2022-10-30 16:12:31,debug,loaded plugins elapsed: 4 ms,..\..\src\signA\mainwindow.cpp,MainWindow,119,5
+2022-10-30 16:12:31,debug,start load setting,..\..\src\signA\mainwindow.cpp,MainWindow,123,5
+2022-10-30 16:12:31,debug,start use skin:normal,..\..\src\signA\mainwindow.cpp,setSkin,902,5
+2022-10-30 16:12:31,debug,end use skin elapsed: 0 ms,..\..\src\signA\mainwindow.cpp,setSkin,916,5
+2022-10-30 16:12:31,debug,loaded settings elapsed: 0 ms,..\..\src\signA\mainwindow.cpp,MainWindow,125,5
+2022-10-30 16:15:37,normal,start app,..\..\src\signA\mainwindow.cpp,MainWindow,108,1
+2022-10-30 16:15:37,debug,start main app init,..\..\src\signA\mainwindow.cpp,MainWindow,110,5
+2022-10-30 16:15:37,debug,init ui and menu elapsed: 185 ms,..\..\src\signA\mainwindow.cpp,MainWindow,115,5
+2022-10-30 16:15:37,debug,start load plugin,..\..\src\signA\mainwindow.cpp,MainWindow,117,5
+2022-10-30 16:15:37,debug,loaded plugins elapsed: 4 ms,..\..\src\signA\mainwindow.cpp,MainWindow,119,5
+2022-10-30 16:15:37,debug,start load setting,..\..\src\signA\mainwindow.cpp,MainWindow,123,5
+2022-10-30 16:15:37,debug,start use skin:normal,..\..\src\signA\mainwindow.cpp,setSkin,902,5
+2022-10-30 16:15:37,debug,end use skin elapsed: 0 ms,..\..\src\signA\mainwindow.cpp,setSkin,916,5
+2022-10-30 16:15:37,debug,loaded settings elapsed: 0 ms,..\..\src\signA\mainwindow.cpp,MainWindow,125,5
