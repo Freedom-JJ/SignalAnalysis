@@ -46,7 +46,7 @@ class MainWindowPrivate;
 #include "Dao/mapper/pdsql.h"
 #include "Dao/mapper/pdattribute.h"
 #include "Controller/usercontroller.h"
-
+#include "View/spectrum.h"
 class QProgressBar;
 class QActionGroup;
 
