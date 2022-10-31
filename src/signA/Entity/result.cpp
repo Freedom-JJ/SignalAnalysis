@@ -4,19 +4,29 @@ Result::Result()
 {
 
 }
-Result::Result(bool isSuccess, string message)
+
+Result::Result(int code, string msg)
 {
-    this->m_isSuccess = isSuccess;
-    this->m_message = message;
+    setCode(code);
+    setMsg(msg);
 }
 
-bool Result::GetIsSuccess(){
-    return this->m_isSuccess;
-}
-string Result::GetMessages(){
-    return this->m_message;
-}
-Result::~Result()
+void Result::setCode(int code)
 {
+    this->code = code;
+}
 
+int Result::getCode()
+{
+    return this->code;
+}
+
+void Result::setMsg(string msg)
+{
+    this->msg = msg;
+}
+
+string Result::getMsg()
+{
+    return this->msg;
 }

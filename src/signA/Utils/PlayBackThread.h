@@ -3,6 +3,7 @@
 #include "../mainwindow.h"
 #include <QThread>
 #include <QDebug>
+#include <iostream>
 /******************************************************************************
  * Copyright 2022/10/25 Co., Ltd.
  * All right reserved. See COPYRIGHT for detailed Information.

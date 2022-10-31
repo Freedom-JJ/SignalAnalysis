@@ -19,7 +19,7 @@ Result SignalController::SaveCollectionData2Binary(QDataStream &outputStream, Th
     }
 
     outputStream << saveData;
-    return Result(true, "success");
+    return Result(200, "success");
 }
 
 Result SignalController::SaveCollectionData2Vector(QVector<QVector<double> > &sumSignalVector, ThreadSafeQueue<double> &acquireSignal){
@@ -32,7 +32,7 @@ Result SignalController::SaveCollectionData2Vector(QVector<QVector<double> > &su
     }
 
     sumSignalVector.append(saveData);
-    return Result(true, "success");
+    return Result(200, "success");
 }
 
 bool SignalController::GetCollectionData(QDataStream &inputStream, int pointCount,double *&fftwInputArray){

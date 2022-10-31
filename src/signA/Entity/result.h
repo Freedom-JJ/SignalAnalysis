@@ -1,22 +1,24 @@
 #ifndef RESULT_H
 #define RESULT_H
-#include<string>
+#include <string>
 using namespace std;
 
 class Result
 {
 public:
-
     Result();
-    Result(bool isSuccess, string message);
-    ~Result();
-    bool GetIsSuccess();
-    string GetMessages();
+    Result(int code,string msg);
 
-protected:
-    bool m_isSuccess;
-    string m_message;
+    void setCode(int code);
+    int getCode();
 
+    void setMsg(string msg);
+    string getMsg();
+
+
+private:
+    int code;
+    string msg;
 };
 
 #endif // RESULT_H
