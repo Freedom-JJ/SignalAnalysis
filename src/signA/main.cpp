@@ -12,6 +12,7 @@
 #include "SAThemeManager.h"
 #include "SACsvStream.h"
 #include "SAServeHandleFun.h"
+#include "Dao/pdsqlinitialize.h"
 
 
 //#if defined(_MSC_VER) && (_MSC_VER >= 1600)
@@ -47,6 +48,7 @@ void start_serve_process(int maxTrycount = 20);
 int main(int argc, char *argv[])
 {
     int r(-1);
+    init_database();
 
 #if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 #if defined(_MSC_VER) && (_MSC_VER < 1600)
