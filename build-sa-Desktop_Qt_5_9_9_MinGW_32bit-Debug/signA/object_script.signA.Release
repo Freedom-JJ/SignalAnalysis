@@ -36,6 +36,7 @@ INPUT(
 ./release\GetDataThread.o
 ./release\PlayBackThread.o
 ./release\SaveCollectionDataThread.o
+./release\SignalFeature.o
 ./release\SmartFFTWComplexArray.o
 ./release\aircraftcasingvibratesystem.o
 ./release\JspectrumWindow.o
@@ -45,6 +46,7 @@ INPUT(
 ./release\jvoiceranddata.o
 ./release\jvoicesampleview.o
 ./release\qcustomplot.o
+./release\spectrum.o
 ./release\main.o
 ./release\SAIconHelper.o
 ./release\mainwindow.o
@@ -84,6 +86,7 @@ INPUT(
 ./release\SACurveSelectDialog.o
 ./release\qrc_icons.o
 ./release\qrc_theme.o
+./release\moc_PlayBackThread.o
 ./release\moc_JSpectrumWindow.o
 ./release\moc_jbasesamplewindow.o
 ./release\moc_jdataviewecho.o
@@ -91,6 +94,7 @@ INPUT(
 ./release\moc_jvoiceranddata.o
 ./release\moc_jvoicesampleview.o
 ./release\moc_qcustomplot.o
+./release\moc_spectrum.o
 ./release\moc_mainwindow.o
 ./release\moc_progressStateWidget.o
 ./release\moc_AboutDialog.o

@@ -33,3 +33,4 @@
 
 *.Release
 *.Debug
+*.csv
