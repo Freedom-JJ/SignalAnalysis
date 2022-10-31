@@ -87,13 +87,12 @@ void JSpectrumWindow::refresh(){
     if(data.size()==0){
         return;
     }
-    auto iter = data.begin();
     int index = 0;
     for (auto it = data.begin(); it != data.end(); ++it) {
         index = this->bindCustonPlot[it->first];
          if(it->second.size() == 0 || it->second.size()>10000){
              qDebug()<<it->second.size()<<endl;
-             break;
+             continue;
          }
         this->customPlot->at(index)->graph(0)->data()->clear();
         this->customPlot->at(index)->graph(0)->addData(*xAxis,it->second);

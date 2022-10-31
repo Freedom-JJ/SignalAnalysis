@@ -1284,7 +1284,7 @@ void MainWindow::OnButtonStopCapture(){
 
     theApp->m_icollectState = 0;
     ui->spectrunView->stop();
-    //sampleThread->quit();
+    sampleThread->terminate(); //quit不管用
     for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
         it->second->clearEchoSignal();
     }
