@@ -13,7 +13,7 @@
 #include "SACsvStream.h"
 #include "SAServeHandleFun.h"
 #include "Dao/pdsqlinitialize.h"
-
+#include "loginwindow.h"
 
 //#if defined(_MSC_VER) && (_MSC_VER >= 1600)
 //#pragma execution_character_set("utf-8")
@@ -77,7 +77,9 @@ int main(int argc, char *argv[])
     //启动服务程序
     start_serve_process(max_start_serve_retry_count);
     //样式设置
-    MainWindow w;
+//    MainWindow w;
+//    w.show();
+    LoginWindow w;
     w.show();
 
     r = a.exec();
