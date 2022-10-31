@@ -79,8 +79,7 @@ SOURCES += \
     $$PWD/View/spectrum.cpp
 
 
-DISTFILES += \
-    $$PWD/Dao/aricraft_db.sql
+DISTFILES +=
 
 FORMS += \
     $$PWD/View/spectrum.ui
