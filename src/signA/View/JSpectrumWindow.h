@@ -9,6 +9,7 @@
 #include "qcustomplot.h"
 #include "jdataviewecho.h"
 #include "Signal/StaticSpectralEchoSignal.h"
+#include "Utils/SignalFeature.h"
 class JSpectrumWindow:public QObject
 {
     Q_OBJECT
