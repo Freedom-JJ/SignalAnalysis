@@ -26,6 +26,7 @@ HEADERS += \
     $$PWD/Utils/GetDataThread.h \
     $$PWD/Utils/PlayBackThread.h \
     $$PWD/Utils/SaveCollectionDataThread.h \
+    $$PWD/Utils/SignalFeature.h \
     $$PWD/Utils/SmartFFTWComplexArray.h \
     $$PWD/Utils/ThreadSafeQueue.h \
     $$PWD/Utils/aircraftcasingvibratesystem.h \
@@ -67,6 +68,7 @@ SOURCES += \
     $$PWD/Utils/GetDataThread.cpp \
     $$PWD/Utils/PlayBackThread.cpp \
     $$PWD/Utils/SaveCollectionDataThread.cpp \
+    $$PWD/Utils/SignalFeature.cpp \
     $$PWD/Utils/SmartFFTWComplexArray.cpp \
     $$PWD/Utils/aircraftcasingvibratesystem.cpp \
     $$PWD/View/JspectrumWindow.cpp \

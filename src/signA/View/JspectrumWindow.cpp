@@ -39,6 +39,12 @@ void JSpectrumWindow::init(QWidget *parent){
 //           connect(customPlot->at(var)->yAxis,SIGNAL(rangeChanged(QCPRange)),
 //                   customPlot->at(var)->yAxis2,SLOT(setRange(QCPRange)));
 
+        textItem->at(var)->setPositionAlignment(Qt::AlignTop|Qt::AlignLeft);
+        textItem->at(var)->setText("");
+        textItem->at(var)->setFont(QFont().family()); //设置Font没有边框,设置Pen有边框
+        textItem->at(var)->position->setType(QCPItemPosition::ptAxisRectRatio);
+        textItem->at(var)->position->setCoords(0,0);
+
     }
     layout->addWidget(this->customPlot->at(0),0,0);
     layout->addWidget(this->customPlot->at(1),0,1);
@@ -97,13 +103,9 @@ void JSpectrumWindow::refresh(){
         this->customPlot->at(index)->graph(0)->data()->clear();
         this->customPlot->at(index)->graph(0)->addData(*xAxis,it->second);
 
-
-        textItem->at(index)->setPositionAlignment(Qt::AlignTop|Qt::AlignLeft);
-        textItem->at(index)->setText(it->first);
-        textItem->at(index)->setFont(QFont().family()); //设置Font没有边框,设置Pen有边框
-        textItem->at(index)->position->setType(QCPItemPosition::ptAxisRectRatio);
-        textItem->at(index)->position->setCoords(0,0);
-
+        QString info = "通道:"+it->first+"\n";
+        info += SignalFeature().getFeaturesWithString(it->second);
+        textItem->at(index)->setText(info);
 
         if (yIsRescale == true){
             this->customPlot->at(index)->graph(0)->rescaleValueAxis();

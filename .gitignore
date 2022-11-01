@@ -30,10 +30,15 @@
 *.app
 
 *.user
-
+*.user.*
 *.Release
 *.Debug
+*.csv
 *.log
 src/bin_qt5.9.9_debug/saDataProcDebug.csv
 src/sa.pro.user
 src/sa.pro.user.*
+build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signA/Makefile.Debug
+build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signA/Makefile.Release
+build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signA/object_script.signA.Debug
+build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signA/object_script.signA.Release
