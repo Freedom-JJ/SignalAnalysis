@@ -34,3 +34,4 @@
 *.Release
 *.Debug
 *.log
+src/bin_qt5.9.9_debug/saDataProcDebug.csv
