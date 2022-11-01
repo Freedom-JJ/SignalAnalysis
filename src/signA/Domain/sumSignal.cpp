@@ -13,6 +13,7 @@ SumSignal::SumSignal(vector<string> sumSignal_attribute)
     this->id = sumSignal_attribute[0];
     this->startTime = sumSignal_attribute[1];
     this->endTime = sumSignal_attribute[2];
+    this->projectId = mstoll(sumSignal_attribute[3]);
 }
 
 void SumSignal::setId(string id)
@@ -43,4 +44,14 @@ void SumSignal::setEndTime(string endTime)
 string SumSignal::getEndTime()
 {
     return this->endTime;
+}
+
+void SumSignal::setProjectId(long long id)
+{
+    this->projectId = id;
+}
+
+long long SumSignal::getProjectId()
+{
+    return this->projectId;
 }

@@ -15,7 +15,12 @@ public:
     //根据sumSignal的id返回sumSignal
     SumSignal* getSumSignalById(string id);
 
+    //根据项目的id返回sumSingal集合
+    vector<SumSignal*> getSumSignalsByProjectId(long long projectId);
+
+    //插入sumSignal
     string insert(SumSignal* sumSignal);
+
 
 };
 

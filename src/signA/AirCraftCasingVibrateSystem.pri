@@ -15,16 +15,18 @@ HEADERS += \
     $$PWD/Domain/user.h \
     $$PWD/Logger/log.h \
     $$PWD/Result/result.h \
+    $$PWD/Service/singlesignalservice.h \
+    $$PWD/Service/sumsignalservice.h \
     $$PWD/Service/userservice.h \
     $$PWD/Signal/BaseEchoSignal.h \
     $$PWD/Signal/StaticSpectralEchoSignal.h \
-    $$PWD/Test/testUserController.h \
     $$PWD/Tools/tool.h \
     $$PWD/Utils/DataStructure.h \
     $$PWD/Utils/FFTWUtil.h \
     $$PWD/Utils/GetDataThread.h \
     $$PWD/Utils/PlayBackThread.h \
     $$PWD/Utils/SaveCollectionDataThread.h \
+    $$PWD/Utils/SignalFeature.h \
     $$PWD/Utils/SmartFFTWComplexArray.h \
     $$PWD/Utils/ThreadSafeQueue.h \
     $$PWD/Utils/aircraftcasingvibratesystem.h \
@@ -56,15 +58,17 @@ SOURCES += \
     $$PWD/Domain/user.cpp \
     $$PWD/Logger/log.cpp \
     $$PWD/Result/result.cpp \
+    $$PWD/Service/singlesignalservice.cpp \
+    $$PWD/Service/sumsignalservice.cpp \
     $$PWD/Service/userservice.cpp \
     $$PWD/Signal/BaseEchoSignal.cpp \
     $$PWD/Signal/StaticSpectralEchoSignal.cpp \
-    $$PWD/Test/test.cpp \
     $$PWD/Tools/tool.cpp \
     $$PWD/Utils/FFTWUtil.cpp \
     $$PWD/Utils/GetDataThread.cpp \
     $$PWD/Utils/PlayBackThread.cpp \
     $$PWD/Utils/SaveCollectionDataThread.cpp \
+    $$PWD/Utils/SignalFeature.cpp \
     $$PWD/Utils/SmartFFTWComplexArray.cpp \
     $$PWD/Utils/aircraftcasingvibratesystem.cpp \
     $$PWD/View/JspectrumWindow.cpp \
@@ -77,8 +81,7 @@ SOURCES += \
     $$PWD/View/spectrum.cpp
 
 
-DISTFILES += \
-    $$PWD/Dao/aricraft_db.sql
+DISTFILES +=
 
 FORMS += \
     $$PWD/View/spectrum.ui

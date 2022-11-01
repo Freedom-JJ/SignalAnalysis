@@ -43,7 +43,7 @@ class MainWindowPrivate;
 #include "Utils/SaveCollectionDataThread.h"
 #include "Utils/GetDataThread.h"
 #include "Utils/SaveCollectionDataThread.h"
-
+#include "View/spectrum.h"
 class QProgressBar;
 class QActionGroup;
 

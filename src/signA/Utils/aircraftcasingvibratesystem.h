@@ -17,8 +17,8 @@
 #include <map>
 #include "ThreadSafeQueue.h"
 #include "Signal/StaticSpectralEchoSignal.h"
-#include "Controller/SignalController.h"
 #include <QScopedPointer>
+#include "Controller/SignalController.h"
 class StaticSpectralEchoSignal;
 
 class AirCraftCasingVibrateSystem

@@ -28,6 +28,11 @@ QT_BEGIN_NAMESPACE
 class Ui_LoginWindow
 {
 public:
+    QWidget *layoutWidget_2;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *loginButton;
+    QSpacerItem *horizontalSpacer_3;
+    QPushButton *registerButton;
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
@@ -39,20 +44,35 @@ public:
     QLabel *label_2;
     QSpacerItem *horizontalSpacer_2;
     QLineEdit *UserPasswordLineEdit;
-    QWidget *layoutWidget_2;
-    QHBoxLayout *horizontalLayout_3;
-    QPushButton *loginButton;
-    QSpacerItem *horizontalSpacer_3;
-    QPushButton *registerButton;
 
     void setupUi(QDialog *LoginWindow)
     {
         if (LoginWindow->objectName().isEmpty())
             LoginWindow->setObjectName(QStringLiteral("LoginWindow"));
         LoginWindow->resize(400, 300);
+        layoutWidget_2 = new QWidget(LoginWindow);
+        layoutWidget_2->setObjectName(QStringLiteral("layoutWidget_2"));
+        layoutWidget_2->setGeometry(QRect(90, 200, 204, 25));
+        horizontalLayout_3 = new QHBoxLayout(layoutWidget_2);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        loginButton = new QPushButton(layoutWidget_2);
+        loginButton->setObjectName(QStringLiteral("loginButton"));
+
+        horizontalLayout_3->addWidget(loginButton);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_3);
+
+        registerButton = new QPushButton(layoutWidget_2);
+        registerButton->setObjectName(QStringLiteral("registerButton"));
+
+        horizontalLayout_3->addWidget(registerButton);
+
         layoutWidget = new QWidget(LoginWindow);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(70, 60, 222, 88));
+        layoutWidget->setGeometry(QRect(80, 60, 222, 88));
         verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -104,26 +124,6 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_2);
 
-        layoutWidget_2 = new QWidget(LoginWindow);
-        layoutWidget_2->setObjectName(QStringLiteral("layoutWidget_2"));
-        layoutWidget_2->setGeometry(QRect(80, 200, 204, 25));
-        horizontalLayout_3 = new QHBoxLayout(layoutWidget_2);
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        loginButton = new QPushButton(layoutWidget_2);
-        loginButton->setObjectName(QStringLiteral("loginButton"));
-
-        horizontalLayout_3->addWidget(loginButton);
-
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_3->addItem(horizontalSpacer_3);
-
-        registerButton = new QPushButton(layoutWidget_2);
-        registerButton->setObjectName(QStringLiteral("registerButton"));
-
-        horizontalLayout_3->addWidget(registerButton);
-
 
         retranslateUi(LoginWindow);
 
@@ -133,10 +133,10 @@ public:
     void retranslateUi(QDialog *LoginWindow)
     {
         LoginWindow->setWindowTitle(QApplication::translate("LoginWindow", "Dialog", Q_NULLPTR));
-        label->setText(QApplication::translate("LoginWindow", "\347\224\250\346\210\267\345\220\215", Q_NULLPTR));
-        label_2->setText(QApplication::translate("LoginWindow", "\347\231\273\351\231\206\345\257\206\347\240\201", Q_NULLPTR));
         loginButton->setText(QApplication::translate("LoginWindow", "\347\231\273\351\231\206", Q_NULLPTR));
         registerButton->setText(QApplication::translate("LoginWindow", "\346\263\250\345\206\214", Q_NULLPTR));
+        label->setText(QApplication::translate("LoginWindow", "\347\224\250\346\210\267\345\220\215", Q_NULLPTR));
+        label_2->setText(QApplication::translate("LoginWindow", "\347\231\273\351\231\206\345\257\206\347\240\201", Q_NULLPTR));
     } // retranslateUi
 
 };

@@ -9,12 +9,13 @@
 #include "qcustomplot.h"
 #include "jdataviewecho.h"
 #include "Signal/StaticSpectralEchoSignal.h"
+#include "Utils/SignalFeature.h"
 class JSpectrumWindow:public QObject
 {
     Q_OBJECT
 public:
     explicit JSpectrumWindow(QWidget *parent);
-
+    ~JSpectrumWindow();
     void init(QWidget * parent) ;
 
     /**
@@ -63,6 +64,7 @@ public:
      void setXAxisRange(int count);
 private:
      QVector<QCustomPlot *> *customPlot = new QVector<QCustomPlot *> (4);
+     QVector<QCPItemText *> *textItem = new QVector<QCPItemText *> (4);
      std::map<QString ,int> bindCustonPlot;
      QTimer *timer ;
      std::map<QString,std::shared_ptr<StaticSpectralEchoSignal>> mapData;

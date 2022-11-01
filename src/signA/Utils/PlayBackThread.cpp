@@ -39,9 +39,9 @@ void PlayBackThread::run(){
     QFile file(data_url);
     if(!file.open(QIODevice::ReadOnly))
     {
- //       std::cerr << "Cannot open file for reading: "
- //                << qPrintable(file.errorString())
- //                << std::endl;
+        std::cerr << "Cannot open file for reading: "
+                  << qPrintable(file.errorString())
+                  << std::endl;
     }
     QDataStream inputStream(&file);
     inputStream.setVersion(QDataStream::Qt_5_9);
