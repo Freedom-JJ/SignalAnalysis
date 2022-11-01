@@ -1,0 +1,141 @@
+2022-10-27 09:34:33,"int qMain(int, char**)","libs path: (""C:/wangzexin/Graduation/qt_project_git/SignalAnalysis2/src/bin_qt5.9.9_debug/libs"", ""C:/wangzexin/Program/Qt/Qt5.9.9/5.9.9/mingw53_32/plugins"", ""C:/wangzexin/Graduation/qt_project_git/SignalAnalysis2/src/bin_qt5.9.9_debug"")",..\..\src\signA\main.cpp
+2022-10-27 09:34:33,void load_local_language(QApplication&),"init uiLanguages  (""zh-CN"", ""en-US"")",..\..\src\signA\main.cpp
+2022-10-27 09:34:33,void load_local_language(QApplication&),init QLocale.bcp47Name  ""zh"",..\..\src\signA\main.cpp
+2022-10-27 09:34:33,void load_local_language(QApplication&),language dir£∫ ""C:/wangzexin/Graduation/qt_project_git/SignalAnalysis2/src/bin_qt5.9.9_debug\\language"",..\..\src\signA\main.cpp
+2022-10-27 09:34:33,void start_serve_process(int),try start data precess serve  1  times,..\..\src\signA\main.cpp
+2022-10-27 09:34:33,void start_serve_process(int),"""start data process server , cost:3 ms""",..\..\src\signA\main.cpp
+2022-10-27 09:34:33,"SARibbonMainWindow::SARibbonMainWindow(QWidget*, bool)",QFlags<Qt::WindowType>(Window|WindowTitleHint|WindowSystemMenuHint|WindowMinMaxButtonsHint|WindowCloseButtonHint|WindowFullscreenButtonHint),C:\wangzexin\Graduation\qt_project_git\SignalAnalysis2\src\SARibbonBar\SARibbon\src\SARibbonBar\SARibbonMainWindow.cpp
+2022-10-27 09:34:33,"SARibbonMainWindow::SARibbonMainWindow(QWidget*, bool)",sa ribbon version: 0.2,C:\wangzexin\Graduation\qt_project_git\SignalAnalysis2\src\SARibbonBar\SARibbon\src\SARibbonBar\SARibbonMainWindow.cpp
+2022-10-27 09:34:33,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:33,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:33,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:33,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:33,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:33,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:33,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:33,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:33,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:33,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:33,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:33,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:33,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:33,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:33,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:33,MainWindow::MainWindow(QWidget*),""start main app init"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:34:33,void SATcpClient::connectToServe(int),"""start connect to serve,timeout set to "" 5000  ms",..\..\src\signAServe\SATcpClient.cpp
+2022-10-27 09:34:34,void SATcpClient::connectToServe(int),""success connect to LocalHost:"" 10099,..\..\src\signAServe\SATcpClient.cpp
+2022-10-27 09:34:34,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",deal type  1  fun  3,..\..\src\signAServe\SATcpSocket.cpp
+2022-10-27 09:34:34,MainWindow::MainWindow(QWidget*),""init ui and menu elapsed: 636 ms"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:34:34,MainWindow::MainWindow(QWidget*),""start load plugin"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:34:34,MainWindow::MainWindow(QWidget*),""loaded plugins elapsed: 8 ms"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:34:34,MainWindow::MainWindow(QWidget*),""start load setting"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:34:34,void MainWindow::loadSetting(),first start: false,..\..\src\signA\mainwindow.cpp
+2022-10-27 09:34:34,void MainWindow::setSkin(const QString&),""start use skin:normal"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:34:34,void MainWindow::setSkin(const QString&),"""set style error,style name is:"" ""normal""",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:34:34,void MainWindow::setSkin(const QString&),""end use skin elapsed: 0 ms"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:34:34,MainWindow::MainWindow(QWidget*),""loaded settings elapsed: 0 ms"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:34:34,MainWindow::MainWindow(QWidget*),window font: ""Œ¢»Ì—≈∫⁄"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:34:34,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:34,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:38,virtual void SumPlayBackThread::run(),threadsize------------------------------------------------------ 4 
+,..\..\src\signA\Utils\PlayBackThread.cpp
+2022-10-27 09:34:49,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:49,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:50,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:50,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:50,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:34:50,void MainWindow::saveSetting(),(),..\..\src\signA\mainwindow.cpp
+2022-10-27 09:34:50,void MainWindow::saveSetting(),(),..\..\src\signA\mainwindow.cpp
+2022-10-27 09:37:16,"int qMain(int, char**)","libs path: (""C:/wangzexin/Graduation/qt_project_git/SignalAnalysis2/src/bin_qt5.9.9_debug/libs"", ""C:/wangzexin/Program/Qt/Qt5.9.9/5.9.9/mingw53_32/plugins"", ""C:/wangzexin/Graduation/qt_project_git/SignalAnalysis2/src/bin_qt5.9.9_debug"")",..\..\src\signA\main.cpp
+2022-10-27 09:37:16,void load_local_language(QApplication&),"init uiLanguages  (""zh-CN"", ""en-US"")",..\..\src\signA\main.cpp
+2022-10-27 09:37:16,void load_local_language(QApplication&),init QLocale.bcp47Name  ""zh"",..\..\src\signA\main.cpp
+2022-10-27 09:37:16,void load_local_language(QApplication&),language dir£∫ ""C:/wangzexin/Graduation/qt_project_git/SignalAnalysis2/src/bin_qt5.9.9_debug\\language"",..\..\src\signA\main.cpp
+2022-10-27 09:37:16,void start_serve_process(int),try start data precess serve  1  times,..\..\src\signA\main.cpp
+2022-10-27 09:37:16,void start_serve_process(int),"""start data process server , cost:3 ms""",..\..\src\signA\main.cpp
+2022-10-27 09:37:16,"SARibbonMainWindow::SARibbonMainWindow(QWidget*, bool)",QFlags<Qt::WindowType>(Window|WindowTitleHint|WindowSystemMenuHint|WindowMinMaxButtonsHint|WindowCloseButtonHint|WindowFullscreenButtonHint),C:\wangzexin\Graduation\qt_project_git\SignalAnalysis2\src\SARibbonBar\SARibbon\src\SARibbonBar\SARibbonMainWindow.cpp
+2022-10-27 09:37:16,"SARibbonMainWindow::SARibbonMainWindow(QWidget*, bool)",sa ribbon version: 0.2,C:\wangzexin\Graduation\qt_project_git\SignalAnalysis2\src\SARibbonBar\SARibbon\src\SARibbonBar\SARibbonMainWindow.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,MainWindow::MainWindow(QWidget*),""start main app init"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:37:17,void SATcpClient::connectToServe(int),"""start connect to serve,timeout set to "" 5000  ms",..\..\src\signAServe\SATcpClient.cpp
+2022-10-27 09:37:17,void SATcpClient::connectToServe(int),""success connect to LocalHost:"" 10099,..\..\src\signAServe\SATcpClient.cpp
+2022-10-27 09:37:17,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",deal type  1  fun  3,..\..\src\signAServe\SATcpSocket.cpp
+2022-10-27 09:37:17,MainWindow::MainWindow(QWidget*),""init ui and menu elapsed: 568 ms"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:37:17,MainWindow::MainWindow(QWidget*),""start load plugin"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:37:17,MainWindow::MainWindow(QWidget*),""loaded plugins elapsed: 6 ms"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:37:17,MainWindow::MainWindow(QWidget*),""start load setting"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:37:17,void MainWindow::loadSetting(),first start: false,..\..\src\signA\mainwindow.cpp
+2022-10-27 09:37:17,void MainWindow::setSkin(const QString&),""start use skin:normal"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:37:17,void MainWindow::setSkin(const QString&),"""set style error,style name is:"" ""normal""",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:37:17,void MainWindow::setSkin(const QString&),""end use skin elapsed: 0 ms"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:37:17,MainWindow::MainWindow(QWidget*),""loaded settings elapsed: 0 ms"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:37:17,MainWindow::MainWindow(QWidget*),window font: ""Œ¢»Ì—≈∫⁄"",..\..\src\signA\mainwindow.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:17,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:21,virtual void SumPlayBackThread::run(),threadsize------------------------------------------------------ 4 
+,..\..\src\signA\Utils\PlayBackThread.cpp
+2022-10-27 09:37:34,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:34,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:35,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:35,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:35,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 09:37:35,void MainWindow::saveSetting(),(),..\..\src\signA\mainwindow.cpp
+2022-10-27 09:37:35,void MainWindow::saveSetting(),(),..\..\src\signA\mainwindow.cpp
+2022-10-27 15:04:43,"int qMain(int, char**)","libs path: (""C:/wangzexin/Graduation/qt_project_git/SignalAnalysis2/src/bin_qt5.9.9_debug/libs"", ""C:/wangzexin/Program/Qt/Qt5.9.9/5.9.9/mingw53_32/plugins"", ""C:/wangzexin/Graduation/qt_project_git/SignalAnalysis2/src/bin_qt5.9.9_debug"")",..\..\src\signA\main.cpp
+2022-10-27 15:04:43,void load_local_language(QApplication&),"init uiLanguages  (""zh-CN"", ""en-US"")",..\..\src\signA\main.cpp
+2022-10-27 15:04:43,void load_local_language(QApplication&),init QLocale.bcp47Name  ""zh"",..\..\src\signA\main.cpp
+2022-10-27 15:04:43,void load_local_language(QApplication&),language dir£∫ ""C:/wangzexin/Graduation/qt_project_git/SignalAnalysis2/src/bin_qt5.9.9_debug\\language"",..\..\src\signA\main.cpp
+2022-10-27 15:04:43,void start_serve_process(int),try start data precess serve  1  times,..\..\src\signA\main.cpp
+2022-10-27 15:04:43,void start_serve_process(int),"""start data process server , cost:3 ms""",..\..\src\signA\main.cpp
+2022-10-27 15:04:43,"SARibbonMainWindow::SARibbonMainWindow(QWidget*, bool)",QFlags<Qt::WindowType>(Window|WindowTitleHint|WindowSystemMenuHint|WindowMinMaxButtonsHint|WindowCloseButtonHint|WindowFullscreenButtonHint),C:\wangzexin\Graduation\qt_project_git\SignalAnalysis2\src\SARibbonBar\SARibbon\src\SARibbonBar\SARibbonMainWindow.cpp
+2022-10-27 15:04:43,"SARibbonMainWindow::SARibbonMainWindow(QWidget*, bool)",sa ribbon version: 0.2,C:\wangzexin\Graduation\qt_project_git\SignalAnalysis2\src\SARibbonBar\SARibbon\src\SARibbonBar\SARibbonMainWindow.cpp
+2022-10-27 15:04:43,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:43,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:43,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:43,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:43,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:43,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:43,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:43,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:43,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:43,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:43,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:43,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:43,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:43,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:43,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:43,MainWindow::MainWindow(QWidget*),""start main app init"",..\..\src\signA\mainwindow.cpp
+2022-10-27 15:04:43,void SATcpClient::connectToServe(int),"""start connect to serve,timeout set to "" 5000  ms",..\..\src\signAServe\SATcpClient.cpp
+2022-10-27 15:04:43,void SATcpClient::connectToServe(int),""success connect to LocalHost:"" 10099,..\..\src\signAServe\SATcpClient.cpp
+2022-10-27 15:04:43,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",deal type  1  fun  3,..\..\src\signAServe\SATcpSocket.cpp
+2022-10-27 15:04:44,MainWindow::MainWindow(QWidget*),""init ui and menu elapsed: 576 ms"",..\..\src\signA\mainwindow.cpp
+2022-10-27 15:04:44,MainWindow::MainWindow(QWidget*),""start load plugin"",..\..\src\signA\mainwindow.cpp
+2022-10-27 15:04:44,MainWindow::MainWindow(QWidget*),""loaded plugins elapsed: 8 ms"",..\..\src\signA\mainwindow.cpp
+2022-10-27 15:04:44,MainWindow::MainWindow(QWidget*),""start load setting"",..\..\src\signA\mainwindow.cpp
+2022-10-27 15:04:44,void MainWindow::loadSetting(),first start: false,..\..\src\signA\mainwindow.cpp
+2022-10-27 15:04:44,void MainWindow::setSkin(const QString&),""start use skin:normal"",..\..\src\signA\mainwindow.cpp
+2022-10-27 15:04:44,void MainWindow::setSkin(const QString&),"""set style error,style name is:"" ""normal""",..\..\src\signA\mainwindow.cpp
+2022-10-27 15:04:44,void MainWindow::setSkin(const QString&),""end use skin elapsed: 0 ms"",..\..\src\signA\mainwindow.cpp
+2022-10-27 15:04:44,MainWindow::MainWindow(QWidget*),""loaded settings elapsed: 0 ms"",..\..\src\signA\mainwindow.cpp
+2022-10-27 15:04:44,MainWindow::MainWindow(QWidget*),window font: ""Œ¢»Ì—≈∫⁄"",..\..\src\signA\mainwindow.cpp
+2022-10-27 15:04:44,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:44,"void qt_png_warning(png_structp, png_const_charp)",libpng warning: iCCP: known incorrect sRGB profile,image\qpnghandler.cpp
+2022-10-27 15:04:46,virtual void SumPlayBackThread::run(),threadsize------------------------------------------------------ 4 
+,..\..\src\signA\Utils\PlayBackThread.cpp
+2022-10-27 15:05:03,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",deal type  1  fun  3,..\..\src\signAServe\SATcpSocket.cpp
+2022-10-27 15:05:07,virtual void SumPlayBackThread::run(),À˘”–œﬂ≥Ã∂ºΩ· ¯¡À----------1027 
+,..\..\src\signA\Utils\PlayBackThread.cpp
+2022-10-27 15:05:23,"virtual bool SATcpSocket::deal(const SAProtocolHeader&, const QByteArray&)",deal type  1  fun  3,..\..\src\signAServe\SATcpSocket.cpp

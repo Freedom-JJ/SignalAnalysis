@@ -734,6 +734,7 @@ Makefile: ../src/sa.pro C:/Program/Qt/5.9.9/mingw53_32/mkspecs/win32-g++/qmake.c
 		C:/Program/Qt/5.9.9/mingw53_32/mkspecs/features/qt_config.prf \
 		C:/Program/Qt/5.9.9/mingw53_32/mkspecs/win32-g++/qmake.conf \
 		C:/Program/Qt/5.9.9/mingw53_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		C:/Program/Qt/5.9.9/mingw53_32/mkspecs/features/exclusive_builds.prf \
 		C:/Program/Qt/5.9.9/mingw53_32/mkspecs/features/toolchain.prf \
 		C:/Program/Qt/5.9.9/mingw53_32/mkspecs/features/default_pre.prf \
@@ -886,6 +887,7 @@ C:/Program/Qt/5.9.9/mingw53_32/mkspecs/features/qt_functions.prf:
 C:/Program/Qt/5.9.9/mingw53_32/mkspecs/features/qt_config.prf:
 C:/Program/Qt/5.9.9/mingw53_32/mkspecs/win32-g++/qmake.conf:
 C:/Program/Qt/5.9.9/mingw53_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 C:/Program/Qt/5.9.9/mingw53_32/mkspecs/features/exclusive_builds.prf:
 C:/Program/Qt/5.9.9/mingw53_32/mkspecs/features/toolchain.prf:
 C:/Program/Qt/5.9.9/mingw53_32/mkspecs/features/default_pre.prf:

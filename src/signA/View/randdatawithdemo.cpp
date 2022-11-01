@@ -7,9 +7,6 @@ randDataWithDemo::randDataWithDemo()
 
 map<QString , QVector<double>> randDataWithDemo::getNextData(){
     map<QString , QVector<double>> res;
-    if (qrand()% 2 == 0){
-        return res;
-    }
     QVector<double> tem;
     static double  qq = 0;
     for(int code = 0 ; code < 4 ; code ++){
@@ -22,20 +19,5 @@ map<QString , QVector<double>> randDataWithDemo::getNextData(){
     }
     qq += 0.2;
     qDebug()<<"qq:"<<qq<<endl;
-
-
-
     return res;
-
-}
-
-void randDataWithDemo::PushEchoSignal(double *chartPoints)
-{
-
-}
-
-std::map<QString, QVector<double> > randDataWithDemo::PopEchoSignal()
-{
-
-    return this->getNextData();
 }

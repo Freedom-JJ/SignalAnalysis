@@ -5,7 +5,7 @@
 #include <QFile>
 #include <QDataStream>
 #include <QVector>
-#include "Entity/result.h"
+#include "../Result/result.h"
 #include "Utils/ThreadSafeQueue.h"
 
 class SignalController
@@ -20,6 +20,18 @@ public:
     输入参数：outputStream--输出流；acquireSigna--采集信号
     ***********************************************************************/
     Result SaveCollectionData2Binary(QDataStream &outputStream, ThreadSafeQueue<double> & acquireSignal);
+
+    /**********************************************************************
+    功能描述： 将采样数据全部存到一个二维vector，最后再执行保存
+    输入参数：acquireSigna--采集信号
+    ***********************************************************************/
+    Result SaveCollectionData2Vector(QVector<QVector<double>> &sumSignalVector, ThreadSafeQueue<double> & acquireSignal);
+
+    /**********************************************************************
+    功能描述:   回放取数据
+    输入参数：
+    ***********************************************************************/
+    bool GetCollectionData(QDataStream &inputStream,int pointCount,double*& fftwInputArray);
 };
 
 #endif // SIGNALCONTROLLER_H

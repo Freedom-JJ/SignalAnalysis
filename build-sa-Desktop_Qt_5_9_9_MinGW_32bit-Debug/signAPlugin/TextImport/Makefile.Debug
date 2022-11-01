@@ -1236,6 +1236,78 @@ debug/TextFileImportDialog.o: ../../../src/signAPlugin/TextImport/TextFileImport
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/QDebug \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/QMutex \
 		ui_TextFileImportDialog.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QAction \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qaction.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qactiongroup.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QApplication \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qapplication.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qcoreapplication.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qeventloop.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qguiapplication.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qinputmethod.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QButtonGroup \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QComboBox \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qcombobox.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qstyleoption.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qvalidator.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qregularexpression.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qslider.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractslider.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qstyle.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qtabbar.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qtabwidget.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qrubberband.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qframe.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QGridLayout \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qgridlayout.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qlayout.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qlayoutitem.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qboxlayout.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QGroupBox \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qgroupbox.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QHBoxLayout \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QHeaderView \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qheaderview.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QLabel \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qlabel.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QPlainTextEdit \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qplaintextedit.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qtextedit.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qtextdocument.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qtextoption.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qtextcursor.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qtextformat.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qpen.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qabstracttextdocumentlayout.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qtextlayout.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qglyphrun.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qrawfont.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qfontdatabase.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QPushButton \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qpushbutton.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QRadioButton \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qradiobutton.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QSpacerItem \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QSpinBox \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qspinbox.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QSplitter \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qsplitter.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QStackedWidget \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qstackedwidget.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QTabWidget \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QTableView \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qtableview.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QVBoxLayout \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QWidget \
 		../../../src/signACommonUI/SAUIReflection.h \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/QObject \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/QVariantList \
@@ -1248,28 +1320,8 @@ debug/TextFileImportDialog.o: ../../../src/signAPlugin/TextImport/TextFileImport
 		../../../src/3rdParty/qwt/src/qwt_null_paintdevice.h \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qpaintengine.h \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qpainter.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qtextoption.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qpen.h \
 		../../../src/signACommonUI/SAUIInterface.h \
 		../../../src/signAPlugin/TextImport/CheckedHeaderView.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QHeaderView \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qheaderview.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractitemview.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qframe.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qabstractitemmodel.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qitemselectionmodel.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qstyleoption.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractspinbox.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qvalidator.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qregularexpression.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qslider.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractslider.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qstyle.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qtabbar.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qtabwidget.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qrubberband.h \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/QPainter \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/QMouseEvent \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/QDir \
@@ -1278,8 +1330,6 @@ debug/TextFileImportDialog.o: ../../../src/signAPlugin/TextImport/TextFileImport
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QInputDialog \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qinputdialog.h \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qlineedit.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qtextcursor.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qtextformat.h \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/QElapsedTimer \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qelapsedtimer.h \
 		../../../src/signACommonUI/SADataTableModel.h \
@@ -2082,13 +2132,62 @@ debug/CFX2DCsvImportDialog.o: ../../../src/signAPlugin/TextImport/CFX2DCsvImport
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/QObject \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/QStringList \
 		ui_CFX2DCsvImportDialog.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/QVariant \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QAction \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qaction.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qicon.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qactiongroup.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QApplication \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qapplication.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qcoreapplication.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qeventloop.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qguiapplication.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qinputmethod.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QButtonGroup \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QComboBox \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qcombobox.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qstyleoption.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qvalidator.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qregularexpression.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qslider.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractslider.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qstyle.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qtabbar.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qtabwidget.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qrubberband.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qframe.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QHBoxLayout \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qboxlayout.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qlayout.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qlayoutitem.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qgridlayout.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QHeaderView \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qheaderview.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QLabel \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qlabel.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QListView \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qlistview.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QPushButton \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qpushbutton.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QSpacerItem \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QTableView \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qtableview.h \
+		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QVBoxLayout \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QFileDialog \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qfiledialog.h \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qdir.h \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qfileinfo.h \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/QStringListModel \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qstringlistmodel.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/qabstractitemmodel.h \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/QMessageBox \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtWidgets/qmessagebox.h \
 		../../../src/signACommonUI/SADataTableModel.h \
@@ -2119,8 +2218,6 @@ debug/CFX2DCsvImportDialog.o: ../../../src/signAPlugin/TextImport/CFX2DCsvImport
 		../../../src/signALib/SAItem.h \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/QString \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/QIcon \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtGui/qicon.h \
-		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/QVariant \
 		C:/Program/Qt/5.9.9/mingw53_32/include/QtCore/QDataStream \
 		../../../src/signALib/SABaseValueType/SADataReference.h \
 		../../../src/signALib/SABaseValueType/SAVectorDatas.h \

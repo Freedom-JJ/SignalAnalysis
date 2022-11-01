@@ -1,27 +1,35 @@
 HEADERS += \
-    $$PWD/Controller/AirCraftCasingVibrateSystemController.h \
     $$PWD/Controller/SignalController.h \
     $$PWD/Controller/usercontroller.h \
-    $$PWD/Dao/mapper/pdattribute.h \
-    $$PWD/Dao/mapper/pddatabase.h \
-    $$PWD/Dao/mapper/pdsql.h \
-    $$PWD/Dao/tbuserdao.h \
-    $$PWD/Entity/BaseEntity.h \
-    $$PWD/Entity/result.h \
-    $$PWD/Entity/tbuser.h \
-    $$PWD/Service/AirCraftCasingVibrateSystemService.h \
+    $$PWD/Dao/pdsql.h \
+    $$PWD/Dao/pdsqlinitialize.h \
+    $$PWD/Dao/postdao.h \
+    $$PWD/Dao/projectdao.h \
+    $$PWD/Dao/singlesignaldao.h \
+    $$PWD/Dao/sumsignaldao.h \
+    $$PWD/Dao/userdao.h \
+    $$PWD/Domain/post.h \
+    $$PWD/Domain/project.h \
+    $$PWD/Domain/singlesignal.h \
+    $$PWD/Domain/sumSignal.h \
+    $$PWD/Domain/user.h \
+    $$PWD/Logger/log.h \
+    $$PWD/Result/result.h \
+    $$PWD/Service/singlesignalservice.h \
+    $$PWD/Service/sumsignalservice.h \
     $$PWD/Service/userservice.h \
     $$PWD/Signal/BaseEchoSignal.h \
     $$PWD/Signal/StaticSpectralEchoSignal.h \
+    $$PWD/Tools/tool.h \
     $$PWD/Utils/DataStructure.h \
     $$PWD/Utils/FFTWUtil.h \
     $$PWD/Utils/GetDataThread.h \
+    $$PWD/Utils/PlayBackThread.h \
     $$PWD/Utils/SaveCollectionDataThread.h \
     $$PWD/Utils/SmartFFTWComplexArray.h \
     $$PWD/Utils/ThreadSafeQueue.h \
     $$PWD/Utils/aircraftcasingvibratesystem.h \
     $$PWD/Utils/fftw3.h \
-    $$PWD/View/AirCraftCasingVibrateSystemView.h \
     $$PWD/View/JSpectrumWindow.h \
     $$PWD/View/jbasesamplewindow.h \
     $$PWD/View/jdataviewecho.h \
@@ -29,29 +37,38 @@ HEADERS += \
     $$PWD/View/jvoiceranddata.h \
     $$PWD/View/jvoicesampleview.h \
     $$PWD/View/qcustomplot.h \
-    $$PWD/View/randdatawithdemo.h
+    $$PWD/View/spectrum.h
+
 
 SOURCES += \
-    $$PWD/Controller/AirCraftCasingVibrateSystemController.cpp \
     $$PWD/Controller/SignalController.cpp \
     $$PWD/Controller/usercontroller.cpp \
-    $$PWD/Dao/mapper/pdattribute.cpp \
-    $$PWD/Dao/mapper/pddatabase.cpp \
-    $$PWD/Dao/mapper/pdsql.cpp \
-    $$PWD/Dao/tbuserdao.cpp \
-    $$PWD/Entity/BaseEntity.cpp \
-    $$PWD/Entity/result.cpp \
-    $$PWD/Entity/tbuser.cpp \
-    $$PWD/Service/AirCraftCasingVibrateSystemService.cpp \
+    $$PWD/Dao/pdsql.cpp \
+    $$PWD/Dao/pdsqlinitialize.cpp \
+    $$PWD/Dao/postdao.cpp \
+    $$PWD/Dao/projectdao.cpp \
+    $$PWD/Dao/singlesignaldao.cpp \
+    $$PWD/Dao/sumsignaldao.cpp \
+    $$PWD/Dao/userdao.cpp \
+    $$PWD/Domain/post.cpp \
+    $$PWD/Domain/project.cpp \
+    $$PWD/Domain/singlesignal.cpp \
+    $$PWD/Domain/sumSignal.cpp \
+    $$PWD/Domain/user.cpp \
+    $$PWD/Logger/log.cpp \
+    $$PWD/Result/result.cpp \
+    $$PWD/Service/singlesignalservice.cpp \
+    $$PWD/Service/sumsignalservice.cpp \
     $$PWD/Service/userservice.cpp \
     $$PWD/Signal/BaseEchoSignal.cpp \
     $$PWD/Signal/StaticSpectralEchoSignal.cpp \
+    $$PWD/Tools/tool.cpp \
     $$PWD/Utils/FFTWUtil.cpp \
     $$PWD/Utils/GetDataThread.cpp \
+    $$PWD/Utils/PlayBackThread.cpp \
     $$PWD/Utils/SaveCollectionDataThread.cpp \
     $$PWD/Utils/SmartFFTWComplexArray.cpp \
     $$PWD/Utils/aircraftcasingvibratesystem.cpp \
-    $$PWD/View/AirCraftCasingVibrateSystemView.cpp \
     $$PWD/View/JspectrumWindow.cpp \
     $$PWD/View/jbasesamplewindow.cpp \
     $$PWD/View/jdataviewecho.cpp \
@@ -59,6 +76,10 @@ SOURCES += \
     $$PWD/View/jvoiceranddata.cpp \
     $$PWD/View/jvoicesampleview.cpp \
     $$PWD/View/qcustomplot.cpp \
-    $$PWD/View/randdatawithdemo.cpp
+    $$PWD/View/spectrum.cpp
+
 
 DISTFILES +=
+
+FORMS += \
+    $$PWD/View/spectrum.ui

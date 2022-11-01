@@ -12,7 +12,8 @@
 #include "SAThemeManager.h"
 #include "SACsvStream.h"
 #include "SAServeHandleFun.h"
-
+#include "Dao/pdsqlinitialize.h"
+#include "loginwindow.h"
 
 //#if defined(_MSC_VER) && (_MSC_VER >= 1600)
 //#pragma execution_character_set("utf-8")
@@ -47,6 +48,7 @@ void start_serve_process(int maxTrycount = 20);
 int main(int argc, char *argv[])
 {
     int r(-1);
+    init_database();
 
 #if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 #if defined(_MSC_VER) && (_MSC_VER < 1600)
@@ -75,7 +77,9 @@ int main(int argc, char *argv[])
     //启动服务程序
     start_serve_process(max_start_serve_retry_count);
     //样式设置
-    MainWindow w;
+//    MainWindow w;
+//    w.show();
+    LoginWindow w;
     w.show();
 
     r = a.exec();
