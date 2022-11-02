@@ -17,6 +17,10 @@
 #include<QDir>
 #include<QMessageBox>
 #include<QFile>
+#include "Utils/uuidutil.h"
+#include "Tools/datautil.h"
+#include "Domain/singlesignal.h"
+
 class ConsumerThread;
 
 class SaveCollectionDataThread : public QThread
@@ -28,8 +32,8 @@ public:
 
 public:
     MainWindow *saveThread;
-
     std::vector<ConsumerThread*> threadVector;
+
 
     void run() override;
 
@@ -49,15 +53,18 @@ public:
 class ConsumerThread : public QThread
 {
 public:
-    ConsumerThread(class MainWindow *ct , QString code):consumer(ct),signalCode(code){
+    ConsumerThread(class MainWindow *ct , QString code , SingleSignal everySig):consumer(ct),signalCode(code),m_signal(everySig){
 
     }
 
 public:
-    MainWindow *consumer;
-
-    QString signalCode;
-
     void run() override;
+
+
+    MainWindow *consumer;
+    QString signalCode;
+    SingleSignal m_signal;
+
+
 };
 #endif // SAVECOLLECTIONDATATHREAD_H

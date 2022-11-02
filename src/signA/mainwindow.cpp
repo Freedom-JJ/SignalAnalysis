@@ -264,9 +264,9 @@ void MainWindow::initUI()
     connect(ui->mdiArea, &QMdiArea::subWindowActivated, this, &MainWindow::onMdiAreaSubWindowActivated);
     //-------------------------------------
     // - start file menu signal/slots connect
-    connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::onActionOpenTriggered);
-    connect(ui->actionNew, &QAction::triggered, this, &MainWindow::onActionOpenProjectTriggered);
-    connect(ui->actionSet, &QAction::triggered, this, &MainWindow::onActionSaveTriggered);
+    connect(ui->actionOpen1, &QAction::triggered, this, &MainWindow::onActionOpenTriggered);//打开项目
+    connect(ui->actionNew, &QAction::triggered, this, &MainWindow::onActionNewProjectTriggered);//新建项目
+    connect(ui->actionSet, &QAction::triggered, this, &MainWindow::onActionSaveTriggered);//项目设置
     connect(ui->actionSaveAs, &QAction::triggered, this, &MainWindow::onActionSaveAsTriggered);
     connect(ui->actionClearProject, &QAction::triggered, this, &MainWindow::onActionClearProjectTriggered);
     //-------------------------------------
@@ -1243,7 +1243,7 @@ void MainWindow::appendRecentOpenFilesPath(const QString& path)
 //}
 
 /*****************************wzx**************************************/
-//采集事件函数
+//开始采集事件函数
 void MainWindow::OnButtonStartCapture(){
     int oldcollectState = theApp->m_icollectState;
     //如果当前状态为正在采集
@@ -1283,6 +1283,7 @@ void MainWindow::OnButtonStartCapture(){
 void MainWindow::OnButtonStopCapture(){
 
     theApp->m_icollectState = 0;
+    theApp->m_bThread = false;
     ui->spectrunView->stop();
     sampleThread->terminate(); //quit不管用
     for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
@@ -1338,34 +1339,8 @@ void MainWindow::CreateCaptureWindow(){
 ///
 void MainWindow::onActionOpenTriggered()
 {
-    QFileDialog openDlg(this);
-    QStringList strNFilter = m_pluginManager->getOpenFileNameFilters();
-    QStringList strSuffixs = m_pluginManager->getAllSupportOpenFileSuffix();
-    QString strAllSupportSuffixs;
-
-    std::for_each(strSuffixs.begin(), strSuffixs.end(), [&strAllSupportSuffixs](const QString& s) {
-        strAllSupportSuffixs += (" *." + s);
-    });
-    strNFilter.push_front(tr("all support files(%1)").arg(strAllSupportSuffixs));
-    strNFilter.push_back(tr("all files (*.*)"));
-    openDlg.setFileMode(QFileDialog::ExistingFiles);
-    openDlg.setNameFilters(strNFilter);
-    if (QDialog::Accepted != openDlg.exec()) {
-        return;
-    }
-    QStringList strfileNames = openDlg.selectedFiles();
-
-    if (strfileNames.isEmpty()) {
-        return;
-    }
-    QString strFile = strfileNames.value(0);
-
-    if (!openFile(strFile)) {
-        showWarningMessageInfo(tr("can not open file:%1").arg(strFile));
-        return;
-    }
-    //成功打开，记录到最近打开列表中
-    appendRecentOpenFilesPath(strFile);
+    OpenProjectWindow *openProWin = new OpenProjectWindow;
+    openProWin->show();
 }
 
 
@@ -1412,21 +1387,12 @@ bool MainWindow::openProject(const QString& projectPath)
 
 
 ///
-/// \brief 打开项目文件夹
+/// \brief 新建项目
 ///
-void MainWindow::onActionOpenProjectTriggered()
+void MainWindow::onActionNewProjectTriggered()
 {
-    QString path = QFileDialog::getExistingDirectory(this, QStringLiteral("选择项目目录"));
 
-    if (path.isEmpty()) {
-        return;
-    }
-    if (!openProject(path)) {
-        showWarningMessageInfo(tr("can not open project:%1").arg(path));
-        return;
-    }
-    raiseValueManageDock();
-    appendRecentOpenProjectsPath(path);
+
 }
 
 

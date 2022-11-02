@@ -34,6 +34,7 @@ SOURCES += main.cpp\
     SAIconHelper.cpp \
     loginwindow.cpp \
     mainwindow.cpp \
+    openprojectwindow.cpp \
     progressStateWidget.cpp \
     AboutDialog.cpp \
     SAThemeManager.cpp \
@@ -54,6 +55,7 @@ HEADERS  += mainwindow.h \
     DebugInfo.h \
     SAIconHelper.h \
     loginwindow.h \
+    openprojectwindow.h \
     progressStateWidget.h \
     AboutDialog.h \
     SAThemeManager.h \
@@ -77,6 +79,7 @@ HEADERS  += mainwindow.h \
 
 FORMS    += \
     loginwindow.ui \
+    openprojectwindow.ui \
     progressStateWidget.ui \
     AboutDialog.ui \
     SAInformationStatusWidget.ui \
@@ -130,7 +133,6 @@ win32{
 include($$PWD/mainWindows/mainWindows.pri)# the other MainWindows
 include($$PWD/widget/widget.pri)# the other widget
 include($$PWD/dialog/dialog.pri)# RefProp API
-
 DISTFILES += \
     AirCraftCasingVibrateSystem.pri
 
