@@ -26,7 +26,10 @@ void SaveCollectionDataThread::run(){
 
 void ConsumerThread::run(){
 
-    QString fileName = QString("D:\\QtCollectionData\\%1.txt").arg(this->signalCode);
+    QString fileName = QString("D:\\QtCollectionData\\");
+    fileName += UUIDUtil::GetUUID();
+    fileName += "-"+this->signalCode;
+    qDebug()<<"文件名:"<<fileName<<endl;
     QFile f(fileName);
 
     if(!f.open(QIODevice::WriteOnly))
@@ -35,9 +38,7 @@ void ConsumerThread::run(){
     }
     QDataStream outputStream(&f);
     outputStream.setVersion(QDataStream::Qt_5_9);
-
     ThreadSafeQueue<double> saveData;
-
     while (consumer->theApp->m_icollectState){
         if (consumer->theApp->m_icollectState == 2){
              //暂停状态就卡在这
@@ -64,9 +65,8 @@ void ConsumerThread::run(){
         restVector.append(*signal);
 
     }
-
+    qDebug()<<"线程结束"<<endl;
     outputStream<<restVector;
-
     f.close();
 
 }

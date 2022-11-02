@@ -82,7 +82,6 @@ void JSpectrumWindow::stop(){
 
 }
 void JSpectrumWindow::refresh(){
-    //qDebug()<<"refresh"<<endl;
 
     std::map<QString,QVector<double>> data;  
     for(auto it = mapData.begin();it!=mapData.end();it++){
@@ -97,7 +96,7 @@ void JSpectrumWindow::refresh(){
     for (auto it = data.begin(); it != data.end(); ++it) {
         index = this->bindCustonPlot[it->first];
          if(it->second.size() == 0 || it->second.size()>10000){
-             qDebug()<<it->second.size()<<endl;
+//             qDebug()<<it->second.size()<<endl;
              continue;
          }
         this->customPlot->at(index)->graph(0)->data()->clear();

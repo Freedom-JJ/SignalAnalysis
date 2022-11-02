@@ -24,11 +24,13 @@ HEADERS += \
     $$PWD/Utils/DataStructure.h \
     $$PWD/Utils/FFTWUtil.h \
     $$PWD/Utils/GetDataThread.h \
+    $$PWD/Utils/JSaveCollectionDataThread.h \
     $$PWD/Utils/PlayBackThread.h \
     $$PWD/Utils/SaveCollectionDataThread.h \
     $$PWD/Utils/SignalFeature.h \
     $$PWD/Utils/SmartFFTWComplexArray.h \
     $$PWD/Utils/ThreadSafeQueue.h \
+    $$PWD/Utils/UUIDUtil.h \
     $$PWD/Utils/aircraftcasingvibratesystem.h \
     $$PWD/Utils/fftw3.h \
     $$PWD/View/JSpectrumWindow.h \
@@ -66,10 +68,12 @@ SOURCES += \
     $$PWD/Tools/tool.cpp \
     $$PWD/Utils/FFTWUtil.cpp \
     $$PWD/Utils/GetDataThread.cpp \
+    $$PWD/Utils/JSaveCollectionDataThread.cpp \
     $$PWD/Utils/PlayBackThread.cpp \
     $$PWD/Utils/SaveCollectionDataThread.cpp \
     $$PWD/Utils/SignalFeature.cpp \
     $$PWD/Utils/SmartFFTWComplexArray.cpp \
+    $$PWD/Utils/UUIDUtil.cpp \
     $$PWD/Utils/aircraftcasingvibratesystem.cpp \
     $$PWD/View/JspectrumWindow.cpp \
     $$PWD/View/jbasesamplewindow.cpp \

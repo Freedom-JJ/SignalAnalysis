@@ -1271,9 +1271,9 @@ void MainWindow::OnButtonStartCapture(){
     sampleThread->start();//开启采集线程
 
     ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
-    ui->spectrunView->setY_isScale(false);
-    ui->spectrunView->setYAxisRange(0,50000);
-    ui->spectrunView->setXAxisRange(10000);
+//    ui->spectrunView->setY_isScale(false);
+//    ui->spectrunView->setYAxisRange(0,50000);
+//    ui->spectrunView->setXAxisRange(10000);
     ui->spectrunView->start();//开始显示
 
     mainSaveData->start();
@@ -1284,6 +1284,7 @@ void MainWindow::OnButtonStopCapture(){
     theApp->m_icollectState = 0;
     ui->spectrunView->stop();
     sampleThread->terminate(); //quit不管用
+    //theApp->m_mpcolllectioinDataQueue.clear(); //可能需要自我清理，因为可能正在保存
     for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
         it->second->clearEchoSignal();
     }
