@@ -44,6 +44,7 @@ class MainWindowPrivate;
 #include "Utils/GetDataThread.h"
 #include "Utils/SaveCollectionDataThread.h"
 #include "View/spectrum.h"
+#include "openprojectwindow.h"
 class QProgressBar;
 class QActionGroup;
 
@@ -378,8 +379,8 @@ private slots:
     //打开
     void onActionOpenTriggered();
 
-    //打开项目
-    void onActionOpenProjectTriggered();
+    //新建
+    void onActionNewProjectTriggered();
 
     //保存
     void onActionSaveTriggered();

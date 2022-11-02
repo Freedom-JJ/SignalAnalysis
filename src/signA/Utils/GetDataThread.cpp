@@ -8,7 +8,7 @@ void GetDataThread::run(){
     qDebug() << "取数线程开启了---------------------------------------------------------------------------------" <<endl;
     float r = 0;
     const int size = data_thread->theApp->m_vchannelCodes.size();
-    while(true){
+    while(data_thread->theApp->m_bThread){
 
         for(int i=0;i<size;i++){
 

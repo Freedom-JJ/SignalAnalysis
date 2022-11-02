@@ -4,11 +4,20 @@ void SaveCollectionDataThread::run(){
 
 
     saveThread->theApp->m_bisSave = true;
+    string uuid;
+    UUIDUtil::GetUUID(uuid);
+
+    saveThread->theApp->m_sumSignal.setId(uuid);
+    saveThread->theApp->m_sumSignal.setStartTime(DataUtil::GetCurrentCStringTime());
+    //调用controller 的 saveSumSignal
+
     // 初始化采集队列
     std:map<QString, ThreadSafeQueue<double>>::iterator iter = saveThread->theApp->m_mpcolllectioinDataQueue.begin();
 
     while (iter != saveThread->theApp->m_mpcolllectioinDataQueue.end()){
-        ConsumerThread *everyConsumer  = new ConsumerThread(saveThread,iter->first);
+        SingleSignal singleSig;
+        singleSig.setSumSingalId(uuid);
+        ConsumerThread *everyConsumer  = new ConsumerThread(saveThread,iter->first,singleSig);
         threadVector.push_back(everyConsumer);
         iter++;
     }
@@ -19,6 +28,10 @@ void SaveCollectionDataThread::run(){
     for (int i = 0; i < threadVector.size();i++){
         threadVector[i]->wait();
     }
+
+    saveThread->theApp->m_sumSignal.setEndTime(DataUtil::GetCurrentCStringTime());
+    //调用controller的updateSumSignal
+
     //所有线程都完事了，执行保存操作
     saveThread->theApp->m_bisSave = false;
 
@@ -26,18 +39,33 @@ void SaveCollectionDataThread::run(){
 
 void ConsumerThread::run(){
 
-    QString fileName = QString("D:\\QtCollectionData\\");
-    fileName += UUIDUtil::GetUUID();
-    fileName += "-"+this->signalCode;
-    qDebug()<<"文件名:"<<fileName<<endl;
-    QFile f(fileName);
+    string fileName;
+    UUIDUtil::GetUUID(fileName);
 
+    QString filePath = QString("D:\\QtCollectionData\\%1-%2.txt").arg(QString::fromStdString(fileName),this->signalCode);
+    QFile f(filePath);
     if(!f.open(QIODevice::WriteOnly))
     {
        qDebug()<<"fileed"<<endl;
     }
     QDataStream outputStream(&f);
     outputStream.setVersion(QDataStream::Qt_5_9);
+
+
+
+    m_signal.setDataUrl(filePath.toStdString());
+    string signalId;
+    UUIDUtil::GetUUID(signalId);
+    m_signal.setId(signalId);
+    QStringList strlist= signalCode.split("-");
+    QString channelStr = strlist[1];
+    int channelNum = channelStr.toInt();
+    m_signal.setChannelId(channelNum);
+
+    consumer->theApp->saveSignalMutex.lock();
+    //调用保存信号saveSignal
+    consumer->theApp->saveSignalMutex.unlock();
+
     ThreadSafeQueue<double> saveData;
     while (consumer->theApp->m_icollectState){
         if (consumer->theApp->m_icollectState == 2){
