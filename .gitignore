@@ -42,3 +42,4 @@ build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signA/Makefile.Debug
 build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signA/Makefile.Release
 build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signA/object_script.signA.Debug
 build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signA/object_script.signA.Release
+*/Makefile
