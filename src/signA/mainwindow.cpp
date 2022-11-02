@@ -1281,13 +1281,15 @@ void MainWindow::OnButtonStartCapture(){
 }
 
 void MainWindow::OnButtonStopCapture(){
+
     theApp->m_icollectState = 0;
     theApp->m_bThread = false;
     ui->spectrunView->stop();
-    sampleThread->terminate(); //quit不管用
+    //sampleThread->terminate(); //quit不管用
     for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
         it->second->clearEchoSignal();
     }
+
 }
 
 //回放
