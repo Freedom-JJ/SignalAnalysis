@@ -1281,7 +1281,6 @@ void MainWindow::OnButtonStartCapture(){
 }
 
 void MainWindow::OnButtonStopCapture(){
-
     theApp->m_icollectState = 0;
     theApp->m_bThread = false;
     ui->spectrunView->stop();
@@ -1289,7 +1288,6 @@ void MainWindow::OnButtonStopCapture(){
     for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
         it->second->clearEchoSignal();
     }
-
 }
 
 //回放
