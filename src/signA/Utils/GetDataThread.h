@@ -21,6 +21,8 @@ class StaticSpectralEchoSignal;
 
 class GetDataThread : public QThread
 {
+    Q_OBJECT //必须包含的宏
+
 public:
     GetDataThread(class MainWindow* dt) : data_thread(dt){
     }
@@ -29,6 +31,9 @@ public:
 
 public:
     MainWindow *data_thread;
+
+signals:
+    void DataThreadDone();
 };
 
 #endif // GETDATATHREAD_H

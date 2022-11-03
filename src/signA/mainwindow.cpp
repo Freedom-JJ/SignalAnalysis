@@ -101,8 +101,7 @@ MainWindow::MainWindow(QWidget *parent) :
     , m_figureRightClickChart(nullptr)
     , m_nUserChartCount(0)
     , theApp(new AirCraftCasingVibrateSystem())
-    , sampleThread(new GetDataThread(this))
-    , mainSaveData(new SaveCollectionDataThread(this))
+//    , mainSaveData(new SaveCollectionDataThread(this))
     , mainPlayBack(new SumPlayBackThread(this))
 {
     saAddLog("start app");
@@ -475,7 +474,7 @@ void MainWindow::initUI()
 
     ui->menuBar->showContextCategory(ui->tableRibbonContextCategory);
 
-    //connect(this->sampleThread.data(), &GetDataThread::dataReady, this, &MainWindow::OnDataReady);
+
 }
 
 
@@ -1245,6 +1244,8 @@ void MainWindow::appendRecentOpenFilesPath(const QString& path)
 /*****************************wzx**************************************/
 //开始采集事件函数
 void MainWindow::OnButtonStartCapture(){
+
+
     int oldcollectState = theApp->m_icollectState;
     //如果当前状态为正在采集
     if (theApp->m_icollectState == 1) return;
@@ -1264,33 +1265,78 @@ void MainWindow::OnButtonStartCapture(){
        theApp->m_mpcolllectioinDataQueue.insert(std::pair<QString, ThreadSafeQueue<double>>(theApp->m_vchannelCodes[i], ThreadSafeQueue<double>()));
     }
 
-    qDebug()<<"mapsize"<<theApp->m_mpcolllectioinDataQueue.size()<<endl;
     this->theApp->m_bThread = true;
 
-    //this->theApp->staticEchoSignal->m_staticSpectralEchoSignalQueue.clear();//清空回显队列
-    sampleThread->start();//开启采集线程
-
+    //界面相关设置
     ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
     ui->spectrunView->setY_isScale(false);
     ui->spectrunView->setYAxisRange(0,50000);
     ui->spectrunView->setXAxisRange(10000);
     ui->spectrunView->start();//开始显示
 
+    sampleThread = new GetDataThread(this);
+    mainSaveData = new SaveCollectionDataThread(this);
+
+    connect(sampleThread,SIGNAL(DataThreadDone()),this,SLOT(closeSaveDataThread()));
+    sampleThread->start();//开启采集线程
+    connect(mainSaveData,SIGNAL(AllConsumerSaved()),this,SLOT(mainCloseSaveResource()));
     mainSaveData->start();
 
 }
 
 void MainWindow::OnButtonStopCapture(){
 
-    theApp->m_icollectState = 0;
-    theApp->m_bThread = false;
+
     ui->spectrunView->stop();
-    //sampleThread->terminate(); //quit不管用
+    theApp->m_bThread = false;
+
+//    for(int i=0;i<theApp->m_vchannelCodes.size();i++){
+//        QString code = theApp->m_vchannelCodes[i];
+//        int queue_size = theApp->m_mpcolllectioinDataQueue[code].size();
+//        qDebug()<<"队列"<<code<<"的长度为"<<queue_size<<endl;
+//    }
+
     for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
         it->second->clearEchoSignal();
     }
 
+
+
 }
+
+//采集线程结束之后的槽函数
+void MainWindow::closeSaveDataThread(){
+
+theApp->m_icollectState = 0;
+
+}
+
+
+
+//保存文件结束的槽函数
+void MainWindow::mainCloseSaveResource(){
+
+
+    //结束保存数据线程
+    mainSaveData->quit();//保存线程结束
+    mainSaveData->wait();
+    mainSaveData = nullptr;
+
+    sampleThread->quit();//采集线程结束
+    sampleThread->wait();
+    sampleThread = nullptr;
+
+    //清空保存数据队列
+    for(int i=0;i< theApp->m_vchannelCodes.size();i++){
+        QString code = theApp->m_vchannelCodes[i];
+        theApp->m_mpcolllectioinDataQueue[code].clear();
+    }
+
+}
+
+
+
+
 
 //回放
 void MainWindow::OnButtonStartPlayBack(){
