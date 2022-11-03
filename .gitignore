@@ -64,3 +64,5 @@ src/bin_qt5.9.9_debug/plugin/DsfFileImport.dll
 src/bin_qt5.9.9_debug/plugin/FunPlugin.dll
 src/SARibbonBar/SARibbon/bin_qt5.9.9_debug/SARibbonBard.dll
 src/bin_qt5.9.9_debug/plugin/textImport.dll
+build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signADataProc/Makefile
+build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signAServe/Makefile
