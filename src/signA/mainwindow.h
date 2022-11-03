@@ -94,9 +94,11 @@ private:
 public:
     QScopedPointer<AirCraftCasingVibrateSystem> theApp;
 
-    QScopedPointer<GetDataThread> sampleThread;
+    //QScopedPointer<GetDataThread> sampleThread;
+    GetDataThread *sampleThread;
 
-    QScopedPointer<SaveCollectionDataThread> mainSaveData;//用于保存磁盘的对象
+    //QScopedPointer<SaveCollectionDataThread> mainSaveData;//用于保存磁盘的对象
+    SaveCollectionDataThread *mainSaveData;
 
     SumPlayBackThread *  mainPlayBack;//用于回放数据的对象
 
@@ -162,6 +164,19 @@ public slots:
     void setTableRibbonContextCategoryVisible(bool on = true);
 
     /// \}
+    ///
+
+    /**
+    * @brief ：释放所有采集保存相关的资源
+    */
+    void mainCloseSaveResource();
+
+    /**
+    * @brief ：采集线程结束后再结束取数线程
+    */
+
+    void closeSaveDataThread();
+
 public:
 
     //获取进度栏上的进度条指针
@@ -339,6 +354,12 @@ signals:
     /// \param dataPtr 选中的数据指针，也可以通过 \a getSelectDatas 获取多选状态下的指针
     ///
     void selectDataChanged(SAAbstractDatas *dataPtr);
+
+    ///
+    /// \brief 结束并重置采集相关所有内容
+    ///
+    void ShutDownCapture();
+
 
 private slots:
 

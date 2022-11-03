@@ -5,7 +5,7 @@
 
 void GetDataThread::run(){
 
-    qDebug() << "取数线程开启了---------------------------------------------------------------------------------" <<endl;
+    //qDebug() << "取数线程开启了---------------------------------------------------------------------------------" <<endl;
     float r = 0;
     const int size = data_thread->theApp->m_vchannelCodes.size();
     while(data_thread->theApp->m_bThread){
@@ -29,10 +29,14 @@ void GetDataThread::run(){
             //data_thread->theApp->staticEchoSignal->PushEchoSignal(fftwInputArray);
             data_thread->theApp->echoSignalQueue[channelCode]->PushEchoSignal(fftwInputArray);
 
-            msleep(100);
     }
 
+             msleep(100);
     }
+
+    emit DataThreadDone();
+
+
 
 
 }

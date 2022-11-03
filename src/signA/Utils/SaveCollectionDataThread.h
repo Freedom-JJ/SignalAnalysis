@@ -26,6 +26,7 @@ class ConsumerThread;
 
 class SaveCollectionDataThread : public QThread
 {
+    Q_OBJECT //必须包含的宏
 public:
     SaveCollectionDataThread(class MainWindow *st):saveThread(st){
 
@@ -33,10 +34,10 @@ public:
 
 public:
     MainWindow *saveThread;
-    std::vector<ConsumerThread*> threadVector;
-
-
     void run() override;
+
+signals:
+    void AllConsumerSaved();
 
 };
 

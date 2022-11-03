@@ -11,9 +11,8 @@ void SaveCollectionDataThread::run(){
     saveThread->theApp->m_sumSignal.setStartTime(DataUtil::GetCurrentCStringTime());
     //调用controller 的 saveSumSignal
 
-    // 初始化采集队列
+    std::vector<ConsumerThread*> threadVector;
     std:map<QString, ThreadSafeQueue<double>>::iterator iter = saveThread->theApp->m_mpcolllectioinDataQueue.begin();
-
     while (iter != saveThread->theApp->m_mpcolllectioinDataQueue.end()){
         SingleSignal singleSig;
         singleSig.setSumSingalId(uuid);
@@ -34,6 +33,11 @@ void SaveCollectionDataThread::run(){
 
     //所有线程都完事了，执行保存操作
     saveThread->theApp->m_bisSave = false;
+    for(int i=0;i<threadVector.size();i++){
+        threadVector[i] = nullptr;
+        delete threadVector[i];
+    }
+    emit AllConsumerSaved();
 
 }
 
@@ -100,6 +104,27 @@ void ConsumerThread::run(){
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //--------------------------------------------------保存成一个二维vector------------------
 
 //QString fileName = QString("D:\\QtCollectionData\\%1.txt").arg(this->signalCode);
@@ -146,55 +171,6 @@ void ConsumerThread::run(){
 //sumSignal.append(restVector);
 
 //outputStream<<sumSignal;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
