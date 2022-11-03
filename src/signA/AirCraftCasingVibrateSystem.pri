@@ -34,7 +34,7 @@ HEADERS += \
     $$PWD/Utils/UUIDUtil.h \
     $$PWD/Utils/aircraftcasingvibratesystem.h \
     $$PWD/Utils/fftw3.h \
-    $$PWD/Utils/uuidutil.h \
+#    $$PWD/Utils/uuidutil.h \
     $$PWD/View/JSpectrumWindow.h \
     $$PWD/View/jbasesamplewindow.h \
     $$PWD/View/jdataviewecho.h \
@@ -79,7 +79,7 @@ SOURCES += \
     $$PWD/Utils/SmartFFTWComplexArray.cpp \
     $$PWD/Utils/UUIDUtil.cpp \
     $$PWD/Utils/aircraftcasingvibratesystem.cpp \
-    $$PWD/Utils/uuidutil.cpp \
+#    $$PWD/Utils/uuidutil.cpp \
     $$PWD/View/JspectrumWindow.cpp \
     $$PWD/View/jbasesamplewindow.cpp \
     $$PWD/View/jdataviewecho.cpp \

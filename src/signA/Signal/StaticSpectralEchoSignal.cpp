@@ -21,6 +21,7 @@ QVector<double> StaticSpectralEchoSignal::PopEchoSignal(){
     QVector<double> echoSignal;
     double* fftinput = *this->m_staticSpectralEchoSignalQueue.wait_and_pop();
     int pointCount = _msize(fftinput) / sizeof(*fftinput);
+    qDebug()<<"读取点数:"<<pointCount<<endl;
     int line = pointCount / 2;
     SmartFFTWComplexArray fftwOutput(pointCount);
     FFTWUtil::FastFourierTransformation(pointCount, fftinput,fftwOutput.GeFFTWComplexArray());

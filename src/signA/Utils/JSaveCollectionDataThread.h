@@ -2,14 +2,16 @@
 #define JSAVECOLLECTIONDATATHREAD_H
 
 #include <QObject>
-
-class JSaveCollectionDataThread : public SaveCollectionDataThread
+#include "mainwindow.h"
+class JSaveCollectionDataThread : public QThread
 {
     Q_OBJECT
 public:
-    JSaveCollectionDataThread();
-
+    JSaveCollectionDataThread(class MainWindow *st);
     void run();
+
+private:
+    MainWindow *saveThread;
 };
 
 #endif // JSAVECOLLECTIONDATATHREAD_H

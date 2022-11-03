@@ -15,6 +15,7 @@
 #include <mutex>
 #include <memory>
 #include <condition_variable>
+#include<vector>
 template <typename T>
 class ThreadSafeQueue
 {
@@ -54,7 +55,7 @@ public:
         T front(){
            std::lock_guard<std::mutex> lk(mut);
            return data_queue.front();
-       }
+        }
 
        std::shared_ptr<T> wait_and_pop()
        {
@@ -99,6 +100,17 @@ public:
            return data_queue.empty();
        }
 
+       void pushVector(std::vector<T> val){
+           std::lock_guard<std::mutex> lk(mut);
+           for(int i = 0 ; i < val.size() ; i++){
+               push_noLock(val[i]);
+           }
+       }
+
+private:
+       void push_noLock(T newData){
+           data_queue.push(std::move(newData));
+       }
 
 };
 

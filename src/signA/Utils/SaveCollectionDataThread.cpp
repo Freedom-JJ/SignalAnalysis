@@ -75,6 +75,7 @@ void ConsumerThread::run(){
         }
         while (consumer->theApp->m_mpcolllectioinDataQueue[signalCode].size() > 0){
             //qDebug()<<"\n队列长度%d\n", m_mpcolllectioinDataQueue[signalCode].size()<<endl;
+            //push一个double不合理，push之后立马传输到stream也不合理
             saveData.push(*(consumer->theApp->m_mpcolllectioinDataQueue[signalCode].wait_and_pop()));
             if (saveData.size() == consumer->theApp->m_icollectSignalsStoreCount){
                 consumer->theApp->m_signalController.SaveCollectionData2Binary(outputStream,saveData);
@@ -93,7 +94,6 @@ void ConsumerThread::run(){
         restVector.append(*signal);
 
     }
-    qDebug()<<"线程结束"<<endl;
     outputStream<<restVector;
     f.close();
 

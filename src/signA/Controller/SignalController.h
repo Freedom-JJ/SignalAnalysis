@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QDataStream>
 #include <QVector>
+#include <QDebug>
 #include "../Result/result.h"
 #include "Utils/ThreadSafeQueue.h"
 

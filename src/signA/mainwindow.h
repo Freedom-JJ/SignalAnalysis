@@ -45,6 +45,7 @@ class MainWindowPrivate;
 #include "Utils/SaveCollectionDataThread.h"
 #include "View/spectrum.h"
 #include "openprojectwindow.h"
+#include "Utils/JSaveCollectionDataThread.h"
 class QProgressBar;
 class QActionGroup;
 
@@ -65,6 +66,7 @@ class SumPlayBackThread;
 class SaveCollectionDataThread;
 class StaticSpectralEchoSignal;
 class AirCraftCasingVibrateSystem;
+class JSaveCollectionDataThread;
 using std::vector;
 using std::map;
 ///

@@ -17,7 +17,7 @@ Result SignalController::SaveCollectionData2Binary(QDataStream &outputStream, Th
         shared_ptr<double> signal = acquireSignal.wait_and_pop();
         saveData[i] = *signal;
     }
-
+    qDebug()<<"保存数据点数："<<saveCount<<endl;
     outputStream << saveData;
     return Result(200, "success");
 }
@@ -41,6 +41,7 @@ bool SignalController::GetCollectionData(QDataStream &inputStream, int pointCoun
     fftwInputArray = new double[pointCount];
     for(int i=0;i<signal.size();i++){
         fftwInputArray[i]=signal[i];
+
     }
 
 }

@@ -52,3 +52,15 @@ build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signAPlugin/FunPlugin/Makefile
 build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signAPlugin/TextImport/Makefile
 build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signAProtocol/Makefile
 build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signAScience/Makefile
+build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signA/debug/moc_JSaveCollectionDataThread.cpp
+build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signA/debug/moc_mainwindow.cpp
+src/bin_qt5.9.9_debug/libs/signAChart.dll
+src/bin_qt5.9.9_debug/libs/signACommonUI.dll
+src/bin_qt5.9.9_debug/libs/signACoreFun.dll
+src/bin_qt5.9.9_debug/libs/signAProtocol.dll
+src/bin_qt5.9.9_debug/libs/signALib.dll
+src/bin_qt5.9.9_debug/libs/signAScience.dll
+src/bin_qt5.9.9_debug/plugin/DsfFileImport.dll
+src/bin_qt5.9.9_debug/plugin/FunPlugin.dll
+src/SARibbonBar/SARibbon/bin_qt5.9.9_debug/SARibbonBard.dll
+src/bin_qt5.9.9_debug/plugin/textImport.dll
