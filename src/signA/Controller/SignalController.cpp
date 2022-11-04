@@ -2,11 +2,13 @@
 
 SignalController::SignalController()
 {
-
+    this->singleSignalService = new SingleSignalService();
+    this->sumSignalService = new SumSignalService();
 }
 
 SignalController::~SignalController(){
-
+    delete this->singleSignalService;
+    delete this->sumSignalService;
 }
 
 Result SignalController::SaveCollectionData2Binary(QDataStream &outputStream, ThreadSafeQueue<double> & acquireSignal){
@@ -50,10 +52,12 @@ Result SignalController::saveSumSignal(SumSignal *sumSignal)
     if(!sumSignal){
         return Result(205,"传入的sumSignal为空");
     }
+    qInfo()<<"执行查找sumSignal根据Id";
     SumSignal* qsumSignal = sumSignalService->getSumSignalById(sumSignal->getId());
     if(qsumSignal){
         return Result(202,"该SumSignal已经存在");
     }
+    qInfo()<<"执行添加sumSignal";
     string id =  sumSignalService->addSumSignal(sumSignal);
     if(id.empty()){
         return Result(201,"添加SumSignal失败");
@@ -77,7 +81,7 @@ Result SignalController::saveSingleSignal(SingleSignal *singleSignal)
         return Result(201,"添加singleSignal失败");
     }
     else{
-        return Result(200,"添加SumSignal成功");
+        return Result(200,"添加singleSignal成功");
     }
 }
 

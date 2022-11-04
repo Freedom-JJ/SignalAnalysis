@@ -39,7 +39,8 @@ HEADERS += \
     $$PWD/View/jvoiceranddata.h \
     $$PWD/View/jvoicesampleview.h \
     $$PWD/View/qcustomplot.h \
-    $$PWD/View/spectrum.h
+    $$PWD/View/spectrum.h \
+    $$PWD/tDemo/singnalcontrollertest.h
 
 
 SOURCES += \
@@ -80,7 +81,8 @@ SOURCES += \
     $$PWD/View/jvoiceranddata.cpp \
     $$PWD/View/jvoicesampleview.cpp \
     $$PWD/View/qcustomplot.cpp \
-    $$PWD/View/spectrum.cpp
+    $$PWD/View/spectrum.cpp \
+    $$PWD/tDemo/singnalcontrollertest.cpp
 
 
 DISTFILES +=
