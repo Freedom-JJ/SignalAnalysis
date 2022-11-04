@@ -52,3 +52,23 @@ string SumSignalDao::insert(SumSignal *sumSignal)
     global_pdsql->InsertMysql(id,mqstos(sql));
     return sumSignal->getId();
 }
+
+string SumSignalDao::update(SumSignal *sumSignal)
+{
+    int affected_num = 0;
+    if(!sumSignal){
+        return "";//返回一个空字符串，代表更新信号的指针为空
+    }
+    QString sql;
+    sql = "update sum_signal set startTime='%1' , endTime='%2', projectId='%3' where id = '%4'";
+    sql = sql.arg(mstoqs(sumSignal->getStartTime())).arg(mstoqs(sumSignal->getEndTime())).arg(mstoqs(mlltos(sumSignal->getProjectId()))).arg(mstoqs(mlltos(sumSignal->getProjectId())));
+    qInfo()<<"执行"<<sql;
+    //判断是否更新
+    global_pdsql->UpdateMysql(affected_num,mqstos(sql));
+    if(affected_num==0){
+        return "";
+    }
+    else{
+        return sumSignal->getId();
+    }
+}

@@ -20,4 +20,9 @@ string SumSignalService::addSumSignal(SumSignal *sumSignal)
     return this->sumSignalDao->insert(sumSignal);
 }
 
+string SumSignalService::updateSumSignal(SumSignal *sumSignal)
+{
+    return this->sumSignalDao->update(sumSignal);
+}
+
 

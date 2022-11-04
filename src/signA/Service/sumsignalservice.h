@@ -17,6 +17,9 @@ public:
     //添加sumSignal
     string addSumSignal(SumSignal* sumSignal);
 
+    //更新sumSignal
+    string updateSumSignal(SumSignal* sumSignal);
+
 private:
     SumSignalDao* sumSignalDao;
 
