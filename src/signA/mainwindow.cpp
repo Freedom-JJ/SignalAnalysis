@@ -239,6 +239,7 @@ void MainWindow::initUI()
     //采集功能
     connect(ui->actionStartCapture,&QAction::triggered,this,&MainWindow::OnButtonStartCapture);
     connect(ui->actionStopCapture,&QAction::triggered,this,&MainWindow::OnButtonStopCapture);
+    connect(ui->actionSuspendCapture,&QAction::triggered,this,&MainWindow::OnBUttonSuspendCapture);
 
     //回放功能
     connect(ui->actionStartPlayBack,&QAction::triggered,this,&MainWindow::OnButtonStartPlayBack);
@@ -1284,30 +1285,29 @@ void MainWindow::OnButtonStartCapture(){
 
 }
 
+//停止采集
 void MainWindow::OnButtonStopCapture(){
 
 
     ui->spectrunView->stop();
     theApp->m_bThread = false;
 
-//    for(int i=0;i<theApp->m_vchannelCodes.size();i++){
-//        QString code = theApp->m_vchannelCodes[i];
-//        int queue_size = theApp->m_mpcolllectioinDataQueue[code].size();
-//        qDebug()<<"队列"<<code<<"的长度为"<<queue_size<<endl;
-//    }
-
     for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
         it->second->clearEchoSignal();
     }
+}
 
+//暂停采集
+void MainWindow::OnBUttonSuspendCapture(){
 
+    theApp->m_icollectState = 2;
 
 }
 
 //采集线程结束之后的槽函数
 void MainWindow::closeSaveDataThread(){
 
-theApp->m_icollectState = 0;
+    theApp->m_icollectState = 0;
 
 }
 
@@ -1333,6 +1333,11 @@ void MainWindow::mainCloseSaveResource(){
     }
 
 }
+
+
+
+
+
 
 
 
@@ -1365,6 +1370,11 @@ void MainWindow::OnButtonStopPlayBack(){
     }
 
 }
+
+
+
+
+
 /*****************************wzx**************************************/
 
 

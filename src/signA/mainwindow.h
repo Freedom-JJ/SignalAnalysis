@@ -362,12 +362,18 @@ signals:
 private slots:
 
 
-    //采集槽函数
+    ///采集槽函数
+
+    //开始采集
     void OnButtonStartCapture();
 
+    //停止采集
     void OnButtonStopCapture();
 
-    //回放槽函数
+    //暂停采集
+    void OnBUttonSuspendCapture();
+
+    ///回放槽函数
     void OnButtonStartPlayBack();
 
     void OnButtonStopPlayBack();

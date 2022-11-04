@@ -10,9 +10,13 @@ void GetDataThread::run(){
     const int size = data_thread->theApp->m_vchannelCodes.size();
     while(data_thread->theApp->m_bThread){
 
+        //暂停采集就卡在这！！！
+        if(data_thread->theApp->m_icollectState == 2){
+            msleep(10);
+            continue;
+        }
+
         for(int i=0;i<size;i++){
-
-
             double * fftwInputArray = new double[20000];
             QString channelCode = "0-" + QString::number(i);
 
