@@ -101,8 +101,6 @@ MainWindow::MainWindow(QWidget *parent) :
     , m_figureRightClickChart(nullptr)
     , m_nUserChartCount(0)
     , theApp(new AirCraftCasingVibrateSystem())
-//    , mainSaveData(new SaveCollectionDataThread(this))
-    , mainPlayBack(new SumPlayBackThread(this))
 {
     saAddLog("start app");
 
@@ -1271,8 +1269,6 @@ void MainWindow::OnButtonStartCapture(){
     //界面相关设置
     ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
     ui->spectrunView->setY_isScale(false);
-    ui->spectrunView->setYAxisRange(0,50000);
-    ui->spectrunView->setXAxisRange(10000);
     ui->spectrunView->start();//开始显示
 
     sampleThread = new GetDataThread(this);
@@ -1334,47 +1330,54 @@ void MainWindow::mainCloseSaveResource(){
 
 }
 
-
-
-
-
-
-
-
-
-
-//回放
+//开始回放
 void MainWindow::OnButtonStartPlayBack(){
 
+    int old_playbackState = theApp->m_iplaybackState;
+    if(theApp->m_iplaybackState == 1){
+        return;         //正在回放就不能再点开始回放
+    }
+
+    theApp->m_iplaybackState = 1;
+
+    if(old_playbackState == 2){
+        return;
+    }
+
+
+    mainPlayBack = new SumPlayBackThread(this);
     mainPlayBack->start();
 
-    connect(mainPlayBack,&SumPlayBackThread::stopRefresh,ui->spectrunView,&JSpectrumWindow::stop);
+    connect(mainPlayBack,SIGNAL(playbackDone()),this,SLOT(closePlaybackResource()));
     ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
-//    ui->spectrunView->setY_isScale(false);
-//    ui->spectrunView->setYAxisRange(0,50000);
-//    ui->spectrunView->setXAxisRange(10000);
+    ui->spectrunView->setY_isScale(false);
     ui->spectrunView->start();//开始显示
-
-
-
 }
 
 
+//停止回放(暂停回放)
 void MainWindow::OnButtonStopPlayBack(){
 
-    theApp->m_iplaybackState = 0;
-    mainPlayBack->quit();
+    theApp->m_iplaybackState = 2;
+
+}
+
+//回放读取文件结束后的槽函数
+void MainWindow::closePlaybackResource(){
+
     ui->spectrunView->stop();
+    theApp->m_iplaybackState = 0;
+
+    mainPlayBack->quit();
+    mainPlayBack->wait();
+    mainPlayBack = nullptr;
+
     for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
         it->second->clearEchoSignal();
     }
 
+
 }
-
-
-
-
-
 /*****************************wzx**************************************/
 
 

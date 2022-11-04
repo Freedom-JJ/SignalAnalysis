@@ -175,6 +175,11 @@ public slots:
 
     void closeSaveDataThread();
 
+    /**
+    * @brief ：回放文件读取结束后自动释放资源
+    */
+    void closePlaybackResource();
+
 public:
 
     //获取进度栏上的进度条指针
