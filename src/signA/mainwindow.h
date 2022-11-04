@@ -98,7 +98,7 @@ public:
     GetDataThread *sampleThread;
 
     //QScopedPointer<SaveCollectionDataThread> mainSaveData;//用于保存磁盘的对象
-    SaveCollectionDataThread *mainSaveData;
+    JSaveCollectionDataThread *mainSaveData;
 
     SumPlayBackThread *  mainPlayBack;//用于回放数据的对象
 

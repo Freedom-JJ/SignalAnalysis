@@ -43,13 +43,14 @@ void JSaveCollectionDataThread::run(){
         std::map<QString, ThreadSafeQueue<double>>::iterator it = saveThread->theApp->m_mpcolllectioinDataQueue.begin();
         QVector<double> temp;
         while(it!=saveThread->theApp->m_mpcolllectioinDataQueue.end()){
-            while(it->second.size() > 5*20000){ //当前队列有数据,且还有五祯以上就继续保存,要不然切换其他队列，避免队列数据过多,有一定可能性导致按队列保存
-                temp.push_back(*(saveThread->theApp->m_mpcolllectioinDataQueue[it->first].wait_and_pop()));
+            if(it->second.size() > 20000){ //当前队列有数据,且还有五祯以上就继续保存,要不然切换其他队列，避免队列数据过多,有一定可能性导致按队列保存
+                for (int var = 0; var < saveThread->theApp->data_length; ++var) {
+                    temp.push_back(*(saveThread->theApp->m_mpcolllectioinDataQueue[it->first].wait_and_pop()));
+                }
             }
             if(temp.size()>0){
                 *(streams[it->first])<<temp;
                 counts[it->first] = counts[it->first] + temp.size();
-                qDebug()<<"通道:"<<it->first<<"---写入数据:"<<temp.size()<<endl;
                 temp.clear();
             }
             it++; //切换下一个队列

@@ -105,6 +105,7 @@ public:
            for(int i = 0 ; i < val.size() ; i++){
                push_noLock(val[i]);
            }
+           cond.notify_one();
        }
 
 private:

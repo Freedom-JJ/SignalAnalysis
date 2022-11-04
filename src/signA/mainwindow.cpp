@@ -1269,13 +1269,10 @@ void MainWindow::OnButtonStartCapture(){
 
     //界面相关设置
     ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
-//    ui->spectrunView->setY_isScale(false);
-//    ui->spectrunView->setYAxisRange(0,50000);
-//    ui->spectrunView->setXAxisRange(10000);
     ui->spectrunView->start();//开始显示
-
+    ui->spectrunView->setReScaleRate(2);
     sampleThread = new GetDataThread(this);
-    mainSaveData = new SaveCollectionDataThread(this);
+    mainSaveData = new JSaveCollectionDataThread(this);
 
     connect(sampleThread,SIGNAL(DataThreadDone()),this,SLOT(closeSaveDataThread()));
     sampleThread->start();//开启采集线程

@@ -36,6 +36,7 @@ HEADERS += \
     $$PWD/Utils/fftw3.h \
 #    $$PWD/Utils/uuidutil.h \
     $$PWD/View/JSpectrumWindow.h \
+    $$PWD/View/OpenDataFileDialog.h \
     $$PWD/View/jbasesamplewindow.h \
     $$PWD/View/jdataviewecho.h \
     $$PWD/View/jsampleview.h \
@@ -81,6 +82,7 @@ SOURCES += \
     $$PWD/Utils/aircraftcasingvibratesystem.cpp \
 #    $$PWD/Utils/uuidutil.cpp \
     $$PWD/View/JspectrumWindow.cpp \
+    $$PWD/View/OpenDataFileDialog.cpp \
     $$PWD/View/jbasesamplewindow.cpp \
     $$PWD/View/jdataviewecho.cpp \
     $$PWD/View/jsampleview.cpp \
@@ -94,5 +96,6 @@ SOURCES += \
 DISTFILES +=
 
 FORMS += \
+    $$PWD/View/OpenDataFileDialog.ui \
     $$PWD/View/spectrum.ui \
 
