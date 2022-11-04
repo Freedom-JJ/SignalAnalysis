@@ -7,8 +7,7 @@ SignalFeature::SignalFeature()
 
 std::map<QString, double> SignalFeature::getFeaturesWithMap(QVector<double> &value)
 {
-    double maxv,minv,meanv= value[0];
-    double s2v,ev,sumv,peakv=0; //方差，有效值，总值,峰值
+    maxv,minv,meanv= value[0];
     for(int index = 0 ; index < value.size(); index++){
         sumv += value[index];
         maxv = qMax(value[index],maxv);
@@ -43,6 +42,11 @@ QString SignalFeature::getFeaturesWithString(QVector<double> &value)
        it++;
     }
     return res;
+}
+
+double SignalFeature::getMax()
+{
+    return maxv;
 }
 
 

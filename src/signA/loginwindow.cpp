@@ -1,11 +1,13 @@
 #include "loginwindow.h"
 #include "ui_loginwindow.h"
-
+#include "View/OpenDataFileDialog.h"
 LoginWindow::LoginWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::LoginWindow)
 {
     ui->setupUi(this);
+    auto dd = new OpenDataFileDialog(parent);
+    dd->show();
 }
 
 LoginWindow::~LoginWindow()

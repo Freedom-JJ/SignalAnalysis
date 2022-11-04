@@ -101,8 +101,7 @@ MainWindow::MainWindow(QWidget *parent) :
     , m_figureRightClickChart(nullptr)
     , m_nUserChartCount(0)
     , theApp(new AirCraftCasingVibrateSystem())
-    , sampleThread(new GetDataThread(this))
-    , mainSaveData(new SaveCollectionDataThread(this))
+//    , mainSaveData(new SaveCollectionDataThread(this))
     , mainPlayBack(new SumPlayBackThread(this))
 {
     saAddLog("start app");
@@ -264,9 +263,9 @@ void MainWindow::initUI()
     connect(ui->mdiArea, &QMdiArea::subWindowActivated, this, &MainWindow::onMdiAreaSubWindowActivated);
     //-------------------------------------
     // - start file menu signal/slots connect
-    connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::onActionOpenTriggered);
-    connect(ui->actionNew, &QAction::triggered, this, &MainWindow::onActionOpenProjectTriggered);
-    connect(ui->actionSet, &QAction::triggered, this, &MainWindow::onActionSaveTriggered);
+    connect(ui->actionOpen1, &QAction::triggered, this, &MainWindow::onActionOpenTriggered);//打开项目
+    connect(ui->actionNew, &QAction::triggered, this, &MainWindow::onActionNewProjectTriggered);//新建项目
+    connect(ui->actionSet, &QAction::triggered, this, &MainWindow::onActionSaveTriggered);//项目设置
     connect(ui->actionSaveAs, &QAction::triggered, this, &MainWindow::onActionSaveAsTriggered);
     connect(ui->actionClearProject, &QAction::triggered, this, &MainWindow::onActionClearProjectTriggered);
     //-------------------------------------
@@ -475,7 +474,7 @@ void MainWindow::initUI()
 
     ui->menuBar->showContextCategory(ui->tableRibbonContextCategory);
 
-    //connect(this->sampleThread.data(), &GetDataThread::dataReady, this, &MainWindow::OnDataReady);
+
 }
 
 
@@ -1243,8 +1242,10 @@ void MainWindow::appendRecentOpenFilesPath(const QString& path)
 //}
 
 /*****************************wzx**************************************/
-//采集事件函数
+//开始采集事件函数
 void MainWindow::OnButtonStartCapture(){
+
+
     int oldcollectState = theApp->m_icollectState;
     //如果当前状态为正在采集
     if (theApp->m_icollectState == 1) return;
@@ -1264,31 +1265,75 @@ void MainWindow::OnButtonStartCapture(){
        theApp->m_mpcolllectioinDataQueue.insert(std::pair<QString, ThreadSafeQueue<double>>(theApp->m_vchannelCodes[i], ThreadSafeQueue<double>()));
     }
 
-    qDebug()<<"mapsize"<<theApp->m_mpcolllectioinDataQueue.size()<<endl;
     this->theApp->m_bThread = true;
 
-    //this->theApp->staticEchoSignal->m_staticSpectralEchoSignalQueue.clear();//清空回显队列
-    sampleThread->start();//开启采集线程
-
+    //界面相关设置
     ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
-//    ui->spectrunView->setY_isScale(false);
-//    ui->spectrunView->setYAxisRange(0,50000);
-//    ui->spectrunView->setXAxisRange(10000);
     ui->spectrunView->start();//开始显示
+    ui->spectrunView->setReScaleRate(2);
+    sampleThread = new GetDataThread(this);
+    mainSaveData = new JSaveCollectionDataThread(this);
 
+    connect(sampleThread,SIGNAL(DataThreadDone()),this,SLOT(closeSaveDataThread()));
+    sampleThread->start();//开启采集线程
+    connect(mainSaveData,SIGNAL(AllConsumerSaved()),this,SLOT(mainCloseSaveResource()));
     mainSaveData->start();
 
 }
 
 void MainWindow::OnButtonStopCapture(){
-    theApp->m_icollectState = 0;
+
+
     ui->spectrunView->stop();
-    sampleThread->terminate(); //quit不管用
-    //theApp->m_mpcolllectioinDataQueue.clear(); //可能需要自我清理，因为可能正在保存
+    theApp->m_bThread = false;
+
+//    for(int i=0;i<theApp->m_vchannelCodes.size();i++){
+//        QString code = theApp->m_vchannelCodes[i];
+//        int queue_size = theApp->m_mpcolllectioinDataQueue[code].size();
+//        qDebug()<<"队列"<<code<<"的长度为"<<queue_size<<endl;
+//    }
+
     for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
         it->second->clearEchoSignal();
     }
+
+
+
 }
+
+//采集线程结束之后的槽函数
+void MainWindow::closeSaveDataThread(){
+
+theApp->m_icollectState = 0;
+
+}
+
+
+
+//保存文件结束的槽函数
+void MainWindow::mainCloseSaveResource(){
+
+
+    //结束保存数据线程
+    mainSaveData->quit();//保存线程结束
+    mainSaveData->wait();
+    mainSaveData = nullptr;
+
+    sampleThread->quit();//采集线程结束
+    sampleThread->wait();
+    sampleThread = nullptr;
+
+    //清空保存数据队列
+    for(int i=0;i< theApp->m_vchannelCodes.size();i++){
+        QString code = theApp->m_vchannelCodes[i];
+        theApp->m_mpcolllectioinDataQueue[code].clear();
+    }
+
+}
+
+
+
+
 
 //回放
 void MainWindow::OnButtonStartPlayBack(){
@@ -1337,34 +1382,8 @@ void MainWindow::CreateCaptureWindow(){
 ///
 void MainWindow::onActionOpenTriggered()
 {
-    QFileDialog openDlg(this);
-    QStringList strNFilter = m_pluginManager->getOpenFileNameFilters();
-    QStringList strSuffixs = m_pluginManager->getAllSupportOpenFileSuffix();
-    QString strAllSupportSuffixs;
-
-    std::for_each(strSuffixs.begin(), strSuffixs.end(), [&strAllSupportSuffixs](const QString& s) {
-        strAllSupportSuffixs += (" *." + s);
-    });
-    strNFilter.push_front(tr("all support files(%1)").arg(strAllSupportSuffixs));
-    strNFilter.push_back(tr("all files (*.*)"));
-    openDlg.setFileMode(QFileDialog::ExistingFiles);
-    openDlg.setNameFilters(strNFilter);
-    if (QDialog::Accepted != openDlg.exec()) {
-        return;
-    }
-    QStringList strfileNames = openDlg.selectedFiles();
-
-    if (strfileNames.isEmpty()) {
-        return;
-    }
-    QString strFile = strfileNames.value(0);
-
-    if (!openFile(strFile)) {
-        showWarningMessageInfo(tr("can not open file:%1").arg(strFile));
-        return;
-    }
-    //成功打开，记录到最近打开列表中
-    appendRecentOpenFilesPath(strFile);
+    OpenProjectWindow *openProWin = new OpenProjectWindow;
+    openProWin->show();
 }
 
 
@@ -1411,21 +1430,12 @@ bool MainWindow::openProject(const QString& projectPath)
 
 
 ///
-/// \brief 打开项目文件夹
+/// \brief 新建项目
 ///
-void MainWindow::onActionOpenProjectTriggered()
+void MainWindow::onActionNewProjectTriggered()
 {
-    QString path = QFileDialog::getExistingDirectory(this, QStringLiteral("选择项目目录"));
 
-    if (path.isEmpty()) {
-        return;
-    }
-    if (!openProject(path)) {
-        showWarningMessageInfo(tr("can not open project:%1").arg(path));
-        return;
-    }
-    raiseValueManageDock();
-    appendRecentOpenProjectsPath(path);
+
 }
 
 

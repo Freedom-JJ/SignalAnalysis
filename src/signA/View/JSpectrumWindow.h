@@ -62,6 +62,11 @@ public:
       * @param count为最大频谱，0为最小，那么就是总共count+1跟谱线
       */
      void setXAxisRange(int count);
+     /**
+      * @brief 设置缩放比率,rate表示当前最大值的倍数
+      * @param rate
+      */
+     void setReScaleRate(double rate);
 private:
      QVector<QCustomPlot *> *customPlot = new QVector<QCustomPlot *> (4);
      QVector<QCPItemText *> *textItem = new QVector<QCPItemText *> (4);
@@ -81,8 +86,10 @@ private:
      /**
       * @brief 当Y轴不需要自动缩放时，使用这两个值
       */
-     double yStart;
+     double yStart = 0;
      double yStop;
+     double yRescaleRate = 1.2;
+     SignalFeature feature;
 };
 
 #endif // JSPECTRUMWINDOW_H

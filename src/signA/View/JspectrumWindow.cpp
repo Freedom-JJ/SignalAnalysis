@@ -103,11 +103,13 @@ void JSpectrumWindow::refresh(){
         this->customPlot->at(index)->graph(0)->addData(*xAxis,it->second);
 
         QString info = "通道:"+it->first+"\n";
-        info += SignalFeature().getFeaturesWithString(it->second);
+        info += feature.getFeaturesWithString(it->second);
+        double maxY = feature.getMax();
         textItem->at(index)->setText(info);
 
         if (yIsRescale == true){
-            this->customPlot->at(index)->graph(0)->rescaleValueAxis();
+            this->customPlot->at(index)->graph(0)->valueAxis()->setRange(0,maxY * yRescaleRate);
+//            this->customPlot->at(index)->graph(0)->rescaleValueAxis();
             this->customPlot->at(index)->graph(0)->rescaleKeyAxis();
         }else{
             this->customPlot->at(index)->graph(0)->valueAxis()->setRange(yStart,yStop);
@@ -151,6 +153,11 @@ void JSpectrumWindow::setY_isScale(bool scale)
 }
 void JSpectrumWindow::setXAxisRange(int count){
     this->range = count;
+}
+
+void JSpectrumWindow::setReScaleRate(double rate)
+{
+    this->yRescaleRate = rate;
 }
 
 void JSpectrumWindow::setMainWindowObject(MainWindow *vw){
