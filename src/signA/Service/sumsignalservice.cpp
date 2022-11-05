@@ -20,4 +20,9 @@ string SumSignalService::addSumSignal(SumSignal *sumSignal)
     return this->sumSignalDao->insert(sumSignal);
 }
 
+vector<SumSignalAndProjectNameVo> SumSignalService::allSumSignalWithProjectName()
+{
+    return this->sumSignalDao->getAllSumSigWithProjectName();
+}
+
 

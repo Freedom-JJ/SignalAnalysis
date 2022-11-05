@@ -44,3 +44,9 @@ bool SignalController::GetCollectionData(QDataStream &inputStream, int pointCoun
     }
 
 }
+
+Result SignalController::getAllSumSignalWithProjectName(QVector<SumSignalAndProjectNameVo> &res)
+{
+    res = QVector<SumSignalAndProjectNameVo>::fromStdVector(service.allSumSignalWithProjectName());
+    return Result(200,"成功查询:" +QString::number(res.size()).toStdString());
+}

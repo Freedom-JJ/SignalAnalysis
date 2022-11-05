@@ -8,7 +8,8 @@
 #include <QDebug>
 #include "../Result/result.h"
 #include "Utils/ThreadSafeQueue.h"
-
+#include "Vo/sumsignalandprojectnamevo.h"
+#include "Service/sumsignalservice.h"
 class SignalController
 {
 public:
@@ -33,6 +34,15 @@ public:
     输入参数：
     ***********************************************************************/
     bool GetCollectionData(QDataStream &inputStream,int pointCount,double*& fftwInputArray);
+
+    /**********************************************************************
+    功能描述:   得到所有sumSignal携带ProJectName(多表查询)
+    输入参数：
+    ***********************************************************************/
+
+    Result getAllSumSignalWithProjectName(QVector<SumSignalAndProjectNameVo> &res);
+private:
+    SumSignalService service;
 };
 
 #endif // SIGNALCONTROLLER_H

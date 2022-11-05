@@ -2,7 +2,7 @@
 #define SUMSIGNALSERVICE_H
 #include "../Dao/sumsignaldao.h"
 #include "../Dao/singlesignaldao.h"
-
+#include "Vo/sumsignalandprojectnamevo.h"
 class SumSignalService
 {
 public:
@@ -17,6 +17,7 @@ public:
     //添加sumSignal
     string addSumSignal(SumSignal* sumSignal);
 
+    vector<SumSignalAndProjectNameVo> allSumSignalWithProjectName();
 private:
     SumSignalDao* sumSignalDao;
 

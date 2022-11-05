@@ -22,6 +22,7 @@ HEADERS += \
     $$PWD/Signal/StaticSpectralEchoSignal.h \
     $$PWD/Tools/datautil.h \
     $$PWD/Tools/tool.h \
+    $$PWD/Utils/DataModal.h \
     $$PWD/Utils/DataStructure.h \
     $$PWD/Utils/FFTWUtil.h \
     $$PWD/Utils/GetDataThread.h \
@@ -44,6 +45,7 @@ HEADERS += \
     $$PWD/View/jvoicesampleview.h \
     $$PWD/View/qcustomplot.h \
     $$PWD/View/spectrum.h \
+    $$PWD/Vo/sumsignalandprojectnamevo.h
 
 
 
@@ -71,6 +73,7 @@ SOURCES += \
     $$PWD/Signal/StaticSpectralEchoSignal.cpp \
     $$PWD/Tools/datautil.cpp \
     $$PWD/Tools/tool.cpp \
+    $$PWD/Utils/DataModal.cpp \
     $$PWD/Utils/FFTWUtil.cpp \
     $$PWD/Utils/GetDataThread.cpp \
     $$PWD/Utils/JSaveCollectionDataThread.cpp \
@@ -90,6 +93,7 @@ SOURCES += \
     $$PWD/View/jvoicesampleview.cpp \
     $$PWD/View/qcustomplot.cpp \
     $$PWD/View/spectrum.cpp \
+    $$PWD/Vo/sumsignalandprojectnamevo.cpp
 
 
 

@@ -169,9 +169,9 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     actionDataFeatureDock->setObjectName(QStringLiteral("actionDataFeatureDock"));
     actionDataFeatureDock->setIcon(QIcon(":/icons/icons/dataFeatureDock.png"));
 
-    actionNewChart = new QAction(mainWinowPtr);
-    actionNewChart->setObjectName(QStringLiteral("actionNewChart"));
-    actionNewChart->setIcon(QIcon(":/icons/icons/newChart.png"));
+    actionOpenData = new QAction(mainWinowPtr);
+    actionOpenData->setObjectName(QStringLiteral("actionNewChart"));
+    actionOpenData->setIcon(QIcon(":/icons/icons/newChart.png"));
 
     actionNewTrend = new QAction(mainWinowPtr);
     actionNewTrend->setObjectName(QStringLiteral("actionNewTrend"));
@@ -709,7 +709,7 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
 
     //Chart Pannel
     mainCategoryChartPannel = mainRibbonCategory->addPannel(QStringLiteral("数据"));
-    mainCategoryChartPannel->addLargeAction(actionNewChart);
+    mainCategoryChartPannel->addLargeAction(actionOpenData);
 
     //Value Operate Pannel
     mainCategoryValuePannel = mainRibbonCategory->addPannel(QStringLiteral("参数"));
@@ -1043,7 +1043,7 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
     actionSave->setShortcut(QApplication::translate("MainWindow", "Ctrl+S", 0));
     actionQuit->setText(QApplication::translate("MainWindow", "Quit", 0));
     actionDataFeatureDock->setText(QApplication::translate("MainWindow", "Data Feature", 0));
-    actionNewChart->setText(QApplication::translate("MainWindow", "打开数据文件", 0));
+    actionOpenData->setText(QApplication::translate("MainWindow", "打开数据文件", 0));
 
     actionNewTrend->setText(QApplication::translate("MainWindow", "Trend Chart", 0));
 #ifndef QT_NO_TOOLTIP

@@ -270,7 +270,7 @@ void MainWindow::initUI()
     connect(ui->actionClearProject, &QAction::triggered, this, &MainWindow::onActionClearProjectTriggered);
     //-------------------------------------
     // - start chart set menu signal/slots connect
-    connect(ui->actionNewChart, &QAction::triggered, this, &MainWindow::onActionNewChartTriggered);
+    connect(ui->actionOpenData, &QAction::triggered, this, &MainWindow::onActionOpenData); //打开数据文件
     connect(ui->actionNewTrend, &QAction::triggered, this, &MainWindow::onActionAddLineChartTriggered);
     connect(ui->actionDrawBarChart, &QAction::triggered, this, &MainWindow::onActionAddBarChartTriggered);
     connect(ui->actionDrawHistogramChart, &QAction::triggered, this, &MainWindow::onActionAddHistogramChartTriggered);
@@ -1483,47 +1483,10 @@ void MainWindow::onActionSaveAsTriggered()
 ///
 /// \brief 添加新图
 ///
-void MainWindow::onActionNewChartTriggered()
+void MainWindow::onActionOpenData()
 {
-#if 0
-    Dialog_AddChart addChart(this);
-
-    if (QDialog::Accepted == addChart.exec()) {
-        m_nUserChartCount++;
-        QString chartName = QStringLiteral("新图例-%1").arg(m_nUserChartCount);
-        QMdiSubWindow *pSubWnd = createFigureWindow(chartName);
-        SAFigureWindow *pFigWnd = getFigureWidgetFromMdiSubWindow(pSubWnd);
-        if (nullptr == pFigWnd) {
-            return;
-        }
-        SAChart2D *pC = pFigWnd->create2DPlot();
-        pC->setAutoReplot(false);
-        QList<QwtPlotCurve *> curList = addChart.getDrawCurveList();
-        for (auto ite = curList.begin(); ite != curList.end(); ++ite)
-        {
-            (*ite)->detach();//先要和原来的脱离连接才能绑定到新图
-            pC->addItem(*ite);
-        }
-        bool isDateTime = false;
-        QString tf = addChart.isAxisDateTime(&isDateTime, QwtPlot::xBottom);
-        if (isDateTime) {
-            pC->setAxisDateTimeScale(tf, QwtPlot::xBottom);
-        }
-        isDateTime = false;
-        tf = addChart.isAxisDateTime(&isDateTime, QwtPlot::yLeft);
-        if (isDateTime) {
-            pC->setAxisDateTimeScale(tf, QwtPlot::yLeft);
-        }
-        pC->enableZoomer(false);
-        pC->enablePicker(false);
-        pC->enableGrid(true);
-        pC->setAxisTitle(QwtPlot::xBottom, addChart.chart()->axisTitle(QwtPlot::xBottom).text());
-        pC->setAxisTitle(QwtPlot::yLeft, addChart.chart()->axisTitle(QwtPlot::yLeft).text());
-        pC->enableGrid(true);
-        pC->setAutoReplot(true);
-        pSubWnd->show();
-    }
-#endif
+    OpenDataFileDialog * dialog = new OpenDataFileDialog(this); //不需要手动释放，this会释放他，QObject特性
+    dialog->show();
 }
 
 
