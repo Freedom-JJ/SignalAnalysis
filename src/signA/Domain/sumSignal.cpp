@@ -2,7 +2,7 @@
 
 SumSignal::SumSignal()
 {
-
+    this->id = "";
 }
 
 SumSignal::SumSignal(vector<string> sumSignal_attribute)

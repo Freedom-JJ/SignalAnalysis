@@ -85,3 +85,11 @@ string generateUuid()
     strUuid.remove("{").remove("}").remove("-");
     return strUuid.toStdString();
 }
+
+string getCurrentTime()
+{
+    QDate D = QDate::currentDate();
+    QTime T = QTime::currentTime();
+    QString currentTime = QString("%2-%3-%4-%5:%6:%7").arg(D.year()).arg(D.month()).arg(D.day()).arg(T.hour()).arg(T.minute()).arg(T.second());
+    return currentTime.toStdString();
+}
