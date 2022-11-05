@@ -8,6 +8,7 @@ HEADERS += \
     $$PWD/Dao/singlesignaldao.h \
     $$PWD/Dao/sumsignaldao.h \
     $$PWD/Dao/userdao.h \
+    $$PWD/Domain/collectionparas.h \
     $$PWD/Domain/post.h \
     $$PWD/Domain/project.h \
     $$PWD/Domain/singlesignal.h \
@@ -45,6 +46,7 @@ HEADERS += \
     $$PWD/View/jvoicesampleview.h \
     $$PWD/View/qcustomplot.h \
     $$PWD/View/spectrum.h \
+    $$PWD/tDemo/singnalcontrollertest.h \
     $$PWD/Vo/sumsignalandprojectnamevo.h
 
 
@@ -59,6 +61,7 @@ SOURCES += \
     $$PWD/Dao/singlesignaldao.cpp \
     $$PWD/Dao/sumsignaldao.cpp \
     $$PWD/Dao/userdao.cpp \
+    $$PWD/Domain/collectionparas.cpp \
     $$PWD/Domain/post.cpp \
     $$PWD/Domain/project.cpp \
     $$PWD/Domain/singlesignal.cpp \
@@ -93,6 +96,7 @@ SOURCES += \
     $$PWD/View/jvoicesampleview.cpp \
     $$PWD/View/qcustomplot.cpp \
     $$PWD/View/spectrum.cpp \
+    $$PWD/tDemo/singnalcontrollertest.cpp \
     $$PWD/Vo/sumsignalandprojectnamevo.cpp
 
 
