@@ -21,6 +21,10 @@ public:
     //插入sumSignal
     string insert(SumSignal* sumSignal);
 
+    //更新sumSignal
+    string update(SumSignal* sumSignal);
+
+
 
 };
 
