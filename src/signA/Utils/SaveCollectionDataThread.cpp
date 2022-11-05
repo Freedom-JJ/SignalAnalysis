@@ -7,17 +7,22 @@ void SaveCollectionDataThread::run(){
     string uuid;
     UUIDUtil::GetUUID(uuid);
 
-    saveThread->theApp->m_sumSignal.setId(uuid);
-    saveThread->theApp->m_sumSignal.setStartTime(DataUtil::GetCurrentCStringTime());
+    saveThread->theApp->m_sumSignal = new SumSignal();
+    saveThread->theApp->m_sumSignal->setId(uuid);
+    saveThread->theApp->m_sumSignal->setStartTime(DataUtil::GetCurrentCStringTime());
+    saveThread->theApp->m_sumSignal->setProjectId(10);
     //调用controller 的 saveSumSignal
+    saveThread->theApp->m_signalController.saveSumSignal(saveThread->theApp->m_sumSignal);
 
     std::vector<ConsumerThread*> threadVector;
     std:map<QString, ThreadSafeQueue<double>>::iterator iter = saveThread->theApp->m_mpcolllectioinDataQueue.begin();
     while (iter != saveThread->theApp->m_mpcolllectioinDataQueue.end()){
-        SingleSignal singleSig;
-        singleSig.setSumSingalId(uuid);
+        SingleSignal *singleSig = new SingleSignal();
+        singleSig->setSumSingalId(uuid);
         ConsumerThread *everyConsumer  = new ConsumerThread(saveThread,iter->first,singleSig);
         threadVector.push_back(everyConsumer);
+        singleSig = nullptr;
+        delete singleSig;
         iter++;
     }
     qDebug()<<"threadsize------------------------------------------------------"<<threadVector.size()<<endl;;
@@ -28,9 +33,10 @@ void SaveCollectionDataThread::run(){
         threadVector[i]->wait();
     }
 
-    saveThread->theApp->m_sumSignal.setEndTime(DataUtil::GetCurrentCStringTime());
+    saveThread->theApp->m_sumSignal->setEndTime(DataUtil::GetCurrentCStringTime());
     //调用controller的updateSumSignal
-
+    saveThread->theApp->m_signalController.updateSumSignal(saveThread->theApp->m_sumSignal);
+    saveThread->theApp->m_sumSignal = nullptr;
     //所有线程都完事了，执行保存操作
     saveThread->theApp->m_bisSave = false;
     for(int i=0;i<threadVector.size();i++){
@@ -46,7 +52,8 @@ void ConsumerThread::run(){
     string fileName;
     UUIDUtil::GetUUID(fileName);
 
-    QString filePath = QString("D:\\QtCollectionData\\%1-%2.txt").arg(QString::fromStdString(fileName),this->signalCode);
+    QString filePath = QString("D:/QtCollectionData/%1-%2.txt").arg(QString::fromStdString(fileName),this->signalCode);
+    m_signal->setDataUrl(filePath.toStdString());
     QFile f(filePath);
     if(!f.open(QIODevice::WriteOnly))
     {
@@ -55,19 +62,17 @@ void ConsumerThread::run(){
     QDataStream outputStream(&f);
     outputStream.setVersion(QDataStream::Qt_5_9);
 
-
-
-    m_signal.setDataUrl(filePath.toStdString());
     string signalId;
     UUIDUtil::GetUUID(signalId);
-    m_signal.setId(signalId);
+    m_signal->setId(signalId);
     QStringList strlist= signalCode.split("-");
     QString channelStr = strlist[1];
     int channelNum = channelStr.toInt();
-    m_signal.setChannelId(channelNum);
+    m_signal->setChannelId(channelNum);
 
     consumer->theApp->saveSignalMutex.lock();
     //调用保存信号saveSignal
+    consumer->theApp->m_signalController.saveSingleSignal(m_signal);
     consumer->theApp->saveSignalMutex.unlock();
 
     ThreadSafeQueue<double> saveData;

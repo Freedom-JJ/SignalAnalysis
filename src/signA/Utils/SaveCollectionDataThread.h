@@ -20,6 +20,7 @@
 #include "Utils/uuidutil.h"
 #include "Tools/datautil.h"
 #include "Domain/singlesignal.h"
+#include "Controller/SignalController.h"
 
 class ConsumerThread;
 
@@ -34,6 +35,7 @@ public:
 public:
     MainWindow *saveThread;
     void run() override;
+    SignalController sigCon;
 
 signals:
     void AllConsumerSaved();
@@ -54,7 +56,7 @@ signals:
 class ConsumerThread : public QThread
 {
 public:
-    ConsumerThread(class MainWindow *ct , QString code , SingleSignal everySig):consumer(ct),signalCode(code),m_signal(everySig){
+    ConsumerThread(class MainWindow *ct , QString code , SingleSignal *everySig):consumer(ct),signalCode(code),m_signal(everySig){
 
     }
 
@@ -64,7 +66,7 @@ public:
 
     MainWindow *consumer;
     QString signalCode;
-    SingleSignal m_signal;
+    SingleSignal *m_signal;
 
 
 };
