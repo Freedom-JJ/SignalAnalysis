@@ -3,11 +3,14 @@
 
 #include <QObject>
 
-class DataModal
+class DataModal:QObject
 {
     Q_OBJECT
 public:
     DataModal();
+    
+    
+    
 };
 
 #endif // DATAMODAL_H

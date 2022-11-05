@@ -1,7 +1,5 @@
 TEMPLATE = subdirs
 SUBDIRS = \
-          signAProtocol\
-          signALib\
           signAChart\
           signACommonUI\
           signAScience\
