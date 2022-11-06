@@ -2,6 +2,8 @@ TEMPLATE = subdirs
 SUBDIRS = \
           signAChart\
           signACommonUI\
+          signALib \
+          signAProtocol \
           signAScience\
           signACoreFun\
           signAPlugin/FunPlugin \
