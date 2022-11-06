@@ -6,6 +6,14 @@ LoginWindow::LoginWindow(QWidget *parent) :
     ui(new Ui::LoginWindow)
 {
     ui->setupUi(this);
+    auto widget = new QWidget();
+    auto layout = new QGridLayout(this);
+    layout->addWidget(new Spectrum(widget),0,0);
+    layout->addWidget(new Spectrum(widget),0,1);
+    widget->setLayout(layout);
+    widget->resize(500,500);
+    widget->show();
+
 }
 
 LoginWindow::~LoginWindow()

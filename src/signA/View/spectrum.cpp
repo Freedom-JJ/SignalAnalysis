@@ -114,6 +114,7 @@ void Spectrum::refresh(std::map<QString, double> &statistic, QVector<double> &da
     if (yIsRescale == true){
         this->plot->graph(0)->rescaleValueAxis();
         this->plot->graph(0)->rescaleKeyAxis();
+        this->plot->graph(0)->valueAxis()->setRange(yStart , statistic["最大值"] * rescaleRate);
     }else{
         this->plot->graph(0)->valueAxis()->setRange(yStart,yStop);
         this->plot->graph(0)->keyAxis()->setRange(0.0,this->range/1.0);
@@ -121,6 +122,11 @@ void Spectrum::refresh(std::map<QString, double> &statistic, QVector<double> &da
     this->plot->replot();
 
 
+}
+
+void Spectrum::autoRescale(double rate)
+{
+    this->rescaleRate = rate;
 }
 
 void Spectrum::start()

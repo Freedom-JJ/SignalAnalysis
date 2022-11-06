@@ -5,10 +5,6 @@
 *   Time:       2022-11-06
 *   brief:      单个窗口的基本功能，具有通用性
 ********************************/
-
-
-
-
 #ifndef SPECTRUM_H
 #define SPECTRUM_H
 

@@ -1,6 +1,12 @@
+/*******************************
+*   File:       JSpectrumWindow.h
+*   Author:     江德鸿
+*   Company:    哈尔滨理工大学
+*   Time:       2022-11-06
+*   brief:      显示频谱图的类，需要先设置数据接口才能开始start
+********************************/
 #ifndef JSPECTRUMWINDOW_H
 #define JSPECTRUMWINDOW_H
-
 #include <QObject>
 #include <QBarSeries>
 #include <QBarSet>
@@ -68,6 +74,7 @@ public:
       */
      void setReScaleRate(double rate);
 private:
+     QVector<Spectrum *> spectrms = new QVector<Spectrum *>();
      QVector<QCustomPlot *> *customPlot = new QVector<QCustomPlot *> (4);
      QVector<QCPItemText *> *textItem = new QVector<QCPItemText *> (4);
      std::map<QString ,int> bindCustonPlot;

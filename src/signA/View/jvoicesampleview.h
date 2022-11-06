@@ -1,3 +1,10 @@
+/*******************************
+*   File:       jvoicesampleview.h
+*   Author:     江德鸿
+*   Company:    哈尔滨理工大学
+*   Time:       2022-11-06
+*   brief:      语音采样显示界面
+********************************/
 #ifndef JVOICESAMPLEVIEW_H
 #define JVOICESAMPLEVIEW_H
 

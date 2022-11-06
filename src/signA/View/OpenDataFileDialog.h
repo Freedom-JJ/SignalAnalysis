@@ -1,3 +1,10 @@
+/*******************************
+*   File:       OpenDataFileDialog.h
+*   Author:     江德鸿
+*   Company:    哈尔滨理工大学
+*   Time:       2022-11-06
+*   brief:      打开数据文件，选择回放数据，然后回放
+********************************/
 #ifndef OPENDATAFILEDIALOG_H
 #define OPENDATAFILEDIALOG_H
 
