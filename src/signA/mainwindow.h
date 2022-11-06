@@ -46,6 +46,7 @@ class MainWindowPrivate;
 #include "View/spectrum.h"
 #include "openprojectwindow.h"
 #include "Utils/JSaveCollectionDataThread.h"
+#include "View/OpenDataFileDialog.h"
 class QProgressBar;
 class QActionGroup;
 
@@ -473,7 +474,7 @@ private slots:
     /// \{
     ///
     //新图例
-    void onActionNewChartTriggered();
+    void onActionOpenData();
 
     //趋势线图
     void onActionAddLineChartTriggered();

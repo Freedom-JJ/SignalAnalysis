@@ -26,4 +26,9 @@ string SumSignalService::updateSumSignal(SumSignal *sumSignal)
     return this->sumSignalDao->update(sumSignal);
 }
 
+vector<SumSignalAndProjectNameVo> SumSignalService::allSumSignalWithProjectName()
+{
+    return this->sumSignalDao->getAllSumSigWithProjectName();
+}
+
 

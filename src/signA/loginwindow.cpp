@@ -6,8 +6,6 @@ LoginWindow::LoginWindow(QWidget *parent) :
     ui(new Ui::LoginWindow)
 {
     ui->setupUi(this);
-    auto dd = new OpenDataFileDialog(parent);
-    dd->show();
 }
 
 LoginWindow::~LoginWindow()

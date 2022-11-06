@@ -74,3 +74,17 @@ string SumSignalDao::update(SumSignal *sumSignal)
         return sumSignal->getId();
     }
 }
+
+vector<SumSignalAndProjectNameVo> SumSignalDao::getAllSumSigWithProjectName()
+{
+    string sql = "select s.id , s.startTime , s.endTime , s.projectId , project.projectName from sum_signal as s left join project on projectId = project.id";
+    vector< vector<string> > query_result;
+    global_pdsql->SelectMysql(query_result , sql);
+
+    vector<SumSignalAndProjectNameVo> sumSignals;
+    for(vector<string> sumSignal_attributes:query_result){
+        SumSignalAndProjectNameVo sumSignal(sumSignal_attributes);
+        sumSignals.push_back(sumSignal);
+    }
+    return sumSignals;
+}

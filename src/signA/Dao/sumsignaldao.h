@@ -3,6 +3,7 @@
 
 #include "../Domain/sumSignal.h"
 #include "pdsqlinitialize.h"
+#include "Vo/sumsignalandprojectnamevo.h"
 #include <vector>
 
 class SumSignalDao
@@ -25,7 +26,7 @@ public:
     string update(SumSignal* sumSignal);
 
 
-
+    vector<SumSignalAndProjectNameVo> getAllSumSigWithProjectName();
 };
 
 #endif // SUMSIGNALDAO_H

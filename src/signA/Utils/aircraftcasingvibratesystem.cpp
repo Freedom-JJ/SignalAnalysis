@@ -9,7 +9,7 @@ AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystem()
 void AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystemInit(){
     m_vchannelCodes = vector<QString>(4);
     for(int i=0;i<4;i++){
-        QString channelCode = "0-" + QString::number(i);
+        QString channelCode =  QString::number(i);
         m_vchannelCodes[i] = channelCode;
     }
     for(int i=0;i<m_vchannelCodes.size();i++){

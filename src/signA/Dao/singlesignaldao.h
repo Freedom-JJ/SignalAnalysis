@@ -1,7 +1,7 @@
 #ifndef SINGLESIGNALDAO_H
 #define SINGLESIGNALDAO_H
 
-#include "../Domain/singlesignal.h".h"
+#include "../Domain/singlesignal.h"
 #include "pdsqlinitialize.h"
 #include <vector>
 
