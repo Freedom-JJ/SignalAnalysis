@@ -138,7 +138,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->spectrunView->setMainWindowObject(this);
 
-
     /*******wzx********************/
 }
 
@@ -1262,7 +1261,7 @@ void MainWindow::OnButtonStartCapture(){
     qDebug()<<"m_vchannelCodes-size"<<theApp->m_vchannelCodes.size()<<endl;
     // 初始化采集队列
     for (int i = 0; i < theApp->m_vchannelCodes.size(); i++){
-       theApp->m_mpcolllectioinDataQueue.insert(std::pair<QString, ThreadSafeQueue<double>>(theApp->m_vchannelCodes[i], ThreadSafeQueue<double>()));
+        theApp->m_mpcolllectioinDataQueue.insert(std::pair<QString, ThreadSafeQueue<double>>(theApp->m_vchannelCodes[i], ThreadSafeQueue<double>()));
     }
 
     this->theApp->m_bThread = true;
@@ -1274,16 +1273,15 @@ void MainWindow::OnButtonStartCapture(){
     sampleThread = new GetDataThread(this);
     mainSaveData = new JSaveCollectionDataThread(this);
 
-    connect(sampleThread,SIGNAL(DataThreadDone()),this,SLOT(closeSaveDataThread()));
+//    connect(sampleThread,SIGNAL(DataThreadDone()),this,SLOT(closeSaveDataThread()));
     sampleThread->start();//开启采集线程
-    connect(mainSaveData,SIGNAL(AllConsumerSaved()),this,SLOT(mainCloseSaveResource()));
+//    connect(mainSaveData,SIGNAL(AllConsumerSaved()),this,SLOT(mainCloseSaveResource()));
     mainSaveData->start();
 
 }
 
 void MainWindow::OnButtonStopCapture(){
-
-
+    theApp->m_icollectState = 0;
     ui->spectrunView->stop();
     theApp->m_bThread = false;
 
@@ -1337,7 +1335,10 @@ void MainWindow::mainCloseSaveResource(){
 
 //回放
 void MainWindow::OnButtonStartPlayBack(){
-
+    if(theApp->playBackDataState == theApp->PlayBackDataState::NO_EXIST){
+        QMessageBox::warning(this,"错误","请打开数据文件");
+        return;
+    }
     mainPlayBack->start();
 
     connect(mainPlayBack,&SumPlayBackThread::stopRefresh,ui->spectrunView,&JSpectrumWindow::stop);
@@ -1485,7 +1486,7 @@ void MainWindow::onActionSaveAsTriggered()
 ///
 void MainWindow::onActionOpenData()
 {
-    OpenDataFileDialog * dialog = new OpenDataFileDialog(this); //不需要手动释放，this会释放他，QObject特性
+    OpenDataFileDialog * dialog = new OpenDataFileDialog(this,this); //不需要手动释放，this会释放他，QObject特性
     dialog->show();
 }
 
