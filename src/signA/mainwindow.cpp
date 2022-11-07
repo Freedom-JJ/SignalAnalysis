@@ -136,7 +136,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->spectrunView->setMainWindowObject(this);
 
-
     /*******wzx********************/
 }
 
@@ -269,7 +268,7 @@ void MainWindow::initUI()
     connect(ui->actionClearProject, &QAction::triggered, this, &MainWindow::onActionClearProjectTriggered);
     //-------------------------------------
     // - start chart set menu signal/slots connect
-    connect(ui->actionNewChart, &QAction::triggered, this, &MainWindow::onActionNewChartTriggered);
+    connect(ui->actionOpenData, &QAction::triggered, this, &MainWindow::onActionOpenData); //打开数据文件
     connect(ui->actionNewTrend, &QAction::triggered, this, &MainWindow::onActionAddLineChartTriggered);
     connect(ui->actionDrawBarChart, &QAction::triggered, this, &MainWindow::onActionAddBarChartTriggered);
     connect(ui->actionDrawHistogramChart, &QAction::triggered, this, &MainWindow::onActionAddHistogramChartTriggered);
@@ -1261,7 +1260,7 @@ void MainWindow::OnButtonStartCapture(){
     qDebug()<<"m_vchannelCodes-size"<<theApp->m_vchannelCodes.size()<<endl;
     // 初始化采集队列
     for (int i = 0; i < theApp->m_vchannelCodes.size(); i++){
-       theApp->m_mpcolllectioinDataQueue.insert(std::pair<QString, ThreadSafeQueue<double>>(theApp->m_vchannelCodes[i], ThreadSafeQueue<double>()));
+        theApp->m_mpcolllectioinDataQueue.insert(std::pair<QString, ThreadSafeQueue<double>>(theApp->m_vchannelCodes[i], ThreadSafeQueue<double>()));
     }
 
     this->theApp->m_bThread = true;
@@ -1270,21 +1269,20 @@ void MainWindow::OnButtonStartCapture(){
     ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
     ui->spectrunView->setY_isScale(false);
     ui->spectrunView->start();//开始显示
-
+    ui->spectrunView->setReScaleRate(2);
     sampleThread = new GetDataThread(this);
-    mainSaveData = new SaveCollectionDataThread(this);
+    mainSaveData = new JSaveCollectionDataThread(this);
 
-    connect(sampleThread,SIGNAL(DataThreadDone()),this,SLOT(closeSaveDataThread()));
+//    connect(sampleThread,SIGNAL(DataThreadDone()),this,SLOT(closeSaveDataThread()));
     sampleThread->start();//开启采集线程
-    connect(mainSaveData,SIGNAL(AllConsumerSaved()),this,SLOT(mainCloseSaveResource()));
+//    connect(mainSaveData,SIGNAL(AllConsumerSaved()),this,SLOT(mainCloseSaveResource()));
     mainSaveData->start();
 
 }
 
 //停止采集
 void MainWindow::OnButtonStopCapture(){
-
-
+    theApp->m_icollectState = 0;
     ui->spectrunView->stop();
     theApp->m_bThread = false;
 
@@ -1344,8 +1342,12 @@ void MainWindow::OnButtonStartPlayBack(){
         return;
     }
 
-
-    mainPlayBack = new SumPlayBackThread(this);
+//回放
+void MainWindow::OnButtonStartPlayBack(){
+    if(theApp->playBackDataState == theApp->PlayBackDataState::NO_EXIST){
+        QMessageBox::warning(this,"错误","请打开数据文件");
+        return;
+    }
     mainPlayBack->start();
 
     connect(mainPlayBack,SIGNAL(playbackDone()),this,SLOT(closePlaybackResource()));
@@ -1499,47 +1501,10 @@ void MainWindow::onActionSaveAsTriggered()
 ///
 /// \brief 添加新图
 ///
-void MainWindow::onActionNewChartTriggered()
+void MainWindow::onActionOpenData()
 {
-#if 0
-    Dialog_AddChart addChart(this);
-
-    if (QDialog::Accepted == addChart.exec()) {
-        m_nUserChartCount++;
-        QString chartName = QStringLiteral("新图例-%1").arg(m_nUserChartCount);
-        QMdiSubWindow *pSubWnd = createFigureWindow(chartName);
-        SAFigureWindow *pFigWnd = getFigureWidgetFromMdiSubWindow(pSubWnd);
-        if (nullptr == pFigWnd) {
-            return;
-        }
-        SAChart2D *pC = pFigWnd->create2DPlot();
-        pC->setAutoReplot(false);
-        QList<QwtPlotCurve *> curList = addChart.getDrawCurveList();
-        for (auto ite = curList.begin(); ite != curList.end(); ++ite)
-        {
-            (*ite)->detach();//先要和原来的脱离连接才能绑定到新图
-            pC->addItem(*ite);
-        }
-        bool isDateTime = false;
-        QString tf = addChart.isAxisDateTime(&isDateTime, QwtPlot::xBottom);
-        if (isDateTime) {
-            pC->setAxisDateTimeScale(tf, QwtPlot::xBottom);
-        }
-        isDateTime = false;
-        tf = addChart.isAxisDateTime(&isDateTime, QwtPlot::yLeft);
-        if (isDateTime) {
-            pC->setAxisDateTimeScale(tf, QwtPlot::yLeft);
-        }
-        pC->enableZoomer(false);
-        pC->enablePicker(false);
-        pC->enableGrid(true);
-        pC->setAxisTitle(QwtPlot::xBottom, addChart.chart()->axisTitle(QwtPlot::xBottom).text());
-        pC->setAxisTitle(QwtPlot::yLeft, addChart.chart()->axisTitle(QwtPlot::yLeft).text());
-        pC->enableGrid(true);
-        pC->setAutoReplot(true);
-        pSubWnd->show();
-    }
-#endif
+    OpenDataFileDialog * dialog = new OpenDataFileDialog(this,this); //不需要手动释放，this会释放他，QObject特性
+    dialog->show();
 }
 
 

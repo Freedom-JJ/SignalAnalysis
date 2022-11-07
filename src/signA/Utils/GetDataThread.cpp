@@ -18,7 +18,7 @@ void GetDataThread::run(){
 
         for(int i=0;i<size;i++){
             double * fftwInputArray = new double[20000];
-            QString channelCode = "0-" + QString::number(i);
+            QString channelCode =  QString::number(i);
 
             for (int k = 0; k < 20000; k++){
                 //构造频点

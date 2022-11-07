@@ -45,6 +45,8 @@ class MainWindowPrivate;
 #include "Utils/SaveCollectionDataThread.h"
 #include "View/spectrum.h"
 #include "openprojectwindow.h"
+#include "Utils/JSaveCollectionDataThread.h"
+#include "View/OpenDataFileDialog.h"
 class QProgressBar;
 class QActionGroup;
 
@@ -65,6 +67,7 @@ class SumPlayBackThread;
 class SaveCollectionDataThread;
 class StaticSpectralEchoSignal;
 class AirCraftCasingVibrateSystem;
+class JSaveCollectionDataThread;
 using std::vector;
 using std::map;
 ///
@@ -96,7 +99,7 @@ public:
     GetDataThread *sampleThread;
 
     //QScopedPointer<SaveCollectionDataThread> mainSaveData;//用于保存磁盘的对象
-    SaveCollectionDataThread *mainSaveData;
+    JSaveCollectionDataThread *mainSaveData;
 
     SumPlayBackThread *  mainPlayBack;//用于回放数据的对象
 
@@ -482,7 +485,7 @@ private slots:
     /// \{
     ///
     //新图例
-    void onActionNewChartTriggered();
+    void onActionOpenData();
 
     //趋势线图
     void onActionAddLineChartTriggered();

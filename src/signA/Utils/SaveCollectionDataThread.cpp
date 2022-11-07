@@ -76,7 +76,6 @@ void ConsumerThread::run(){
     consumer->theApp->saveSignalMutex.unlock();
 
     ThreadSafeQueue<double> saveData;
-
     while (consumer->theApp->m_icollectState){
         if (consumer->theApp->m_icollectState == 2){
              //暂停状态就卡在这
@@ -85,6 +84,7 @@ void ConsumerThread::run(){
         }
         while (consumer->theApp->m_mpcolllectioinDataQueue[signalCode].size() > 0){
             //qDebug()<<"\n队列长度%d\n", m_mpcolllectioinDataQueue[signalCode].size()<<endl;
+            //push一个double不合理，push之后立马传输到stream也不合理
             saveData.push(*(consumer->theApp->m_mpcolllectioinDataQueue[signalCode].wait_and_pop()));
             if (saveData.size() == consumer->theApp->m_icollectSignalsStoreCount){
                 consumer->theApp->m_signalController.SaveCollectionData2Binary(outputStream,saveData);
@@ -103,9 +103,7 @@ void ConsumerThread::run(){
         restVector.append(*signal);
 
     }
-
     outputStream<<restVector;
-
     f.close();
 
 }

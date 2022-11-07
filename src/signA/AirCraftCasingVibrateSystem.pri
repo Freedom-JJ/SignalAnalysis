@@ -23,18 +23,22 @@ HEADERS += \
     $$PWD/Signal/StaticSpectralEchoSignal.h \
     $$PWD/Tools/datautil.h \
     $$PWD/Tools/tool.h \
+    $$PWD/Utils/DataModal.h \
     $$PWD/Utils/DataStructure.h \
     $$PWD/Utils/FFTWUtil.h \
     $$PWD/Utils/GetDataThread.h \
+    $$PWD/Utils/JSaveCollectionDataThread.h \
     $$PWD/Utils/PlayBackThread.h \
     $$PWD/Utils/SaveCollectionDataThread.h \
     $$PWD/Utils/SignalFeature.h \
     $$PWD/Utils/SmartFFTWComplexArray.h \
     $$PWD/Utils/ThreadSafeQueue.h \
+    $$PWD/Utils/UUIDUtil.h \
     $$PWD/Utils/aircraftcasingvibratesystem.h \
     $$PWD/Utils/fftw3.h \
-    $$PWD/Utils/uuidutil.h \
+#    $$PWD/Utils/uuidutil.h \
     $$PWD/View/JSpectrumWindow.h \
+    $$PWD/View/OpenDataFileDialog.h \
     $$PWD/View/jbasesamplewindow.h \
     $$PWD/View/jdataviewecho.h \
     $$PWD/View/jsampleview.h \
@@ -42,6 +46,8 @@ HEADERS += \
     $$PWD/View/jvoicesampleview.h \
     $$PWD/View/qcustomplot.h \
     $$PWD/View/spectrum.h \
+    $$PWD/tDemo/singnalcontrollertest.h \
+    $$PWD/Vo/sumsignalandprojectnamevo.h
 
 
 
@@ -70,15 +76,19 @@ SOURCES += \
     $$PWD/Signal/StaticSpectralEchoSignal.cpp \
     $$PWD/Tools/datautil.cpp \
     $$PWD/Tools/tool.cpp \
+    $$PWD/Utils/DataModal.cpp \
     $$PWD/Utils/FFTWUtil.cpp \
     $$PWD/Utils/GetDataThread.cpp \
+    $$PWD/Utils/JSaveCollectionDataThread.cpp \
     $$PWD/Utils/PlayBackThread.cpp \
     $$PWD/Utils/SaveCollectionDataThread.cpp \
     $$PWD/Utils/SignalFeature.cpp \
     $$PWD/Utils/SmartFFTWComplexArray.cpp \
+    $$PWD/Utils/UUIDUtil.cpp \
     $$PWD/Utils/aircraftcasingvibratesystem.cpp \
-    $$PWD/Utils/uuidutil.cpp \
+#    $$PWD/Utils/uuidutil.cpp \
     $$PWD/View/JspectrumWindow.cpp \
+    $$PWD/View/OpenDataFileDialog.cpp \
     $$PWD/View/jbasesamplewindow.cpp \
     $$PWD/View/jdataviewecho.cpp \
     $$PWD/View/jsampleview.cpp \
@@ -86,11 +96,14 @@ SOURCES += \
     $$PWD/View/jvoicesampleview.cpp \
     $$PWD/View/qcustomplot.cpp \
     $$PWD/View/spectrum.cpp \
+    $$PWD/tDemo/singnalcontrollertest.cpp \
+    $$PWD/Vo/sumsignalandprojectnamevo.cpp
 
 
 
 DISTFILES +=
 
 FORMS += \
+    $$PWD/View/OpenDataFileDialog.ui \
     $$PWD/View/spectrum.ui \
 

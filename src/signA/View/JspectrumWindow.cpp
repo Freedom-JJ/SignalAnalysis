@@ -82,7 +82,6 @@ void JSpectrumWindow::stop(){
 
 }
 void JSpectrumWindow::refresh(){
-    //qDebug()<<"refresh"<<endl;
 
     std::map<QString,QVector<double>> data;  
     for(auto it = mapData.begin();it!=mapData.end();it++){
@@ -104,14 +103,16 @@ void JSpectrumWindow::refresh(){
         this->customPlot->at(index)->graph(0)->addData(*xAxis,it->second);
 
         QString info = "通道:"+it->first+"\n";
-        info += SignalFeature().getFeaturesWithString(it->second);
+        info += feature.getFeaturesWithString(it->second);
+        double maxY = feature.getMax();
         textItem->at(index)->setText(info);
 
         QVector<double> everyData = it->second;
         auto y_max = std::max_element(std::begin(everyData), std::end(everyData));//求出最大值
 
         if (yIsRescale == true){
-            this->customPlot->at(index)->graph(0)->rescaleValueAxis();
+            this->customPlot->at(index)->graph(0)->valueAxis()->setRange(0,maxY * yRescaleRate);
+//            this->customPlot->at(index)->graph(0)->rescaleValueAxis();
             this->customPlot->at(index)->graph(0)->rescaleKeyAxis();
         }else{
             this->customPlot->at(index)->graph(0)->valueAxis()->setRange((*y_max)*1.2,0);
@@ -155,6 +156,11 @@ void JSpectrumWindow::setY_isScale(bool scale)
 }
 void JSpectrumWindow::setXAxisRange(int count){
     this->range = count;
+}
+
+void JSpectrumWindow::setReScaleRate(double rate)
+{
+    this->yRescaleRate = rate;
 }
 
 void JSpectrumWindow::setMainWindowObject(MainWindow *vw){

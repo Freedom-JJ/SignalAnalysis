@@ -71,6 +71,11 @@ public:
     SumSignal *m_sumSignal;
 
     QMutex saveSignalMutex;
+    /*****************************江德鸿************************************************/
+    enum PlayBackDataState{EXIST,NO_EXIST};
+    PlayBackDataState playBackDataState = NO_EXIST;
+
+
 
     void AirCraftCasingVibrateSystemInit();
 

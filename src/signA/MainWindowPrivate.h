@@ -88,7 +88,7 @@ public:
     QAction *actionSave;
     QAction *actionQuit;
     QAction *actionDataFeatureDock;
-    QAction *actionNewChart;
+    QAction *actionOpenData;
     QAction *actionNewTrend;
     QAction *actionClearProject;
     QAction *actionInRangDataRemove;

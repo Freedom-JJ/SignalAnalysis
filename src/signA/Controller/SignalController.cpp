@@ -19,7 +19,6 @@ Result SignalController::SaveCollectionData2Binary(QDataStream &outputStream, Th
         shared_ptr<double> signal = acquireSignal.wait_and_pop();
         saveData[i] = *signal;
     }
-
     outputStream << saveData;
     return Result(200, "success");
 }
@@ -43,6 +42,7 @@ bool SignalController::GetCollectionData(QDataStream &inputStream, int pointCoun
     fftwInputArray = new double[pointCount];
     for(int i=0;i<signal.size();i++){
         fftwInputArray[i]=signal[i];
+
     }
 
 }
@@ -124,4 +124,10 @@ Result SignalController::updateSumSignal(SumSignal *sumSignal)
         return Result(200,"sumSignal更新成功");
     }
 
+}
+
+Result SignalController::getAllSumSignalWithProjectName(QVector<SumSignalAndProjectNameVo> &res)
+{
+    res = QVector<SumSignalAndProjectNameVo>::fromStdVector(service.allSumSignalWithProjectName());
+    return Result(200,"成功查询:" +QString::number(res.size()).toStdString());
 }

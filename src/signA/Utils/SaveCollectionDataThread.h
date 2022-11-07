@@ -14,6 +14,7 @@
 #include<QThread>
 #include"aircraftcasingvibratesystem.h"
 #include"mainwindow.h"
+#include "Utils/UUIDUtil.h"
 #include<QDir>
 #include<QMessageBox>
 #include<QFile>

@@ -48,7 +48,7 @@ void PlayBackThread::run(){
     }
     QDataStream inputStream(&file);
     inputStream.setVersion(QDataStream::Qt_5_9);
-
+    int count = 0;
     while (!inputStream.atEnd()&&playThread->theApp->m_iplaybackState){
         if (playThread->theApp->m_iplaybackState == 2){
             msleep(20);
