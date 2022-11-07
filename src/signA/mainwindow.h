@@ -44,6 +44,7 @@ class MainWindowPrivate;
 #include "Utils/GetDataThread.h"
 #include "Utils/SaveCollectionDataThread.h"
 #include "View/spectrum.h"
+#include "openprojectwindow.h"
 class QProgressBar;
 class QActionGroup;
 
@@ -91,9 +92,11 @@ private:
 public:
     QScopedPointer<AirCraftCasingVibrateSystem> theApp;
 
-    QScopedPointer<GetDataThread> sampleThread;
+    //QScopedPointer<GetDataThread> sampleThread;
+    GetDataThread *sampleThread;
 
-    QScopedPointer<SaveCollectionDataThread> mainSaveData;//用于保存磁盘的对象
+    //QScopedPointer<SaveCollectionDataThread> mainSaveData;//用于保存磁盘的对象
+    SaveCollectionDataThread *mainSaveData;
 
     SumPlayBackThread *  mainPlayBack;//用于回放数据的对象
 
@@ -159,6 +162,24 @@ public slots:
     void setTableRibbonContextCategoryVisible(bool on = true);
 
     /// \}
+    ///
+
+    /**
+    * @brief ：释放所有采集保存相关的资源
+    */
+    void mainCloseSaveResource();
+
+    /**
+    * @brief ：采集线程结束后再结束取数线程
+    */
+
+    void closeSaveDataThread();
+
+    /**
+    * @brief ：回放文件读取结束后自动释放资源
+    */
+    void closePlaybackResource();
+
 public:
 
     //获取进度栏上的进度条指针
@@ -337,15 +358,27 @@ signals:
     ///
     void selectDataChanged(SAAbstractDatas *dataPtr);
 
+    ///
+    /// \brief 结束并重置采集相关所有内容
+    ///
+    void ShutDownCapture();
+
+
 private slots:
 
 
-    //采集槽函数
+    ///采集槽函数
+
+    //开始采集
     void OnButtonStartCapture();
 
+    //停止采集
     void OnButtonStopCapture();
 
-    //回放槽函数
+    //暂停采集
+    void OnBUttonSuspendCapture();
+
+    ///回放槽函数
     void OnButtonStartPlayBack();
 
     void OnButtonStopPlayBack();
@@ -378,8 +411,8 @@ private slots:
     //打开
     void onActionOpenTriggered();
 
-    //打开项目
-    void onActionOpenProjectTriggered();
+    //新建
+    void onActionNewProjectTriggered();
 
     //保存
     void onActionSaveTriggered();

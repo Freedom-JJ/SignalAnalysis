@@ -5,14 +5,18 @@
 
 void GetDataThread::run(){
 
-    qDebug() << "取数线程开启了---------------------------------------------------------------------------------" <<endl;
+    //qDebug() << "取数线程开启了---------------------------------------------------------------------------------" <<endl;
     float r = 0;
     const int size = data_thread->theApp->m_vchannelCodes.size();
-    while(true){
+    while(data_thread->theApp->m_bThread){
+
+        //暂停采集就卡在这！！！
+        if(data_thread->theApp->m_icollectState == 2){
+            msleep(10);
+            continue;
+        }
 
         for(int i=0;i<size;i++){
-
-
             double * fftwInputArray = new double[20000];
             QString channelCode = "0-" + QString::number(i);
 
@@ -29,10 +33,14 @@ void GetDataThread::run(){
             //data_thread->theApp->staticEchoSignal->PushEchoSignal(fftwInputArray);
             data_thread->theApp->echoSignalQueue[channelCode]->PushEchoSignal(fftwInputArray);
 
-            msleep(100);
     }
 
+             msleep(100);
     }
+
+    emit DataThreadDone();
+
+
 
 
 }

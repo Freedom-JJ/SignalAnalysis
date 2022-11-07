@@ -4,12 +4,25 @@ void SaveCollectionDataThread::run(){
 
 
     saveThread->theApp->m_bisSave = true;
-    // 初始化采集队列
-    std:map<QString, ThreadSafeQueue<double>>::iterator iter = saveThread->theApp->m_mpcolllectioinDataQueue.begin();
+    string uuid;
+    UUIDUtil::GetUUID(uuid);
 
+    saveThread->theApp->m_sumSignal = new SumSignal();
+    saveThread->theApp->m_sumSignal->setId(uuid);
+    saveThread->theApp->m_sumSignal->setStartTime(DataUtil::GetCurrentCStringTime());
+    saveThread->theApp->m_sumSignal->setProjectId(10);
+    //调用controller 的 saveSumSignal
+    saveThread->theApp->m_signalController.saveSumSignal(saveThread->theApp->m_sumSignal);
+
+    std::vector<ConsumerThread*> threadVector;
+    std:map<QString, ThreadSafeQueue<double>>::iterator iter = saveThread->theApp->m_mpcolllectioinDataQueue.begin();
     while (iter != saveThread->theApp->m_mpcolllectioinDataQueue.end()){
-        ConsumerThread *everyConsumer  = new ConsumerThread(saveThread,iter->first);
+        SingleSignal *singleSig = new SingleSignal();
+        singleSig->setSumSingalId(uuid);
+        ConsumerThread *everyConsumer  = new ConsumerThread(saveThread,iter->first,singleSig);
         threadVector.push_back(everyConsumer);
+        singleSig = nullptr;
+        delete singleSig;
         iter++;
     }
     qDebug()<<"threadsize------------------------------------------------------"<<threadVector.size()<<endl;;
@@ -19,22 +32,48 @@ void SaveCollectionDataThread::run(){
     for (int i = 0; i < threadVector.size();i++){
         threadVector[i]->wait();
     }
+
+    saveThread->theApp->m_sumSignal->setEndTime(DataUtil::GetCurrentCStringTime());
+    //调用controller的updateSumSignal
+    saveThread->theApp->m_signalController.updateSumSignal(saveThread->theApp->m_sumSignal);
+    saveThread->theApp->m_sumSignal = nullptr;
     //所有线程都完事了，执行保存操作
     saveThread->theApp->m_bisSave = false;
+    for(int i=0;i<threadVector.size();i++){
+        threadVector[i] = nullptr;
+        delete threadVector[i];
+    }
+    emit AllConsumerSaved();
 
 }
 
 void ConsumerThread::run(){
 
-    QString fileName = QString("D:\\QtCollectionData\\%1.txt").arg(this->signalCode);
-    QFile f(fileName);
+    string fileName;
+    UUIDUtil::GetUUID(fileName);
 
+    QString filePath = QString("D:/QtCollectionData/%1-%2.txt").arg(QString::fromStdString(fileName),this->signalCode);
+    m_signal->setDataUrl(filePath.toStdString());
+    QFile f(filePath);
     if(!f.open(QIODevice::WriteOnly))
     {
        qDebug()<<"fileed"<<endl;
     }
     QDataStream outputStream(&f);
     outputStream.setVersion(QDataStream::Qt_5_9);
+
+    string signalId;
+    UUIDUtil::GetUUID(signalId);
+    m_signal->setId(signalId);
+    QStringList strlist= signalCode.split("-");
+    QString channelStr = strlist[1];
+    int channelNum = channelStr.toInt();
+    m_signal->setChannelId(channelNum);
+
+    consumer->theApp->saveSignalMutex.lock();
+    //调用保存信号saveSignal
+    consumer->theApp->m_signalController.saveSingleSignal(m_signal);
+    consumer->theApp->saveSignalMutex.unlock();
 
     ThreadSafeQueue<double> saveData;
 
@@ -70,6 +109,27 @@ void ConsumerThread::run(){
     f.close();
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //--------------------------------------------------保存成一个二维vector------------------
@@ -118,55 +178,6 @@ void ConsumerThread::run(){
 //sumSignal.append(restVector);
 
 //outputStream<<sumSignal;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

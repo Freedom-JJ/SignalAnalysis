@@ -15,10 +15,13 @@
 #include <QMap>
 #include <vector>
 #include <map>
+#include <QMutex>
 #include "ThreadSafeQueue.h"
 #include "Signal/StaticSpectralEchoSignal.h"
 #include <QScopedPointer>
 #include "Controller/SignalController.h"
+#include "Domain/sumSignal.h"
+
 class StaticSpectralEchoSignal;
 
 class AirCraftCasingVibrateSystem
@@ -64,6 +67,10 @@ public:
     std::map<QString,ThreadSafeQueue<double>> m_mpcolllectioinDataQueue; //采集的数据
 
     SignalController m_signalController;
+
+    SumSignal *m_sumSignal;
+
+    QMutex saveSignalMutex;
 
     void AirCraftCasingVibrateSystemInit();
 

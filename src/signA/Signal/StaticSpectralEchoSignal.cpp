@@ -26,7 +26,8 @@ QVector<double> StaticSpectralEchoSignal::PopEchoSignal(){
     FFTWUtil::FastFourierTransformation(pointCount, fftinput,fftwOutput.GeFFTWComplexArray());
     fftw_complex * out = fftwOutput.GeFFTWComplexArray();
 
-    for(int j = 0 ; j < line ; j++){
+    echoSignal.append(0);
+    for(int j = 1 ; j < line ; j++){
         echoSignal.append(2 * sqrt(out[j][0] * out[j][0] + out[j][1] * out[j][1]));
     }
 

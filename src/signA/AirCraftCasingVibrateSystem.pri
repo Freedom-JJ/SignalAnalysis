@@ -21,6 +21,7 @@ HEADERS += \
     $$PWD/Service/userservice.h \
     $$PWD/Signal/BaseEchoSignal.h \
     $$PWD/Signal/StaticSpectralEchoSignal.h \
+    $$PWD/Tools/datautil.h \
     $$PWD/Tools/tool.h \
     $$PWD/Utils/DataStructure.h \
     $$PWD/Utils/FFTWUtil.h \
@@ -32,6 +33,7 @@ HEADERS += \
     $$PWD/Utils/ThreadSafeQueue.h \
     $$PWD/Utils/aircraftcasingvibratesystem.h \
     $$PWD/Utils/fftw3.h \
+    $$PWD/Utils/uuidutil.h \
     $$PWD/View/JSpectrumWindow.h \
     $$PWD/View/jbasesamplewindow.h \
     $$PWD/View/jdataviewecho.h \
@@ -40,7 +42,7 @@ HEADERS += \
     $$PWD/View/jvoicesampleview.h \
     $$PWD/View/qcustomplot.h \
     $$PWD/View/spectrum.h \
-    $$PWD/tDemo/singnalcontrollertest.h
+
 
 
 SOURCES += \
@@ -66,6 +68,7 @@ SOURCES += \
     $$PWD/Service/userservice.cpp \
     $$PWD/Signal/BaseEchoSignal.cpp \
     $$PWD/Signal/StaticSpectralEchoSignal.cpp \
+    $$PWD/Tools/datautil.cpp \
     $$PWD/Tools/tool.cpp \
     $$PWD/Utils/FFTWUtil.cpp \
     $$PWD/Utils/GetDataThread.cpp \
@@ -74,6 +77,7 @@ SOURCES += \
     $$PWD/Utils/SignalFeature.cpp \
     $$PWD/Utils/SmartFFTWComplexArray.cpp \
     $$PWD/Utils/aircraftcasingvibratesystem.cpp \
+    $$PWD/Utils/uuidutil.cpp \
     $$PWD/View/JspectrumWindow.cpp \
     $$PWD/View/jbasesamplewindow.cpp \
     $$PWD/View/jdataviewecho.cpp \
@@ -82,10 +86,11 @@ SOURCES += \
     $$PWD/View/jvoicesampleview.cpp \
     $$PWD/View/qcustomplot.cpp \
     $$PWD/View/spectrum.cpp \
-    $$PWD/tDemo/singnalcontrollertest.cpp
+
 
 
 DISTFILES +=
 
 FORMS += \
-    $$PWD/View/spectrum.ui
+    $$PWD/View/spectrum.ui \
+
