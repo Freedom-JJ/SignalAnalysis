@@ -25,6 +25,9 @@ void GetDataThread::run(){
                 double sumsignal = cos(50 * r *M_PI * 100) + cos(5 * M_PI * 100 * r) + sin(200 * M_PI * 100 * r) + sin(5 * M_PI * 10 * r);
 
                 data_thread->theApp->m_mpcolllectioinDataQueue[channelCode].push(sumsignal); //可能会影响性能
+                if(data_thread->theApp->redisState == data_thread->theApp->RedisState::REDIS_OPEND){
+                    data_thread->theApp->m_mpredisCollectionDataQueue[channelCode].push(sumsignal);
+                }
                 fftwInputArray[k] = sumsignal;
                 r += 0.01;
             }
@@ -32,6 +35,8 @@ void GetDataThread::run(){
 
             //data_thread->theApp->staticEchoSignal->PushEchoSignal(fftwInputArray);
             data_thread->theApp->echoSignalQueue[channelCode]->PushEchoSignal(fftwInputArray);
+
+
 
     }
 

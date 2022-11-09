@@ -65,9 +65,9 @@ void ConsumerThread::run(){
     string signalId;
     UUIDUtil::GetUUID(signalId);
     m_signal->setId(signalId);
-    QStringList strlist= signalCode.split("-");
-    QString channelStr = strlist[1];
-    int channelNum = channelStr.toInt();
+//    QStringList strlist= signalCode.split("-");
+//    QString channelStr = strlist[1];
+    int channelNum = signalCode.toInt();
     m_signal->setChannelId(channelNum);
 
     consumer->theApp->saveSignalMutex.lock();

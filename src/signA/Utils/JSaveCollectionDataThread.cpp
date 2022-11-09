@@ -79,7 +79,7 @@ void JSaveCollectionDataThread::run(){
     saveThread->theApp->m_mpcolllectioinDataQueue.clear();
 
 
-    saveThread->theApp->m_sumSignal.setEndTime(DataUtil::GetCurrentCStringTime());
+    //saveThread->theApp->m_sumSignal.setEndTime(DataUtil::GetCurrentCStringTime());
     //调用controller的updateSumSignal
 
     //所有线程都完事了，执行保存操作

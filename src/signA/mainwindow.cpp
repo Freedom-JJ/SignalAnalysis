@@ -269,6 +269,7 @@ void MainWindow::initUI()
     //-------------------------------------
     // - start chart set menu signal/slots connect
     connect(ui->actionOpenData, &QAction::triggered, this, &MainWindow::onActionOpenData); //打开数据文件
+    connect(ui->actionConnectRedis, &QAction::triggered, this, &MainWindow::onRedisConnection); //连接redis
     connect(ui->actionNewTrend, &QAction::triggered, this, &MainWindow::onActionAddLineChartTriggered);
     connect(ui->actionDrawBarChart, &QAction::triggered, this, &MainWindow::onActionAddBarChartTriggered);
     connect(ui->actionDrawHistogramChart, &QAction::triggered, this, &MainWindow::onActionAddHistogramChartTriggered);
@@ -1243,7 +1244,6 @@ void MainWindow::appendRecentOpenFilesPath(const QString& path)
 //开始采集事件函数
 void MainWindow::OnButtonStartCapture(){
 
-
     int oldcollectState = theApp->m_icollectState;
     //如果当前状态为正在采集
     if (theApp->m_icollectState == 1) return;
@@ -1263,6 +1263,11 @@ void MainWindow::OnButtonStartCapture(){
         theApp->m_mpcolllectioinDataQueue.insert(std::pair<QString, ThreadSafeQueue<double>>(theApp->m_vchannelCodes[i], ThreadSafeQueue<double>()));
     }
 
+    //初始化redis采集队列
+    for(int i = 0; i < theApp->m_vchannelCodes.size(); i++){
+        theApp->m_mpredisCollectionDataQueue.insert(std::pair<QString, ThreadSafeQueue<double>>(theApp->m_vchannelCodes[i], ThreadSafeQueue<double>()));
+    }
+
     this->theApp->m_bThread = true;
 
     //界面相关设置
@@ -1271,18 +1276,24 @@ void MainWindow::OnButtonStartCapture(){
     ui->spectrunView->start();//开始显示
     ui->spectrunView->setReScaleRate(2);
     sampleThread = new GetDataThread(this);
-    mainSaveData = new JSaveCollectionDataThread(this);
+    mainSaveData = new SaveCollectionDataThread(this);
+    mainRedisUpload = new RedisUploadThread(this,theApp->initHost,theApp->initPort);
+    connect(mainRedisUpload,SIGNAL(AllRedisConsumerSaved()),this,SLOT(mainCloseRedisResource()));
 
-//    connect(sampleThread,SIGNAL(DataThreadDone()),this,SLOT(closeSaveDataThread()));
+    connect(sampleThread,SIGNAL(DataThreadDone()),this,SLOT(closeSaveDataThread()));
     sampleThread->start();//开启采集线程
-//    connect(mainSaveData,SIGNAL(AllConsumerSaved()),this,SLOT(mainCloseSaveResource()));
+
+    if(theApp->redisState == theApp->RedisState::REDIS_OPEND){
+        mainRedisUpload->start();
+    }
+    connect(mainSaveData,SIGNAL(AllConsumerSaved()),this,SLOT(mainCloseSaveResource()));
     mainSaveData->start();
 
 }
 
 //停止采集
 void MainWindow::OnButtonStopCapture(){
-    theApp->m_icollectState = 0;
+
     ui->spectrunView->stop();
     theApp->m_bThread = false;
 
@@ -1306,6 +1317,19 @@ void MainWindow::closeSaveDataThread(){
 }
 
 
+void MainWindow::mainCloseRedisResource(){
+
+    mainRedisUpload->quit();
+    mainRedisUpload->wait();
+    mainRedisUpload = nullptr;
+
+    //清空保存数据队列
+    for(int i=0;i< theApp->m_vchannelCodes.size();i++){
+        QString code = theApp->m_vchannelCodes[i];
+        theApp->m_mpredisCollectionDataQueue[code].clear();
+    }
+
+}
 
 //保存文件结束的槽函数
 void MainWindow::mainCloseSaveResource(){
@@ -1329,7 +1353,12 @@ void MainWindow::mainCloseSaveResource(){
 }
 
 //开始回放
+
 void MainWindow::OnButtonStartPlayBack(){
+    if(theApp->playBackDataState == theApp->PlayBackDataState::NO_EXIST){
+        QMessageBox::warning(this,"错误","请打开数据文件");
+        return;
+    }
 
     int old_playbackState = theApp->m_iplaybackState;
     if(theApp->m_iplaybackState == 1){
@@ -1342,12 +1371,8 @@ void MainWindow::OnButtonStartPlayBack(){
         return;
     }
 
-//回放
-void MainWindow::OnButtonStartPlayBack(){
-    if(theApp->playBackDataState == theApp->PlayBackDataState::NO_EXIST){
-        QMessageBox::warning(this,"错误","请打开数据文件");
-        return;
-    }
+
+    mainPlayBack = new SumPlayBackThread(this);
     mainPlayBack->start();
 
     connect(mainPlayBack,SIGNAL(playbackDone()),this,SLOT(closePlaybackResource()));
@@ -1507,6 +1532,11 @@ void MainWindow::onActionOpenData()
     dialog->show();
 }
 
+void MainWindow::onRedisConnection()
+{
+    RedisSetUpDialog *redisDialog = new RedisSetUpDialog(this);
+    redisDialog->show();
+}
 
 ///
 /// \brief 绘制线图

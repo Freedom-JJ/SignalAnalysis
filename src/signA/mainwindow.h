@@ -47,6 +47,10 @@ class MainWindowPrivate;
 #include "openprojectwindow.h"
 #include "Utils/JSaveCollectionDataThread.h"
 #include "View/OpenDataFileDialog.h"
+#include "View/redissetupdialog.h"
+#include "Utils/redisuploadthread.h"
+
+
 class QProgressBar;
 class QActionGroup;
 
@@ -64,10 +68,12 @@ class PlayBackThread;
 class SAAbstractDataImportInterface;
 class SARectRegionSelectEditor;
 class SumPlayBackThread;
+class RedisUploadThread;
 class SaveCollectionDataThread;
 class StaticSpectralEchoSignal;
 class AirCraftCasingVibrateSystem;
 class JSaveCollectionDataThread;
+class RedisSetUpDialog;
 using std::vector;
 using std::map;
 ///
@@ -99,7 +105,9 @@ public:
     GetDataThread *sampleThread;
 
     //QScopedPointer<SaveCollectionDataThread> mainSaveData;//用于保存磁盘的对象
-    JSaveCollectionDataThread *mainSaveData;
+    SaveCollectionDataThread *mainSaveData;
+
+    RedisUploadThread *mainRedisUpload; //保存redis的对象
 
     SumPlayBackThread *  mainPlayBack;//用于回放数据的对象
 
@@ -171,6 +179,12 @@ public slots:
     * @brief ：释放所有采集保存相关的资源
     */
     void mainCloseSaveResource();
+
+    /**
+    * @brief ：释放所有redis相关的资源
+    */
+    void mainCloseRedisResource();
+
 
     /**
     * @brief ：采集线程结束后再结束取数线程
@@ -486,6 +500,9 @@ private slots:
     ///
     //新图例
     void onActionOpenData();
+
+    //redis
+    void onRedisConnection();
 
     //趋势线图
     void onActionAddLineChartTriggered();
