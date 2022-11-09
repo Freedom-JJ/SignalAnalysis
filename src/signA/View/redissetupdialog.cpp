@@ -11,6 +11,11 @@ RedisSetUpDialog::RedisSetUpDialog(MainWindow *redisDia,QWidget *parent) :
     ui->IsOPenRedisCheckBox->setStyleSheet("font-size : 10px");
     ui->hostEdit->setPlaceholderText("请输入redis地址，如：localhost");
     ui->portEdit->setPlaceholderText("请输入redis端口号，如：6379");
+    if(redisDia->theApp->redisState == redisDia->theApp->RedisState::REDIS_OPEND){
+           ui->IsOPenRedisCheckBox->setCheckState(Qt::Checked);
+    }else if(redisDia->theApp->redisState == redisDia->theApp->RedisState::REDIS_NOT_OPEN){
+           ui->IsOPenRedisCheckBox->setCheckState(Qt::Unchecked);
+    }
 }
 
 RedisSetUpDialog::~RedisSetUpDialog()
