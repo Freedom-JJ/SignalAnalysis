@@ -16,7 +16,7 @@ Collectionparas::Collectionparas()
 Collectionparas::Collectionparas(vector<string> collectionparas_attribute)
 {
     if(int(collectionparas_attribute.size())!=attribute_num){
-        qCritical()<<"Collectionparas initialized falsed, the size of collectionparas_attribute should be equal to attribute_num";
+        qCritical()<<"collectionparas initialized falsed, the size of collectionparas_attribute should be equal to attribute_num";
     }
     this->id = mstoll(collectionparas_attribute[0]);
     this->sampleFrequency = mstoi(collectionparas_attribute[1]);
@@ -28,7 +28,6 @@ Collectionparas::Collectionparas(vector<string> collectionparas_attribute)
     this->line = mstoi(collectionparas_attribute[7]);
     this->sampleBatch = mstoi(collectionparas_attribute[8]);
     this->sampleClk = mstoi(collectionparas_attribute[9]);
-
 }
 
 void Collectionparas::setId(long long id)

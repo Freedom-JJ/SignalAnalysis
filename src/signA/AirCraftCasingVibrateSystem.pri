@@ -10,6 +10,7 @@ HEADERS += \
     $$PWD/Dao/singlesignaldao.h \
     $$PWD/Dao/sumsignaldao.h \
     $$PWD/Dao/userdao.h \
+    $$PWD/Domain/channel.h \
     $$PWD/Domain/collectionparas.h \
     $$PWD/Domain/dictionary.h \
     $$PWD/Domain/post.h \
@@ -63,6 +64,7 @@ SOURCES += \
     $$PWD/Dao/singlesignaldao.cpp \
     $$PWD/Dao/sumsignaldao.cpp \
     $$PWD/Dao/userdao.cpp \
+    $$PWD/Domain/channel.cpp \
     $$PWD/Domain/collectionparas.cpp \
     $$PWD/Domain/dictionary.cpp \
     $$PWD/Domain/post.cpp \
