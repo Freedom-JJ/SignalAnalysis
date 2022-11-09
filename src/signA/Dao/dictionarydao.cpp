@@ -9,6 +9,7 @@ vector<Dictionary *> DictionaryDao::listDictionaries(string query_condition)
 {
     vector<vector<string> > query_result;
     string query_sql = "select * from dictionary "+query_condition;
+    qInfo()<<mstoqs(query_sql);
     global_pdsql->SelectMysql(query_result,query_sql);
     vector<Dictionary*> dictionaries;
     for(vector<string> dictionary_attributes:query_result){

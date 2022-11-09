@@ -1,5 +1,6 @@
 HEADERS += \
     $$PWD/Controller/SignalController.h \
+    $$PWD/Controller/dictionarycontroller.h \
     $$PWD/Controller/usercontroller.h \
     $$PWD/Dao/dictionarydao.h \
     $$PWD/Dao/pdsql.h \
@@ -18,6 +19,7 @@ HEADERS += \
     $$PWD/Domain/user.h \
     $$PWD/Logger/log.h \
     $$PWD/Result/result.h \
+    $$PWD/Service/dictionaryservice.h \
     $$PWD/Service/singlesignalservice.h \
     $$PWD/Service/sumsignalservice.h \
     $$PWD/Service/userservice.h \
@@ -44,11 +46,14 @@ HEADERS += \
     $$PWD/View/jvoicesampleview.h \
     $$PWD/View/qcustomplot.h \
     $$PWD/View/spectrum.h \
+    $$PWD/tDemo/dictionarycontrollertest.h \
+    $$PWD/tDemo/singnalcontrollertest.h
 
 
 
 SOURCES += \
     $$PWD/Controller/SignalController.cpp \
+    $$PWD/Controller/dictionarycontroller.cpp \
     $$PWD/Controller/usercontroller.cpp \
     $$PWD/Dao/dictionarydao.cpp \
     $$PWD/Dao/pdsql.cpp \
@@ -67,6 +72,7 @@ SOURCES += \
     $$PWD/Domain/user.cpp \
     $$PWD/Logger/log.cpp \
     $$PWD/Result/result.cpp \
+    $$PWD/Service/dictionaryservice.cpp \
     $$PWD/Service/singlesignalservice.cpp \
     $$PWD/Service/sumsignalservice.cpp \
     $$PWD/Service/userservice.cpp \
@@ -90,6 +96,8 @@ SOURCES += \
     $$PWD/View/jvoicesampleview.cpp \
     $$PWD/View/qcustomplot.cpp \
     $$PWD/View/spectrum.cpp \
+    $$PWD/tDemo/dictionarycontrollertest.cpp \
+    $$PWD/tDemo/singnalcontrollertest.cpp
 
 
 

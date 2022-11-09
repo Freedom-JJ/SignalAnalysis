@@ -7,6 +7,7 @@ class SumSignalService
 {
 public:
     SumSignalService();
+    ~SumSignalService();
 
     //根据sumSignalId返回SumSignal
     SumSignal* getSumSignalById(string sumSignalId);

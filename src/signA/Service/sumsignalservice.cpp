@@ -5,6 +5,11 @@ SumSignalService::SumSignalService()
     this->sumSignalDao = new SumSignalDao();
 }
 
+SumSignalService::~SumSignalService()
+{
+    delete this->sumSignalDao;
+}
+
 SumSignal *SumSignalService::getSumSignalById(string sumSignalId)
 {
     qInfo()<<"执行根据dao层的getSumSignalById"<<QString::fromStdString(sumSignalId);
