@@ -26,33 +26,14 @@ CREATE TABLE `channel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `channelCode` varchar(255) DEFAULT NULL COMMENT '传感器标识',
   `channelDesc` varchar(255) DEFAULT NULL COMMENT '传感器描述',
-  `channelStatus` char(1) DEFAULT NULL,
   `measureType` int(11) DEFAULT NULL COMMENT '测量类型',
-  `windowType` int(11) DEFAULT NULL COMMENT '窗口类型，参考的是字典表',
-  `triggerMagnitude` float DEFAULT NULL COMMENT '触发量级',
-  `triggerPolarity` int(11) DEFAULT NULL COMMENT '触发极性,参考字典表',
-  `pointNum` int(11) DEFAULT NULL COMMENT '测点号',
-  `coordinateSystem` int(11) DEFAULT NULL COMMENT '坐标系，参考字典表',
-  `coordinateSystemdirection` int(11) DEFAULT NULL COMMENT '坐标系方向，参考字典表',
-  `isReference` char(1) DEFAULT NULL COMMENT '参考标识，即是否参考',
-  `engineeringUnits` int(11) DEFAULT NULL COMMENT '工程单位，参考字典表',
-  `sensitivity` float DEFAULT NULL COMMENT '传感器灵敏度',
   `fullValue` int(11) DEFAULT NULL COMMENT '满度量程',
-  `integralType` int(11) DEFAULT NULL COMMENT '积分类型，参考字典表',
-  `integralUnits` int(11) DEFAULT NULL COMMENT '积分单位，参考字典表',
   `inputMode` int(11) DEFAULT NULL COMMENT '输入方式，参考字典表',
-  `antiAliasingFiltering` char(1) DEFAULT NULL COMMENT '抗混滤波器',
   `upFreq` int(50) DEFAULT NULL COMMENT '上限频率',
   `elcPressure` int(255) DEFAULT NULL COMMENT '电压测量范围',
-  `downFrequency` int(255) DEFAULT NULL COMMENT '下限频率',
-  `projectId` int(11) DEFAULT NULL COMMENT '项目编号',
-  `testlocatonId` int(11) DEFAULT NULL COMMENT '测试位置编号',
-  `xMin` double(11,0) DEFAULT NULL COMMENT 'x轴最小值',
-  `xMax` double(11,0) DEFAULT NULL COMMENT 'x轴最大值',
-  `yMin` double(11,0) DEFAULT NULL COMMENT 'y轴最小值',
-  `yMax` double(11,0) DEFAULT NULL COMMENT 'y轴最大值',
+  `projectId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=7026 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,19 +54,19 @@ DROP TABLE IF EXISTS `collectionparas`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `collectionparas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sample_frequency` int(255) DEFAULT NULL COMMENT '采样频率',
-  `collection_method` int(11) DEFAULT NULL COMMENT '采样方式',
-  `trigger_method` int(11) DEFAULT NULL COMMENT '触发方式',
-  `data_blocks` int(11) DEFAULT NULL COMMENT '数据块数',
-  `delay_blocks` int(11) DEFAULT NULL COMMENT '延迟块数',
-  `trigger_times` int(11) DEFAULT NULL COMMENT '触发次数',
+  `sampleFrequency` int(255) DEFAULT NULL COMMENT '采样频率',
+  `collectionMethod` int(11) DEFAULT NULL COMMENT '采样方式',
+  `triggerMethod` int(11) DEFAULT NULL COMMENT '触发方式',
+  `dataBlocks` int(11) DEFAULT NULL COMMENT '数据块数',
+  `delayBlocks` int(11) DEFAULT NULL COMMENT '延迟块数',
+  `triggerTimes` int(11) DEFAULT NULL COMMENT '触发次数',
   `line` int(11) DEFAULT NULL COMMENT '采集点数',
-  `sample_batch` int(11) DEFAULT NULL COMMENT '采样批次',
-  `sample_clk` int(255) DEFAULT NULL COMMENT '采样时钟',
+  `sampleBatch` int(11) DEFAULT NULL COMMENT '采样批次',
+  `sampleClk` int(255) DEFAULT NULL COMMENT '采样时钟',
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `simple_frequency` (`sample_frequency`) USING BTREE,
-  KEY `sampling_method` (`collection_method`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=253 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  KEY `simple_frequency` (`sampleFrequency`) USING BTREE,
+  KEY `sampling_method` (`collectionMethod`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,10 +86,10 @@ DROP TABLE IF EXISTS `dictionary`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dictionary` (
-  `dict_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '字典ID',
-  `dict_name` varchar(255) NOT NULL,
-  `dict_value` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`dict_id`) USING BTREE
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '字典ID',
+  `dictName` varchar(255) NOT NULL,
+  `dictValue` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -199,7 +180,7 @@ CREATE TABLE `single_signal` (
 
 LOCK TABLES `single_signal` WRITE;
 /*!40000 ALTER TABLE `single_signal` DISABLE KEYS */;
-INSERT INTO `single_signal` VALUES ('gege',132,'gegege',1,'data/hige/hihige');
+INSERT INTO `single_signal` VALUES ('0564a654-582d-42bc-b896-4d96705a76b9',2,'521d82d9-2571-40a4-9198-1cf77d3a329e',1,'D:/QtCollectionData/b9d19c3f-a892-43d0-95ed-7d1bae18ba5e-0-2.txt'),('19c5a321-c746-4ae6-be70-42e76a7a7c56',0,'8d658090-2e29-405d-90e7-99b08dbfa28f',1,'D:/QtCollectionData/f98a3c25-4c22-4996-afbe-613c06bf8cdc-0-0.txt'),('1e0f177b-f6c2-4a59-a369-09f05ef89db8',2,'8d658090-2e29-405d-90e7-99b08dbfa28f',1,'D:/QtCollectionData/4fc5edc4-f1b0-4295-a713-c2d2d1b468d1-0-2.txt'),('4e02c7cf-808d-4875-9538-0435076cff64',3,'8d658090-2e29-405d-90e7-99b08dbfa28f',1,'D:/QtCollectionData/f498f5ea-e5fb-4566-b143-fdd2dadfc7b1-0-3.txt'),('a934026a-ee89-4240-b4e8-7096f853e4bc',0,'521d82d9-2571-40a4-9198-1cf77d3a329e',1,'D:/QtCollectionData/a069368a-43d6-4b4b-a3ba-9dc47e6b7ba6-0-0.txt'),('be819931-39d1-43db-a1ae-ec58a5ce850a',1,'521d82d9-2571-40a4-9198-1cf77d3a329e',1,'D:/QtCollectionData/3112d457-2d26-4323-a114-4882ba6eb35d-0-1.txt'),('c26cbee5-aadc-4c64-a8c4-abecb60b1581',3,'521d82d9-2571-40a4-9198-1cf77d3a329e',1,'D:/QtCollectionData/84a104ed-1e49-497d-8553-0ef036cb0bd0-0-3.txt'),('d0924f81-9414-4e77-b0fa-4f64502452c0',1,'8d658090-2e29-405d-90e7-99b08dbfa28f',1,'D:/QtCollectionData/f31ab70a-86c2-49e1-a134-f0645f7cbbcb-0-1.txt'),('single1',1,'sum1',1,'/hello/single1'),('single11',1,'sum2',1,'/hello/single11'),('single12',2,'sum2',1,'/hello/single12'),('single13',3,'sum2',1,'/hello/single13'),('single14',4,'sum2',1,'/hello/single14'),('single2',2,'sum1',1,'/hello/single2'),('single3',3,'sum1',1,'/hello/single3'),('single4',4,'sum1',1,'/hello/single4');
 /*!40000 ALTER TABLE `single_signal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,6 +207,7 @@ CREATE TABLE `sum_signal` (
 
 LOCK TABLES `sum_signal` WRITE;
 /*!40000 ALTER TABLE `sum_signal` DISABLE KEYS */;
+INSERT INTO `sum_signal` VALUES ('521d82d9-2571-40a4-9198-1cf77d3a329e','2022-11-09 20:32:36','2022-11-09 20:32:53',10),('8d658090-2e29-405d-90e7-99b08dbfa28f','2022-11-09 18:44:36','2022-11-09 18:44:42',10),('sum1','2014-12','2015-12',1),('sum2','2015-14','2016-23',1),('sum3','2014-09','2015-11',2);
 /*!40000 ALTER TABLE `sum_signal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,4 +250,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-31 20:35:48
+-- Dump completed on 2022-11-09 21:39:09
