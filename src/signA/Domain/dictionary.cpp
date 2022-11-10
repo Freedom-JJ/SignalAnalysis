@@ -2,7 +2,9 @@
 
 Dictionary::Dictionary()
 {
-
+    this->id = -1;
+    this->dictName = "";
+    this->dictValue = "";
 }
 
 Dictionary::Dictionary(vector<string> dictionary_attribute)

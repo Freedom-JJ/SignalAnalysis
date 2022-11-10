@@ -16,6 +16,17 @@ public:
     //根据字典name找到对应的记录集合，
     Result findDictionariesByDictName(string dictName,vector<Dictionary*>& dictionaries);
 
+    //根据字典id删除对应的记录
+    Result deleteDictionaryByDictId(long long dictId);
+
+    //添加字典记录，并返回字典id(主键),保存在dictId中
+    Result addDictionary(Dictionary* dictionary, long long &dictId);
+
+    //更新字典，根据字典主键更新
+    Result updateDictionary(Dictionary* dictionary);
+
+
+
 private:
     DictionaryService* dictionaryService;
 

@@ -19,3 +19,18 @@ vector<Dictionary *> DictionaryService::getDictionariesByDictName(string dictNam
 {
     return this->dictionaryDao->getDictionarysByDictName(dictName);
 }
+
+int DictionaryService::deleteDictionaryById(long long id)
+{
+    return this->dictionaryDao->deleteDictionaryById(id);
+}
+
+long long DictionaryService::addDictionary(Dictionary *dictionary)
+{
+    return this->dictionaryDao->insertDictionary(dictionary);
+}
+
+long long DictionaryService::updateDictionary(Dictionary *dictionary)
+{
+    return this->dictionaryDao->updateDictionary(dictionary);
+}
