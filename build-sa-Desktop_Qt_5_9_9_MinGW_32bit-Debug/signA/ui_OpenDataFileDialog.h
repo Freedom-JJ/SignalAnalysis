@@ -27,15 +27,15 @@ class Ui_OpenDataFileDialog
 public:
     QGridLayout *gridLayout_2;
     QPushButton *pushButtonSearch;
-    QPushButton *pushButtonOpen;
-    QLineEdit *lineEdit;
     QTableView *tableView;
+    QLineEdit *lineEdit;
+    QPushButton *pushButtonOpen;
 
     void setupUi(QDialog *OpenDataFileDialog)
     {
         if (OpenDataFileDialog->objectName().isEmpty())
             OpenDataFileDialog->setObjectName(QStringLiteral("OpenDataFileDialog"));
-        OpenDataFileDialog->resize(439, 402);
+        OpenDataFileDialog->resize(441, 400);
         gridLayout_2 = new QGridLayout(OpenDataFileDialog);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         pushButtonSearch = new QPushButton(OpenDataFileDialog);
@@ -43,20 +43,20 @@ public:
 
         gridLayout_2->addWidget(pushButtonSearch, 0, 1, 1, 1);
 
-        pushButtonOpen = new QPushButton(OpenDataFileDialog);
-        pushButtonOpen->setObjectName(QStringLiteral("pushButtonOpen"));
+        tableView = new QTableView(OpenDataFileDialog);
+        tableView->setObjectName(QStringLiteral("tableView"));
 
-        gridLayout_2->addWidget(pushButtonOpen, 0, 2, 1, 1);
+        gridLayout_2->addWidget(tableView, 2, 0, 1, 3);
 
         lineEdit = new QLineEdit(OpenDataFileDialog);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
 
         gridLayout_2->addWidget(lineEdit, 0, 0, 1, 1);
 
-        tableView = new QTableView(OpenDataFileDialog);
-        tableView->setObjectName(QStringLiteral("tableView"));
+        pushButtonOpen = new QPushButton(OpenDataFileDialog);
+        pushButtonOpen->setObjectName(QStringLiteral("pushButtonOpen"));
 
-        gridLayout_2->addWidget(tableView, 2, 0, 1, 3);
+        gridLayout_2->addWidget(pushButtonOpen, 0, 2, 1, 1);
 
 
         retranslateUi(OpenDataFileDialog);
@@ -68,8 +68,8 @@ public:
     {
         OpenDataFileDialog->setWindowTitle(QApplication::translate("OpenDataFileDialog", "Dialog", Q_NULLPTR));
         pushButtonSearch->setText(QApplication::translate("OpenDataFileDialog", "\346\220\234\347\264\242", Q_NULLPTR));
-        pushButtonOpen->setText(QApplication::translate("OpenDataFileDialog", "\346\211\223\345\274\200", Q_NULLPTR));
         lineEdit->setPlaceholderText(QApplication::translate("OpenDataFileDialog", "\346\220\234\347\264\242", Q_NULLPTR));
+        pushButtonOpen->setText(QApplication::translate("OpenDataFileDialog", "\346\211\223\345\274\200", Q_NULLPTR));
     } // retranslateUi
 
 };

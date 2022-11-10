@@ -5,16 +5,13 @@
 *   Time:       2022-11-06
 *   brief:      单个窗口的基本功能，具有通用性
 ********************************/
-
-
-
-
 #ifndef SPECTRUM_H
 #define SPECTRUM_H
 
 #include <QWidget>
 #include "qcustomplot.h"
 #include "Signal/BaseEchoSignal.h"
+#include "Utils/SignalFeature.h"
 namespace Ui {
 class Spectrum;
 }
@@ -22,6 +19,8 @@ class Spectrum;
 class Spectrum : public QWidget
 {
     Q_OBJECT
+public:
+    QSize sizeHint();
 
 public:
     explicit Spectrum(QWidget *parent = nullptr);
@@ -84,15 +83,15 @@ public:
      void show() ;
 
      /**
-      * @brief 由定时器调用
+      * @brief 由上层调用
       */
-     void refresh();
+     void refresh(QVector<double> &data);
      /**
       * @brief 由上层调用
       * @param statistic
       * @param data
       */
-     void refresh(std::map<QString,double> &statistic , QVector<double> &data);
+     void refresh(std::map<QString,double> statistic , QVector<double> &data);
 
      void autoRescale(double rate);
 
@@ -113,7 +112,7 @@ private:
     Ui::Spectrum *ui;
     QCustomPlot *plot;
     QCPItemText *textItem;
-    QVector<double> *key;
+    QVector<double> *key = nullptr;
     BaseEchoSignal * viewData;
     double rescaleRate = 1.2;
     QTimer *timer;
@@ -128,9 +127,11 @@ private:
     /**
      * @brief 当Y轴不需要自动缩放时，使用这两个值
      */
-    double yStart;
+    double yStart = 0;
     double yStop;
     bool isShowStatistic = true;
+
+    SignalFeature *feature = SignalFeature::getInstance();
 };
 
 #endif // SPECTRUM_H

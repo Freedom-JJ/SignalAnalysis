@@ -1243,33 +1243,29 @@ void MainWindow::appendRecentOpenFilesPath(const QString& path)
 /*****************************wzx**************************************/
 //开始采集事件函数
 void MainWindow::OnButtonStartCapture(){
-
-
     int oldcollectState = theApp->m_icollectState;
     //如果当前状态为正在采集
     if (theApp->m_icollectState == 1) return;
     //设置当前状态为正在采集状态
     theApp->m_icollectState = 1;
-
     //设置单个数据长度
     int dataCount = 20000;
-
     if(oldcollectState == 2){
         return;
     }
-
     qDebug()<<"m_vchannelCodes-size"<<theApp->m_vchannelCodes.size()<<endl;
     // 初始化采集队列
     for (int i = 0; i < theApp->m_vchannelCodes.size(); i++){
         theApp->m_mpcolllectioinDataQueue.insert(std::pair<QString, ThreadSafeQueue<double>>(theApp->m_vchannelCodes[i], ThreadSafeQueue<double>()));
     }
-
     this->theApp->m_bThread = true;
-
     //界面相关设置
-    ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
-    ui->spectrunView->start();//开始显示
-    ui->spectrunView->setReScaleRate(2);
+    ui->dynamicSpectrum->setDataViewEcho(this->theApp->echoSignalQueue);
+    ui->dynamicSpectrum->openAutoYAxisRescalse(2);
+    ui->dynamicSpectrum->start();
+//    ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
+//    ui->spectrunView->start();//开始显示
+//    ui->spectrunView->setReScaleRate(2);
     sampleThread = new GetDataThread(this);
     mainSaveData = new JSaveCollectionDataThread(this);
 
@@ -1282,7 +1278,7 @@ void MainWindow::OnButtonStartCapture(){
 
 void MainWindow::OnButtonStopCapture(){
     theApp->m_icollectState = 0;
-    ui->spectrunView->stop();
+    ui->dynamicSpectrum->stop();
     theApp->m_bThread = false;
 
 //    for(int i=0;i<theApp->m_vchannelCodes.size();i++){
@@ -1341,12 +1337,12 @@ void MainWindow::OnButtonStartPlayBack(){
     }
     mainPlayBack->start();
 
-    connect(mainPlayBack,&SumPlayBackThread::stopRefresh,ui->spectrunView,&JSpectrumWindow::stop);
-    ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
+    connect(mainPlayBack,&SumPlayBackThread::stopRefresh,ui->dynamicSpectrum,&JDynamicWidget::stop);
+    ui->dynamicSpectrum->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
 //    ui->spectrunView->setY_isScale(false);
 //    ui->spectrunView->setYAxisRange(0,50000);
 //    ui->spectrunView->setXAxisRange(10000);
-    ui->spectrunView->start();//开始显示
+    ui->dynamicSpectrum->start();//开始显示
 
 
 
@@ -1435,6 +1431,8 @@ bool MainWindow::openProject(const QString& projectPath)
 ///
 void MainWindow::onActionNewProjectTriggered()
 {
+    auto newProject = new NewProjectDialog(this,this);
+    newProject->show();
 
 
 }
@@ -1482,7 +1480,7 @@ void MainWindow::onActionSaveAsTriggered()
 
 
 ///
-/// \brief 添加新图
+/// \brief 打开数据文件
 ///
 void MainWindow::onActionOpenData()
 {

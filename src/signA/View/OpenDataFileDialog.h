@@ -36,6 +36,8 @@ private slots:
 
     void on_pushButtonOpen_clicked();
 
+
+
 private:
     Ui::OpenDataFileDialog *ui;
     SignalController controller;

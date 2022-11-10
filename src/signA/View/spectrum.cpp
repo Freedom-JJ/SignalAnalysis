@@ -1,16 +1,23 @@
 #include "spectrum.h"
 #include "ui_spectrum.h"
 
+QSize Spectrum::sizeHint()
+{
+    return QSize(2000,1000);
+}
+
 Spectrum::Spectrum(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Spectrum)
 {
-
     ui->setupUi(this);
     timer = new QTimer(parent);
     auto layout = new QGridLayout(this);
+    layout->setMargin(0);
+    layout->setSpacing(0);
     plot = new QCustomPlot(this);
     plot->addGraph();
+    plot->graph(0)->setPen(QPen(QColor(Qt::red)));
     layout->addWidget(plot,0,0);
     this->setLayout(layout);
     this->textItem = new QCPItemText(this->plot);
@@ -46,6 +53,12 @@ void Spectrum::init(QVector<double> *initData)
         plot->replot();
     }
 
+}
+
+void Spectrum::init(bool isRescale, QVector<double> *initData)
+{
+    this->yIsRescale = isRescale;
+    init(initData);
 }
 
 void Spectrum::setYAxisRange(double start, double end)
@@ -90,12 +103,14 @@ void Spectrum::show()
     this->plot->show();
 }
 
-void Spectrum::refresh()
+void Spectrum::refresh(QVector<double> &data)
 {
-//    refresh( std::map<QString,double>() ,viewData->PopEchoSignal());
+    if(data.size()==0)
+        return;
+    refresh(feature->getFeaturesWithMap(data),data);
 }
 
-void Spectrum::refresh(std::map<QString, double> &statistic, QVector<double> &data)
+void Spectrum::refresh(std::map<QString, double> statistic, QVector<double> &data)
 {
     this->plot->graph(0)->data()->clear();
     if(data.size() == 0 ){
@@ -106,15 +121,19 @@ void Spectrum::refresh(std::map<QString, double> &statistic, QVector<double> &da
         QString str;
         while(it!=statistic.end()){
             str +=(it->first + ":" + QString::number(it->second) + "\n");
+            it++;
         }
         textItem->setText(str);
+    }
+    if(this->key == nullptr){
+        this->init(&data);
     }
 
     this->plot->graph(0)->addData(*key,data);
     if (yIsRescale == true){
-        this->plot->graph(0)->rescaleValueAxis();
+//        this->plot->graph(0)->rescaleValueAxis();
         this->plot->graph(0)->rescaleKeyAxis();
-        this->plot->graph(0)->valueAxis()->setRange(yStart , statistic["最大值"] * rescaleRate);
+        this->plot->graph(0)->valueAxis()->setRange(yStart , feature->getMax() * rescaleRate);
     }else{
         this->plot->graph(0)->valueAxis()->setRange(yStart,yStop);
         this->plot->graph(0)->keyAxis()->setRange(0.0,this->range/1.0);
@@ -126,6 +145,7 @@ void Spectrum::refresh(std::map<QString, double> &statistic, QVector<double> &da
 
 void Spectrum::autoRescale(double rate)
 {
+    yIsRescale = true;
     this->rescaleRate = rate;
 }
 

@@ -47,6 +47,7 @@ class MainWindowPrivate;
 #include "openprojectwindow.h"
 #include "Utils/JSaveCollectionDataThread.h"
 #include "View/OpenDataFileDialog.h"
+#include "View/NewProjectDialog.h"
 class QProgressBar;
 class QActionGroup;
 

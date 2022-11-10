@@ -40,6 +40,8 @@
 #include "View/jsampleview.h"
 #include "View/JSpectrumWindow.h"
 #include "View/randdatawithdemo.h"
+#include "View/jdynamicwindow.h"
+#include "View/jdynamicwidget.h"
 class MainWindow;
 class MainWindowPrivate
 {
@@ -50,6 +52,7 @@ public:
     MainWindow *Parent;
 //    JSampleView *sampleView;
     JSpectrumWindow *spectrunView;
+    JDynamicWidget * dynamicSpectrum;
 
     QAction *actionNew;      ///<新建项目>
     QAction *actionSet;    ///<设置项目>

@@ -103,8 +103,8 @@ void JSpectrumWindow::refresh(){
         this->customPlot->at(index)->graph(0)->addData(*xAxis,it->second);
 
         QString info = "通道:"+it->first+"\n";
-        info += feature.getFeaturesWithString(it->second);
-        double maxY = feature.getMax();
+        info += feature->getFeaturesWithString(it->second);
+        double maxY = feature->getMax();
         textItem->at(index)->setText(info);
 
         if (yIsRescale == true){

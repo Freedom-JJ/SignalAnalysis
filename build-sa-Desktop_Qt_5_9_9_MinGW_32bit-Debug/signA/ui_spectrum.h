@@ -26,7 +26,7 @@ public:
     {
         if (Spectrum->objectName().isEmpty())
             Spectrum->setObjectName(QStringLiteral("Spectrum"));
-        Spectrum->resize(400, 300);
+        Spectrum->resize(464, 375);
 
         retranslateUi(Spectrum);
 

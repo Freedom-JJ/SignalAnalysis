@@ -74,7 +74,6 @@ public:
       */
      void setReScaleRate(double rate);
 private:
-     QVector<Spectrum *> spectrms = new QVector<Spectrum *>();
      QVector<QCustomPlot *> *customPlot = new QVector<QCustomPlot *> (4);
      QVector<QCPItemText *> *textItem = new QVector<QCPItemText *> (4);
      std::map<QString ,int> bindCustonPlot;
@@ -96,7 +95,7 @@ private:
      double yStart = 0;
      double yStop;
      double yRescaleRate = 1.2;
-     SignalFeature feature;
+     SignalFeature  *feature = SignalFeature::getInstance();
 };
 
 #endif // JSPECTRUMWINDOW_H

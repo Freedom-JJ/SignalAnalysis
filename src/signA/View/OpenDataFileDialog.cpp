@@ -27,16 +27,16 @@ void OpenDataFileDialog::initTableViewData()
     QStandardItemModel  * model = new QStandardItemModel();
     model->setHorizontalHeaderLabels(QStringList()<<"ID"<<"开始时间"<<"结束数据"<<"项目名称");
     for (int var = 0; var < this->res.size(); ++var) {
-//        QStandardItem item;
         QList<QStandardItem *> list;
         list.append(new QStandardItem(QString::fromStdString(res[var].getId())));
         list.append(new QStandardItem(QString::fromStdString(res[var].getStartTime())));
         list.append(new QStandardItem(QString::fromStdString(res[var].getEndTime())));
         list.append(new QStandardItem(QString::fromStdString(res[var].getProjectName())));
-//        item.appendRows(list);
         model->appendRow(list);
     }
     ui->tableView->setModel(model);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    resize(600,500);
 }
 
 
@@ -78,3 +78,4 @@ void OpenDataFileDialog::on_pushButtonOpen_clicked()
 
 
 }
+

@@ -5,14 +5,16 @@ SignalFeature::SignalFeature()
 
 }
 
+
+
 std::map<QString, double> SignalFeature::getFeaturesWithMap(QVector<double> &value)
 {
-    maxv,minv,meanv= value[0];
+    meanv=0,minv=0,maxv=0,s2v=0,ev=0,sumv=0,peakv=0;
     for(int index = 0 ; index < value.size(); index++){
         sumv += value[index];
         maxv = qMax(value[index],maxv);
         minv = qMin(value[index],minv);
-        ev += value[index]*value[index];
+        ev =ev + value[index]*value[index];
     }
     ev = sqrt(ev/value.size());
     meanv = sumv/value.size();
@@ -21,7 +23,6 @@ std::map<QString, double> SignalFeature::getFeaturesWithMap(QVector<double> &val
         s2v += pow((value[index] - meanv),2);
     }
     s2v =s2v/ value.size();
-
     std::map<QString,double> res;
     res["最大值"] = maxv;
     res["最小值"] = minv;

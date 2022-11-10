@@ -927,11 +927,11 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
 
     auto dockWidgetContents_jj = new QWidget();
     dockWidgetContents_jj->setObjectName(QStringLiteral("dockWidgetContents_jj"));
-
     this->spectrunView = new JSpectrumWindow(dockWidgetContents_jj);
 //    verticalLayout_4->addWidget(mdiArea);
-
-    dockWidget_main->setWidget(dockWidgetContents_jj);
+    this->dynamicSpectrum = new JDynamicWidget();
+    this->dynamicSpectrum->init(4);
+    dockWidget_main->setWidget(this->dynamicSpectrum);
     mainWinowPtr->addDockWidget(static_cast<Qt::DockWidgetArea>(4), dockWidget_main);
     dockWidget_valueViewer = new QDockWidget(mainWinowPtr);
     dockWidget_valueViewer->setObjectName(QStringLiteral("dockWidget_valueViewer"));

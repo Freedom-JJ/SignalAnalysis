@@ -38,9 +38,11 @@ HEADERS += \
     $$PWD/Utils/fftw3.h \
 #    $$PWD/Utils/uuidutil.h \
     $$PWD/View/JSpectrumWindow.h \
+    $$PWD/View/NewProjectDialog.h \
     $$PWD/View/OpenDataFileDialog.h \
     $$PWD/View/jbasesamplewindow.h \
     $$PWD/View/jdataviewecho.h \
+    $$PWD/View/jdynamicwidget.h \
     $$PWD/View/jsampleview.h \
     $$PWD/View/jvoiceranddata.h \
     $$PWD/View/jvoicesampleview.h \
@@ -88,9 +90,11 @@ SOURCES += \
     $$PWD/Utils/aircraftcasingvibratesystem.cpp \
 #    $$PWD/Utils/uuidutil.cpp \
     $$PWD/View/JspectrumWindow.cpp \
+    $$PWD/View/NewProjectDialog.cpp \
     $$PWD/View/OpenDataFileDialog.cpp \
     $$PWD/View/jbasesamplewindow.cpp \
     $$PWD/View/jdataviewecho.cpp \
+    $$PWD/View/jdynamicwidget.cpp \
     $$PWD/View/jsampleview.cpp \
     $$PWD/View/jvoiceranddata.cpp \
     $$PWD/View/jvoicesampleview.cpp \
@@ -104,6 +108,8 @@ SOURCES += \
 DISTFILES +=
 
 FORMS += \
+    $$PWD/View/NewProjectDialog.ui \
     $$PWD/View/OpenDataFileDialog.ui \
+    $$PWD/View/jdynamicwidget.ui \
     $$PWD/View/spectrum.ui \
 
