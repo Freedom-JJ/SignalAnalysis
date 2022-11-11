@@ -85,7 +85,7 @@ void JSpectrumWindow::refresh(){
 
     std::map<QString,QVector<double>> data;  
     for(auto it = mapData.begin();it!=mapData.end();it++){
-        QVector<double> singleChannelVector = it->second->PopEchoSignal();;
+        QVector<double> singleChannelVector = it->second->PopEchoSignal();
         data[it->first] = singleChannelVector;
     }
 
@@ -96,7 +96,7 @@ void JSpectrumWindow::refresh(){
     for (auto it = data.begin(); it != data.end(); ++it) {
         index = this->bindCustonPlot[it->first];
          if(it->second.size() == 0 || it->second.size()>10000){
-//             qDebug()<<it->second.size()<<endl;
+             //qDebug()<<it->second.size()<<endl;
              continue;
          }
         this->customPlot->at(index)->graph(0)->data()->clear();
@@ -107,12 +107,15 @@ void JSpectrumWindow::refresh(){
         double maxY = feature->getMax();
         textItem->at(index)->setText(info);
 
+        QVector<double> everyData = it->second;
+        auto y_max = std::max_element(std::begin(everyData), std::end(everyData));//求出最大值
+
         if (yIsRescale == true){
             this->customPlot->at(index)->graph(0)->valueAxis()->setRange(0,maxY * yRescaleRate);
 //            this->customPlot->at(index)->graph(0)->rescaleValueAxis();
             this->customPlot->at(index)->graph(0)->rescaleKeyAxis();
         }else{
-            this->customPlot->at(index)->graph(0)->valueAxis()->setRange(yStart,yStop);
+            this->customPlot->at(index)->graph(0)->valueAxis()->setRange((*y_max)*1.2,0);
             this->customPlot->at(index)->graph(0)->keyAxis()->setRange(0.0,this->range/1.0);
         }
 

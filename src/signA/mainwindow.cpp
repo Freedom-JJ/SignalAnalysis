@@ -101,8 +101,6 @@ MainWindow::MainWindow(QWidget *parent) :
     , m_figureRightClickChart(nullptr)
     , m_nUserChartCount(0)
     , theApp(new AirCraftCasingVibrateSystem())
-//    , mainSaveData(new SaveCollectionDataThread(this))
-    , mainPlayBack(new SumPlayBackThread(this))
 {
     saAddLog("start app");
 
@@ -238,6 +236,7 @@ void MainWindow::initUI()
     //采集功能
     connect(ui->actionStartCapture,&QAction::triggered,this,&MainWindow::OnButtonStartCapture);
     connect(ui->actionStopCapture,&QAction::triggered,this,&MainWindow::OnButtonStopCapture);
+    connect(ui->actionSuspendCapture,&QAction::triggered,this,&MainWindow::OnBUttonSuspendCapture);
 
     //回放功能
     connect(ui->actionStartPlayBack,&QAction::triggered,this,&MainWindow::OnButtonStartPlayBack);
@@ -270,6 +269,7 @@ void MainWindow::initUI()
     //-------------------------------------
     // - start chart set menu signal/slots connect
     connect(ui->actionOpenData, &QAction::triggered, this, &MainWindow::onActionOpenData); //打开数据文件
+    connect(ui->actionConnectRedis, &QAction::triggered, this, &MainWindow::onRedisConnection); //连接redis
     connect(ui->actionNewTrend, &QAction::triggered, this, &MainWindow::onActionAddLineChartTriggered);
     connect(ui->actionDrawBarChart, &QAction::triggered, this, &MainWindow::onActionAddBarChartTriggered);
     connect(ui->actionDrawHistogramChart, &QAction::triggered, this, &MainWindow::onActionAddHistogramChartTriggered);
@@ -1258,6 +1258,12 @@ void MainWindow::OnButtonStartCapture(){
     for (int i = 0; i < theApp->m_vchannelCodes.size(); i++){
         theApp->m_mpcolllectioinDataQueue.insert(std::pair<QString, ThreadSafeQueue<double>>(theApp->m_vchannelCodes[i], ThreadSafeQueue<double>()));
     }
+
+    //初始化redis采集队列
+    for(int i = 0; i < theApp->m_vchannelCodes.size(); i++){
+        theApp->m_mpredisCollectionDataQueue.insert(std::pair<QString, ThreadSafeQueue<double>>(theApp->m_vchannelCodes[i], ThreadSafeQueue<double>()));
+    }
+
     this->theApp->m_bThread = true;
     //界面相关设置
     ui->dynamicSpectrum->setDataViewEcho(this->theApp->echoSignalQueue);
@@ -1267,42 +1273,60 @@ void MainWindow::OnButtonStartCapture(){
 //    ui->spectrunView->start();//开始显示
 //    ui->spectrunView->setReScaleRate(2);
     sampleThread = new GetDataThread(this);
-    mainSaveData = new JSaveCollectionDataThread(this);
+    mainSaveData = new SaveCollectionDataThread(this);
+    mainRedisUpload = new RedisUploadThread(this,theApp->initHost,theApp->initPort);
+    connect(mainRedisUpload,SIGNAL(AllRedisConsumerSaved()),this,SLOT(mainCloseRedisResource()));
 
-//    connect(sampleThread,SIGNAL(DataThreadDone()),this,SLOT(closeSaveDataThread()));
+    connect(sampleThread,SIGNAL(DataThreadDone()),this,SLOT(closeSaveDataThread()));
     sampleThread->start();//开启采集线程
-//    connect(mainSaveData,SIGNAL(AllConsumerSaved()),this,SLOT(mainCloseSaveResource()));
+
+    if(theApp->redisState == theApp->RedisState::REDIS_OPEND){
+        mainRedisUpload->start();
+    }
+    connect(mainSaveData,SIGNAL(AllConsumerSaved()),this,SLOT(mainCloseSaveResource()));
     mainSaveData->start();
 
 }
 
+//停止采集
 void MainWindow::OnButtonStopCapture(){
     theApp->m_icollectState = 0;
     ui->dynamicSpectrum->stop();
     theApp->m_bThread = false;
 
-//    for(int i=0;i<theApp->m_vchannelCodes.size();i++){
-//        QString code = theApp->m_vchannelCodes[i];
-//        int queue_size = theApp->m_mpcolllectioinDataQueue[code].size();
-//        qDebug()<<"队列"<<code<<"的长度为"<<queue_size<<endl;
-//    }
-
     for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
         it->second->clearEchoSignal();
     }
+}
 
+//暂停采集
+void MainWindow::OnBUttonSuspendCapture(){
 
+    theApp->m_icollectState = 2;
 
 }
 
 //采集线程结束之后的槽函数
 void MainWindow::closeSaveDataThread(){
 
-theApp->m_icollectState = 0;
+    theApp->m_icollectState = 0;
 
 }
 
 
+void MainWindow::mainCloseRedisResource(){
+
+    mainRedisUpload->quit();
+    mainRedisUpload->wait();
+    mainRedisUpload = nullptr;
+
+    //清空保存数据队列
+    for(int i=0;i< theApp->m_vchannelCodes.size();i++){
+        QString code = theApp->m_vchannelCodes[i];
+        theApp->m_mpredisCollectionDataQueue[code].clear();
+    }
+
+}
 
 //保存文件结束的槽函数
 void MainWindow::mainCloseSaveResource(){
@@ -1325,19 +1349,30 @@ void MainWindow::mainCloseSaveResource(){
 
 }
 
+//开始回放
 
-
-
-
-//回放
 void MainWindow::OnButtonStartPlayBack(){
     if(theApp->playBackDataState == theApp->PlayBackDataState::NO_EXIST){
         QMessageBox::warning(this,"错误","请打开数据文件");
         return;
     }
+
+    int old_playbackState = theApp->m_iplaybackState;
+    if(theApp->m_iplaybackState == 1){
+        return;         //正在回放就不能再点开始回放
+    }
+
+    theApp->m_iplaybackState = 1;
+
+    if(old_playbackState == 2){
+        return;
+    }
+
+
+    mainPlayBack = new SumPlayBackThread(this);
     mainPlayBack->start();
 
-    connect(mainPlayBack,&SumPlayBackThread::stopRefresh,ui->dynamicSpectrum,&JDynamicWidget::stop);
+    connect(mainPlayBack,SIGNAL(playbackDone()),this,SLOT(closePlaybackResource()));
     ui->dynamicSpectrum->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
 //    ui->spectrunView->setY_isScale(false);
 //    ui->spectrunView->setYAxisRange(0,50000);
@@ -1345,18 +1380,27 @@ void MainWindow::OnButtonStartPlayBack(){
     ui->dynamicSpectrum->start();//开始显示
 
 
+//停止回放(暂停回放)
+void MainWindow::OnButtonStopPlayBack(){
+
+    theApp->m_iplaybackState = 2;
 
 }
 
+//回放读取文件结束后的槽函数
+void MainWindow::closePlaybackResource(){
 
-void MainWindow::OnButtonStopPlayBack(){
-
-    theApp->m_iplaybackState = 0;
-    mainPlayBack->quit();
     ui->spectrunView->stop();
+    theApp->m_iplaybackState = 0;
+
+    mainPlayBack->quit();
+    mainPlayBack->wait();
+    mainPlayBack = nullptr;
+
     for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
         it->second->clearEchoSignal();
     }
+
 
 }
 /*****************************wzx**************************************/
@@ -1488,6 +1532,11 @@ void MainWindow::onActionOpenData()
     dialog->show();
 }
 
+void MainWindow::onRedisConnection()
+{
+    RedisSetUpDialog *redisDialog = new RedisSetUpDialog(this);
+    redisDialog->show();
+}
 
 ///
 /// \brief 绘制线图

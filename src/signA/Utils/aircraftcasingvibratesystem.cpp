@@ -6,9 +6,10 @@ AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystem()
 
 }
 
+
 void AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystemInit(){
-    m_vchannelCodes = vector<QString>(4);
-    for(int i=0;i<4;i++){
+    m_vchannelCodes = vector<QString>(channelNumber);
+    for(int i=0;i<channelNumber;i++){
         QString channelCode =  QString::number(i);
         m_vchannelCodes[i] = channelCode;
     }
@@ -19,6 +20,8 @@ void AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystemInit(){
     for(int i=0;i<m_vchannelCodes.size();i++){
         dataUrl[m_vchannelCodes[i]] = QString("D:\\QtCollectionData\\change-%1.txt").arg(m_vchannelCodes[i]);
     }
+
+    m_redis = new RedisController();
 
 }
 

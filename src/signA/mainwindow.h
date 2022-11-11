@@ -48,6 +48,10 @@ class MainWindowPrivate;
 #include "Utils/JSaveCollectionDataThread.h"
 #include "View/OpenDataFileDialog.h"
 #include "View/NewProjectDialog.h"
+#include "View/redissetupdialog.h"
+#include "Utils/redisuploadthread.h"
+
+
 class QProgressBar;
 class QActionGroup;
 
@@ -65,10 +69,12 @@ class PlayBackThread;
 class SAAbstractDataImportInterface;
 class SARectRegionSelectEditor;
 class SumPlayBackThread;
+class RedisUploadThread;
 class SaveCollectionDataThread;
 class StaticSpectralEchoSignal;
 class AirCraftCasingVibrateSystem;
 class JSaveCollectionDataThread;
+class RedisSetUpDialog;
 using std::vector;
 using std::map;
 ///
@@ -100,7 +106,9 @@ public:
     GetDataThread *sampleThread;
 
     //QScopedPointer<SaveCollectionDataThread> mainSaveData;//用于保存磁盘的对象
-    JSaveCollectionDataThread *mainSaveData;
+    SaveCollectionDataThread *mainSaveData;
+
+    RedisUploadThread *mainRedisUpload; //保存redis的对象
 
     SumPlayBackThread *  mainPlayBack;//用于回放数据的对象
 
@@ -174,10 +182,21 @@ public slots:
     void mainCloseSaveResource();
 
     /**
+    * @brief ：释放所有redis相关的资源
+    */
+    void mainCloseRedisResource();
+
+
+    /**
     * @brief ：采集线程结束后再结束取数线程
     */
 
     void closeSaveDataThread();
+
+    /**
+    * @brief ：回放文件读取结束后自动释放资源
+    */
+    void closePlaybackResource();
 
 public:
 
@@ -366,12 +385,18 @@ signals:
 private slots:
 
 
-    //采集槽函数
+    ///采集槽函数
+
+    //开始采集
     void OnButtonStartCapture();
 
+    //停止采集
     void OnButtonStopCapture();
 
-    //回放槽函数
+    //暂停采集
+    void OnBUttonSuspendCapture();
+
+    ///回放槽函数
     void OnButtonStartPlayBack();
 
     void OnButtonStopPlayBack();
@@ -476,6 +501,9 @@ private slots:
     ///
     //新图例
     void onActionOpenData();
+
+    //redis
+    void onRedisConnection();
 
     //趋势线图
     void onActionAddLineChartTriggered();

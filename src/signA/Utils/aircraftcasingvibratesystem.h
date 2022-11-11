@@ -21,6 +21,7 @@
 #include <QScopedPointer>
 #include "Controller/SignalController.h"
 #include "Domain/sumSignal.h"
+#include "RedisTools/rediscontroller.h"
 
 class StaticSpectralEchoSignal;
 
@@ -66,16 +67,28 @@ public:
 
     std::map<QString,ThreadSafeQueue<double>> m_mpcolllectioinDataQueue; //采集的数据
 
+    std::map<QString,ThreadSafeQueue<double>> m_mpredisCollectionDataQueue; //redis数据
+
     SignalController m_signalController;
 
-    SumSignal m_sumSignal;
+    SumSignal *m_sumSignal;
 
     QMutex saveSignalMutex;
+
+    enum RedisState{REDIS_OPEND,REDIS_NOT_OPEN};             //redis标志位
+    RedisState redisState = REDIS_OPEND;
+
+    QString initHost; //redis   host
+
+    int initPort; //redis   port
+
+    RedisController *m_redis;
+
+    int channelNumber = 4;                    //通道总数
+
     /*****************************江德鸿************************************************/
     enum PlayBackDataState{EXIST,NO_EXIST};
     PlayBackDataState playBackDataState = NO_EXIST;
-
-
 
     void AirCraftCasingVibrateSystemInit();
 

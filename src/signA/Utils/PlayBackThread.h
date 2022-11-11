@@ -38,7 +38,7 @@ signals:
     /**
      * @brief stopRefresh,回放正常结束（文件读取完）
      */
-    void stopRefresh();
+    void playbackDone();
 };
 
 

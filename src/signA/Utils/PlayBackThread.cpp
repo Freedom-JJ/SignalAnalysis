@@ -4,7 +4,6 @@ void SumPlayBackThread::run(){
 
     if (sumPlayThread->theApp->m_blocalSignalExist){
         //设置视图的刷新状态
-        sumPlayThread->theApp->m_iplaybackState = 1;
 
         auto iter = sumPlayThread->theApp->dataUrl.begin();
         while (iter!= sumPlayThread->theApp->dataUrl.end()){
@@ -23,9 +22,13 @@ void SumPlayBackThread::run(){
 
         }
 
-    emit stopRefresh(); //可以执行,但是界面或者队列已经卡死slots执行不了
-    qDebug()<<"所有线程都结束了----------1027"<<endl;
-    sumPlayThread->theApp->m_iplaybackState = 0;
+    //将消费者指针释放
+    for(int i=0;i<playBackThreadVector.size();i++){
+        playBackThreadVector[i] = nullptr;
+        delete playBackThreadVector[i];
+    }
+
+    emit playbackDone(); //读取完毕发送信号释放资源
 
 
 }
