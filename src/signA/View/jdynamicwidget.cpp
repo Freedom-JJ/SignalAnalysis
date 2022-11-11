@@ -13,24 +13,39 @@ JDynamicWidget::JDynamicWidget(QWidget *parent) :
 }
 void JDynamicWidget::init(int channelNum)
 {
-    scrollArea = new QScrollArea(this);
-    gridLayout = new QGridLayout(this);
-    gridLayout->setMargin(0);
-    gridLayout->setSpacing(0);
-    hlayout = new QHBoxLayout(this);
-    scrollContents = new QWidget(this);
-    hlayout->addWidget(scrollArea);
-    for (int var = 0; var < channelNum; ++var) {
-        this->spectrumVec.push_back(new Spectrum(this));
-        gridLayout->addWidget(spectrumVec[var],int(var/2),var%2);
+    if(channelNum == spectrumVec.size()){
+        return;
     }
-    scrollArea->setWidgetResizable(true);
-    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    scrollArea->setWidget(scrollContents);
-    scrollContents->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    if(scrollArea == nullptr){
+        scrollArea = new QScrollArea(this);
+        gridLayout = new QGridLayout(this);
+        hlayout = new QHBoxLayout(this);
+        scrollContents = new QWidget(this);
+        hlayout->addWidget(scrollArea);
+        scrollArea->setWidgetResizable(true);
+        scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        scrollArea->setWidget(scrollContents);
+        scrollContents->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+        gridLayout->setMargin(0);
+        gridLayout->setSpacing(0);
+    }
+    if(spectrumVec.size() < channelNum){
+        for (int var = spectrumVec.size(); var < channelNum; ++var) {
+            this->spectrumVec.push_back(new Spectrum(this));
+            gridLayout->addWidget(spectrumVec[var],int(var/2),var%2);
+        }
+    }else if(spectrumVec.size() > channelNum){
+        for (int var = spectrumVec.size(); var > channelNum; --var) {
+            auto widget = spectrumVec.back(); //得到最后一个
+            this->spectrumVec.pop_back(); //移除最后一个
+            gridLayout->removeWidget(widget);
+        }
+    }
     scrollContents->setLayout(gridLayout);
     setLayout(hlayout);
+//    QDockWidget *parent =(QDockWidget *) this->parentWidget();
+//    parent->setWidget(this);
     adjustSize();
 }
 
@@ -70,7 +85,6 @@ void JDynamicWidget::show()
 
 void JDynamicWidget::refresh()
 {
-    qDebug()<<"refresh"<<endl;
     auto it = this->mapData.begin();
     while (it!=mapData.end()) {
         int index = bindSpectrum[it->first];
@@ -97,6 +111,7 @@ void JDynamicWidget::stop()
 
 void JDynamicWidget::setDataViewEcho(std::map<QString, std::shared_ptr<StaticSpectralEchoSignal> > mapData)
 {
+    bindSpectrum.clear();
     this->mapData = mapData;
     auto it = mapData.begin();
     int index = 0;
@@ -207,6 +222,11 @@ void JDynamicWidget::setIsShowStatistic(bool state)
 JDynamicWidget::~JDynamicWidget()
 {
     delete ui;
+}
+
+void JDynamicWidget::resetWindow(QDockWidget *parent, JDynamicWidget *child)
+{
+    parent->setWidget(child);
 }
 
 

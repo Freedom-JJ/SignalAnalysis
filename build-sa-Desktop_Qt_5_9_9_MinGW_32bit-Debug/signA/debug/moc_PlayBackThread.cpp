@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_SumPlayBackThread_t {
     QByteArrayData data[3];
-    char stringdata0[31];
+    char stringdata0[32];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,11 +32,11 @@ struct qt_meta_stringdata_SumPlayBackThread_t {
 static const qt_meta_stringdata_SumPlayBackThread_t qt_meta_stringdata_SumPlayBackThread = {
     {
 QT_MOC_LITERAL(0, 0, 17), // "SumPlayBackThread"
-QT_MOC_LITERAL(1, 18, 11), // "stopRefresh"
-QT_MOC_LITERAL(2, 30, 0) // ""
+QT_MOC_LITERAL(1, 18, 12), // "playbackDone"
+QT_MOC_LITERAL(2, 31, 0) // ""
 
     },
-    "SumPlayBackThread\0stopRefresh\0"
+    "SumPlayBackThread\0playbackDone\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -68,14 +68,14 @@ void SumPlayBackThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         SumPlayBackThread *_t = static_cast<SumPlayBackThread *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->stopRefresh(); break;
+        case 0: _t->playbackDone(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
             typedef void (SumPlayBackThread::*_t)();
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&SumPlayBackThread::stopRefresh)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&SumPlayBackThread::playbackDone)) {
                 *result = 0;
                 return;
             }
@@ -121,7 +121,7 @@ int SumPlayBackThread::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void SumPlayBackThread::stopRefresh()
+void SumPlayBackThread::playbackDone()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }

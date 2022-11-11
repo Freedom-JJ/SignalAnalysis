@@ -29,7 +29,10 @@ class AirCraftCasingVibrateSystem
 {
 public:
     AirCraftCasingVibrateSystem();
-
+    static AirCraftCasingVibrateSystem * getInstance(){ //单列模式
+        static AirCraftCasingVibrateSystem * app = new AirCraftCasingVibrateSystem();
+        return app;
+    }
     bool m_isAlarm;//是否报警
     double m_alarmLimit;//报警上限
     static const int SHOW_CHANNEL_USE = 3; 	/// 通道使用标志
@@ -91,7 +94,9 @@ public:
     PlayBackDataState playBackDataState = NO_EXIST;
 
     void AirCraftCasingVibrateSystemInit();
-
+    void statrCapture();
+    void stopCapture();
+    void suspenCapture();
 /**********************************************************************************/
 
 };

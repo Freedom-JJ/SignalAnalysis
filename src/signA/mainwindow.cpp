@@ -1266,7 +1266,10 @@ void MainWindow::OnButtonStartCapture(){
 
     this->theApp->m_bThread = true;
     //界面相关设置
-    ui->dynamicSpectrum->setDataViewEcho(this->theApp->echoSignalQueue);
+
+    ui->dynamicSpectrum->init(this->theApp->echoSignalQueue);
+    ui->dynamicSpectrum->resetWindow(ui->dockWidget_main,ui->dynamicSpectrum);
+//    ui->dynamicSpectrum->setDataViewEcho(this->theApp->echoSignalQueue);
     ui->dynamicSpectrum->openAutoYAxisRescalse(2);
     ui->dynamicSpectrum->start();
 //    ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
@@ -1303,6 +1306,7 @@ void MainWindow::OnButtonStopCapture(){
 void MainWindow::OnBUttonSuspendCapture(){
 
     theApp->m_icollectState = 2;
+    ui->dynamicSpectrum->pause();
 
 }
 
@@ -1352,33 +1356,22 @@ void MainWindow::mainCloseSaveResource(){
 //开始回放
 
 void MainWindow::OnButtonStartPlayBack(){
-    if(theApp->playBackDataState == theApp->PlayBackDataState::NO_EXIST){
-        QMessageBox::warning(this,"错误","请打开数据文件");
-        return;
-    }
-
-    int old_playbackState = theApp->m_iplaybackState;
+//    if(theApp->playBackDataState == theApp->PlayBackDataState::NO_EXIST){
+//        QMessageBox::warning(this,"错误","请打开数据文件");
+//    }
+    OpenDataFileDialog *openfile = new OpenDataFileDialog(this,this);
+    openfile->exec(); //模态对话框，会阻塞 ，show是非模态
     if(theApp->m_iplaybackState == 1){
         return;         //正在回放就不能再点开始回放
     }
-
     theApp->m_iplaybackState = 1;
-
-    if(old_playbackState == 2){
-        return;
-    }
-
-
     mainPlayBack = new SumPlayBackThread(this);
     mainPlayBack->start();
-
     connect(mainPlayBack,SIGNAL(playbackDone()),this,SLOT(closePlaybackResource()));
-    ui->dynamicSpectrum->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
-//    ui->spectrunView->setY_isScale(false);
-//    ui->spectrunView->setYAxisRange(0,50000);
-//    ui->spectrunView->setXAxisRange(10000);
+    ui->dynamicSpectrum->init(this->theApp->echoSignalQueue);//回显信号对象传入
+    ui->dynamicSpectrum->resetWindow(ui->dockWidget_main,ui->dynamicSpectrum);
     ui->dynamicSpectrum->start();//开始显示
-
+}
 
 //停止回放(暂停回放)
 void MainWindow::OnButtonStopPlayBack(){
@@ -1387,7 +1380,7 @@ void MainWindow::OnButtonStopPlayBack(){
 
 }
 
-//回放读取文件结束后的槽函数
+//回放读取文件结束后的槽函数,自动调用
 void MainWindow::closePlaybackResource(){
 
     ui->spectrunView->stop();

@@ -74,7 +74,7 @@ void OpenDataFileDialog::on_pushButtonOpen_clicked()
 
     }
     mv->theApp->playBackDataState = mv->theApp->PlayBackDataState::EXIST;
-    close();
+    accept();
 
 
 }

@@ -1,3 +1,11 @@
+/*******************************
+*   File:       NewProjectDialog.h
+*   Author:     江德鸿
+*   Company:    哈尔滨理工大学
+*   Time:       2022-11-11
+*   eMail:      1714203542@qq.com
+*   brief:      新建项目窗口
+********************************/
 #ifndef NEWPROJECTDIALOG_H
 #define NEWPROJECTDIALOG_H
 

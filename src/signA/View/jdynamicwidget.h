@@ -19,6 +19,12 @@ public:
     explicit JDynamicWidget(QWidget *parent = nullptr);
     ~JDynamicWidget();
 
+    /**
+     * @brief resetWindow,窗口可能发生变化时调用
+     * @param parent
+     * @param child
+     */
+    void resetWindow(QDockWidget *parent , JDynamicWidget * child);
     void init( int channelNum = 4) ;
     void init(std::map<QString,std::shared_ptr<StaticSpectralEchoSignal>> mapData);
 

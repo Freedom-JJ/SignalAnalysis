@@ -713,11 +713,12 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
 
     //Chart Pannel
     mainCategoryChartPannel = mainRibbonCategory->addPannel(QStringLiteral("数据"));
-    mainCategoryChartPannel->addLargeAction(actionOpenData);
+//    mainCategoryChartPannel->addLargeAction(actionOpenData);
     mainCategoryChartPannel->addLargeAction(actionConnectRedis);
 
     //Value Operate Pannel
-    mainCategoryValuePannel = mainRibbonCategory->addPannel(QStringLiteral("参数"));
+//    mainCategoryValuePannel = mainRibbonCategory->addPannel(QStringLiteral("参数"));隐藏这个pannel
+    mainCategoryValuePannel = new SARibbonPannel();
     mainCategoryValuePannel->addLargeAction(actionImport);
     mainCategoryValuePannel->addLargeAction(actionExport);
     mainCategoryValuePannel->addLargeAction(actionsystemEport);
@@ -736,14 +737,16 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     operateCategoryChartEditorPannel->addLargeAction(actionStopCapture);
 
     //data view editor
-    operateCategoryDataViewPannel = operateRibbonCategory->addPannel(QStringLiteral("显示"));
+//    operateCategoryDataViewPannel = operateRibbonCategory->addPannel(QStringLiteral("显示"));删除显示这个pannel
+    operateCategoryDataViewPannel = new SARibbonPannel();//为了后面不报错
     operateCategoryDataViewPannel->setObjectName(QStringLiteral("operateCategorySelectEditorPannel"));
     operateCategoryDataViewPannel->addSmallAction(actionXYDataPicker);
     operateCategoryDataViewPannel->addSmallAction(actionYDataPicker);
     operateCategoryDataViewPannel->addSmallAction(actionXDataPicker);
 
     //legend pannel
-    chartLegendCategoryWindowPannel = operateRibbonCategory->addPannel("观测");
+//    chartLegendCategoryWindowPannel = operateRibbonCategory->addPannel("观测"); //删除观测这个pannel
+    chartLegendCategoryWindowPannel = new SARibbonPannel(); //为了后面的代码不报错
     chartLegendCategoryWindowPannel->addLargeAction(actionhorizontalLarge);
     chartLegendCategoryWindowPannel->addLargeAction(actionhorizontalSmall);
     chartLegendCategoryWindowPannel->addLargeAction(actionverticalLarge);
@@ -760,7 +763,8 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     chartGridCategoryWindowPannel->addLargeAction(actionStopPlayBack);
 
     //figure Opt pannel
-    figureOptRibbonPannel = operateRibbonCategory->addPannel("回放");
+//    figureOptRibbonPannel = operateRibbonCategory->addPannel("回放");删除这个pannel
+    figureOptRibbonPannel = new SARibbonPannel();
     figureOptRibbonPannel->addLargeAction(actionFigureEditSubPlotGeometry);
 
     //! 3.4 Analysis
@@ -773,7 +777,8 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
 //    analysisCategoryshebeiPannel = analysisRibbonCategory->addPannel(QStringLiteral("设备"));
 //    analysisCategoryshebeiPannel ->addLargeAction(actionShowLegend);
     //! 3.5 View Category Page
-    viewRibbonCategory = menuBar->addCategoryPage(QStringLiteral("设置"));
+//    viewRibbonCategory = menuBar->addCategoryPage(QStringLiteral("设置")); //取消选项栏
+    viewRibbonCategory = new SARibbonCategory();
     viewRibbonCategory->setObjectName(QStringLiteral("viewRibbonCategory"));
     //Window Pannel
     viewCategoryWindowPannel = viewRibbonCategory->addPannel(QStringLiteral("参数"));

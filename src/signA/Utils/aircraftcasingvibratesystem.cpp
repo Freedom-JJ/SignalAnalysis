@@ -20,8 +20,6 @@ void AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystemInit(){
     for(int i=0;i<m_vchannelCodes.size();i++){
         dataUrl[m_vchannelCodes[i]] = QString("D:\\QtCollectionData\\change-%1.txt").arg(m_vchannelCodes[i]);
     }
-
     m_redis = new RedisController();
-
 }
 
