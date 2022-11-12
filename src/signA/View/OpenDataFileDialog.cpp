@@ -25,7 +25,10 @@ void OpenDataFileDialog::initTableViewData()
 
     Result ress =  controller.getAllSumSignalWithProjectName(this->res);
     QStandardItemModel  * model = new QStandardItemModel();
-    model->setHorizontalHeaderLabels(QStringList()<<"ID"<<"开始时间"<<"结束数据"<<"项目名称");
+    model->setHorizontalHeaderLabels(QStringList()<<"ID"<<"开始时间"<<"结束时间"<<"项目名称");
+    //按时间最新排序
+    sort(res.begin(),res.end(),
+         [](SumSignalAndProjectNameVo &a , SumSignalAndProjectNameVo &b){ return a.getStartTime() > b.getStartTime();});
     for (int var = 0; var < this->res.size(); ++var) {
         QList<QStandardItem *> list;
         list.append(new QStandardItem(QString::fromStdString(res[var].getId())));
