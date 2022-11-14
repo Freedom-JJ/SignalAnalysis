@@ -2,6 +2,7 @@
 
 Collectionparas::Collectionparas()
 {
+    this->id = -1;
     this->sampleFrequency = 0;
     this->collectionMethod = 0;
     this->triggerMethod = 0;

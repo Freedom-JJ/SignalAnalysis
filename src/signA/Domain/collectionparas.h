@@ -42,6 +42,7 @@ public:
         stream << " line:"<<collectionparas.getLine();
         stream << " sampleBatch:"<<collectionparas.getSampleBatch();
         stream << " sampleClk:"<<collectionparas.getSampleClk();
+        return stream;
     }
 
 
