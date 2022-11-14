@@ -3,6 +3,7 @@ HEADERS += \
     $$PWD/Controller/collectionparacontroller.h \
     $$PWD/Controller/dictionarycontroller.h \
     $$PWD/Controller/usercontroller.h \
+    $$PWD/Dao/channeldao.h \
     $$PWD/Dao/collectionparasdao.h \
     $$PWD/Dao/dictionarydao.h \
     $$PWD/Dao/pdsql.h \
@@ -61,6 +62,7 @@ SOURCES += \
     $$PWD/Controller/collectionparacontroller.cpp \
     $$PWD/Controller/dictionarycontroller.cpp \
     $$PWD/Controller/usercontroller.cpp \
+    $$PWD/Dao/channeldao.cpp \
     $$PWD/Dao/collectionparasdao.cpp \
     $$PWD/Dao/dictionarydao.cpp \
     $$PWD/Dao/pdsql.cpp \

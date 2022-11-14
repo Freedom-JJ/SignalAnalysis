@@ -2,7 +2,7 @@
 
 Channel::Channel()
 {
-    this->id = 0;
+    this->id = -1;
     this->channelCode = "";
     this->channelDesc = "";
     this->measureType = 0;
@@ -10,12 +10,12 @@ Channel::Channel()
     this->inputMode = 0;
     this->upFreq = 0;
     this->elcPressure = 0;
-    this->projectId = 0;
+    this->projectId = -1;
 }
 
 Channel::Channel(vector<string> channels_attribute)
 {
-    if(channels_attribute.size()!=this->attribute_num){
+    if(int(channels_attribute.size())!=this->attribute_num){
         qCritical()<<"Channel initialized falsed, the size of channels_attribute should be equal to attribute_num";
     }
     this->id = mstoll(channels_attribute[0]);
