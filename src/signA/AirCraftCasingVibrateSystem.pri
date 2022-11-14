@@ -23,6 +23,7 @@ HEADERS += \
     $$PWD/Domain/user.h \
     $$PWD/Logger/log.h \
     $$PWD/Result/result.h \
+    $$PWD/Service/channelservice.h \
     $$PWD/Service/collectionparaservice.h \
     $$PWD/Service/dictionaryservice.h \
     $$PWD/Service/singlesignalservice.h \
@@ -82,6 +83,7 @@ SOURCES += \
     $$PWD/Domain/user.cpp \
     $$PWD/Logger/log.cpp \
     $$PWD/Result/result.cpp \
+    $$PWD/Service/channelservice.cpp \
     $$PWD/Service/collectionparaservice.cpp \
     $$PWD/Service/dictionaryservice.cpp \
     $$PWD/Service/singlesignalservice.cpp \
