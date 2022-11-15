@@ -8,7 +8,7 @@ ChannelDao::ChannelDao()
 vector<Channel *> ChannelDao::listChannels(string query_condition)
 {
     vector<vector<string> > query_result;
-    string query_sql  = "sselect * from channel " + query_condition;
+    string query_sql  = "select * from channel " + query_condition;
     qInfo()<<mstoqs(query_sql);
     global_pdsql->SelectMysql(query_result,query_sql);
     vector<Channel*> channels;
@@ -72,7 +72,7 @@ long long ChannelDao::insertChannel(Channel *channel, bool insert_id)
 
 int ChannelDao::deleteChannelById(long long channelId)
 {
-    string delete_sql = "select * from dictionary where id ='" + mlltos(channelId)+"'";
+    string delete_sql = "delete from dictionary where id ='" + mlltos(channelId)+"'";
     int delete_num = 0 ;
     global_pdsql->DeleteMysql(delete_num,delete_sql);
     qInfo()<< "删除通道记录"<< mstoqs(delete_sql);

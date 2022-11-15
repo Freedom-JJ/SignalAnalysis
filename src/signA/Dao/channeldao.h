@@ -20,7 +20,7 @@ public:
     vector<Channel*> getChannelsByProjectId(long long id);
 
     //添加通道，返回添加的通道id
-    long long insertChannel(Channel* channel, bool insert_id);
+    long long insertChannel(Channel* channel, bool insert_id=false);
 
     //删除通道,根据通道id，返回删除记录个数
     int deleteChannelById(long long channelId);

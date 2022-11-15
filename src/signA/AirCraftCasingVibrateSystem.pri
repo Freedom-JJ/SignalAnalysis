@@ -1,7 +1,9 @@
 HEADERS += \
     $$PWD/Controller/SignalController.h \
+    $$PWD/Controller/channelcontroller.h \
     $$PWD/Controller/collectionparacontroller.h \
     $$PWD/Controller/dictionarycontroller.h \
+    $$PWD/Controller/projectcontroller.h \
     $$PWD/Controller/usercontroller.h \
     $$PWD/Dao/channeldao.h \
     $$PWD/Dao/collectionparasdao.h \
@@ -26,6 +28,7 @@ HEADERS += \
     $$PWD/Service/channelservice.h \
     $$PWD/Service/collectionparaservice.h \
     $$PWD/Service/dictionaryservice.h \
+    $$PWD/Service/projectservice.h \
     $$PWD/Service/singlesignalservice.h \
     $$PWD/Service/sumsignalservice.h \
     $$PWD/Service/userservice.h \
@@ -60,8 +63,10 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/Controller/SignalController.cpp \
+    $$PWD/Controller/channelcontroller.cpp \
     $$PWD/Controller/collectionparacontroller.cpp \
     $$PWD/Controller/dictionarycontroller.cpp \
+    $$PWD/Controller/projectcontroller.cpp \
     $$PWD/Controller/usercontroller.cpp \
     $$PWD/Dao/channeldao.cpp \
     $$PWD/Dao/collectionparasdao.cpp \
@@ -86,6 +91,7 @@ SOURCES += \
     $$PWD/Service/channelservice.cpp \
     $$PWD/Service/collectionparaservice.cpp \
     $$PWD/Service/dictionaryservice.cpp \
+    $$PWD/Service/projectservice.cpp \
     $$PWD/Service/singlesignalservice.cpp \
     $$PWD/Service/sumsignalservice.cpp \
     $$PWD/Service/userservice.cpp \

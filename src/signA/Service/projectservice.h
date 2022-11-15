@@ -1,19 +1,15 @@
-#ifndef PROJECTDAO_H
-#define PROJECTDAO_H
+#ifndef PROJECTSERVICE_H
+#define PROJECTSERVICE_H
+#include "../Dao/projectdao.h"
 
-#include "../Domain/project.h"
-#include "pdsqlinitialize.h"
-#include <vector>
-
-
-class ProjectDao
+class ProjectService
 {
 public:
-    ProjectDao();
-    ~ProjectDao();
+    ProjectService();
+    ~ProjectService();
 
     //返回所有项目集合
-    vector<Project*> listProjects(string query_condition="");
+    vector<Project*> listProjects();
 
     //根据项目id，返回指定项目
     Project* getProjectById(long long id);
@@ -22,7 +18,7 @@ public:
     vector<Project*> getProjectsByUserId(long long userId);
 
     //添加项目
-    int insertProject(Project* project,bool insert_id = false);
+    int insertProject(Project* project);
 
     //更新项目
     int updateProject(Project* project);
@@ -32,7 +28,9 @@ public:
 
 
 
+private:
+    ProjectDao* projectDao;
 
 };
 
-#endif // PROJECTDAO_H
+#endif // PROJECTSERVICE_H

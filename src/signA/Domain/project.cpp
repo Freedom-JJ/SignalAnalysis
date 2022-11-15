@@ -2,6 +2,10 @@
 
 Project::Project()
 {
+    this->projectCreateTime = "";
+    this->projectUpdateTime = "";
+    this->userId = -1;
+    this->projectParameterId = -1;//对应collectionparas类的id
     this->projectStatus = 1;//默认状态
     this->projectName = "newProject";//默认项目名称
 }
