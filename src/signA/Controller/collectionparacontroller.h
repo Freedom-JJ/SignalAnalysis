@@ -15,7 +15,7 @@ public:
     //返回所有的采集参数记录集合
     Result findAllCollectionparas(vector<Collectionparas*> & collectionparas);
 
-    //添加采集参数记录，并返回id（注：这里部分参数需要到dictionary类中找对应的键值，数据库中的dictionary表）
+    //添加采集参数记录，并返回id（注：这里部分参数需要到dictionary类中找对应的键值，数据库中的dictinary表）
     Result addCollectionpara(Collectionparas* collectionparas, long long & collectionparasId);
 
     //更新采集参数记录
