@@ -60,10 +60,14 @@ void PlayBackThread::run(){
 
         playThread->theApp->echoSignalQueue[signalCode]->PushEchoSignal(fftwInputArray);
 
-        msleep(600);
+        for(int i=0;i<collectionPoints;i++){
+            playThread->theApp->m_mpredisCollectionDataQueue[this->signalCode].push(fftwInputArray[i]);
+        }
+
+        msleep(500);
     }
 
-
 }
+
 
 

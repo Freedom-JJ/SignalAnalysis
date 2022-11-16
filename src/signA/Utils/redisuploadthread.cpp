@@ -14,11 +14,11 @@ void RedisUploadThread::run(){
 
     qDebug() << "Connected to server...";
 
+    int SignalSequenceId = 0;
 
+    while(saveRedis->theApp->m_iplaybackState){ //采集端把开关换了  m_icollectState
 
-    while(saveRedis->theApp->m_icollectState){
-
-        if (saveRedis->theApp->m_icollectState == 2){
+        if (saveRedis->theApp->m_iplaybackState == 2){
              //暂停状态就卡在这
             msleep(10);
             continue;
@@ -44,8 +44,10 @@ void RedisUploadThread::run(){
 
            }
 
+        SignalSequenceId +=1;
         iter++;
      }
+
     }
 
     std::map<QString, ThreadSafeQueue<double>>::iterator iter = saveRedis->theApp->m_mpredisCollectionDataQueue.begin();
@@ -72,6 +74,7 @@ void RedisUploadThread::run(){
                QString jsonStr = saveRedis->theApp->m_redis->DataSerialize(saveData);
                consumerRedis->lpush(redisKey,jsonStr);
             }
+    SignalSequenceId += 1;
     iter++;
 
 }
@@ -106,8 +109,8 @@ void RedisConSumerThread::run(){
 
 
     ThreadSafeQueue<double> saveData;
-    while (redisConsumer->theApp->m_icollectState){
-        if (redisConsumer->theApp->m_icollectState == 2){
+    while (redisConsumer->theApp->m_iplaybackState){//采集端把按钮换了
+        if (redisConsumer->theApp->m_iplaybackState == 2){
              //暂停状态就卡在这
             msleep(10);
             continue;

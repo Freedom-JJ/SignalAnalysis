@@ -85,6 +85,19 @@
     <string>连接</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="InitButton">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>250</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>重置数据库</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

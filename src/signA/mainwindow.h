@@ -40,12 +40,14 @@ class MainWindowPrivate;
 #include "SAAddLineChartSetDialog.h"
 
 #include "Utils/PlayBackThread.h"
+#include "Utils/playbacksinglethread.h"
 #include "Utils/SaveCollectionDataThread.h"
 #include "Utils/GetDataThread.h"
 #include "Utils/SaveCollectionDataThread.h"
 #include "View/spectrum.h"
 #include "openprojectwindow.h"
 #include "Utils/JSaveCollectionDataThread.h"
+#include "Utils/getanalysisresultthread.h"
 #include "View/OpenDataFileDialog.h"
 #include "View/NewProjectDialog.h"
 #include "View/redissetupdialog.h"
@@ -65,11 +67,13 @@ class SAFigureWindow;
 class SAChart2D;
 class QwtPlotItem;
 
+class PLayBackSingleThread;
 class PlayBackThread;
 class SAAbstractDataImportInterface;
 class SARectRegionSelectEditor;
 class SumPlayBackThread;
 class RedisUploadThread;
+class GetAnalysisResultThread;
 class SaveCollectionDataThread;
 class StaticSpectralEchoSignal;
 class AirCraftCasingVibrateSystem;
@@ -111,6 +115,12 @@ public:
     RedisUploadThread *mainRedisUpload; //保存redis的对象
 
     SumPlayBackThread *  mainPlayBack;//用于回放数据的对象
+
+    PLayBackSingleThread *mainSinglePLayBack; //单线程回放数据
+
+    GetAnalysisResultThread *mainGetAnalysisResult; //取redis结果线程
+
+
 
     void CreateCaptureWindow(); //创建采集窗口（队列等初始化操作）
 
@@ -197,6 +207,8 @@ public slots:
     * @brief ：回放文件读取结束后自动释放资源
     */
     void closePlaybackResource();
+
+    void closeSinglePlaybackRescouce();
 
 public:
 
