@@ -13,20 +13,18 @@ public:
     //返回所有的通道,返回的通道集合保存在channels中
     Result listAllChannels(vector<Channel*> &channels);
 
-    //返回指定项目id对应的所有通道
-    Result listChannelsByProjectId(long long projectId,vector<Channel*> &channels);
 
     //返回指定通道id对应的通道
-    Result getChannelByChannelId(long long channelId,vector<Channel*> &channels);
+    Result getChannelByChannelId(long long channelId,Channel* &channel);
 
     //添加通道
-    Result addChannel(Channel* channel);
+    Result addChannel(Channel* channel,long long &channelId);
 
     //根据通道id删除通道
-    Result deleteChannelById(long long id);
+    Result deleteChannel(Channel* channel);
 
     //更新通道（根据通道id找到要更新的通道）
-    Result updateChannelById(long long id);
+    Result updateChannel(Channel* channel);
 
 
 
