@@ -7,7 +7,7 @@ SignalFeature::SignalFeature()
 
 
 
-std::map<QString, double> SignalFeature::getFeaturesWithMap(QVector<double> &value)
+std::map<QString, double> SignalFeature::getFeaturesWithMap(const QVector<double> &value)
 {
     meanv=0,minv=0,maxv=0,s2v=0,ev=0,sumv=0,peakv=0;
     for(int index = 0 ; index < value.size(); index++){

@@ -80,6 +80,7 @@ HEADERS += \
     $$PWD/View/JSpectrumWindow.h \
     $$PWD/View/NewProjectDialog.h \
     $$PWD/View/OpenDataFileDialog.h \
+    $$PWD/View/alalysisresultview.h \
     $$PWD/View/jbasesamplewindow.h \
     $$PWD/View/jdataviewecho.h \
     $$PWD/View/jdynamicwidget.h \
@@ -89,6 +90,9 @@ HEADERS += \
     $$PWD/View/qcustomplot.h \
     $$PWD/View/redissetupdialog.h \
     $$PWD/View/spectrum.h \
+    $$PWD/Vo/analysisresult.h \
+    $$PWD/interface/isignaljumpable.h \
+    $$PWD/interface/itimeaxis.h \
     $$PWD/tDemo/singnalcontrollertest.h \
     $$PWD/Vo/sumsignalandprojectnamevo.h
 
@@ -137,6 +141,7 @@ SOURCES += \
     $$PWD/View/JspectrumWindow.cpp \
     $$PWD/View/NewProjectDialog.cpp \
     $$PWD/View/OpenDataFileDialog.cpp \
+    $$PWD/View/alalysisresultview.cpp \
     $$PWD/View/jbasesamplewindow.cpp \
     $$PWD/View/jdataviewecho.cpp \
     $$PWD/View/jdynamicwidget.cpp \
@@ -146,6 +151,9 @@ SOURCES += \
     $$PWD/View/qcustomplot.cpp \
     $$PWD/View/redissetupdialog.cpp \
     $$PWD/View/spectrum.cpp \
+    $$PWD/Vo/analysisresult.cpp \
+    $$PWD/interface/isignaljumpable.cpp \
+    $$PWD/interface/itimeaxis.cpp \
     $$PWD/tDemo/singnalcontrollertest.cpp \
     $$PWD/Vo/sumsignalandprojectnamevo.cpp
 
@@ -156,6 +164,7 @@ DISTFILES +=
 FORMS += \
     $$PWD/View/NewProjectDialog.ui \
     $$PWD/View/OpenDataFileDialog.ui \
+    $$PWD/View/alalysisresultview.ui \
     $$PWD/View/jdynamicwidget.ui \
     $$PWD/View/redissetupdialog.ui \
     $$PWD/View/spectrum.ui \

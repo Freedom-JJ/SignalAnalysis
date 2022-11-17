@@ -20,6 +20,7 @@ Spectrum::Spectrum(QWidget *parent) :
     plot->graph(0)->setPen(QPen(QColor(Qt::red)));
     layout->addWidget(plot,0,0);
     this->setLayout(layout);
+
     this->textItem = new QCPItemText(this->plot);
     textItem->setPositionAlignment(Qt::AlignTop|Qt::AlignLeft);
     textItem->setText("");
@@ -35,14 +36,22 @@ Spectrum::~Spectrum()
     delete textItem;
     delete plot;
     delete ui;
+    delete axisRect;
+    delete normalBars;
+    delete abnormalBars;
+    delete timer;
 
+    axisRect = nullptr;
+    normalBars = nullptr;
+    abnormalBars = nullptr;
+    timer = nullptr;
     ui=nullptr;
     plot = nullptr;
     textItem=nullptr;
 
 }
 
-void Spectrum::init(QVector<double> *initData)
+void Spectrum::init(const QVector<double> *initData)
 {
     if (initData != nullptr){
         key = new QVector<double>(initData->size());
@@ -103,15 +112,19 @@ void Spectrum::show()
     this->plot->show();
 }
 
-void Spectrum::refresh(QVector<double> &data)
+void Spectrum::refresh(const QVector<double> &data)
 {
     if(data.size()==0)
         return;
     refresh(feature->getFeaturesWithMap(data),data);
 }
 
-void Spectrum::refresh(std::map<QString, double> statistic, QVector<double> &data)
+void Spectrum::refresh(std::map<QString, double> statistic,const QVector<double> &data)
 {
+
+    auto dataVec = new QVector<double>();
+
+
     this->plot->graph(0)->data()->clear();
     if(data.size() == 0 ){
         return;
@@ -128,6 +141,7 @@ void Spectrum::refresh(std::map<QString, double> statistic, QVector<double> &dat
     if(this->key == nullptr){
         this->init(&data);
     }
+    refreshTimeAxis();
 
     this->plot->graph(0)->addData(*key,data);
     if (yIsRescale == true){
@@ -138,8 +152,8 @@ void Spectrum::refresh(std::map<QString, double> statistic, QVector<double> &dat
         this->plot->graph(0)->valueAxis()->setRange(yStart,yStop);
         this->plot->graph(0)->keyAxis()->setRange(0.0,this->range/1.0);
     }
-    this->plot->replot();
-
+//    this->plot->replot();
+    plot->replot(QCustomPlot::rpQueuedReplot);
 
 }
 
@@ -151,6 +165,7 @@ void Spectrum::autoRescale(double rate)
 
 void Spectrum::start()
 {
+    clearTimeAxis();
     if(viewData == nullptr){
         QMessageBox me(QMessageBox::Warning,"提示","没有设置显示数据对象");
         me.exec();
@@ -183,3 +198,87 @@ void Spectrum::closeStatstic()
 {
     isShowStatistic = false;
 }
+
+void Spectrum::openTimeAxis()
+{
+    if(isOpenTimeAxis)
+        return;
+    analysisBuffer.reserve(10);
+    //创建时间轴
+    this->axisRect = new QCPAxisRect(plot);
+    plot->plotLayout()->addElement(1,0,axisRect);
+    plot->plotLayout()->setRowSpacing(0);
+    plot->plotLayout()->setMargins(QMargins(0,0,0,0));
+    plot->setInteractions(QCP::iRangeDrag);
+    axisRect->setMaximumSize(QSize(QWIDGETSIZE_MAX,10));
+    axisRect->setRangeDrag(Qt::Horizontal);
+    normalBars = new QCPBars(axisRect->axis(QCPAxis::atBottom),axisRect->axis(QCPAxis::atLeft));
+    abnormalBars = new QCPBars(axisRect->axis(QCPAxis::atBottom),axisRect->axis(QCPAxis::atLeft));
+
+    normalBars->setPen(Qt::NoPen);
+    normalBars->setBrush(QColor(Qt::GlobalColor::green));
+    normalBars->setWidth(barWidth-0.1);
+    abnormalBars->setPen(Qt::NoPen);
+    abnormalBars->setBrush(QColor(Qt::GlobalColor::red));
+    abnormalBars->setWidth(barWidth-0.1);
+    axisRect->axis(QCPAxis::atLeft)->setVisible(false);
+    isOpenTimeAxis = true;
+}
+
+void Spectrum::closeTimeAxis()
+{
+    if(isOpenTimeAxis == false)
+        return;
+    bool flag = plot->plotLayout()->remove(axisRect);
+
+    if(flag){
+        qDebug()<<"删除成功"<<endl;
+    }
+    isOpenTimeAxis = false;
+}
+
+void Spectrum::clearTimeAxis()
+{
+    if (isOpenTimeAxis == false)
+        return;
+    normalBars->data()->clear();
+    abnormalBars->data()->clear();
+    count=0;
+}
+
+
+void Spectrum::addDataTimeAxis(AnalysisResult &res)
+{
+    if(isOpenTimeAxis == false){
+        return;
+    }
+    std::lock_guard<std::mutex> lk(mu);
+
+    analysisBuffer.append(res);
+}
+
+//加锁了，速度变快还是会闪退
+void Spectrum::refreshTimeAxis()
+{
+    if(isOpenTimeAxis ){
+        std::lock_guard<std::mutex> lk(mu);
+        for(auto res:analysisBuffer){
+            if(count!=res.getId().toInt()){
+                qDebug()<<"信号反馈祯ID不对应";
+            }
+            if(res.getErrorInf()==AnalysisResult::ABNORMAL){
+                abnormalBars->addData(count*barWidth,20);
+            }else{
+                normalBars->addData(count*barWidth,20);
+            }
+            count++;
+            if(count>200){
+                axisRect->axis(QCPAxis::atBottom)->rescale();
+            }else{
+                axisRect->axis(QCPAxis::atBottom)->setRange(0,200);
+            }
+        }
+        analysisBuffer.clear();
+    }
+}
+

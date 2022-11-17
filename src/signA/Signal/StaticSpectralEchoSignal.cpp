@@ -33,7 +33,6 @@ QVector<double> StaticSpectralEchoSignal::PopEchoSignal(){
 
     delete fftinput;
     fftinput = nullptr;
-
     return echoSignal;
 }
 

@@ -1,6 +1,7 @@
 #include "aircraftcasingvibratesystem.h"
 
-AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystem()
+AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystem():
+    analysisResult(new std::map<QString,QVector<AnalysisResult>>())
 {
     AirCraftCasingVibrateSystemInit();
 
@@ -8,6 +9,7 @@ AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystem()
 
 
 void AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystemInit(){
+
     m_vchannelCodes = vector<QString>(channelNumber);
     for(int i=0;i<channelNumber;i++){
         QString channelCode =  QString::number(i);
@@ -22,4 +24,20 @@ void AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystemInit(){
     }
     m_redis = new RedisController();
 }
+
+std::shared_ptr<std::map<QString, QVector<AnalysisResult> > > AirCraftCasingVibrateSystem::getAnalysisResult() const
+{
+    return analysisResult;
+}
+
+void AirCraftCasingVibrateSystem::clearAnalysisResult()
+{
+    auto it = analysisResult->begin();
+    while(it!=analysisResult->end()){
+        (*analysisResult)[it->first].clear();
+        it++;
+    }
+}
+
+
 

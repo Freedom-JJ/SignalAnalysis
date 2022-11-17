@@ -27,7 +27,7 @@ public:
           return &feature;
     }
 
-    std::map<QString,double> getFeaturesWithMap(QVector<double> &value);
+    std::map<QString,double> getFeaturesWithMap(const QVector<double> &value);
     QString getFeaturesWithString(QVector<double> &value);
     double getMax();
     double maxv,minv,meanv;

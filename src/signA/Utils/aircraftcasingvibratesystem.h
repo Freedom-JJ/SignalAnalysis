@@ -22,7 +22,7 @@
 #include "Controller/SignalController.h"
 #include "Domain/sumSignal.h"
 #include "RedisTools/rediscontroller.h"
-
+#include "Vo/analysisresult.h"
 class StaticSpectralEchoSignal;
 
 class AirCraftCasingVibrateSystem
@@ -99,6 +99,11 @@ public:
     void suspenCapture();
 /**********************************************************************************/
 
+
+    std::shared_ptr<std::map<QString, QVector<AnalysisResult> > > getAnalysisResult() const;
+    void clearAnalysisResult();
+private:
+    std::shared_ptr<std::map<QString,QVector<AnalysisResult>>> analysisResult;
 };
 
 

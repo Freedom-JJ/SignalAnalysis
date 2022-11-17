@@ -87,15 +87,48 @@ void JDynamicWidget::refresh()
 {
     auto it = this->mapData.begin();
     while (it!=mapData.end()) {
+
         int index = bindSpectrum[it->first];
         QVector<double> data = it->second->PopEchoSignal();
+//        spectrumVec[index]->refresh(data); //内部排除了size为0
+
+        //测试异常判断，极其相关接口
+        int num = count[it->first];
+        if(num == 0){
+            oldData[it->first] = data;
+        }
+        double maxn=0;
+        for (int var = 0; var < data.size(); ++var) {
+            maxn = max(qAbs(data[var] - oldData[it->first][var]) , maxn);
+        }
+        AnalysisResult res;
+        if(maxn>1000){
+            res.setChannel(it->first);
+            res.setId(QString::number(num));
+            res.setErrorInf(AnalysisResult::ABNORMAL);
+            res.setStart(QString::number(num));
+            res.setEnd(QString::number(num +1));
+        }else{
+            res.setChannel(it->first);
+            res.setId(QString::number(num));
+            res.setErrorInf(AnalysisResult::NORMAL);
+            res.setStart(QString::number(num));
+            res.setEnd(QString::number(num +1));
+        }
+        addDataTimeAxis(res);
         spectrumVec[index]->refresh(data); //内部排除了size为0
+        count[it->first] = num+1;
+        oldData[it->first] = data;
         it++;
     }
 }
 
 void JDynamicWidget::start()
 {
+
+    for (int var = 0; var < spectrumVec.size(); ++var) {
+        spectrumVec[var]->clearTimeAxis();
+    }
     if(timer->isActive()){
         return;
     }
@@ -116,6 +149,7 @@ void JDynamicWidget::setDataViewEcho(std::map<QString, std::shared_ptr<StaticSpe
     auto it = mapData.begin();
     int index = 0;
     while (it!=mapData.end()) {
+        count[it->first] = 0;
         bindSpectrum[it->first] = index++;
         it++;
     }
@@ -167,60 +201,52 @@ void JDynamicWidget::setIsShowStatistic(bool state)
     }
 }
 
+void JDynamicWidget::openTimeAxis()
+{
+    for (int var = 0; var < spectrumVec.size(); ++var) {
+        spectrumVec[var]->openTimeAxis();
+    }
+}
 
+void JDynamicWidget::closeTimeAxis()
+{
+    for (int var = 0; var < spectrumVec.size(); ++var) {
+        spectrumVec[var]->closeTimeAxis();
+    }
+}
 
+void JDynamicWidget::addDataTimeAxis(QVector<AnalysisResult> res)
+{
+    for(auto index : res){
+        addDataTimeAxis(index);
+    }
+}
 
+//需要预防多线程调用
+void JDynamicWidget::addDataTimeAxis(AnalysisResult res)
+{
+    std::lock_guard<mutex> lk(mu);
+    //通道错误
+    if(bindSpectrum.count(res.getChannel())==0){
+        qDebug()<<"信号反馈结果，的通道不存在"<<endl;
+        return;
+    }
+    if(res.getErrorInf()==AnalysisResult::ABNORMAL){
+        (*analysisResult)[res.getChannel()].append(res);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    int index = bindSpectrum[res.getChannel()];
+    spectrumVec[index]->addDataTimeAxis(res);
+}
 
 JDynamicWidget::~JDynamicWidget()
 {
+    qDebug()<<"释放成功"<<endl;
+    delete timer;
+    delete scrollArea;
+    delete hlayout;
+    delete gridLayout;
+    delete scrollContents;
     delete ui;
 }
 
@@ -252,7 +278,34 @@ void JDynamicWidget::resizeEvent(QResizeEvent *event)
     qDebug()<<"new size: w = "<<event->size().width() <<" h = "<<event->size().height()<<endl;
 }
 
+void JDynamicWidget::setAnalysisResult(const std::shared_ptr<std::map<QString, QVector<AnalysisResult> > > &value)
+{
+    analysisResult = value;
+}
+
+
+
 void JDynamicWidget::mouseClick()
 {
     qDebug()<<this->parentWidget()->width()<<endl<<this->parentWidget()->height()<<endl;
+}
+
+//暂时无法实现，因为缺少存储的数据
+void JDynamicWidget::jumpAndRefresh(const AnalysisResult &value)
+{
+
+}
+
+void JDynamicWidget::jumpAndRefresh(const std::map<QString, QVector<double> > &value)
+{
+    auto it = value.begin();
+    while(it!=value.end()){
+        if (bindSpectrum.count(it->first)==0){
+            qDebug()<<"通道不存在!!!"<<endl;
+            continue;
+        }
+        int index = bindSpectrum[it->first];
+        spectrumVec[index]->refresh(it->second);
+        it++;
+    }
 }

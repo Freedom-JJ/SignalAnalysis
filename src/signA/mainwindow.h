@@ -50,7 +50,7 @@ class MainWindowPrivate;
 #include "View/NewProjectDialog.h"
 #include "View/redissetupdialog.h"
 #include "Utils/redisuploadthread.h"
-
+#include "View/alalysisresultview.h"
 
 class QProgressBar;
 class QActionGroup;
@@ -401,6 +401,7 @@ private slots:
 
     void OnButtonStopPlayBack();
 
+    void OnButtonAnalysis();
     //焦点变换触发的槽
     void onFocusChanged(QWidget *old, QWidget *now);
 

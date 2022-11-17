@@ -1,8 +1,6 @@
 #include "SaveCollectionDataThread.h"
 
 void SaveCollectionDataThread::run(){
-
-
     saveThread->theApp->m_bisSave = true;
     string uuid;
     UUIDUtil::GetUUID(uuid);
@@ -44,7 +42,6 @@ void SaveCollectionDataThread::run(){
         delete threadVector[i];
     }
     emit AllConsumerSaved();
-
 }
 
 void ConsumerThread::run(){
@@ -75,6 +72,7 @@ void ConsumerThread::run(){
     consumer->theApp->m_signalController.saveSingleSignal(m_signal);
     consumer->theApp->saveSignalMutex.unlock();
 
+    int count = 0;
     ThreadSafeQueue<double> saveData;
     while (consumer->theApp->m_icollectState){
         if (consumer->theApp->m_icollectState == 2){
@@ -84,7 +82,7 @@ void ConsumerThread::run(){
         }
         while (consumer->theApp->m_mpcolllectioinDataQueue[signalCode].size() > 0){
             //qDebug()<<"\n队列长度%d\n", m_mpcolllectioinDataQueue[signalCode].size()<<endl;
-            //push一个double不合理，push之后立马传输到stream也不合理
+
             saveData.push(*(consumer->theApp->m_mpcolllectioinDataQueue[signalCode].wait_and_pop()));
             if (saveData.size() == consumer->theApp->m_icollectSignalsStoreCount){
                 consumer->theApp->m_signalController.SaveCollectionData2Binary(outputStream,saveData);
@@ -107,6 +105,7 @@ void ConsumerThread::run(){
     f.close();
 
 }
+
 
 
 

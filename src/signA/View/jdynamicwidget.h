@@ -7,11 +7,13 @@
 #include"spectrum.h"
 #include"Signal/StaticSpectralEchoSignal.h"
 #include"Utils/SignalFeature.h"
+#include "interface/itimeaxis.h"
+#include "interface/isignaljumpable.h"
 namespace Ui {
 class JDynamicWidget;
 }
 
-class JDynamicWidget : public QWidget
+class JDynamicWidget : public QWidget ,public ITimeAxis,public ISignalJumpAble
 {
     Q_OBJECT
 
@@ -83,9 +85,14 @@ public:
       */
      void setIsShowStatistic(bool );
 
-
-
-
+      void openTimeAxis() override;
+     void closeTimeAxis() override;
+     /**
+      * @brief 往时间轴添加数据,供外部调用
+      * @param res
+      */
+     void addDataTimeAxis(QVector<AnalysisResult> res) override;
+     void addDataTimeAxis(AnalysisResult) override;
 
 protected:
     void mousePressEvent(QMouseEvent *ev);
@@ -102,14 +109,25 @@ private:
     QVector<Spectrum *> spectrumVec;
     std::map<QString,int> bindSpectrum;
     std::map<QString, std::shared_ptr<StaticSpectralEchoSignal> > mapData;
-    SignalFeature * feature = SignalFeature::getInstance();
-
-
+    SignalFeature * feature = SignalFeature::getInstance();    
     double yStart,yEnd;
+
+    //存放异常数据
+    std::shared_ptr<std::map<QString,QVector<AnalysisResult>>> analysisResult;
+    std::map<QString,int> count;
+    std::map<QString,QVector<double>> oldData;
+    mutex mu;
  signals:
     void clicked();
  public slots:
     void mouseClick();
+
+    // ISignalJumpAble interface
+public:
+    void jumpAndRefresh(const AnalysisResult &) override;
+    void jumpAndRefresh(const std::map<QString, QVector<double> > &) override;
+
+    void setAnalysisResult(const std::shared_ptr<std::map<QString, QVector<AnalysisResult> > > &value);
 };
 
 #endif // JDYNAMICWIDGET_H

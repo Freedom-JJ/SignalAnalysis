@@ -9,9 +9,12 @@
 #define SPECTRUM_H
 
 #include <QWidget>
+#include<mutex>
 #include "qcustomplot.h"
 #include "Signal/BaseEchoSignal.h"
 #include "Utils/SignalFeature.h"
+#include "Vo/analysisresult.h"
+
 namespace Ui {
 class Spectrum;
 }
@@ -28,7 +31,7 @@ public:
     /**
      * @brief 初始化一系列行为,vector数据为y轴，下标为x轴
      */
-    void init(QVector<double> *initData = nullptr);
+    void init(const QVector<double> *initData = nullptr);
     /**
      * @brief init,刷新是否自动缩放，初始显示的值(一次)
      * @param isRescale
@@ -85,13 +88,13 @@ public:
      /**
       * @brief 由上层调用
       */
-     void refresh(QVector<double> &data);
+     void refresh(const QVector<double> &data);
      /**
       * @brief 由上层调用
       * @param statistic
       * @param data
       */
-     void refresh(std::map<QString,double> statistic , QVector<double> &data);
+     void refresh(std::map<QString,double> statistic ,const QVector<double> &data);
 
      void autoRescale(double rate);
 
@@ -106,12 +109,30 @@ public:
 
      void openStatistic();
      void closeStatstic();
+     void openTimeAxis();
+     void closeTimeAxis();
+     void clearTimeAxis();
+     //数据添加到缓冲区,避免直接添加replot过快照成的闪退
+     void addDataTimeAxis(AnalysisResult &res);
 
 
 private:
-    Ui::Spectrum *ui;
-    QCustomPlot *plot;
-    QCPItemText *textItem;
+      void refreshTimeAxis();
+
+private:
+     Ui::Spectrum *ui;
+     QCustomPlot *plot = nullptr;
+     QCPItemText *textItem = nullptr; //统计值
+
+    QVector<AnalysisResult> analysisBuffer;
+    std::mutex mu;//添加时间轴buffer和消费时间轴buffer的锁
+    QCPAxisRect *axisRect = nullptr; //时间轴
+    QCPBars *normalBars = nullptr;  //正常信号显示
+    QCPBars *abnormalBars = nullptr;//异常信号显示
+    bool isOpenTimeAxis = false;
+
+    double barWidth = 1;
+    int count = 0; //信号数
     QVector<double> *key = nullptr;
     BaseEchoSignal * viewData;
     double rescaleRate = 1.2;

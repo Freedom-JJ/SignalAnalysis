@@ -60,7 +60,7 @@ void PlayBackThread::run(){
 
         playThread->theApp->echoSignalQueue[signalCode]->PushEchoSignal(fftwInputArray);
 
-        msleep(600);
+        msleep(100);
     }
 
 

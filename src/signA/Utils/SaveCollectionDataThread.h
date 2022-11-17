@@ -22,7 +22,8 @@
 #include "Tools/datautil.h"
 #include "Domain/singlesignal.h"
 #include "Controller/SignalController.h"
-
+#include"interface/itimeaxis.h"
+#include"Vo/analysisresult.h"
 class ConsumerThread;
 
 class SaveCollectionDataThread : public QThread
@@ -68,7 +69,6 @@ public:
     MainWindow *consumer;
     QString signalCode;
     SingleSignal *m_signal;
-
 
 };
 #endif // SAVECOLLECTIONDATATHREAD_H

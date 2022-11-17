@@ -241,6 +241,8 @@ void MainWindow::initUI()
     //回放功能
     connect(ui->actionStartPlayBack,&QAction::triggered,this,&MainWindow::OnButtonStartPlayBack);
     connect(ui->actionStopPlayBack,&QAction::triggered,this,&MainWindow::OnButtonStopPlayBack);
+    //分析结果
+    connect(ui->actionAnalsis,&QAction::triggered,this,&MainWindow::OnButtonAnalysis);
 	//////////////////////////////////////////////////////////////////////////
 	//model
 	//////////////////////////////////////////////////////////////////////////
@@ -1265,16 +1267,15 @@ void MainWindow::OnButtonStartCapture(){
     }
 
     this->theApp->m_bThread = true;
-    //界面相关设置
-
+    //界面相关设置,重新构造
+    ui->dynamicSpectrum = new JDynamicWidget(this);
     ui->dynamicSpectrum->init(this->theApp->echoSignalQueue);
     ui->dynamicSpectrum->resetWindow(ui->dockWidget_main,ui->dynamicSpectrum);
-//    ui->dynamicSpectrum->setDataViewEcho(this->theApp->echoSignalQueue);
     ui->dynamicSpectrum->openAutoYAxisRescalse(2);
+    ui->dynamicSpectrum->setAnalysisResult(this->theApp->getAnalysisResult());
+    ui->dynamicSpectrum->setInterval(500);
     ui->dynamicSpectrum->start();
-//    ui->spectrunView->setDataViewEcho(this->theApp->echoSignalQueue);//回显信号对象传入
-//    ui->spectrunView->start();//开始显示
-//    ui->spectrunView->setReScaleRate(2);
+    ui->dynamicSpectrum->closeTimeAxis();
     sampleThread = new GetDataThread(this);
     mainSaveData = new SaveCollectionDataThread(this);
     mainRedisUpload = new RedisUploadThread(this,theApp->initHost,theApp->initPort);
@@ -1288,7 +1289,6 @@ void MainWindow::OnButtonStartCapture(){
     }
     connect(mainSaveData,SIGNAL(AllConsumerSaved()),this,SLOT(mainCloseSaveResource()));
     mainSaveData->start();
-
 }
 
 //停止采集
@@ -1356,9 +1356,10 @@ void MainWindow::mainCloseSaveResource(){
 //开始回放
 
 void MainWindow::OnButtonStartPlayBack(){
-//    if(theApp->playBackDataState == theApp->PlayBackDataState::NO_EXIST){
-//        QMessageBox::warning(this,"错误","请打开数据文件");
-//    }
+
+    //清理掉上一次的错误信息
+    theApp->clearAnalysisResult();
+
     OpenDataFileDialog *openfile = new OpenDataFileDialog(this,this);
     openfile->exec(); //模态对话框，会阻塞 ，show是非模态
     if(theApp->m_iplaybackState == 1){
@@ -1370,20 +1371,31 @@ void MainWindow::OnButtonStartPlayBack(){
     connect(mainPlayBack,SIGNAL(playbackDone()),this,SLOT(closePlaybackResource()));
     ui->dynamicSpectrum->init(this->theApp->echoSignalQueue);//回显信号对象传入
     ui->dynamicSpectrum->resetWindow(ui->dockWidget_main,ui->dynamicSpectrum);
+    ui->dynamicSpectrum->setInterval(200);
+    ui->dynamicSpectrum->setAnalysisResult(this->theApp->getAnalysisResult());
     ui->dynamicSpectrum->start();//开始显示
+    ui->dynamicSpectrum->openTimeAxis();
 }
 
-//停止回放(暂停回放)
+//停止回放
 void MainWindow::OnButtonStopPlayBack(){
 
-    theApp->m_iplaybackState = 2;
+    theApp->m_iplaybackState = 0;
+    ui->dynamicSpectrum->stop();
+
+}
+void MainWindow::OnButtonAnalysis(){
+
+    auto e = new AlalysisResultView(this);
+    e->show();
+//    e->setAnalysisResult(this->theApp->getAnalysisResult());
 
 }
 
 //回放读取文件结束后的槽函数,自动调用
 void MainWindow::closePlaybackResource(){
 
-    ui->spectrunView->stop();
+    ui->dynamicSpectrum->stop();
     theApp->m_iplaybackState = 0;
 
     mainPlayBack->quit();
@@ -1398,14 +1410,7 @@ void MainWindow::closePlaybackResource(){
 }
 /*****************************wzx**************************************/
 
-
-
-
 void MainWindow::CreateCaptureWindow(){
-
-
-
-
 
 }
 

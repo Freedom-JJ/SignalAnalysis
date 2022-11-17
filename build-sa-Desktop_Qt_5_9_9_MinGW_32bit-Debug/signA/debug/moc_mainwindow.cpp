@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[151];
-    char stringdata0[3672];
+    QByteArrayData data[152];
+    char stringdata0[3689];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -76,113 +76,114 @@ QT_MOC_LITERAL(40, 652, 19), // "OnButtonStopCapture"
 QT_MOC_LITERAL(41, 672, 22), // "OnBUttonSuspendCapture"
 QT_MOC_LITERAL(42, 695, 21), // "OnButtonStartPlayBack"
 QT_MOC_LITERAL(43, 717, 20), // "OnButtonStopPlayBack"
-QT_MOC_LITERAL(44, 738, 14), // "onFocusChanged"
-QT_MOC_LITERAL(45, 753, 3), // "old"
-QT_MOC_LITERAL(46, 757, 3), // "now"
-QT_MOC_LITERAL(47, 761, 29), // "onTreeViewValueManagerClicked"
-QT_MOC_LITERAL(48, 791, 5), // "index"
-QT_MOC_LITERAL(49, 797, 35), // "onTreeViewValueManagerDoubleC..."
-QT_MOC_LITERAL(50, 833, 48), // "onTreeViewValueManagerCustomC..."
-QT_MOC_LITERAL(51, 882, 3), // "pos"
-QT_MOC_LITERAL(52, 886, 28), // "onActionValueRenameTriggered"
-QT_MOC_LITERAL(53, 915, 21), // "onActionOpenTriggered"
-QT_MOC_LITERAL(54, 937, 27), // "onActionNewProjectTriggered"
-QT_MOC_LITERAL(55, 965, 21), // "onActionSaveTriggered"
-QT_MOC_LITERAL(56, 987, 23), // "onActionSaveAsTriggered"
-QT_MOC_LITERAL(57, 1011, 29), // "onActionClearProjectTriggered"
-QT_MOC_LITERAL(58, 1041, 34), // "onActionValueCreateWizardTrig..."
-QT_MOC_LITERAL(59, 1076, 40), // "onActionValueCreateDoubleVect..."
-QT_MOC_LITERAL(60, 1117, 39), // "onActionValueCreatePointVecto..."
-QT_MOC_LITERAL(61, 1157, 40), // "onActionValueCreateVariantTab..."
-QT_MOC_LITERAL(62, 1198, 27), // "onMdiAreaSubWindowActivated"
-QT_MOC_LITERAL(63, 1226, 14), // "QMdiSubWindow*"
-QT_MOC_LITERAL(64, 1241, 4), // "arg1"
-QT_MOC_LITERAL(65, 1246, 17), // "onSubWindowClosed"
-QT_MOC_LITERAL(66, 1264, 38), // "onActionViewValueInCurrentTab..."
-QT_MOC_LITERAL(67, 1303, 44), // "onActionViewValueAppendInCurr..."
-QT_MOC_LITERAL(68, 1348, 34), // "onActionViewValueInNewTabTrig..."
-QT_MOC_LITERAL(69, 1383, 28), // "onActionValueDeleteTriggered"
-QT_MOC_LITERAL(70, 1412, 16), // "onActionOpenData"
-QT_MOC_LITERAL(71, 1429, 17), // "onRedisConnection"
-QT_MOC_LITERAL(72, 1447, 29), // "onActionAddLineChartTriggered"
-QT_MOC_LITERAL(73, 1477, 28), // "onActionAddBarChartTriggered"
-QT_MOC_LITERAL(74, 1506, 34), // "onActionAddHistogramChartTrig..."
-QT_MOC_LITERAL(75, 1541, 32), // "onActionAddScatterChartTriggered"
-QT_MOC_LITERAL(76, 1574, 28), // "onActionAddBoxChartTriggered"
-QT_MOC_LITERAL(77, 1603, 33), // "onActionAddIntervalChartTrigg..."
-QT_MOC_LITERAL(78, 1637, 32), // "onActionStartRectSelectTriggered"
-QT_MOC_LITERAL(79, 1670, 1), // "b"
-QT_MOC_LITERAL(80, 1672, 35), // "onActionStartEllipseSelectTri..."
-QT_MOC_LITERAL(81, 1708, 35), // "onActionStartPolygonSelectTri..."
-QT_MOC_LITERAL(82, 1744, 45), // "onActionChartClearAllSelectie..."
-QT_MOC_LITERAL(83, 1790, 43), // "onActionChartActiveSingleSele..."
-QT_MOC_LITERAL(84, 1834, 47), // "onActionChartActiveAdditional..."
-QT_MOC_LITERAL(85, 1882, 48), // "onActionChartActiveSubtractio..."
-QT_MOC_LITERAL(86, 1931, 49), // "onActionChartActiveIntersecti..."
-QT_MOC_LITERAL(87, 1981, 32), // "onActionChartSelectionRegionMove"
-QT_MOC_LITERAL(88, 2014, 38), // "onActionChartMoveDataInSelect..."
-QT_MOC_LITERAL(89, 2053, 34), // "onActionChartEnablePickerTrig..."
-QT_MOC_LITERAL(90, 2088, 5), // "check"
-QT_MOC_LITERAL(91, 2094, 34), // "onActionChartEnablePannerTrig..."
-QT_MOC_LITERAL(92, 2129, 32), // "onActionChartEnableZoomTriggered"
-QT_MOC_LITERAL(93, 2162, 35), // "onActionSetChartZoomToBaseTri..."
-QT_MOC_LITERAL(94, 2198, 28), // "onActionChartZoomInTriggered"
-QT_MOC_LITERAL(95, 2227, 29), // "onActionChartZoomOutTriggered"
-QT_MOC_LITERAL(96, 2257, 27), // "onActionChartZoomInBestView"
-QT_MOC_LITERAL(97, 2285, 31), // "onActionChartZoomResetTriggered"
-QT_MOC_LITERAL(98, 2317, 28), // "onActionYDataPickerTriggered"
-QT_MOC_LITERAL(99, 2346, 29), // "onActionXYDataPickerTriggered"
-QT_MOC_LITERAL(100, 2376, 25), // "onActionShowGridTriggered"
-QT_MOC_LITERAL(101, 2402, 26), // "onActionShowHGridTriggered"
-QT_MOC_LITERAL(102, 2429, 26), // "onActionShowVGridTriggered"
-QT_MOC_LITERAL(103, 2456, 33), // "onActionShowCrowdedHGridTrigg..."
-QT_MOC_LITERAL(104, 2490, 33), // "onActionShowCrowdedVGridTrigg..."
-QT_MOC_LITERAL(105, 2524, 27), // "onActionShowLegendTriggered"
-QT_MOC_LITERAL(106, 2552, 32), // "onActionShowLegendPanelTriggered"
-QT_MOC_LITERAL(107, 2585, 42), // "onActionFigureEditSubPlotGeom..."
-QT_MOC_LITERAL(108, 2628, 38), // "onActionChartRemoveInRangData..."
-QT_MOC_LITERAL(109, 2667, 32), // "onActionPickCurveToDataTriggered"
-QT_MOC_LITERAL(110, 2700, 21), // "onActionColorMapTable"
-QT_MOC_LITERAL(111, 2722, 22), // "onActionAboutTriggered"
-QT_MOC_LITERAL(112, 2745, 21), // "onActionUndoTriggered"
-QT_MOC_LITERAL(113, 2767, 21), // "onActionRedoTriggered"
-QT_MOC_LITERAL(114, 2789, 34), // "onActionSetDefalutDockPosTrig..."
-QT_MOC_LITERAL(115, 2824, 24), // "onActionTabModeTriggered"
-QT_MOC_LITERAL(116, 2849, 27), // "onActionWindowModeTriggered"
-QT_MOC_LITERAL(117, 2877, 30), // "onActionWindowCascadeTriggered"
-QT_MOC_LITERAL(118, 2908, 27), // "onActionWindowTileTriggered"
-QT_MOC_LITERAL(119, 2936, 32), // "onActionDataFeatureDockTriggered"
-QT_MOC_LITERAL(120, 2969, 34), // "onActionSubWindowListDockTrig..."
-QT_MOC_LITERAL(121, 3004, 33), // "onActionValueManagerDockTrigg..."
-QT_MOC_LITERAL(122, 3038, 29), // "onActionLayerOutDockTriggered"
-QT_MOC_LITERAL(123, 3068, 32), // "onActionValueViewerDockTriggered"
-QT_MOC_LITERAL(124, 3101, 29), // "onActionFigureViewerTriggered"
-QT_MOC_LITERAL(125, 3131, 32), // "onActionMessageInfoDockTriggered"
-QT_MOC_LITERAL(126, 3164, 30), // "onActionFigureSetDockTriggered"
-QT_MOC_LITERAL(127, 3195, 31), // "onActionProjectSettingTriggered"
-QT_MOC_LITERAL(128, 3227, 19), // "onActionSkinChanged"
-QT_MOC_LITERAL(129, 3247, 8), // "QAction*"
-QT_MOC_LITERAL(130, 3256, 3), // "act"
-QT_MOC_LITERAL(131, 3260, 33), // "onActionGroupRibbonStyleTrigg..."
-QT_MOC_LITERAL(132, 3294, 26), // "onLayoutWidgetItemSelected"
-QT_MOC_LITERAL(133, 3321, 12), // "QwtPlotItem*"
-QT_MOC_LITERAL(134, 3334, 4), // "item"
-QT_MOC_LITERAL(135, 3339, 27), // "onLayoutWidgetSelectedChart"
-QT_MOC_LITERAL(136, 3367, 10), // "SAChart2D*"
-QT_MOC_LITERAL(137, 3378, 5), // "chart"
-QT_MOC_LITERAL(138, 3384, 32), // "onLayoutWidgetItemVisibleChanged"
-QT_MOC_LITERAL(139, 3417, 30), // "onLayoutWidgetItemColorChanged"
-QT_MOC_LITERAL(140, 3448, 3), // "clr"
-QT_MOC_LITERAL(141, 3452, 30), // "onLayoutWidgetItemTitleChanged"
-QT_MOC_LITERAL(142, 3483, 5), // "title"
-QT_MOC_LITERAL(143, 3489, 25), // "onLayoutWidgetItemRemoved"
-QT_MOC_LITERAL(144, 3515, 19), // "onChartTitleChanged"
-QT_MOC_LITERAL(145, 3535, 4), // "plot"
-QT_MOC_LITERAL(146, 3540, 26), // "subwindowMouseRightClicked"
-QT_MOC_LITERAL(147, 3567, 49), // "onActionSelectCurrentCursorTo..."
-QT_MOC_LITERAL(148, 3617, 13), // "onDataRemoved"
-QT_MOC_LITERAL(149, 3631, 23), // "QList<SAAbstractDatas*>"
-QT_MOC_LITERAL(150, 3655, 16) // "dataBeDeletedPtr"
+QT_MOC_LITERAL(44, 738, 16), // "OnButtonAnalysis"
+QT_MOC_LITERAL(45, 755, 14), // "onFocusChanged"
+QT_MOC_LITERAL(46, 770, 3), // "old"
+QT_MOC_LITERAL(47, 774, 3), // "now"
+QT_MOC_LITERAL(48, 778, 29), // "onTreeViewValueManagerClicked"
+QT_MOC_LITERAL(49, 808, 5), // "index"
+QT_MOC_LITERAL(50, 814, 35), // "onTreeViewValueManagerDoubleC..."
+QT_MOC_LITERAL(51, 850, 48), // "onTreeViewValueManagerCustomC..."
+QT_MOC_LITERAL(52, 899, 3), // "pos"
+QT_MOC_LITERAL(53, 903, 28), // "onActionValueRenameTriggered"
+QT_MOC_LITERAL(54, 932, 21), // "onActionOpenTriggered"
+QT_MOC_LITERAL(55, 954, 27), // "onActionNewProjectTriggered"
+QT_MOC_LITERAL(56, 982, 21), // "onActionSaveTriggered"
+QT_MOC_LITERAL(57, 1004, 23), // "onActionSaveAsTriggered"
+QT_MOC_LITERAL(58, 1028, 29), // "onActionClearProjectTriggered"
+QT_MOC_LITERAL(59, 1058, 34), // "onActionValueCreateWizardTrig..."
+QT_MOC_LITERAL(60, 1093, 40), // "onActionValueCreateDoubleVect..."
+QT_MOC_LITERAL(61, 1134, 39), // "onActionValueCreatePointVecto..."
+QT_MOC_LITERAL(62, 1174, 40), // "onActionValueCreateVariantTab..."
+QT_MOC_LITERAL(63, 1215, 27), // "onMdiAreaSubWindowActivated"
+QT_MOC_LITERAL(64, 1243, 14), // "QMdiSubWindow*"
+QT_MOC_LITERAL(65, 1258, 4), // "arg1"
+QT_MOC_LITERAL(66, 1263, 17), // "onSubWindowClosed"
+QT_MOC_LITERAL(67, 1281, 38), // "onActionViewValueInCurrentTab..."
+QT_MOC_LITERAL(68, 1320, 44), // "onActionViewValueAppendInCurr..."
+QT_MOC_LITERAL(69, 1365, 34), // "onActionViewValueInNewTabTrig..."
+QT_MOC_LITERAL(70, 1400, 28), // "onActionValueDeleteTriggered"
+QT_MOC_LITERAL(71, 1429, 16), // "onActionOpenData"
+QT_MOC_LITERAL(72, 1446, 17), // "onRedisConnection"
+QT_MOC_LITERAL(73, 1464, 29), // "onActionAddLineChartTriggered"
+QT_MOC_LITERAL(74, 1494, 28), // "onActionAddBarChartTriggered"
+QT_MOC_LITERAL(75, 1523, 34), // "onActionAddHistogramChartTrig..."
+QT_MOC_LITERAL(76, 1558, 32), // "onActionAddScatterChartTriggered"
+QT_MOC_LITERAL(77, 1591, 28), // "onActionAddBoxChartTriggered"
+QT_MOC_LITERAL(78, 1620, 33), // "onActionAddIntervalChartTrigg..."
+QT_MOC_LITERAL(79, 1654, 32), // "onActionStartRectSelectTriggered"
+QT_MOC_LITERAL(80, 1687, 1), // "b"
+QT_MOC_LITERAL(81, 1689, 35), // "onActionStartEllipseSelectTri..."
+QT_MOC_LITERAL(82, 1725, 35), // "onActionStartPolygonSelectTri..."
+QT_MOC_LITERAL(83, 1761, 45), // "onActionChartClearAllSelectie..."
+QT_MOC_LITERAL(84, 1807, 43), // "onActionChartActiveSingleSele..."
+QT_MOC_LITERAL(85, 1851, 47), // "onActionChartActiveAdditional..."
+QT_MOC_LITERAL(86, 1899, 48), // "onActionChartActiveSubtractio..."
+QT_MOC_LITERAL(87, 1948, 49), // "onActionChartActiveIntersecti..."
+QT_MOC_LITERAL(88, 1998, 32), // "onActionChartSelectionRegionMove"
+QT_MOC_LITERAL(89, 2031, 38), // "onActionChartMoveDataInSelect..."
+QT_MOC_LITERAL(90, 2070, 34), // "onActionChartEnablePickerTrig..."
+QT_MOC_LITERAL(91, 2105, 5), // "check"
+QT_MOC_LITERAL(92, 2111, 34), // "onActionChartEnablePannerTrig..."
+QT_MOC_LITERAL(93, 2146, 32), // "onActionChartEnableZoomTriggered"
+QT_MOC_LITERAL(94, 2179, 35), // "onActionSetChartZoomToBaseTri..."
+QT_MOC_LITERAL(95, 2215, 28), // "onActionChartZoomInTriggered"
+QT_MOC_LITERAL(96, 2244, 29), // "onActionChartZoomOutTriggered"
+QT_MOC_LITERAL(97, 2274, 27), // "onActionChartZoomInBestView"
+QT_MOC_LITERAL(98, 2302, 31), // "onActionChartZoomResetTriggered"
+QT_MOC_LITERAL(99, 2334, 28), // "onActionYDataPickerTriggered"
+QT_MOC_LITERAL(100, 2363, 29), // "onActionXYDataPickerTriggered"
+QT_MOC_LITERAL(101, 2393, 25), // "onActionShowGridTriggered"
+QT_MOC_LITERAL(102, 2419, 26), // "onActionShowHGridTriggered"
+QT_MOC_LITERAL(103, 2446, 26), // "onActionShowVGridTriggered"
+QT_MOC_LITERAL(104, 2473, 33), // "onActionShowCrowdedHGridTrigg..."
+QT_MOC_LITERAL(105, 2507, 33), // "onActionShowCrowdedVGridTrigg..."
+QT_MOC_LITERAL(106, 2541, 27), // "onActionShowLegendTriggered"
+QT_MOC_LITERAL(107, 2569, 32), // "onActionShowLegendPanelTriggered"
+QT_MOC_LITERAL(108, 2602, 42), // "onActionFigureEditSubPlotGeom..."
+QT_MOC_LITERAL(109, 2645, 38), // "onActionChartRemoveInRangData..."
+QT_MOC_LITERAL(110, 2684, 32), // "onActionPickCurveToDataTriggered"
+QT_MOC_LITERAL(111, 2717, 21), // "onActionColorMapTable"
+QT_MOC_LITERAL(112, 2739, 22), // "onActionAboutTriggered"
+QT_MOC_LITERAL(113, 2762, 21), // "onActionUndoTriggered"
+QT_MOC_LITERAL(114, 2784, 21), // "onActionRedoTriggered"
+QT_MOC_LITERAL(115, 2806, 34), // "onActionSetDefalutDockPosTrig..."
+QT_MOC_LITERAL(116, 2841, 24), // "onActionTabModeTriggered"
+QT_MOC_LITERAL(117, 2866, 27), // "onActionWindowModeTriggered"
+QT_MOC_LITERAL(118, 2894, 30), // "onActionWindowCascadeTriggered"
+QT_MOC_LITERAL(119, 2925, 27), // "onActionWindowTileTriggered"
+QT_MOC_LITERAL(120, 2953, 32), // "onActionDataFeatureDockTriggered"
+QT_MOC_LITERAL(121, 2986, 34), // "onActionSubWindowListDockTrig..."
+QT_MOC_LITERAL(122, 3021, 33), // "onActionValueManagerDockTrigg..."
+QT_MOC_LITERAL(123, 3055, 29), // "onActionLayerOutDockTriggered"
+QT_MOC_LITERAL(124, 3085, 32), // "onActionValueViewerDockTriggered"
+QT_MOC_LITERAL(125, 3118, 29), // "onActionFigureViewerTriggered"
+QT_MOC_LITERAL(126, 3148, 32), // "onActionMessageInfoDockTriggered"
+QT_MOC_LITERAL(127, 3181, 30), // "onActionFigureSetDockTriggered"
+QT_MOC_LITERAL(128, 3212, 31), // "onActionProjectSettingTriggered"
+QT_MOC_LITERAL(129, 3244, 19), // "onActionSkinChanged"
+QT_MOC_LITERAL(130, 3264, 8), // "QAction*"
+QT_MOC_LITERAL(131, 3273, 3), // "act"
+QT_MOC_LITERAL(132, 3277, 33), // "onActionGroupRibbonStyleTrigg..."
+QT_MOC_LITERAL(133, 3311, 26), // "onLayoutWidgetItemSelected"
+QT_MOC_LITERAL(134, 3338, 12), // "QwtPlotItem*"
+QT_MOC_LITERAL(135, 3351, 4), // "item"
+QT_MOC_LITERAL(136, 3356, 27), // "onLayoutWidgetSelectedChart"
+QT_MOC_LITERAL(137, 3384, 10), // "SAChart2D*"
+QT_MOC_LITERAL(138, 3395, 5), // "chart"
+QT_MOC_LITERAL(139, 3401, 32), // "onLayoutWidgetItemVisibleChanged"
+QT_MOC_LITERAL(140, 3434, 30), // "onLayoutWidgetItemColorChanged"
+QT_MOC_LITERAL(141, 3465, 3), // "clr"
+QT_MOC_LITERAL(142, 3469, 30), // "onLayoutWidgetItemTitleChanged"
+QT_MOC_LITERAL(143, 3500, 5), // "title"
+QT_MOC_LITERAL(144, 3506, 25), // "onLayoutWidgetItemRemoved"
+QT_MOC_LITERAL(145, 3532, 19), // "onChartTitleChanged"
+QT_MOC_LITERAL(146, 3552, 4), // "plot"
+QT_MOC_LITERAL(147, 3557, 26), // "subwindowMouseRightClicked"
+QT_MOC_LITERAL(148, 3584, 49), // "onActionSelectCurrentCursorTo..."
+QT_MOC_LITERAL(149, 3634, 13), // "onDataRemoved"
+QT_MOC_LITERAL(150, 3648, 23), // "QList<SAAbstractDatas*>"
+QT_MOC_LITERAL(151, 3672, 16) // "dataBeDeletedPtr"
 
     },
     "MainWindow\0startCleanProject\0\0"
@@ -205,9 +206,9 @@ QT_MOC_LITERAL(150, 3655, 16) // "dataBeDeletedPtr"
     "closePlaybackResource\0OnButtonStartCapture\0"
     "OnButtonStopCapture\0OnBUttonSuspendCapture\0"
     "OnButtonStartPlayBack\0OnButtonStopPlayBack\0"
-    "onFocusChanged\0old\0now\0"
-    "onTreeViewValueManagerClicked\0index\0"
-    "onTreeViewValueManagerDoubleClicked\0"
+    "OnButtonAnalysis\0onFocusChanged\0old\0"
+    "now\0onTreeViewValueManagerClicked\0"
+    "index\0onTreeViewValueManagerDoubleClicked\0"
     "onTreeViewValueManagerCustomContextMenuRequested\0"
     "pos\0onActionValueRenameTriggered\0"
     "onActionOpenTriggered\0onActionNewProjectTriggered\0"
@@ -297,7 +298,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-     122,   14, // methods
+     123,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -305,130 +306,131 @@ static const uint qt_meta_data_MainWindow[] = {
        5,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,  624,    2, 0x06 /* Public */,
-       3,    0,  625,    2, 0x06 /* Public */,
-       4,    1,  626,    2, 0x06 /* Public */,
-       7,    1,  629,    2, 0x06 /* Public */,
-      10,    0,  632,    2, 0x06 /* Public */,
+       1,    0,  629,    2, 0x06 /* Public */,
+       3,    0,  630,    2, 0x06 /* Public */,
+       4,    1,  631,    2, 0x06 /* Public */,
+       7,    1,  634,    2, 0x06 /* Public */,
+      10,    0,  637,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      11,    2,  633,    2, 0x0a /* Public */,
-      11,    1,  638,    2, 0x2a /* Public | MethodCloned */,
-      14,    2,  641,    2, 0x0a /* Public */,
-      14,    1,  646,    2, 0x2a /* Public | MethodCloned */,
-      15,    2,  649,    2, 0x0a /* Public */,
-      15,    1,  654,    2, 0x2a /* Public | MethodCloned */,
-      16,    2,  657,    2, 0x0a /* Public */,
-      16,    1,  662,    2, 0x2a /* Public | MethodCloned */,
-      17,    2,  665,    2, 0x0a /* Public */,
-      20,    4,  670,    2, 0x0a /* Public */,
-      23,    3,  679,    2, 0x0a /* Public */,
-      23,    2,  686,    2, 0x2a /* Public | MethodCloned */,
-      23,    1,  691,    2, 0x2a /* Public | MethodCloned */,
-      25,    0,  694,    2, 0x0a /* Public */,
-      26,    0,  695,    2, 0x0a /* Public */,
-      27,    1,  696,    2, 0x0a /* Public */,
-      29,    1,  699,    2, 0x0a /* Public */,
-      31,    1,  702,    2, 0x0a /* Public */,
-      33,    1,  705,    2, 0x0a /* Public */,
-      33,    0,  708,    2, 0x2a /* Public | MethodCloned */,
-      35,    0,  709,    2, 0x0a /* Public */,
-      36,    0,  710,    2, 0x0a /* Public */,
-      37,    0,  711,    2, 0x0a /* Public */,
-      38,    0,  712,    2, 0x0a /* Public */,
-      39,    0,  713,    2, 0x08 /* Private */,
-      40,    0,  714,    2, 0x08 /* Private */,
-      41,    0,  715,    2, 0x08 /* Private */,
-      42,    0,  716,    2, 0x08 /* Private */,
-      43,    0,  717,    2, 0x08 /* Private */,
-      44,    2,  718,    2, 0x08 /* Private */,
-      47,    1,  723,    2, 0x08 /* Private */,
-      49,    1,  726,    2, 0x08 /* Private */,
-      50,    1,  729,    2, 0x08 /* Private */,
-      52,    0,  732,    2, 0x08 /* Private */,
-      53,    0,  733,    2, 0x08 /* Private */,
-      54,    0,  734,    2, 0x08 /* Private */,
-      55,    0,  735,    2, 0x08 /* Private */,
-      56,    0,  736,    2, 0x08 /* Private */,
-      57,    0,  737,    2, 0x08 /* Private */,
-      58,    0,  738,    2, 0x08 /* Private */,
-      59,    0,  739,    2, 0x08 /* Private */,
-      60,    0,  740,    2, 0x08 /* Private */,
-      61,    0,  741,    2, 0x08 /* Private */,
-      62,    1,  742,    2, 0x08 /* Private */,
-      65,    1,  745,    2, 0x08 /* Private */,
-      66,    0,  748,    2, 0x08 /* Private */,
-      67,    0,  749,    2, 0x08 /* Private */,
-      68,    0,  750,    2, 0x08 /* Private */,
-      69,    0,  751,    2, 0x08 /* Private */,
-      70,    0,  752,    2, 0x08 /* Private */,
-      71,    0,  753,    2, 0x08 /* Private */,
-      72,    0,  754,    2, 0x08 /* Private */,
-      73,    0,  755,    2, 0x08 /* Private */,
-      74,    0,  756,    2, 0x08 /* Private */,
-      75,    0,  757,    2, 0x08 /* Private */,
-      76,    0,  758,    2, 0x08 /* Private */,
-      77,    0,  759,    2, 0x08 /* Private */,
-      78,    1,  760,    2, 0x08 /* Private */,
-      80,    1,  763,    2, 0x08 /* Private */,
-      81,    1,  766,    2, 0x08 /* Private */,
-      82,    1,  769,    2, 0x08 /* Private */,
-      83,    1,  772,    2, 0x08 /* Private */,
-      84,    1,  775,    2, 0x08 /* Private */,
-      85,    1,  778,    2, 0x08 /* Private */,
-      86,    1,  781,    2, 0x08 /* Private */,
-      87,    1,  784,    2, 0x08 /* Private */,
-      88,    1,  787,    2, 0x08 /* Private */,
-      89,    1,  790,    2, 0x08 /* Private */,
-      91,    1,  793,    2, 0x08 /* Private */,
-      92,    1,  796,    2, 0x08 /* Private */,
-      93,    1,  799,    2, 0x08 /* Private */,
-      94,    1,  802,    2, 0x08 /* Private */,
-      95,    1,  805,    2, 0x08 /* Private */,
-      96,    1,  808,    2, 0x08 /* Private */,
-      97,    1,  811,    2, 0x08 /* Private */,
-      98,    1,  814,    2, 0x08 /* Private */,
-      99,    1,  817,    2, 0x08 /* Private */,
-     100,    1,  820,    2, 0x08 /* Private */,
-     101,    1,  823,    2, 0x08 /* Private */,
-     102,    1,  826,    2, 0x08 /* Private */,
-     103,    1,  829,    2, 0x08 /* Private */,
-     104,    1,  832,    2, 0x08 /* Private */,
-     105,    1,  835,    2, 0x08 /* Private */,
-     106,    1,  838,    2, 0x08 /* Private */,
-     107,    1,  841,    2, 0x08 /* Private */,
-     108,    0,  844,    2, 0x08 /* Private */,
-     109,    0,  845,    2, 0x08 /* Private */,
-     110,    0,  846,    2, 0x08 /* Private */,
-     111,    0,  847,    2, 0x08 /* Private */,
-     112,    0,  848,    2, 0x08 /* Private */,
-     113,    0,  849,    2, 0x08 /* Private */,
-     114,    0,  850,    2, 0x08 /* Private */,
-     115,    1,  851,    2, 0x08 /* Private */,
-     116,    1,  854,    2, 0x08 /* Private */,
-     117,    1,  857,    2, 0x08 /* Private */,
-     118,    1,  860,    2, 0x08 /* Private */,
-     119,    1,  863,    2, 0x08 /* Private */,
-     120,    1,  866,    2, 0x08 /* Private */,
-     121,    1,  869,    2, 0x08 /* Private */,
-     122,    1,  872,    2, 0x08 /* Private */,
-     123,    1,  875,    2, 0x08 /* Private */,
-     124,    1,  878,    2, 0x08 /* Private */,
-     125,    1,  881,    2, 0x08 /* Private */,
-     126,    1,  884,    2, 0x08 /* Private */,
-     127,    0,  887,    2, 0x08 /* Private */,
-     128,    1,  888,    2, 0x08 /* Private */,
-     131,    1,  891,    2, 0x08 /* Private */,
-     132,    1,  894,    2, 0x08 /* Private */,
-     135,    1,  897,    2, 0x08 /* Private */,
-     138,    2,  900,    2, 0x08 /* Private */,
-     139,    2,  905,    2, 0x08 /* Private */,
-     141,    2,  910,    2, 0x08 /* Private */,
-     143,    2,  915,    2, 0x08 /* Private */,
-     144,    2,  920,    2, 0x08 /* Private */,
-     146,    1,  925,    2, 0x08 /* Private */,
-     147,    1,  928,    2, 0x08 /* Private */,
-     148,    1,  931,    2, 0x08 /* Private */,
+      11,    2,  638,    2, 0x0a /* Public */,
+      11,    1,  643,    2, 0x2a /* Public | MethodCloned */,
+      14,    2,  646,    2, 0x0a /* Public */,
+      14,    1,  651,    2, 0x2a /* Public | MethodCloned */,
+      15,    2,  654,    2, 0x0a /* Public */,
+      15,    1,  659,    2, 0x2a /* Public | MethodCloned */,
+      16,    2,  662,    2, 0x0a /* Public */,
+      16,    1,  667,    2, 0x2a /* Public | MethodCloned */,
+      17,    2,  670,    2, 0x0a /* Public */,
+      20,    4,  675,    2, 0x0a /* Public */,
+      23,    3,  684,    2, 0x0a /* Public */,
+      23,    2,  691,    2, 0x2a /* Public | MethodCloned */,
+      23,    1,  696,    2, 0x2a /* Public | MethodCloned */,
+      25,    0,  699,    2, 0x0a /* Public */,
+      26,    0,  700,    2, 0x0a /* Public */,
+      27,    1,  701,    2, 0x0a /* Public */,
+      29,    1,  704,    2, 0x0a /* Public */,
+      31,    1,  707,    2, 0x0a /* Public */,
+      33,    1,  710,    2, 0x0a /* Public */,
+      33,    0,  713,    2, 0x2a /* Public | MethodCloned */,
+      35,    0,  714,    2, 0x0a /* Public */,
+      36,    0,  715,    2, 0x0a /* Public */,
+      37,    0,  716,    2, 0x0a /* Public */,
+      38,    0,  717,    2, 0x0a /* Public */,
+      39,    0,  718,    2, 0x08 /* Private */,
+      40,    0,  719,    2, 0x08 /* Private */,
+      41,    0,  720,    2, 0x08 /* Private */,
+      42,    0,  721,    2, 0x08 /* Private */,
+      43,    0,  722,    2, 0x08 /* Private */,
+      44,    0,  723,    2, 0x08 /* Private */,
+      45,    2,  724,    2, 0x08 /* Private */,
+      48,    1,  729,    2, 0x08 /* Private */,
+      50,    1,  732,    2, 0x08 /* Private */,
+      51,    1,  735,    2, 0x08 /* Private */,
+      53,    0,  738,    2, 0x08 /* Private */,
+      54,    0,  739,    2, 0x08 /* Private */,
+      55,    0,  740,    2, 0x08 /* Private */,
+      56,    0,  741,    2, 0x08 /* Private */,
+      57,    0,  742,    2, 0x08 /* Private */,
+      58,    0,  743,    2, 0x08 /* Private */,
+      59,    0,  744,    2, 0x08 /* Private */,
+      60,    0,  745,    2, 0x08 /* Private */,
+      61,    0,  746,    2, 0x08 /* Private */,
+      62,    0,  747,    2, 0x08 /* Private */,
+      63,    1,  748,    2, 0x08 /* Private */,
+      66,    1,  751,    2, 0x08 /* Private */,
+      67,    0,  754,    2, 0x08 /* Private */,
+      68,    0,  755,    2, 0x08 /* Private */,
+      69,    0,  756,    2, 0x08 /* Private */,
+      70,    0,  757,    2, 0x08 /* Private */,
+      71,    0,  758,    2, 0x08 /* Private */,
+      72,    0,  759,    2, 0x08 /* Private */,
+      73,    0,  760,    2, 0x08 /* Private */,
+      74,    0,  761,    2, 0x08 /* Private */,
+      75,    0,  762,    2, 0x08 /* Private */,
+      76,    0,  763,    2, 0x08 /* Private */,
+      77,    0,  764,    2, 0x08 /* Private */,
+      78,    0,  765,    2, 0x08 /* Private */,
+      79,    1,  766,    2, 0x08 /* Private */,
+      81,    1,  769,    2, 0x08 /* Private */,
+      82,    1,  772,    2, 0x08 /* Private */,
+      83,    1,  775,    2, 0x08 /* Private */,
+      84,    1,  778,    2, 0x08 /* Private */,
+      85,    1,  781,    2, 0x08 /* Private */,
+      86,    1,  784,    2, 0x08 /* Private */,
+      87,    1,  787,    2, 0x08 /* Private */,
+      88,    1,  790,    2, 0x08 /* Private */,
+      89,    1,  793,    2, 0x08 /* Private */,
+      90,    1,  796,    2, 0x08 /* Private */,
+      92,    1,  799,    2, 0x08 /* Private */,
+      93,    1,  802,    2, 0x08 /* Private */,
+      94,    1,  805,    2, 0x08 /* Private */,
+      95,    1,  808,    2, 0x08 /* Private */,
+      96,    1,  811,    2, 0x08 /* Private */,
+      97,    1,  814,    2, 0x08 /* Private */,
+      98,    1,  817,    2, 0x08 /* Private */,
+      99,    1,  820,    2, 0x08 /* Private */,
+     100,    1,  823,    2, 0x08 /* Private */,
+     101,    1,  826,    2, 0x08 /* Private */,
+     102,    1,  829,    2, 0x08 /* Private */,
+     103,    1,  832,    2, 0x08 /* Private */,
+     104,    1,  835,    2, 0x08 /* Private */,
+     105,    1,  838,    2, 0x08 /* Private */,
+     106,    1,  841,    2, 0x08 /* Private */,
+     107,    1,  844,    2, 0x08 /* Private */,
+     108,    1,  847,    2, 0x08 /* Private */,
+     109,    0,  850,    2, 0x08 /* Private */,
+     110,    0,  851,    2, 0x08 /* Private */,
+     111,    0,  852,    2, 0x08 /* Private */,
+     112,    0,  853,    2, 0x08 /* Private */,
+     113,    0,  854,    2, 0x08 /* Private */,
+     114,    0,  855,    2, 0x08 /* Private */,
+     115,    0,  856,    2, 0x08 /* Private */,
+     116,    1,  857,    2, 0x08 /* Private */,
+     117,    1,  860,    2, 0x08 /* Private */,
+     118,    1,  863,    2, 0x08 /* Private */,
+     119,    1,  866,    2, 0x08 /* Private */,
+     120,    1,  869,    2, 0x08 /* Private */,
+     121,    1,  872,    2, 0x08 /* Private */,
+     122,    1,  875,    2, 0x08 /* Private */,
+     123,    1,  878,    2, 0x08 /* Private */,
+     124,    1,  881,    2, 0x08 /* Private */,
+     125,    1,  884,    2, 0x08 /* Private */,
+     126,    1,  887,    2, 0x08 /* Private */,
+     127,    1,  890,    2, 0x08 /* Private */,
+     128,    0,  893,    2, 0x08 /* Private */,
+     129,    1,  894,    2, 0x08 /* Private */,
+     132,    1,  897,    2, 0x08 /* Private */,
+     133,    1,  900,    2, 0x08 /* Private */,
+     136,    1,  903,    2, 0x08 /* Private */,
+     139,    2,  906,    2, 0x08 /* Private */,
+     140,    2,  911,    2, 0x08 /* Private */,
+     142,    2,  916,    2, 0x08 /* Private */,
+     144,    2,  921,    2, 0x08 /* Private */,
+     145,    2,  926,    2, 0x08 /* Private */,
+     147,    1,  931,    2, 0x08 /* Private */,
+     148,    1,  934,    2, 0x08 /* Private */,
+     149,    1,  937,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -467,10 +469,11 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 21, 0x80000000 | 21,   45,   46,
-    QMetaType::Void, QMetaType::QModelIndex,   48,
-    QMetaType::Void, QMetaType::QModelIndex,   48,
-    QMetaType::Void, QMetaType::QPoint,   51,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 21, 0x80000000 | 21,   46,   47,
+    QMetaType::Void, QMetaType::QModelIndex,   49,
+    QMetaType::Void, QMetaType::QModelIndex,   49,
+    QMetaType::Void, QMetaType::QPoint,   52,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -481,8 +484,8 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 63,   64,
-    QMetaType::Void, 0x80000000 | 63,   64,
+    QMetaType::Void, 0x80000000 | 64,   65,
+    QMetaType::Void, 0x80000000 | 64,   65,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -495,43 +498,24 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   79,
-    QMetaType::Void, QMetaType::Bool,   79,
-    QMetaType::Void, QMetaType::Bool,   79,
-    QMetaType::Void, QMetaType::Bool,   79,
-    QMetaType::Void, QMetaType::Bool,   79,
-    QMetaType::Void, QMetaType::Bool,   79,
-    QMetaType::Void, QMetaType::Bool,   79,
-    QMetaType::Void, QMetaType::Bool,   79,
-    QMetaType::Void, QMetaType::Bool,   79,
+    QMetaType::Void, QMetaType::Bool,   80,
+    QMetaType::Void, QMetaType::Bool,   80,
+    QMetaType::Void, QMetaType::Bool,   80,
+    QMetaType::Void, QMetaType::Bool,   80,
+    QMetaType::Void, QMetaType::Bool,   80,
+    QMetaType::Void, QMetaType::Bool,   80,
+    QMetaType::Void, QMetaType::Bool,   80,
+    QMetaType::Void, QMetaType::Bool,   80,
+    QMetaType::Void, QMetaType::Bool,   80,
     QMetaType::Void, QMetaType::Bool,   34,
-    QMetaType::Void, QMetaType::Bool,   90,
-    QMetaType::Void, QMetaType::Bool,   90,
-    QMetaType::Void, QMetaType::Bool,   90,
-    QMetaType::Void, QMetaType::Bool,   90,
-    QMetaType::Void, QMetaType::Bool,   90,
-    QMetaType::Void, QMetaType::Bool,   90,
-    QMetaType::Void, QMetaType::Bool,   90,
-    QMetaType::Void, QMetaType::Bool,   90,
-    QMetaType::Void, QMetaType::Bool,   34,
-    QMetaType::Void, QMetaType::Bool,   34,
-    QMetaType::Void, QMetaType::Bool,   34,
-    QMetaType::Void, QMetaType::Bool,   34,
-    QMetaType::Void, QMetaType::Bool,   34,
-    QMetaType::Void, QMetaType::Bool,   34,
-    QMetaType::Void, QMetaType::Bool,   34,
-    QMetaType::Void, QMetaType::Bool,   34,
-    QMetaType::Void, QMetaType::Bool,   34,
-    QMetaType::Void, QMetaType::Bool,   34,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   34,
-    QMetaType::Void, QMetaType::Bool,   34,
+    QMetaType::Void, QMetaType::Bool,   91,
+    QMetaType::Void, QMetaType::Bool,   91,
+    QMetaType::Void, QMetaType::Bool,   91,
+    QMetaType::Void, QMetaType::Bool,   91,
+    QMetaType::Void, QMetaType::Bool,   91,
+    QMetaType::Void, QMetaType::Bool,   91,
+    QMetaType::Void, QMetaType::Bool,   91,
+    QMetaType::Void, QMetaType::Bool,   91,
     QMetaType::Void, QMetaType::Bool,   34,
     QMetaType::Void, QMetaType::Bool,   34,
     QMetaType::Void, QMetaType::Bool,   34,
@@ -543,18 +527,37 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::Bool,   34,
     QMetaType::Void, QMetaType::Bool,   34,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 129,  130,
-    QMetaType::Void, 0x80000000 | 129,  130,
-    QMetaType::Void, 0x80000000 | 133,  134,
-    QMetaType::Void, 0x80000000 | 136,  137,
-    QMetaType::Void, 0x80000000 | 133, QMetaType::Bool,  134,   34,
-    QMetaType::Void, 0x80000000 | 133, QMetaType::QColor,  134,  140,
-    QMetaType::Void, 0x80000000 | 133, QMetaType::QString,  134,  142,
-    QMetaType::Void, 0x80000000 | 136, 0x80000000 | 133,  137,  134,
-    QMetaType::Void, 0x80000000 | 136, QMetaType::QString,  145,  142,
-    QMetaType::Void, QMetaType::QPoint,   51,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void, QMetaType::Bool,   34,
-    QMetaType::Void, 0x80000000 | 149,  150,
+    QMetaType::Void, QMetaType::Bool,   34,
+    QMetaType::Void, QMetaType::Bool,   34,
+    QMetaType::Void, QMetaType::Bool,   34,
+    QMetaType::Void, QMetaType::Bool,   34,
+    QMetaType::Void, QMetaType::Bool,   34,
+    QMetaType::Void, QMetaType::Bool,   34,
+    QMetaType::Void, QMetaType::Bool,   34,
+    QMetaType::Void, QMetaType::Bool,   34,
+    QMetaType::Void, QMetaType::Bool,   34,
+    QMetaType::Void, QMetaType::Bool,   34,
+    QMetaType::Void, QMetaType::Bool,   34,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 130,  131,
+    QMetaType::Void, 0x80000000 | 130,  131,
+    QMetaType::Void, 0x80000000 | 134,  135,
+    QMetaType::Void, 0x80000000 | 137,  138,
+    QMetaType::Void, 0x80000000 | 134, QMetaType::Bool,  135,   34,
+    QMetaType::Void, 0x80000000 | 134, QMetaType::QColor,  135,  141,
+    QMetaType::Void, 0x80000000 | 134, QMetaType::QString,  135,  143,
+    QMetaType::Void, 0x80000000 | 137, 0x80000000 | 134,  138,  135,
+    QMetaType::Void, 0x80000000 | 137, QMetaType::QString,  146,  143,
+    QMetaType::Void, QMetaType::QPoint,   52,
+    QMetaType::Void, QMetaType::Bool,   34,
+    QMetaType::Void, 0x80000000 | 150,  151,
 
        0        // eod
 };
@@ -599,94 +602,95 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 31: _t->OnBUttonSuspendCapture(); break;
         case 32: _t->OnButtonStartPlayBack(); break;
         case 33: _t->OnButtonStopPlayBack(); break;
-        case 34: _t->onFocusChanged((*reinterpret_cast< QWidget*(*)>(_a[1])),(*reinterpret_cast< QWidget*(*)>(_a[2]))); break;
-        case 35: _t->onTreeViewValueManagerClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 36: _t->onTreeViewValueManagerDoubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 37: _t->onTreeViewValueManagerCustomContextMenuRequested((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
-        case 38: _t->onActionValueRenameTriggered(); break;
-        case 39: _t->onActionOpenTriggered(); break;
-        case 40: _t->onActionNewProjectTriggered(); break;
-        case 41: _t->onActionSaveTriggered(); break;
-        case 42: _t->onActionSaveAsTriggered(); break;
-        case 43: _t->onActionClearProjectTriggered(); break;
-        case 44: _t->onActionValueCreateWizardTriggered(); break;
-        case 45: _t->onActionValueCreateDoubleVectorTriggered(); break;
-        case 46: _t->onActionValueCreatePointVectorTriggered(); break;
-        case 47: _t->onActionValueCreateVariantTableTriggered(); break;
-        case 48: _t->onMdiAreaSubWindowActivated((*reinterpret_cast< QMdiSubWindow*(*)>(_a[1]))); break;
-        case 49: _t->onSubWindowClosed((*reinterpret_cast< QMdiSubWindow*(*)>(_a[1]))); break;
-        case 50: _t->onActionViewValueInCurrentTabTriggered(); break;
-        case 51: _t->onActionViewValueAppendInCurrentTabTriggered(); break;
-        case 52: _t->onActionViewValueInNewTabTriggered(); break;
-        case 53: _t->onActionValueDeleteTriggered(); break;
-        case 54: _t->onActionOpenData(); break;
-        case 55: _t->onRedisConnection(); break;
-        case 56: _t->onActionAddLineChartTriggered(); break;
-        case 57: _t->onActionAddBarChartTriggered(); break;
-        case 58: _t->onActionAddHistogramChartTriggered(); break;
-        case 59: _t->onActionAddScatterChartTriggered(); break;
-        case 60: _t->onActionAddBoxChartTriggered(); break;
-        case 61: _t->onActionAddIntervalChartTriggered(); break;
-        case 62: _t->onActionStartRectSelectTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 63: _t->onActionStartEllipseSelectTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 64: _t->onActionStartPolygonSelectTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 65: _t->onActionChartClearAllSelectiedRegionTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 66: _t->onActionChartActiveSingleSelectionTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 67: _t->onActionChartActiveAdditionalSelectionTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 68: _t->onActionChartActiveSubtractionSelectionTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 69: _t->onActionChartActiveIntersectionSelectionTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 70: _t->onActionChartSelectionRegionMove((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 71: _t->onActionChartMoveDataInSelectionRegion((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 72: _t->onActionChartEnablePickerTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 73: _t->onActionChartEnablePannerTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 74: _t->onActionChartEnableZoomTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 75: _t->onActionSetChartZoomToBaseTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 76: _t->onActionChartZoomInTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 77: _t->onActionChartZoomOutTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 78: _t->onActionChartZoomInBestView((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 79: _t->onActionChartZoomResetTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 80: _t->onActionYDataPickerTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 81: _t->onActionXYDataPickerTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 82: _t->onActionShowGridTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 83: _t->onActionShowHGridTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 84: _t->onActionShowVGridTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 85: _t->onActionShowCrowdedHGridTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 86: _t->onActionShowCrowdedVGridTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 87: _t->onActionShowLegendTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 88: _t->onActionShowLegendPanelTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 89: _t->onActionFigureEditSubPlotGeometryTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 90: _t->onActionChartRemoveInRangDataTriggered(); break;
-        case 91: _t->onActionPickCurveToDataTriggered(); break;
-        case 92: _t->onActionColorMapTable(); break;
-        case 93: _t->onActionAboutTriggered(); break;
-        case 94: _t->onActionUndoTriggered(); break;
-        case 95: _t->onActionRedoTriggered(); break;
-        case 96: _t->onActionSetDefalutDockPosTriggered(); break;
-        case 97: _t->onActionTabModeTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 98: _t->onActionWindowModeTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 99: _t->onActionWindowCascadeTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 100: _t->onActionWindowTileTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 101: _t->onActionDataFeatureDockTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 102: _t->onActionSubWindowListDockTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 103: _t->onActionValueManagerDockTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 104: _t->onActionLayerOutDockTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 105: _t->onActionValueViewerDockTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 106: _t->onActionFigureViewerTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 107: _t->onActionMessageInfoDockTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 108: _t->onActionFigureSetDockTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 109: _t->onActionProjectSettingTriggered(); break;
-        case 110: _t->onActionSkinChanged((*reinterpret_cast< QAction*(*)>(_a[1]))); break;
-        case 111: _t->onActionGroupRibbonStyleTriggered((*reinterpret_cast< QAction*(*)>(_a[1]))); break;
-        case 112: _t->onLayoutWidgetItemSelected((*reinterpret_cast< QwtPlotItem*(*)>(_a[1]))); break;
-        case 113: _t->onLayoutWidgetSelectedChart((*reinterpret_cast< SAChart2D*(*)>(_a[1]))); break;
-        case 114: _t->onLayoutWidgetItemVisibleChanged((*reinterpret_cast< QwtPlotItem*(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
-        case 115: _t->onLayoutWidgetItemColorChanged((*reinterpret_cast< QwtPlotItem*(*)>(_a[1])),(*reinterpret_cast< QColor(*)>(_a[2]))); break;
-        case 116: _t->onLayoutWidgetItemTitleChanged((*reinterpret_cast< QwtPlotItem*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
-        case 117: _t->onLayoutWidgetItemRemoved((*reinterpret_cast< SAChart2D*(*)>(_a[1])),(*reinterpret_cast< QwtPlotItem*(*)>(_a[2]))); break;
-        case 118: _t->onChartTitleChanged((*reinterpret_cast< SAChart2D*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
-        case 119: _t->subwindowMouseRightClicked((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
-        case 120: _t->onActionSelectCurrentCursorToActiveChartTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 121: _t->onDataRemoved((*reinterpret_cast< const QList<SAAbstractDatas*>(*)>(_a[1]))); break;
+        case 34: _t->OnButtonAnalysis(); break;
+        case 35: _t->onFocusChanged((*reinterpret_cast< QWidget*(*)>(_a[1])),(*reinterpret_cast< QWidget*(*)>(_a[2]))); break;
+        case 36: _t->onTreeViewValueManagerClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 37: _t->onTreeViewValueManagerDoubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 38: _t->onTreeViewValueManagerCustomContextMenuRequested((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
+        case 39: _t->onActionValueRenameTriggered(); break;
+        case 40: _t->onActionOpenTriggered(); break;
+        case 41: _t->onActionNewProjectTriggered(); break;
+        case 42: _t->onActionSaveTriggered(); break;
+        case 43: _t->onActionSaveAsTriggered(); break;
+        case 44: _t->onActionClearProjectTriggered(); break;
+        case 45: _t->onActionValueCreateWizardTriggered(); break;
+        case 46: _t->onActionValueCreateDoubleVectorTriggered(); break;
+        case 47: _t->onActionValueCreatePointVectorTriggered(); break;
+        case 48: _t->onActionValueCreateVariantTableTriggered(); break;
+        case 49: _t->onMdiAreaSubWindowActivated((*reinterpret_cast< QMdiSubWindow*(*)>(_a[1]))); break;
+        case 50: _t->onSubWindowClosed((*reinterpret_cast< QMdiSubWindow*(*)>(_a[1]))); break;
+        case 51: _t->onActionViewValueInCurrentTabTriggered(); break;
+        case 52: _t->onActionViewValueAppendInCurrentTabTriggered(); break;
+        case 53: _t->onActionViewValueInNewTabTriggered(); break;
+        case 54: _t->onActionValueDeleteTriggered(); break;
+        case 55: _t->onActionOpenData(); break;
+        case 56: _t->onRedisConnection(); break;
+        case 57: _t->onActionAddLineChartTriggered(); break;
+        case 58: _t->onActionAddBarChartTriggered(); break;
+        case 59: _t->onActionAddHistogramChartTriggered(); break;
+        case 60: _t->onActionAddScatterChartTriggered(); break;
+        case 61: _t->onActionAddBoxChartTriggered(); break;
+        case 62: _t->onActionAddIntervalChartTriggered(); break;
+        case 63: _t->onActionStartRectSelectTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 64: _t->onActionStartEllipseSelectTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 65: _t->onActionStartPolygonSelectTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 66: _t->onActionChartClearAllSelectiedRegionTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 67: _t->onActionChartActiveSingleSelectionTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 68: _t->onActionChartActiveAdditionalSelectionTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 69: _t->onActionChartActiveSubtractionSelectionTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 70: _t->onActionChartActiveIntersectionSelectionTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 71: _t->onActionChartSelectionRegionMove((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 72: _t->onActionChartMoveDataInSelectionRegion((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 73: _t->onActionChartEnablePickerTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 74: _t->onActionChartEnablePannerTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 75: _t->onActionChartEnableZoomTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 76: _t->onActionSetChartZoomToBaseTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 77: _t->onActionChartZoomInTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 78: _t->onActionChartZoomOutTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 79: _t->onActionChartZoomInBestView((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 80: _t->onActionChartZoomResetTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 81: _t->onActionYDataPickerTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 82: _t->onActionXYDataPickerTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 83: _t->onActionShowGridTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 84: _t->onActionShowHGridTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 85: _t->onActionShowVGridTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 86: _t->onActionShowCrowdedHGridTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 87: _t->onActionShowCrowdedVGridTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 88: _t->onActionShowLegendTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 89: _t->onActionShowLegendPanelTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 90: _t->onActionFigureEditSubPlotGeometryTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 91: _t->onActionChartRemoveInRangDataTriggered(); break;
+        case 92: _t->onActionPickCurveToDataTriggered(); break;
+        case 93: _t->onActionColorMapTable(); break;
+        case 94: _t->onActionAboutTriggered(); break;
+        case 95: _t->onActionUndoTriggered(); break;
+        case 96: _t->onActionRedoTriggered(); break;
+        case 97: _t->onActionSetDefalutDockPosTriggered(); break;
+        case 98: _t->onActionTabModeTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 99: _t->onActionWindowModeTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 100: _t->onActionWindowCascadeTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 101: _t->onActionWindowTileTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 102: _t->onActionDataFeatureDockTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 103: _t->onActionSubWindowListDockTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 104: _t->onActionValueManagerDockTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 105: _t->onActionLayerOutDockTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 106: _t->onActionValueViewerDockTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 107: _t->onActionFigureViewerTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 108: _t->onActionMessageInfoDockTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 109: _t->onActionFigureSetDockTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 110: _t->onActionProjectSettingTriggered(); break;
+        case 111: _t->onActionSkinChanged((*reinterpret_cast< QAction*(*)>(_a[1]))); break;
+        case 112: _t->onActionGroupRibbonStyleTriggered((*reinterpret_cast< QAction*(*)>(_a[1]))); break;
+        case 113: _t->onLayoutWidgetItemSelected((*reinterpret_cast< QwtPlotItem*(*)>(_a[1]))); break;
+        case 114: _t->onLayoutWidgetSelectedChart((*reinterpret_cast< SAChart2D*(*)>(_a[1]))); break;
+        case 115: _t->onLayoutWidgetItemVisibleChanged((*reinterpret_cast< QwtPlotItem*(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
+        case 116: _t->onLayoutWidgetItemColorChanged((*reinterpret_cast< QwtPlotItem*(*)>(_a[1])),(*reinterpret_cast< QColor(*)>(_a[2]))); break;
+        case 117: _t->onLayoutWidgetItemTitleChanged((*reinterpret_cast< QwtPlotItem*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
+        case 118: _t->onLayoutWidgetItemRemoved((*reinterpret_cast< SAChart2D*(*)>(_a[1])),(*reinterpret_cast< QwtPlotItem*(*)>(_a[2]))); break;
+        case 119: _t->onChartTitleChanged((*reinterpret_cast< SAChart2D*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
+        case 120: _t->subwindowMouseRightClicked((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
+        case 121: _t->onActionSelectCurrentCursorToActiveChartTriggered((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 122: _t->onDataRemoved((*reinterpret_cast< const QList<SAAbstractDatas*>(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -706,19 +710,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QWidget* >(); break;
             }
             break;
-        case 34:
+        case 35:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 1:
             case 0:
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QWidget* >(); break;
-            }
-            break;
-        case 48:
-            switch (*reinterpret_cast<int*>(_a[1])) {
-            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-            case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QMdiSubWindow* >(); break;
             }
             break;
         case 49:
@@ -728,11 +725,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QMdiSubWindow* >(); break;
             }
             break;
-        case 110:
+        case 50:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QAction* >(); break;
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QMdiSubWindow* >(); break;
             }
             break;
         case 111:
@@ -746,10 +743,10 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QwtPlotItem* >(); break;
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QAction* >(); break;
             }
             break;
-        case 114:
+        case 113:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -771,6 +768,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             }
             break;
         case 117:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QwtPlotItem* >(); break;
+            }
+            break;
+        case 118:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 1:
@@ -843,13 +847,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 122)
+        if (_id < 123)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 122;
+        _id -= 123;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 122)
+        if (_id < 123)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 122;
+        _id -= 123;
     }
     return _id;
 }

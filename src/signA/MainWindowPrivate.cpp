@@ -134,6 +134,11 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     actionStartPlayBack->setCheckable(true);
     actionStartPlayBack->setIcon(QIcon(":/icons/icons/selectionRegionDataMove.png"));
 
+    actionAnalsis = new QAction(mainWinowPtr);
+    actionAnalsis->setObjectName(QStringLiteral("actionStartPlayBack"));
+    actionAnalsis->setCheckable(true);
+    actionAnalsis->setIcon(QIcon(":/icons/icons/selectionRegionDataMove.png"));
+
     actionOpen = new QAction(mainWinowPtr);
     actionOpen->setObjectName(QStringLiteral("actionOpen"));
     actionOpen->setIcon(QIcon(":/icons/icons/open.png"));
@@ -763,9 +768,9 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     chartGridCategoryWindowPannel->addLargeAction(actionStopPlayBack);
 
     //figure Opt pannel
-//    figureOptRibbonPannel = operateRibbonCategory->addPannel("回放");删除这个pannel
-    figureOptRibbonPannel = new SARibbonPannel();
-    figureOptRibbonPannel->addLargeAction(actionFigureEditSubPlotGeometry);
+    figureOptRibbonPannel = operateRibbonCategory->addPannel("分析");//删除这个pannel
+//    figureOptRibbonPannel = new SARibbonPannel();
+    figureOptRibbonPannel->addLargeAction(actionAnalsis);
 
     //! 3.4 Analysis
     analysisRibbonCategory = menuBar->addCategoryPage(QStringLiteral("数据管理"));
@@ -1036,6 +1041,7 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
 
     actionStartPlayBack->setText(QApplication::translate("MainWindow", "开始回放", 0));
     actionStopPlayBack->setText(QApplication::translate("MainWindow", "停止回放", 0));
+    actionAnalsis->setText("分析回放");
 
     menuRecentOpenFile->setTitle(QApplication::translate("MainWindow", "Recent Open Files", 0));
     menuRecentOpenProject->setTitle(QApplication::translate("MainWindow", "Recent Open Projects", 0));

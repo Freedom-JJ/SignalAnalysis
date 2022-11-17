@@ -79,6 +79,7 @@ public:
     QAction *actionDefaultscale;///默认刻度
     QAction *actionStartPlayBack;///开始回放
     QAction *actionStopPlayBack;///停止回放
+    QAction *actionAnalsis;
 
     QAction *actionOpen;
     QAction *actionClearRecentOpenFileHistroy;      ///< 清除最近打开文件记录

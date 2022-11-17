@@ -15,7 +15,8 @@ void GetDataThread::run(){
             msleep(10);
             continue;
         }
-
+        if(r > 200000)
+            r = 0;
         for(int i=0;i<size;i++){
             double * fftwInputArray = new double[20000];
             QString channelCode =  QString::number(i);
@@ -31,21 +32,10 @@ void GetDataThread::run(){
                 fftwInputArray[k] = sumsignal;
                 r += 0.01;
             }
-
-
             //data_thread->theApp->staticEchoSignal->PushEchoSignal(fftwInputArray);
             data_thread->theApp->echoSignalQueue[channelCode]->PushEchoSignal(fftwInputArray);
-
-
-
     }
-
              msleep(100);
     }
-
     emit DataThreadDone();
-
-
-
-
 }
