@@ -16,6 +16,7 @@
 #include <vector>
 #include <map>
 #include <QMutex>
+#include <atomic>
 #include "ThreadSafeQueue.h"
 #include "Signal/StaticSpectralEchoSignal.h"
 #include <QScopedPointer>
@@ -58,7 +59,8 @@ public:
 
     bool m_blocalSignalExist = true;    //回放的文件是否存在
 
-    volatile int m_iplaybackState = 0;  //回放状态   0 : 不回放 1：开始回放 2：:暂停回放
+    //volatile int m_iplaybackState = 0;  //回放状态   0 : 不回放 1：开始回放 2：:暂停回放
+    std::atomic<int> m_iplaybackState;
 
     std::vector<QString> m_vchannelCodes;    //通道集合
 
@@ -81,9 +83,9 @@ public:
     enum RedisState{REDIS_OPEND,REDIS_NOT_OPEN};             //redis标志位
     RedisState redisState = REDIS_OPEND;
 
-    QString initHost; //redis   host
+    QString initHost = "localhost"; //redis   host
 
-    int initPort; //redis   port
+    int initPort = 6379; //redis   port
 
     RedisController *m_redis;
 

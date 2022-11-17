@@ -76,6 +76,8 @@ HEADERS += \
     $$PWD/Utils/aircraftcasingvibratesystem.h \
     $$PWD/Utils/fftw3.h \
 #    $$PWD/Utils/uuidutil.h \
+    $$PWD/Utils/getanalysisresultthread.h \
+    $$PWD/Utils/playbacksinglethread.h \
     $$PWD/Utils/redisuploadthread.h \
     $$PWD/View/JSpectrumWindow.h \
     $$PWD/View/NewProjectDialog.h \
@@ -137,6 +139,8 @@ SOURCES += \
     $$PWD/Utils/UUIDUtil.cpp \
     $$PWD/Utils/aircraftcasingvibratesystem.cpp \
 #    $$PWD/Utils/uuidutil.cpp \
+    $$PWD/Utils/getanalysisresultthread.cpp \
+    $$PWD/Utils/playbacksinglethread.cpp \
     $$PWD/Utils/redisuploadthread.cpp \
     $$PWD/View/JspectrumWindow.cpp \
     $$PWD/View/NewProjectDialog.cpp \

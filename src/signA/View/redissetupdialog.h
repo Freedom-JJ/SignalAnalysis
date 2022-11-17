@@ -27,10 +27,13 @@ private slots:
 
     void on_redisButton_clicked();
 
+    void on_InitButton_clicked();
+
 private:
     Ui::RedisSetUpDialog *ui;
 
     QtRedis *redis;
+
 };
 
 #endif // REDISSETUPDIALOG_H

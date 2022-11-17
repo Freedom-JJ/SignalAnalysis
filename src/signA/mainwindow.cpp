@@ -1360,15 +1360,39 @@ void MainWindow::OnButtonStartPlayBack(){
     //清理掉上一次的错误信息
     theApp->clearAnalysisResult();
 
+
+
     OpenDataFileDialog *openfile = new OpenDataFileDialog(this,this);
     openfile->exec(); //模态对话框，会阻塞 ，show是非模态
     if(theApp->m_iplaybackState == 1){
         return;         //正在回放就不能再点开始回放
     }
     theApp->m_iplaybackState = 1;
+
+    //初始化redis采集队列
+    for(int i = 0; i < theApp->m_vchannelCodes.size(); i++){
+        theApp->m_mpredisCollectionDataQueue.insert(std::pair<QString, ThreadSafeQueue<double>>(theApp->m_vchannelCodes[i], ThreadSafeQueue<double>()));
+    }
+
+    mainRedisUpload = new RedisUploadThread(this,theApp->initHost,theApp->initPort);
+    connect(mainRedisUpload,SIGNAL(AllRedisConsumerSaved()),this,SLOT(mainCloseRedisResource()));
+
+    mainGetAnalysisResult = new GetAnalysisResultThread(this,theApp->initHost,theApp->initPort,theApp->channelNumber);
+    //connect(mainPlayBack,SIGNAL(playbackDone()),mainGetAnalysisResult,SLOT(CloseGetResult()));
+
+    if(theApp->redisState == theApp->RedisState::REDIS_OPEND){
+            mainRedisUpload->start();
+            mainGetAnalysisResult->start();
+        }
+
+
+
+     ///多线程回放
     mainPlayBack = new SumPlayBackThread(this);
-    mainPlayBack->start();
     connect(mainPlayBack,SIGNAL(playbackDone()),this,SLOT(closePlaybackResource()));
+    mainPlayBack->start();
+
+
     ui->dynamicSpectrum->init(this->theApp->echoSignalQueue);//回显信号对象传入
     ui->dynamicSpectrum->resetWindow(ui->dockWidget_main,ui->dynamicSpectrum);
     ui->dynamicSpectrum->setInterval(200);
@@ -1406,6 +1430,27 @@ void MainWindow::closePlaybackResource(){
         it->second->clearEchoSignal();
     }
 
+    if(theApp->redisState == theApp->RedisState::REDIS_OPEND){
+        for(int i=0;i< theApp->m_vchannelCodes.size();i++){
+            QString code = theApp->m_vchannelCodes[i];
+            theApp->m_mpredisCollectionDataQueue[code].clear();
+        }
+    }
+
+}
+
+void MainWindow::closeSinglePlaybackRescouce(){
+
+    ui->spectrunView->stop();
+    theApp->m_iplaybackState = 0;
+
+    mainPlayBack->quit();
+    mainPlayBack->wait();
+    mainPlayBack = nullptr;
+
+    for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
+        it->second->clearEchoSignal();
+    }
 
 }
 /*****************************wzx**************************************/

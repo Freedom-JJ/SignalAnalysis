@@ -66,7 +66,7 @@ QString RedisController::VectorDataSerialize(QVector<double> restVector){
         dataArray.PushBack(restVector[i], allocator);
     }
 
-    jsonDoc.AddMember("CollectionData", dataArray, allocator);
+    jsonDoc.AddMember("\"CollectionData\"", dataArray, allocator);
 
     //生成字符串
     rapidjson::StringBuffer buffer;
@@ -83,6 +83,5 @@ void RedisController::RedisSetCollectionData(QString channelCode, QString jsonDa
 
     QString redisKey = QString("redisCollectionData-%1").arg(channelCode);
     this->redis->lpush(redisKey,jsonData);
-
 
 }

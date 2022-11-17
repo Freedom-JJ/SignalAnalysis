@@ -63,3 +63,27 @@ void RedisSetUpDialog::on_redisButton_clicked()
     redisDia->theApp->initPort = transPort;
 
 }
+
+void RedisSetUpDialog::on_InitButton_clicked()
+{
+    QString initHost  = redisDia->theApp->initHost;
+    int initPort = redisDia->theApp->initPort;
+
+    QtRedis *redisInit = new QtRedis(initHost,initPort);
+
+    redisInit->openConnection();
+
+    for(int i=0;i<redisDia->theApp->m_vchannelCodes.size();i++){
+        QString signalCode = redisDia->theApp->m_vchannelCodes[i];
+        QString redisKey = QString("redisCollectionData-%1").arg(signalCode);
+        QString resultKey = QString("AnalysisResult-%1").arg(signalCode);
+        redisInit->del(redisKey);
+        redisInit->del(resultKey);
+    }
+
+    QMessageBox msgBox3;
+    msgBox3.setText("清空redis数据库成功");
+    msgBox3.exec();
+
+
+}
