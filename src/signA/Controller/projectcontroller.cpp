@@ -125,3 +125,25 @@ Result ProjectController::getAllProjects(vector<Project *> &projects)
     projects = projectService->listProjects();
     return Result(200,"成功返回所有已经保存的项目");
 }
+
+Result ProjectController::getProjectByProjectId(long long projectId, Project *&project)
+{
+    project = projectService->getProjectById(projectId);
+    if(!project){
+        return Result(205,"传入的项目id在数据库中不存在，返回空指针");
+    }
+    else{
+        return Result(200,"返回项目成功");
+    }
+}
+
+Result ProjectController::getProjectsByUserId(long long userId, vector<Project *> &projects)
+{
+    projects = projectService->getProjectsByUserId(userId);
+    if(projects.size()==0){
+        return Result(201,"该用户id对应的用户不存在或者该用户没有创建项目");
+    }
+    else{
+        return Result(200,"返回该用户创建的项目");
+    }
+}

@@ -58,6 +58,7 @@ HEADERS += \
     $$PWD/tDemo/channelcontrollertest.h \
     $$PWD/tDemo/collectionparacontrollertest.h \
     $$PWD/tDemo/dictionarycontrollertest.h \
+    $$PWD/tDemo/projectcontrollertest.h \
     $$PWD/tDemo/singnalcontrollertest.h
 
 
@@ -119,6 +120,7 @@ SOURCES += \
     $$PWD/tDemo/channelcontrollertest.cpp \
     $$PWD/tDemo/collectionparacontrollertest.cpp \
     $$PWD/tDemo/dictionarycontrollertest.cpp \
+    $$PWD/tDemo/projectcontrollertest.cpp \
     $$PWD/tDemo/singnalcontrollertest.cpp
 
 

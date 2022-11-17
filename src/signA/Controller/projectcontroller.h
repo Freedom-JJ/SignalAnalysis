@@ -4,6 +4,7 @@
 #include "../Service/channelservice.h"
 #include "../Service/collectionparaservice.h"
 #include "../Service/projectservice.h"
+#include "../Service/userservice.h"
 #include "../Result/result.h"
 
 class ProjectController
@@ -29,6 +30,12 @@ public:
 
     //返回所有已经建立的项目
     Result getAllProjects(vector<Project*> &projects);
+
+    //根据项目id获取项目
+    Result getProjectByProjectId(long long projectId,Project* &project);
+
+    //根据用户id获取项目列表
+    Result getProjectsByUserId(long long userId,vector<Project*> &projects);
 
 
 
