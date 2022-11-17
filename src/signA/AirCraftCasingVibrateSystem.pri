@@ -55,6 +55,7 @@ HEADERS += \
     $$PWD/View/jvoicesampleview.h \
     $$PWD/View/qcustomplot.h \
     $$PWD/View/spectrum.h \
+    $$PWD/tDemo/channelcontrollertest.h \
     $$PWD/tDemo/collectionparacontrollertest.h \
     $$PWD/tDemo/dictionarycontrollertest.h \
     $$PWD/tDemo/singnalcontrollertest.h
@@ -115,6 +116,7 @@ SOURCES += \
     $$PWD/View/jvoicesampleview.cpp \
     $$PWD/View/qcustomplot.cpp \
     $$PWD/View/spectrum.cpp \
+    $$PWD/tDemo/channelcontrollertest.cpp \
     $$PWD/tDemo/collectionparacontrollertest.cpp \
     $$PWD/tDemo/dictionarycontrollertest.cpp \
     $$PWD/tDemo/singnalcontrollertest.cpp

@@ -32,7 +32,7 @@ long long ChannelService::insertChannel(Channel *channel)
 
 int ChannelService::deleteChannelById(long long channelId)
 {
-    return deleteChannelById(channelId);
+    return this->channelDao->deleteChannelById(channelId);
 }
 
 int ChannelService::updateChannelById(Channel *channel)

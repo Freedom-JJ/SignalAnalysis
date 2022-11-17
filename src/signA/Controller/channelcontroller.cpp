@@ -38,7 +38,7 @@ Result ChannelController::addChannel(Channel *channel, long long &channelId)
     }
 
     channelId = channelService->insertChannel(channel);
-    if(channelId){
+    if(channelId==0){
         return Result(203,"添加通道失败");
     }
     else{
