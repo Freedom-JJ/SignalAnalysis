@@ -1279,15 +1279,15 @@ void MainWindow::OnButtonStartCapture(){
     sampleThread = new GetDataThread(this);
     mainSaveData = new SaveCollectionDataThread(this);
     mainRedisUpload = new RedisUploadThread(this,theApp->initHost,theApp->initPort);
-    connect(mainRedisUpload,SIGNAL(AllRedisConsumerSaved()),this,SLOT(mainCloseRedisResource()));
+    connect(mainRedisUpload,&RedisUploadThread::AllRedisConsumerSaved,this,&MainWindow::mainCloseRedisResource);
 
-    connect(sampleThread,SIGNAL(DataThreadDone()),this,SLOT(closeSaveDataThread()));
+    connect(sampleThread,&GetDataThread::DataThreadDone,this,&MainWindow::closeSaveDataThread);
     sampleThread->start();//开启采集线程
 
     if(theApp->redisState == theApp->RedisState::REDIS_OPEND){
         mainRedisUpload->start();
     }
-    connect(mainSaveData,SIGNAL(AllConsumerSaved()),this,SLOT(mainCloseSaveResource()));
+    connect(mainSaveData,&SaveCollectionDataThread::AllConsumerSaved,this,&MainWindow::mainCloseSaveResource);
     mainSaveData->start();
 }
 
@@ -1312,14 +1312,14 @@ void MainWindow::OnBUttonSuspendCapture(){
 
 //采集线程结束之后的槽函数
 void MainWindow::closeSaveDataThread(){
-
+    qDebug()<<"---------采集线程结束---------状态转为0"<<endl;
     theApp->m_icollectState = 0;
 
 }
 
 
 void MainWindow::mainCloseRedisResource(){
-
+    qDebug()<<"---------redis上传数据线程结束---------"<<endl;
     mainRedisUpload->quit();
     mainRedisUpload->wait();
     mainRedisUpload = nullptr;
@@ -1335,7 +1335,7 @@ void MainWindow::mainCloseRedisResource(){
 //保存文件结束的槽函数
 void MainWindow::mainCloseSaveResource(){
 
-
+    qDebug()<<"---------保存文件线程结束---------"<<endl;
     //结束保存数据线程
     mainSaveData->quit();//保存线程结束
     mainSaveData->wait();
@@ -1359,9 +1359,6 @@ void MainWindow::OnButtonStartPlayBack(){
 
     //清理掉上一次的错误信息
     theApp->clearAnalysisResult();
-
-
-
     OpenDataFileDialog *openfile = new OpenDataFileDialog(this,this);
     openfile->exec(); //模态对话框，会阻塞 ，show是非模态
     if(theApp->m_iplaybackState == 1){
@@ -1375,30 +1372,29 @@ void MainWindow::OnButtonStartPlayBack(){
     }
 
     mainRedisUpload = new RedisUploadThread(this,theApp->initHost,theApp->initPort);
-    connect(mainRedisUpload,SIGNAL(AllRedisConsumerSaved()),this,SLOT(mainCloseRedisResource()));
+    connect(mainRedisUpload,&RedisUploadThread::AllRedisConsumerSaved,this,&MainWindow::mainCloseRedisResource);
 
     mainGetAnalysisResult = new GetAnalysisResultThread(this,theApp->initHost,theApp->initPort,theApp->channelNumber);
-    //connect(mainPlayBack,SIGNAL(playbackDone()),mainGetAnalysisResult,SLOT(CloseGetResult()));
-
+//    connect(mainPlayBack,SIGNAL(playbackDone()),mainGetAnalysisResult,SLOT(CloseGetResult()));
+    mainGetAnalysisResult->setTimeAxis(ui->dynamicSpectrum);
     if(theApp->redisState == theApp->RedisState::REDIS_OPEND){
             mainRedisUpload->start();
             mainGetAnalysisResult->start();
-        }
-
-
+    }
 
      ///多线程回放
     mainPlayBack = new SumPlayBackThread(this);
-    connect(mainPlayBack,SIGNAL(playbackDone()),this,SLOT(closePlaybackResource()));
+    connect(mainPlayBack,&SumPlayBackThread:: playbackDone,this,&MainWindow::closePlaybackResource);
     mainPlayBack->start();
 
 
     ui->dynamicSpectrum->init(this->theApp->echoSignalQueue);//回显信号对象传入
+    ui->dynamicSpectrum->openTimeAxis();
     ui->dynamicSpectrum->resetWindow(ui->dockWidget_main,ui->dynamicSpectrum);
     ui->dynamicSpectrum->setInterval(200);
     ui->dynamicSpectrum->setAnalysisResult(this->theApp->getAnalysisResult());
     ui->dynamicSpectrum->start();//开始显示
-    ui->dynamicSpectrum->openTimeAxis();
+
 }
 
 //停止回放
@@ -1418,7 +1414,7 @@ void MainWindow::OnButtonAnalysis(){
 
 //回放读取文件结束后的槽函数,自动调用
 void MainWindow::closePlaybackResource(){
-
+    qDebug()<<"-----------回放自动结束-------"<<endl;
     ui->dynamicSpectrum->stop();
     theApp->m_iplaybackState = 0;
 
@@ -1441,7 +1437,6 @@ void MainWindow::closePlaybackResource(){
 
 void MainWindow::closeSinglePlaybackRescouce(){
 
-    ui->spectrunView->stop();
     theApp->m_iplaybackState = 0;
 
     mainPlayBack->quit();

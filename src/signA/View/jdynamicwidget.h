@@ -117,6 +117,7 @@ private:
     std::map<QString,int> count;
     std::map<QString,QVector<double>> oldData;
     mutex mu;
+    int number= 0;
  signals:
     void clicked();
  public slots:

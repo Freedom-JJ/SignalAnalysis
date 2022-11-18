@@ -31,6 +31,7 @@ public:
     QLabel *label;
     QLabel *label_2;
     QPushButton *redisButton;
+    QPushButton *InitButton;
 
     void setupUi(QDialog *RedisSetUpDialog)
     {
@@ -55,6 +56,9 @@ public:
         redisButton = new QPushButton(RedisSetUpDialog);
         redisButton->setObjectName(QStringLiteral("redisButton"));
         redisButton->setGeometry(QRect(260, 260, 80, 20));
+        InitButton = new QPushButton(RedisSetUpDialog);
+        InitButton->setObjectName(QStringLiteral("InitButton"));
+        InitButton->setGeometry(QRect(80, 250, 81, 31));
 
         retranslateUi(RedisSetUpDialog);
 
@@ -68,6 +72,7 @@ public:
         label->setText(QApplication::translate("RedisSetUpDialog", "Host", Q_NULLPTR));
         label_2->setText(QApplication::translate("RedisSetUpDialog", "port", Q_NULLPTR));
         redisButton->setText(QApplication::translate("RedisSetUpDialog", "\350\277\236\346\216\245", Q_NULLPTR));
+        InitButton->setText(QApplication::translate("RedisSetUpDialog", "\351\207\215\347\275\256\346\225\260\346\215\256\345\272\223", Q_NULLPTR));
     } // retranslateUi
 
 };

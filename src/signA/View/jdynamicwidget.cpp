@@ -90,32 +90,11 @@ void JDynamicWidget::refresh()
 
         int index = bindSpectrum[it->first];
         QVector<double> data = it->second->PopEchoSignal();
-//        spectrumVec[index]->refresh(data); //内部排除了size为0
-
+        if(data.size()==0){ //血泪！！！！！！！
+            return;
+        }
         //测试异常判断，极其相关接口
         int num = count[it->first];
-        if(num == 0){
-            oldData[it->first] = data;
-        }
-        double maxn=0;
-        for (int var = 0; var < data.size(); ++var) {
-            maxn = max(qAbs(data[var] - oldData[it->first][var]) , maxn);
-        }
-        AnalysisResult res;
-        if(maxn>1000){
-            res.setChannel(it->first);
-            res.setId(QString::number(num));
-            res.setErrorInf(AnalysisResult::ABNORMAL);
-            res.setStart(QString::number(num));
-            res.setEnd(QString::number(num +1));
-        }else{
-            res.setChannel(it->first);
-            res.setId(QString::number(num));
-            res.setErrorInf(AnalysisResult::NORMAL);
-            res.setStart(QString::number(num));
-            res.setEnd(QString::number(num +1));
-        }
-        addDataTimeAxis(res);
         spectrumVec[index]->refresh(data); //内部排除了size为0
         count[it->first] = num+1;
         oldData[it->first] = data;
@@ -274,8 +253,8 @@ void JDynamicWidget::resizeEvent(QResizeEvent *event)
     double pageHeight = event->size().height(); //一页的高度
     this->scrollContents->setFixedHeight(pageCount * pageHeight -40); //-10的原因是，QScrollArea无法完全占据QWidget区域
 //    this->scrollContents->resize(event->size().width()/2,event->size().height()/2);
-    qDebug()<<"old size: w = "<<event->oldSize().width() <<" h = "<<event->oldSize().height()<<endl;
-    qDebug()<<"new size: w = "<<event->size().width() <<" h = "<<event->size().height()<<endl;
+//    qDebug()<<"old size: w = "<<event->oldSize().width() <<" h = "<<event->oldSize().height()<<endl;
+//    qDebug()<<"new size: w = "<<event->size().width() <<" h = "<<event->size().height()<<endl;
 }
 
 void JDynamicWidget::setAnalysisResult(const std::shared_ptr<std::map<QString, QVector<AnalysisResult> > > &value)

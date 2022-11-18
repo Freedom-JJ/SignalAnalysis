@@ -43,7 +43,7 @@ QString RedisController::DataSerialize(ThreadSafeQueue<double> &dataQueue){
         dataArray.PushBack(*signal, allocator);
     }
 
-    jsonDoc.AddMember("CollectionData", dataArray, allocator);
+    jsonDoc.AddMember("\"CollectionData\"", dataArray, allocator);
 
     //生成字符串
     rapidjson::StringBuffer buffer;

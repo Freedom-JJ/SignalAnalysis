@@ -9,10 +9,9 @@ void RedisUploadThread::run(){
     if (!consumerRedis->openConnection())
     {
         qDebug() << "Could not connect to server...";
-        exit(0);
+        return;
     }
 
-    qDebug() << "Connected to server...";
 
     int SignalSequenceId = 0;
 
@@ -62,9 +61,7 @@ void RedisUploadThread::run(){
 
                for(int i=0;i<saveRedis->theApp->m_icollectSignalsStoreCount;i++){
                    if(saveRedis->theApp->m_mpredisCollectionDataQueue[signalCode].size()>0){
-
                         saveData.push(*(saveRedis->theApp->m_mpredisCollectionDataQueue[signalCode].wait_and_pop()));
-
                    }
                    else{
                        saveData.push(0);
@@ -77,10 +74,9 @@ void RedisUploadThread::run(){
     SignalSequenceId += 1;
     iter++;
 
-}
+    }
 
     emit AllRedisConsumerSaved();
-
 
 }
 
@@ -92,7 +88,7 @@ void RedisConSumerThread::run(){
     if (!consumerRedis->openConnection())
     {
         qDebug() << "Could not connect to server...";
-        exit(0);
+        return;
     }
 
     qDebug() << "Connected to server...";

@@ -264,7 +264,7 @@ void Spectrum::refreshTimeAxis()
         std::lock_guard<std::mutex> lk(mu);
         for(auto res:analysisBuffer){
             if(count!=res.getId().toInt()){
-                qDebug()<<"信号反馈祯ID不对应";
+                qDebug()<<"信号反馈祯ID不对应,内部id"<<count<<"----外部id"<<res.getId().toInt()<<endl;
             }
             if(res.getErrorInf()==AnalysisResult::ABNORMAL){
                 abnormalBars->addData(count*barWidth,20);

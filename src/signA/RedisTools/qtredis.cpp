@@ -928,7 +928,6 @@ QString QtRedis::rpop(QString key)
     cmd.append(key);
 
     Reply reply = command(cmd);
-
     return reply.value.toString();
 }
 

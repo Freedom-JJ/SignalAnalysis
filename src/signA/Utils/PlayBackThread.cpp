@@ -45,6 +45,7 @@ void PlayBackThread::run(){
         std::cerr << "Cannot open file for reading: "
                   << qPrintable(file.errorString())
                   << std::endl;
+        return;
     }
     QDataStream inputStream(&file);
     inputStream.setVersion(QDataStream::Qt_5_9);
@@ -63,7 +64,7 @@ void PlayBackThread::run(){
         for(int i=0;i<collectionPoints;i++){
             playThread->theApp->m_mpredisCollectionDataQueue[this->signalCode].push(fftwInputArray[i]);
         }
-        msleep(500);
+        msleep(100);
     }
 }
 
