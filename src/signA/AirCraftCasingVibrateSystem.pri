@@ -87,6 +87,8 @@ HEADERS += \
     $$PWD/Utils/UUIDUtil.h \
     $$PWD/Utils/aircraftcasingvibratesystem.h \
     $$PWD/Utils/fftw3.h \
+    $$PWD/Utils/getanalysisresultthread.h \
+    $$PWD/Utils/redisuploadthread.h \
     $$PWD/View/JSpectrumWindow.h \
     $$PWD/View/NewProjectDialog.h \
     $$PWD/View/OpenDataFileDialog.h \
