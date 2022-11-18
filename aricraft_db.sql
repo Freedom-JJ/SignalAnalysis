@@ -26,33 +26,14 @@ CREATE TABLE `channel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `channelCode` varchar(255) DEFAULT NULL COMMENT '传感器标识',
   `channelDesc` varchar(255) DEFAULT NULL COMMENT '传感器描述',
-  `channelStatus` char(1) DEFAULT NULL,
   `measureType` int(11) DEFAULT NULL COMMENT '测量类型',
-  `windowType` int(11) DEFAULT NULL COMMENT '窗口类型，参考的是字典表',
-  `triggerMagnitude` float DEFAULT NULL COMMENT '触发量级',
-  `triggerPolarity` int(11) DEFAULT NULL COMMENT '触发极性,参考字典表',
-  `pointNum` int(11) DEFAULT NULL COMMENT '测点号',
-  `coordinateSystem` int(11) DEFAULT NULL COMMENT '坐标系，参考字典表',
-  `coordinateSystemdirection` int(11) DEFAULT NULL COMMENT '坐标系方向，参考字典表',
-  `isReference` char(1) DEFAULT NULL COMMENT '参考标识，即是否参考',
-  `engineeringUnits` int(11) DEFAULT NULL COMMENT '工程单位，参考字典表',
-  `sensitivity` float DEFAULT NULL COMMENT '传感器灵敏度',
   `fullValue` int(11) DEFAULT NULL COMMENT '满度量程',
-  `integralType` int(11) DEFAULT NULL COMMENT '积分类型，参考字典表',
-  `integralUnits` int(11) DEFAULT NULL COMMENT '积分单位，参考字典表',
   `inputMode` int(11) DEFAULT NULL COMMENT '输入方式，参考字典表',
-  `antiAliasingFiltering` char(1) DEFAULT NULL COMMENT '抗混滤波器',
   `upFreq` int(50) DEFAULT NULL COMMENT '上限频率',
   `elcPressure` int(255) DEFAULT NULL COMMENT '电压测量范围',
-  `downFrequency` int(255) DEFAULT NULL COMMENT '下限频率',
-  `projectId` int(11) DEFAULT NULL COMMENT '项目编号',
-  `testlocatonId` int(11) DEFAULT NULL COMMENT '测试位置编号',
-  `xMin` double(11,0) DEFAULT NULL COMMENT 'x轴最小值',
-  `xMax` double(11,0) DEFAULT NULL COMMENT 'x轴最大值',
-  `yMin` double(11,0) DEFAULT NULL COMMENT 'y轴最小值',
-  `yMax` double(11,0) DEFAULT NULL COMMENT 'y轴最大值',
+  `projectId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=7026 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,6 +42,7 @@ CREATE TABLE `channel` (
 
 LOCK TABLES `channel` WRITE;
 /*!40000 ALTER TABLE `channel` DISABLE KEYS */;
+INSERT INTO `channel` VALUES (2,'gege','gegeg',1,1,2,3,1,22),(3,'ge','ge',4,5,6,7,8,9),(4,'higehi','新通道',0,223423,0,0,299,1),(5,'higehi','新通道',0,223423,0,0,299,1),(7,'新Code','新通道',0,223423,0,0,299,1);
 /*!40000 ALTER TABLE `channel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -73,19 +55,19 @@ DROP TABLE IF EXISTS `collectionparas`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `collectionparas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sample_frequency` int(255) DEFAULT NULL COMMENT '采样频率',
-  `collection_method` int(11) DEFAULT NULL COMMENT '采样方式',
-  `trigger_method` int(11) DEFAULT NULL COMMENT '触发方式',
-  `data_blocks` int(11) DEFAULT NULL COMMENT '数据块数',
-  `delay_blocks` int(11) DEFAULT NULL COMMENT '延迟块数',
-  `trigger_times` int(11) DEFAULT NULL COMMENT '触发次数',
+  `sampleFrequency` int(255) DEFAULT NULL COMMENT '采样频率',
+  `collectionMethod` int(11) DEFAULT NULL COMMENT '采样方式',
+  `triggerMethod` int(11) DEFAULT NULL COMMENT '触发方式',
+  `dataBlocks` int(11) DEFAULT NULL COMMENT '数据块数',
+  `delayBlocks` int(11) DEFAULT NULL COMMENT '延迟块数',
+  `triggerTimes` int(11) DEFAULT NULL COMMENT '触发次数',
   `line` int(11) DEFAULT NULL COMMENT '采集点数',
-  `sample_batch` int(11) DEFAULT NULL COMMENT '采样批次',
-  `sample_clk` int(255) DEFAULT NULL COMMENT '采样时钟',
+  `sampleBatch` int(11) DEFAULT NULL COMMENT '采样批次',
+  `sampleClk` int(255) DEFAULT NULL COMMENT '采样时钟',
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `simple_frequency` (`sample_frequency`) USING BTREE,
-  KEY `sampling_method` (`collection_method`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=253 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  KEY `simple_frequency` (`sampleFrequency`) USING BTREE,
+  KEY `sampling_method` (`collectionMethod`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,6 +76,7 @@ CREATE TABLE `collectionparas` (
 
 LOCK TABLES `collectionparas` WRITE;
 /*!40000 ALTER TABLE `collectionparas` DISABLE KEYS */;
+INSERT INTO `collectionparas` VALUES (1,0,2004004,0,0,0,0,0,0,0),(3,0,0,0,0,0,0,0,0,0),(4,3,0,0,0,0,0,0,0,0),(5,3,0,0,0,0,0,0,0,0),(6,0,0,0,0,20000,0,0,0,0),(7,0,0,0,0,20000,0,0,0,0),(8,0,0,0,0,20000,0,0,0,0);
 /*!40000 ALTER TABLE `collectionparas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,11 +88,11 @@ DROP TABLE IF EXISTS `dictionary`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dictionary` (
-  `dict_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '字典ID',
-  `dict_name` varchar(255) NOT NULL,
-  `dict_value` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`dict_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '字典ID',
+  `dictName` varchar(255) NOT NULL,
+  `dictValue` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=205 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +101,7 @@ CREATE TABLE `dictionary` (
 
 LOCK TABLES `dictionary` WRITE;
 /*!40000 ALTER TABLE `dictionary` DISABLE KEYS */;
-INSERT INTO `dictionary` VALUES (1,'samplefrequency','{\"title\":\"128HZ\",\"content\":128}'),(2,'samplefrequency','{\"title\":\"256HZ\",\"content\":256}'),(3,'samplefrequency','{\"title\":\"512HZ\",\"content\":512}'),(4,'samplefrequency','{\"title\":\"1.28KHZ\",\"content\":1280}'),(5,'samplefrequency','{\"title\":\"2.56KHZ\",\"content\":2560}'),(6,'samplefrequency','{\"title\":\"5.12KHZ\",\"content\":5120}'),(7,'samplefrequency','{\"title\":\"12.8KHZ\",\"content\":12800}'),(8,'samplefrequency','{\"title\":\"25.6KHZ\",\"content\":25600}'),(9,'samplefrequency','{\"title\":\"51.2KHZ\",\"content\":51200}'),(10,'samplefrequency','{\"title\":\"128KHZ\",\"content\":128000}'),(11,'samplefrequency','{\"title\":\"256KHZ\",\"content\":256000}'),(12,'analysisfrequency','{\"title\":\"0.5HZ\",\"content\":0.5}'),(13,'analysisfrequency','{\"title\":\"1HZ\",\"content\":1}'),(14,'analysisfrequency','{\"title\":\"2HZ\",\"content\":2}'),(15,'analysisfrequency','{\"title\":\"5HZ\",\"content\":5}'),(16,'analysisfrequency','{\"title\":\"10HZ\",\"content\":10}'),(17,'analysisfrequency','{\"title\":\"20HZ\",\"content\":20}'),(18,'analysisfrequency','{\"title\":\"50HZ\",\"content\":50}'),(19,'analysisfrequency','{\"title\":\"100HZ\",\"content\":100}'),(20,'analysisfrequency','{\"title\":\"200HZ\",\"content\":200}'),(21,'analysisfrequency','{\"title\":\"500HZ\",\"content\":500}'),(22,'analysisfrequency','{\"title\":\"1KHZ\",\"content\":1000}'),(23,'analysisfrequency','{\"title\":\"2KHZ\",\"content\":2000}'),(24,'analysisfrequency','{\"title\":\"5KHZ\",\"content\":5000}'),(25,'analysisfrequency','{\"title\":\"10KHZ\",\"content\":10000}'),(26,'analysisfrequency','{\"title\":\"20KHZ\",\"content\":20000}'),(27,'analysisfrequency','{\"title\":\"50KHZ\",\"content\":50000}'),(28,'analysisfrequency','{\"title\":\"100KHZ\",\"content\":100000}'),(29,'collectionmethod','连续'),(30,'collectionmethod','示波'),(31,'collectionmethod','瞬态'),(32,'collectionmethod','触发连续'),(46,'engineeringunit','v'),(48,'engineeringunit','με'),(49,'engineeringunit','g'),(50,'engineeringunit','m/s^2'),(51,'engineeringunit','cm/s^2'),(52,'engineeringunit','mm/s^2'),(53,'engineeringunit','m/s'),(54,'engineeringunit','cm/s'),(55,'engineeringunit','mm/s'),(56,'engineeringunit','m'),(57,'engineeringunit','cm'),(58,'engineeringunit','mm'),(59,'engineeringunit','μm'),(60,'engineeringunit','℃'),(61,'engineeringunit','℉'),(62,'engineeringunit','N'),(63,'engineeringunit','Pa'),(64,'engineeringunit','KPa'),(65,'engineeringunit','MPa'),(66,'engineeringunit','kg'),(67,'engineeringunit','Hz'),(68,'engineeringunit','J'),(69,'engineeringunit','W'),(70,'engineeringunit','RPM'),(71,'engineeringunit','rad/s'),(72,'engineeringunit','rad'),(73,'engineeringunit','A'),(75,'collectionplan','{\"planName\":\"平稳状态\",\"planIntro\":\"平稳状态下的采集\",\"planParaTitle\":[\"转速\"],\"planParaContent\":[[\"126hz\"],[\"126hz\"]]}'),(76,'windowtype','矩形窗'),(77,'windowtype','海宁窗'),(78,'windowtype','平顶窗'),(79,'windowtype','汉明窗'),(80,'windowtype','力窗'),(81,'inputmethod','AC'),(82,'inputmethod','ICP'),(83,'collectionplan','{\"planName\":\"上升状态\",\"planIntro\":\"上升状态下的采集\",\"planParaTitle\":[\"速度\",\"加速度\"],\"planParaContent\":[[\"30\",\"20\"],[\"20\",\"2\"]]}'),(84,'engineeringunit','test'),(87,'collectionplan','{\"planName\":\"下降状态\",\"planIntro\":\"下降状态的采集\",\"planParaTitle\":[\"速度\",\"减速度\"],\"planParaContent\":[[\"20hz\",\"25hz\"],[\"36hz\",\"29hz\"],[\"39hz\",\"42hz\"]]}'),(88,'collectionpoint','50'),(89,'collectionpoint','100'),(90,'collectionpoint','200'),(91,'collectionpoint','400'),(92,'collectionpoint','800'),(93,'collectionpoint','1600'),(94,'collectionpoint','3200'),(95,'collectionpoint','6400'),(96,'collectionpoint','8192'),(97,'collectionpoint','25600'),(98,'collectionpoint','51200'),(99,'collectionpoint','102400'),(100,'triggermethod','触发'),(101,'lines','50'),(102,'lines','100'),(103,'lines','200'),(104,'lines','400'),(105,'lines','800'),(106,'lines','1600'),(107,'lines','3200'),(108,'lines','6400'),(109,'lines','12800'),(110,'lines','25600');
+INSERT INTO `dictionary` VALUES (1,'samplefrequency','{\"title\":\"128HZ\",\"content\":128}'),(2,'samplefrequency','{\"title\":\"256HZ\",\"content\":256}'),(3,'samplefrequency','{\"title\":\"512HZ\",\"content\":512}'),(4,'samplefrequency','{\"title\":\"1.28KHZ\",\"content\":1280}'),(5,'samplefrequency','{\"title\":\"2.56KHZ\",\"content\":2560}'),(6,'samplefrequency','{\"title\":\"5.12KHZ\",\"content\":5120}'),(7,'samplefrequency','{\"title\":\"12.8KHZ\",\"content\":12800}'),(8,'samplefrequency','{\"title\":\"25.6KHZ\",\"content\":25600}'),(9,'samplefrequency','{\"title\":\"51.2KHZ\",\"content\":51200}'),(10,'samplefrequency','{\"title\":\"128KHZ\",\"content\":128000}'),(11,'samplefrequency','{\"title\":\"256KHZ\",\"content\":256000}'),(12,'analysisfrequency','{\"title\":\"0.5HZ\",\"content\":0.5}'),(13,'analysisfrequency','{\"title\":\"1HZ\",\"content\":1}'),(14,'analysisfrequency','{\"title\":\"2HZ\",\"content\":2}'),(15,'analysisfrequency','{\"title\":\"5HZ\",\"content\":5}'),(16,'analysisfrequency','{\"title\":\"10HZ\",\"content\":10}'),(17,'analysisfrequency','{\"title\":\"20HZ\",\"content\":20}'),(18,'analysisfrequency','{\"title\":\"50HZ\",\"content\":50}'),(19,'analysisfrequency','{\"title\":\"100HZ\",\"content\":100}'),(20,'analysisfrequency','{\"title\":\"200HZ\",\"content\":200}'),(21,'analysisfrequency','{\"title\":\"500HZ\",\"content\":500}'),(22,'analysisfrequency','{\"title\":\"1KHZ\",\"content\":1000}'),(23,'analysisfrequency','{\"title\":\"2KHZ\",\"content\":2000}'),(24,'analysisfrequency','{\"title\":\"5KHZ\",\"content\":5000}'),(25,'analysisfrequency','{\"title\":\"10KHZ\",\"content\":10000}'),(26,'analysisfrequency','{\"title\":\"20KHZ\",\"content\":20000}'),(27,'analysisfrequency','{\"title\":\"50KHZ\",\"content\":50000}'),(28,'analysisfrequency','{\"title\":\"100KHZ\",\"content\":100000}'),(29,'collectionmethod','连续'),(30,'collectionmethod','示波'),(31,'collectionmethod','瞬态'),(32,'collectionmethod','触发连续'),(46,'engineeringunit','v'),(48,'engineeringunit','με'),(49,'engineeringunit','g'),(50,'engineeringunit','m/s^2'),(51,'engineeringunit','cm/s^2'),(52,'engineeringunit','mm/s^2'),(53,'engineeringunit','m/s'),(54,'engineeringunit','cm/s'),(55,'engineeringunit','mm/s'),(56,'engineeringunit','m'),(57,'engineeringunit','cm'),(58,'engineeringunit','mm'),(59,'engineeringunit','μm'),(60,'engineeringunit','℃'),(61,'engineeringunit','℉'),(62,'engineeringunit','N'),(63,'engineeringunit','Pa'),(64,'engineeringunit','KPa'),(65,'engineeringunit','MPa'),(66,'engineeringunit','kg'),(67,'engineeringunit','Hz'),(68,'engineeringunit','J'),(69,'engineeringunit','W'),(70,'engineeringunit','RPM'),(71,'engineeringunit','rad/s'),(72,'engineeringunit','rad'),(73,'engineeringunit','A'),(75,'collectionplan','{\"planName\":\"平稳状态\",\"planIntro\":\"平稳状态下的采集\",\"planParaTitle\":[\"转速\"],\"planParaContent\":[[\"126hz\"],[\"126hz\"]]}'),(76,'windowtype','矩形窗'),(77,'windowtype','海宁窗'),(78,'windowtype','平顶窗'),(79,'windowtype','汉明窗'),(80,'windowtype','力窗'),(81,'inputmethod','AC'),(82,'inputmethod','ICP'),(83,'collectionplan','{\"planName\":\"上升状态\",\"planIntro\":\"上升状态下的采集\",\"planParaTitle\":[\"速度\",\"加速度\"],\"planParaContent\":[[\"30\",\"20\"],[\"20\",\"2\"]]}'),(84,'engineeringunit','test'),(87,'collectionplan','{\"planName\":\"下降状态\",\"planIntro\":\"下降状态的采集\",\"planParaTitle\":[\"速度\",\"减速度\"],\"planParaContent\":[[\"20hz\",\"25hz\"],[\"36hz\",\"29hz\"],[\"39hz\",\"42hz\"]]}'),(88,'collectionpoint','50'),(89,'collectionpoint','100'),(90,'collectionpoint','200'),(91,'collectionpoint','400'),(92,'collectionpoint','800'),(93,'collectionpoint','1600'),(94,'collectionpoint','3200'),(95,'collectionpoint','6400'),(96,'collectionpoint','8192'),(97,'collectionpoint','25600'),(98,'collectionpoint','51200'),(99,'collectionpoint','102400'),(100,'triggermethod','触发'),(101,'lines','50'),(102,'lines','100'),(103,'lines','200'),(104,'lines','400'),(105,'lines','800'),(106,'lines','1600'),(107,'lines','3200'),(108,'lines','6400'),(109,'lines','12800'),(110,'lines','25600'),(111,'test_name','test-value'),(200,'ge','geg'),(203,'hel','gegege'),(204,'hel','new_ge');
 /*!40000 ALTER TABLE `dictionary` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,7 +147,7 @@ CREATE TABLE `project` (
   `projectParameterId` int(11) DEFAULT NULL COMMENT '项目参数id',
   `projectStatus` int(11) DEFAULT NULL COMMENT ' 1默认状态 2 正在使用 3 删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,6 +156,7 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
+INSERT INTO `project` VALUES (1,'higei','2','3',4,5,6);
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -199,7 +183,7 @@ CREATE TABLE `single_signal` (
 
 LOCK TABLES `single_signal` WRITE;
 /*!40000 ALTER TABLE `single_signal` DISABLE KEYS */;
-INSERT INTO `single_signal` VALUES ('gege',132,'gegege',1,'data/hige/hihige');
+INSERT INTO `single_signal` VALUES ('0564a654-582d-42bc-b896-4d96705a76b9',2,'521d82d9-2571-40a4-9198-1cf77d3a329e',1,'D:/QtCollectionData/b9d19c3f-a892-43d0-95ed-7d1bae18ba5e-0-2.txt'),('0d22a590-bc4e-40a6-bccd-698944bf9527',0,'463f6e7b-8dcc-4d9f-9a4f-e1878c2cf143',1,'D:/QtCollectionData/6081a9c2-a66b-40d2-844e-fdb8d1145c95-0-0.txt'),('13349901-625e-4a88-81b6-5c00af1d74a8',0,'a7eb7edb-4b92-4e47-a58a-52e1117787e5',1,'D:/QtCollectionData/f2fa8d3c-8f7d-4f7d-a735-04d79152fb70-0-0.txt'),('19c5a321-c746-4ae6-be70-42e76a7a7c56',0,'8d658090-2e29-405d-90e7-99b08dbfa28f',1,'D:/QtCollectionData/f98a3c25-4c22-4996-afbe-613c06bf8cdc-0-0.txt'),('1b84542c-5f1f-44c2-95c1-b55c90c42858',3,'463f6e7b-8dcc-4d9f-9a4f-e1878c2cf143',1,'D:/QtCollectionData/254c8c0c-077f-4fc6-8445-0693e88842aa-0-3.txt'),('1e0f177b-f6c2-4a59-a369-09f05ef89db8',2,'8d658090-2e29-405d-90e7-99b08dbfa28f',1,'D:/QtCollectionData/4fc5edc4-f1b0-4295-a713-c2d2d1b468d1-0-2.txt'),('210572f4-75c1-4c05-9d44-50134dd29017',2,'a7eb7edb-4b92-4e47-a58a-52e1117787e5',1,'D:/QtCollectionData/7b7d4ed1-a2b4-4915-822e-f7c5a5c7d224-0-2.txt'),('3fde120f-7c15-4410-b901-3b198f5b3247',1,'d96e3d22-7639-495e-91c6-0e68df7f3f04',1,'D:/QtCollectionData/69aaf54f-edc5-44e4-9040-aa189cd75a65-0-1.txt'),('461d2b87-d63d-479b-ab15-27dfaa99042c',1,'ee8f1918-cf6d-4542-8361-e47b3a2d932e',1,'D:/QtCollectionData/39915514-c8ff-4f5d-b26f-d03e8744a374-0-1.txt'),('482d72d9-1212-466e-8b52-7d5bcc971749',1,'463f6e7b-8dcc-4d9f-9a4f-e1878c2cf143',1,'D:/QtCollectionData/380a3244-35f4-4644-bbda-3002d7239561-0-1.txt'),('48fcda41-2be2-4e40-b465-2a82a3a5ebf2',3,'a7eb7edb-4b92-4e47-a58a-52e1117787e5',1,'D:/QtCollectionData/10c62777-81e2-4c17-840b-1696c643dceb-0-3.txt'),('4e02c7cf-808d-4875-9538-0435076cff64',3,'8d658090-2e29-405d-90e7-99b08dbfa28f',1,'D:/QtCollectionData/f498f5ea-e5fb-4566-b143-fdd2dadfc7b1-0-3.txt'),('5d6a4bba-6efb-4b13-9a1f-ca5942561699',0,'ee8f1918-cf6d-4542-8361-e47b3a2d932e',1,'D:/QtCollectionData/7e5c4152-46c7-4f8f-b9cc-b46a3f48fb8b-0-0.txt'),('65595c57-bae0-43a0-a76d-b0a4c39fbce3',3,'5c5f7cf6-9400-46d2-9849-bc55f46cef61',1,'D:/QtCollectionData/9be222df-05d1-4a8d-99cc-6dfe3babfe2b-0-3.txt'),('663c37a4-7d3d-4faa-b45c-eb6b0b21a138',1,'5c5f7cf6-9400-46d2-9849-bc55f46cef61',1,'D:/QtCollectionData/0a96ccac-9b78-4737-8781-879f92f504ad-0-1.txt'),('68c7a2b9-b9e7-45b1-a39b-a83be6985fc0',2,'463f6e7b-8dcc-4d9f-9a4f-e1878c2cf143',1,'D:/QtCollectionData/2589bcad-50a7-44a7-ad45-b38323dc7241-0-2.txt'),('6dbb5a4c-4ec2-4925-b420-86e5dea2d632',0,'d96e3d22-7639-495e-91c6-0e68df7f3f04',1,'D:/QtCollectionData/ee9494f5-582c-4232-b709-b9e9aabe57f4-0-0.txt'),('83f77a2c-990a-41c4-a8d0-7c111c8ebd47',1,'a7eb7edb-4b92-4e47-a58a-52e1117787e5',1,'D:/QtCollectionData/4e95b809-6e94-4172-add6-7ddb986bd0ef-0-1.txt'),('9ecc25d2-5cb8-4d4c-97e2-5f21b5046e25',3,'ee8f1918-cf6d-4542-8361-e47b3a2d932e',1,'D:/QtCollectionData/3fec3d4d-022a-4b8d-8bfb-8c11329b911a-0-3.txt'),('a934026a-ee89-4240-b4e8-7096f853e4bc',0,'521d82d9-2571-40a4-9198-1cf77d3a329e',1,'D:/QtCollectionData/a069368a-43d6-4b4b-a3ba-9dc47e6b7ba6-0-0.txt'),('be819931-39d1-43db-a1ae-ec58a5ce850a',1,'521d82d9-2571-40a4-9198-1cf77d3a329e',1,'D:/QtCollectionData/3112d457-2d26-4323-a114-4882ba6eb35d-0-1.txt'),('c26cbee5-aadc-4c64-a8c4-abecb60b1581',3,'521d82d9-2571-40a4-9198-1cf77d3a329e',1,'D:/QtCollectionData/84a104ed-1e49-497d-8553-0ef036cb0bd0-0-3.txt'),('cb372443-10fc-4615-bd42-cfc3ab7a9941',0,'5c5f7cf6-9400-46d2-9849-bc55f46cef61',1,'D:/QtCollectionData/315e0f58-aeb7-4831-94d1-6193daef2524-0-0.txt'),('d0924f81-9414-4e77-b0fa-4f64502452c0',1,'8d658090-2e29-405d-90e7-99b08dbfa28f',1,'D:/QtCollectionData/f31ab70a-86c2-49e1-a134-f0645f7cbbcb-0-1.txt'),('ec767bf9-bd94-4b96-82ad-f0e4a5066040',2,'5c5f7cf6-9400-46d2-9849-bc55f46cef61',1,'D:/QtCollectionData/10905103-0bb2-4a0f-a4f9-2aaf344f42ce-0-2.txt'),('f018e192-f3dd-47fe-8d35-64bf3c197459',2,'ee8f1918-cf6d-4542-8361-e47b3a2d932e',1,'D:/QtCollectionData/98507a9d-cdd3-43aa-8f17-dd5800e7e99e-0-2.txt'),('fc17a454-71e3-4c39-95e6-cab284333089',2,'d96e3d22-7639-495e-91c6-0e68df7f3f04',1,'D:/QtCollectionData/e4a61873-2670-4420-bd86-a1d8509a7de0-0-2.txt'),('fc691390-dd3c-4024-9c27-f1803a2c0707',3,'d96e3d22-7639-495e-91c6-0e68df7f3f04',1,'D:/QtCollectionData/812ddf58-67cd-4717-9dc0-5ce90ceee62c-0-3.txt'),('single1',1,'sum1',1,'/hello/single1'),('single11',1,'sum2',1,'/hello/single11'),('single12',2,'sum2',1,'/hello/single12'),('single13',3,'sum2',1,'/hello/single13'),('single14',4,'sum2',1,'/hello/single14'),('single2',2,'sum1',1,'/hello/single2'),('single3',3,'sum1',1,'/hello/single3'),('single4',4,'sum1',1,'/hello/single4');
 /*!40000 ALTER TABLE `single_signal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,6 +210,7 @@ CREATE TABLE `sum_signal` (
 
 LOCK TABLES `sum_signal` WRITE;
 /*!40000 ALTER TABLE `sum_signal` DISABLE KEYS */;
+INSERT INTO `sum_signal` VALUES ('463f6e7b-8dcc-4d9f-9a4f-e1878c2cf143','2022-11-17 20:13:11','2022-11-17 20:13:15',10),('521d82d9-2571-40a4-9198-1cf77d3a329e','2022-11-09 20:32:36','2022-11-09 20:32:53',10),('5c5f7cf6-9400-46d2-9849-bc55f46cef61','2022-11-11 20:14:42','2022-11-11 20:14:54',10),('8d658090-2e29-405d-90e7-99b08dbfa28f','2022-11-09 18:44:36','2022-11-09 18:44:42',10),('a7eb7edb-4b92-4e47-a58a-52e1117787e5','2022-11-11 19:35:29','2022-11-11 19:35:34',10),('d96e3d22-7639-495e-91c6-0e68df7f3f04','2022-11-10 22:42:06','2022-11-10 22:42:37',10),('ee8f1918-cf6d-4542-8361-e47b3a2d932e','2022-11-17 16:01:02','2022-11-17 16:01:10',10),('sum1','2014-12','2015-12',1),('sum2','2015-14','2016-23',1),('sum3','2014-09','2015-11',2);
 /*!40000 ALTER TABLE `sum_signal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-31 20:35:48
+-- Dump completed on 2022-11-17 20:15:26

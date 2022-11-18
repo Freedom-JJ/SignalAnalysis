@@ -1,6 +1,13 @@
 HEADERS += \
     $$PWD/Controller/SignalController.h \
+    $$PWD/Controller/channelcontroller.h \
+    $$PWD/Controller/collectionparacontroller.h \
+    $$PWD/Controller/dictionarycontroller.h \
+    $$PWD/Controller/projectcontroller.h \
     $$PWD/Controller/usercontroller.h \
+    $$PWD/Dao/channeldao.h \
+    $$PWD/Dao/collectionparasdao.h \
+    $$PWD/Dao/dictionarydao.h \
     $$PWD/Dao/pdsql.h \
     $$PWD/Dao/pdsqlinitialize.h \
     $$PWD/Dao/postdao.h \
@@ -8,7 +15,9 @@ HEADERS += \
     $$PWD/Dao/singlesignaldao.h \
     $$PWD/Dao/sumsignaldao.h \
     $$PWD/Dao/userdao.h \
+    $$PWD/Domain/channel.h \
     $$PWD/Domain/collectionparas.h \
+    $$PWD/Domain/dictionary.h \
     $$PWD/Domain/post.h \
     $$PWD/Domain/project.h \
     $$PWD/Domain/singlesignal.h \
@@ -55,12 +64,15 @@ HEADERS += \
     $$PWD/RedisTools/reader.h \
     $$PWD/RedisTools/rediscontroller.h \
     $$PWD/Result/result.h \
+    $$PWD/Service/channelservice.h \
+    $$PWD/Service/collectionparaservice.h \
+    $$PWD/Service/dictionaryservice.h \
+    $$PWD/Service/projectservice.h \
     $$PWD/Service/singlesignalservice.h \
     $$PWD/Service/sumsignalservice.h \
     $$PWD/Service/userservice.h \
     $$PWD/Signal/BaseEchoSignal.h \
     $$PWD/Signal/StaticSpectralEchoSignal.h \
-    $$PWD/Tools/datautil.h \
     $$PWD/Tools/tool.h \
     $$PWD/Utils/DataModal.h \
     $$PWD/Utils/DataStructure.h \
@@ -75,10 +87,6 @@ HEADERS += \
     $$PWD/Utils/UUIDUtil.h \
     $$PWD/Utils/aircraftcasingvibratesystem.h \
     $$PWD/Utils/fftw3.h \
-#    $$PWD/Utils/uuidutil.h \
-    $$PWD/Utils/getanalysisresultthread.h \
-    $$PWD/Utils/playbacksinglethread.h \
-    $$PWD/Utils/redisuploadthread.h \
     $$PWD/View/JSpectrumWindow.h \
     $$PWD/View/NewProjectDialog.h \
     $$PWD/View/OpenDataFileDialog.h \
@@ -92,17 +100,20 @@ HEADERS += \
     $$PWD/View/qcustomplot.h \
     $$PWD/View/redissetupdialog.h \
     $$PWD/View/spectrum.h \
-    $$PWD/Vo/analysisresult.h \
-    $$PWD/interface/isignaljumpable.h \
-    $$PWD/interface/itimeaxis.h \
-    $$PWD/tDemo/singnalcontrollertest.h \
-    $$PWD/Vo/sumsignalandprojectnamevo.h
+    $$PWD/tDemo/singnalcontrollertest.h
 
 
 
 SOURCES += \
     $$PWD/Controller/SignalController.cpp \
+    $$PWD/Controller/channelcontroller.cpp \
+    $$PWD/Controller/collectionparacontroller.cpp \
+    $$PWD/Controller/dictionarycontroller.cpp \
+    $$PWD/Controller/projectcontroller.cpp \
     $$PWD/Controller/usercontroller.cpp \
+    $$PWD/Dao/channeldao.cpp \
+    $$PWD/Dao/collectionparasdao.cpp \
+    $$PWD/Dao/dictionarydao.cpp \
     $$PWD/Dao/pdsql.cpp \
     $$PWD/Dao/pdsqlinitialize.cpp \
     $$PWD/Dao/postdao.cpp \
@@ -110,7 +121,9 @@ SOURCES += \
     $$PWD/Dao/singlesignaldao.cpp \
     $$PWD/Dao/sumsignaldao.cpp \
     $$PWD/Dao/userdao.cpp \
+    $$PWD/Domain/channel.cpp \
     $$PWD/Domain/collectionparas.cpp \
+    $$PWD/Domain/dictionary.cpp \
     $$PWD/Domain/post.cpp \
     $$PWD/Domain/project.cpp \
     $$PWD/Domain/singlesignal.cpp \
@@ -121,6 +134,10 @@ SOURCES += \
     $$PWD/RedisTools/reader.cpp \
     $$PWD/RedisTools/rediscontroller.cpp \
     $$PWD/Result/result.cpp \
+    $$PWD/Service/channelservice.cpp \
+    $$PWD/Service/collectionparaservice.cpp \
+    $$PWD/Service/dictionaryservice.cpp \
+    $$PWD/Service/projectservice.cpp \
     $$PWD/Service/singlesignalservice.cpp \
     $$PWD/Service/sumsignalservice.cpp \
     $$PWD/Service/userservice.cpp \
@@ -155,11 +172,16 @@ SOURCES += \
     $$PWD/View/qcustomplot.cpp \
     $$PWD/View/redissetupdialog.cpp \
     $$PWD/View/spectrum.cpp \
+    $$PWD/tDemo/channelcontrollertest.cpp \
+    $$PWD/tDemo/collectionparacontrollertest.cpp \
+    $$PWD/tDemo/dictionarycontrollertest.cpp \
+    $$PWD/tDemo/projectcontrollertest.cpp \
     $$PWD/Vo/analysisresult.cpp \
     $$PWD/interface/isignaljumpable.cpp \
     $$PWD/interface/itimeaxis.cpp \
     $$PWD/tDemo/singnalcontrollertest.cpp \
     $$PWD/Vo/sumsignalandprojectnamevo.cpp
+
 
 
 

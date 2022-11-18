@@ -2,7 +2,12 @@
 
 SingleSignalService::SingleSignalService()
 {
+    this->singleSignalDao = new SingleSignalDao();
+}
 
+SingleSignalService::~SingleSignalService()
+{
+    delete this->singleSignalDao;
 }
 
 vector<SingleSignal *> SingleSignalService::getSingleSignalsBySumSignalId(string sumSignalId)

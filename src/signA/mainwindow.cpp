@@ -1245,6 +1245,8 @@ void MainWindow::appendRecentOpenFilesPath(const QString& path)
 /*****************************wzx**************************************/
 //开始采集事件函数
 void MainWindow::OnButtonStartCapture(){
+
+
     int oldcollectState = theApp->m_icollectState;
     //如果当前状态为正在采集
     if (theApp->m_icollectState == 1) return;

@@ -7,6 +7,7 @@ class SingleSignalService
 {
 public:
     SingleSignalService();
+    ~SingleSignalService();
 
     //根据sumSignalId获得所有的SingleSignal
     vector<SingleSignal*> getSingleSignalsBySumSignalId(string sumSignalId);
