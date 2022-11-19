@@ -1,7 +1,7 @@
 #include "getanalysisresultthread.h"
 
 void GetAnalysisResultThread::run(){
-    qDebug()<<"结果线程开始了--------------------------------------------------------"<<endl;
+//    qDebug()<<"结果线程开始了--------------------------------------------------------"<<endl;
     resultRedis = new QtRedis("localhost",6379);
     if(count.size()>0){
         count.clear();
@@ -54,7 +54,7 @@ void GetAnalysisResultThread::run(){
         msleep(100);
     }
 
-   qDebug()<<"----------结果线程结束了------------"<<endl;
+//   qDebug()<<"----------结果线程结束了------------"<<endl;
 }
 
 void GetAnalysisResultThread::setTimeAxis(ITimeAxis *value)

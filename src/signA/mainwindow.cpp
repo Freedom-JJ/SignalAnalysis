@@ -1321,7 +1321,7 @@ void MainWindow::closeSaveDataThread(){
 
 
 void MainWindow::mainCloseRedisResource(){
-    qDebug()<<"---------redis上传数据线程结束---------"<<endl;
+//    qDebug()<<"---------redis上传数据线程结束---------"<<endl;
     mainRedisUpload->quit();
     mainRedisUpload->wait();
     mainRedisUpload = nullptr;
@@ -1416,7 +1416,7 @@ void MainWindow::OnButtonAnalysis(){
 
 //回放读取文件结束后的槽函数,自动调用
 void MainWindow::closePlaybackResource(){
-    qDebug()<<"-----------回放自动结束-------"<<endl;
+//    qDebug()<<"-----------回放自动结束-------"<<endl;
     ui->dynamicSpectrum->stop();
     theApp->m_iplaybackState = 0;
 
