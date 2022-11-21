@@ -102,6 +102,10 @@ HEADERS += \
     $$PWD/View/qcustomplot.h \
     $$PWD/View/redissetupdialog.h \
     $$PWD/View/spectrum.h \
+    $$PWD/Vo/analysisresult.h \
+    $$PWD/Vo/sumsignalandprojectnamevo.h \
+    $$PWD/interface/isignaljumpable.h \
+    $$PWD/interface/itimeaxis.h \
     $$PWD/tDemo/singnalcontrollertest.h
 
 
