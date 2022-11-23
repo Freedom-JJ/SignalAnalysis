@@ -35,7 +35,7 @@ void GetAnalysisResultThread::run(){
             QString result = resultRedis->rpop(redisKey);
             if(result == "NULL"){
                 i+=4;
-                msleep(10);
+                msleep(1000);
                 continue;
             }
             if(count.count(signalCode) == 0){
@@ -50,7 +50,8 @@ void GetAnalysisResultThread::run(){
             resultVector.push_back(anares);
             count[signalCode] = id+1;
         }
-        timeAxis->addDataTimeAxis(resultVector);
+        if(resultVector.size()>0)
+            timeAxis->addDataTimeAxis(resultVector);
         msleep(100);
     }
 

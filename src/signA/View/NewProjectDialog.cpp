@@ -18,6 +18,14 @@ NewProjectDialog::NewProjectDialog(MainWindow *mv,QWidget *parent) :
     ui->tabWidget->setCurrentIndex(0);
 }
 
+void NewProjectDialog::initData()
+{
+    channelParams["samplefrequency"].push_back(new Dictionary());
+    channelParams["collectionmethod"].push_back(new Dictionary());
+    dictionCon.findDictionariesByDictName("samplefrequency",channelParams["samplefrequency"]);
+    dictionCon.findDictionariesByDictName("collectionmethod",channelParams["collectionmethod"]);
+}
+
 NewProjectDialog::~NewProjectDialog()
 {
     delete ui;
@@ -79,5 +87,21 @@ void NewProjectDialog::on_okbtn_clicked()
             QComboBox * item = (QComboBox *)table->cellWidget(i,j);
             qDebug()<<item->currentText()<<endl;
         }
+    }
+    Project *project = new Project();
+    project->setProjectName(ui->lineEdit->text().toStdString());
+    //可能会出现转换错误
+    int sampleFrequency = ui->lineEdit_2->text().toInt();
+    if(sampleFrequency <= 0){
+        QMessageBox::warning(this,"错误","频率填写错误，应该为正整数");
+        return;
+    }
+    project->setProjectStatus(sampleFrequency);
+    project->setUserId(mv->theApp->user.getId());
+    mv->theApp->sampleFrequency = sampleFrequency;
+    Result res =  projectCon.addProject(project,projectId);
+    if (res.getCode() == 200){
+       QMessageBox::information(this,"提示","添加成功");
+        this->accept();
     }
 }

@@ -32,7 +32,7 @@ OpenProjectWindow::OpenProjectWindow(QWidget *parent) :
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);       //设置选择行
 
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);        //不允许编辑
-    QString sqlSelect = QString("select * from project;");
+    QString sqlSelect = QString("select * from project order by projectCreateTime DESC;");
     select(sqlSelect);
 }
 
@@ -91,38 +91,29 @@ void OpenProjectWindow::on_open_clicked()                               //打开
     //表格有某行被选中
     if(!items.empty()){
         //获取该行的成员数
-        int count = items.count();
-        // 获取该行的行号
+//        int count = items.count();
+//        // 获取该行的行号
         int rowindex = ui->tableWidget->row(items.at(0));
-        QStringList project_list;                               //创建一个QStringlist存储所获取的内容
-        // 打印该行所有成员内容
-        for(int i = 0; i < count; i++)
-        {
-            QTableWidgetItem *item = items.at(i); //该行第i列的item
-            project_list.append(item->text());
-            //qDebug() << item->text(); //获取内容
-        }
-        qDebug() << project_list; //输出
-        int id = (project_list[0]).toInt();
-        QString name = project_list[1];
-        QString time = project_list[2];
-        qDebug()<<id << name <<time;
-
-        QSqlQuery query;//在创建该数据对象时，系统会自动完成跟数据库的关联
-        QString sqlselect1 = QString("select * from project where id = %1;").arg(id);
-        if(!query.exec(sqlselect1)){
-            qDebug() << "create tabel error";
-        }
-        else{
-            qDebug() << sqlselect1;
-            QStringList project_selest;
-            while (query.next()) {
-                int id = query.value("id").toInt();
-                QString name = query.value("projectName").toString();
-                QString time = query.value("projectCreateTime").toString();
-            qDebug()<<id<<name<<time;
-            }
-        }
+//        QStringList project_list;                               //创建一个QStringlist存储所获取的内容
+//        // 打印该行所有成员内容
+//        for(int i = 0; i < count; i++)
+//        {
+//            QTableWidgetItem *item = items.at(i); //该行第i列的item
+//            project_list.append(item->text());
+//            //qDebug() << item->text(); //获取内容
+//        }
+//        qDebug() << project_list; //输出
+//        int id = (project_list[0]).toInt();
+//        QString name = project_list[1];
+//        QString time = project_list[2];
+//        qDebug()<<id << name <<time;
+        mw->theApp->currentProject.setId(projectVec[rowindex].getId());
+        mw->theApp->currentProject.setProjectName(projectVec[rowindex].getProjectName());
+        mw->theApp->currentProject.setProjectCreateTime(projectVec[rowindex].getProjectCreateTime());
+        mw->theApp->currentProject.setProjectStatus(projectVec[rowindex].getProjectStatus());
+        mw->theApp->sampleFrequency = projectVec[rowindex].getProjectStatus();
+        QMessageBox::information(this,"提示","切换项目成功");
+        this->accept();
       }
       else{
           QMessageBox::warning(this,"警告","请先选择一行再进行操作");
@@ -151,6 +142,7 @@ void OpenProjectWindow::select(QString sqlSelest)                   //打开项�
     else {
         int count = 0;
         int project_count = 0;
+        projectVec.clear();
         while (query.next()) {
             //向表里面动态添加参数
             int rowCount = ui->tableWidget->rowCount();
@@ -161,13 +153,19 @@ void OpenProjectWindow::select(QString sqlSelest)                   //打开项�
             QString name = query.value("projectName").toString();
             //qDebug() << name;
             QString time = query.value("projectCreateTime").toString();
-
+            QString status = query.value("projectStatus").toString();
              //[3]每遍历一条记录，就更新到UI控件
             project_count ++;
             ui->tableWidget->setItem(count,y++,new QTableWidgetItem(QString::number(id)));
             ui->tableWidget->setItem(count,y++,new QTableWidgetItem(name));
             ui->tableWidget->setItem(count,y++,new QTableWidgetItem(time));
 
+            Project temp;
+            temp.setId(id);
+            temp.setProjectName(name.toStdString());
+            temp.setProjectCreateTime(time.toStdString());
+            temp.setProjectStatus(status.toInt());
+            projectVec.push_back(temp);
             count++;
         }
        alignVCenter(count);
@@ -220,3 +218,10 @@ void OpenProjectWindow::on_comboBox_activated(const QString &arg1)
         select(sqlSelect);
     }
 }
+
+void OpenProjectWindow::setMw(MainWindow *value)
+{
+    mw = value;
+}
+
+
