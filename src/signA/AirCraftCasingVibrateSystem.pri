@@ -73,6 +73,7 @@ HEADERS += \
     $$PWD/Service/userservice.h \
     $$PWD/Signal/BaseEchoSignal.h \
     $$PWD/Signal/StaticSpectralEchoSignal.h \
+    $$PWD/Tools/datautil.h \
     $$PWD/Tools/tool.h \
     $$PWD/Utils/DataModal.h \
     $$PWD/Utils/DataStructure.h \
@@ -102,6 +103,14 @@ HEADERS += \
     $$PWD/View/qcustomplot.h \
     $$PWD/View/redissetupdialog.h \
     $$PWD/View/spectrum.h \
+    $$PWD/Vo/analysisresult.h \
+    $$PWD/Vo/sumsignalandprojectnamevo.h \
+    $$PWD/interface/isignaljumpable.h \
+    $$PWD/interface/itimeaxis.h \
+    $$PWD/tDemo/channelcontrollertest.h \
+    $$PWD/tDemo/collectionparacontrollertest.h \
+    $$PWD/tDemo/dictionarycontrollertest.h \
+    $$PWD/tDemo/projectcontrollertest.h \
     $$PWD/tDemo/singnalcontrollertest.h
 
 

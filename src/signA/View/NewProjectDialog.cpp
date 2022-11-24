@@ -18,6 +18,14 @@ NewProjectDialog::NewProjectDialog(MainWindow *mv,QWidget *parent) :
     ui->tabWidget->setCurrentIndex(0);
 }
 
+void NewProjectDialog::initData()
+{
+    channelParams["samplefrequency"].push_back(new Dictionary());
+    channelParams["collectionmethod"].push_back(new Dictionary());
+    dictionCon.findDictionariesByDictName("samplefrequency",channelParams["samplefrequency"]);
+    dictionCon.findDictionariesByDictName("collectionmethod",channelParams["collectionmethod"]);
+}
+
 NewProjectDialog::~NewProjectDialog()
 {
     delete ui;
@@ -53,18 +61,59 @@ void NewProjectDialog::on_lineEdit_3_textChanged(const QString &arg1)
         return;
     }
     QStringList lables;
-    lables<<"通道号"<<"通道描述"<<"上限频率"<<"输入方式"<<"满度量程"<<"测量类型"<<"测量范围";
+    lables<<"满度量程"<<"上限频率"<<"输入方式"<<"测量范围"<<"测量类型"<<"采样频率";
     ui->tableWidget->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
     ui->tableWidget->setRowCount(number);
-    ui->tableWidget->setColumnCount(7);
+    ui->tableWidget->setColumnCount(6);
     ui->tableWidget->setHorizontalHeaderLabels(lables);
     for (int i = 0; i < number; ++i) {
-        for (int j = 0; j < ui->tableWidget->columnCount(); ++j) {
-            QTableWidgetItem *item = new QTableWidgetItem(QString::number(i));
-            QComboBox *comBox = new QComboBox(this);
-            comBox->addItem(QString::number(i+j));
-            ui->tableWidget->setCellWidget(i,j,comBox);
-        }
+        QComboBox *comBox0 = new QComboBox(this);
+        QComboBox *comBox1 = new QComboBox(this);
+        QComboBox *comBox2 = new QComboBox(this);
+        QComboBox *comBox3 = new QComboBox(this);
+        QComboBox *comBox4 = new QComboBox(this);
+        QComboBox *comBox5 = new QComboBox(this);
+        comBox0->addItem("10000");
+        comBox0->addItem("5000");
+        comBox0->addItem("2000");
+        comBox0->addItem("1000");
+
+        comBox1->addItem("PASS");
+        comBox1->addItem("30HZ");
+        comBox1->addItem("300HZ");
+        comBox1->addItem("3KZH");
+
+        comBox2->addItem("DIF_DC");
+        comBox2->addItem("SIN_DC");
+        comBox2->addItem("AC");
+        comBox2->addItem("SIN_IEPE");
+        comBox2->addItem("DIF_IEPE");
+        comBox2->addItem("GND");
+
+        comBox3->addItem("10000");
+        comBox3->addItem("5000");
+        comBox3->addItem("2000");
+        comBox3->addItem("1000");
+        comBox3->addItem("500");
+        comBox3->addItem("100");
+
+        comBox4->addItem("电压测量");
+        comBox4->addItem("应变应力");
+        comBox4->addItem("桥式传感器");
+        comBox4->addItem("热电偶测温");
+
+        comBox5->addItem("20000");
+        comBox5->addItem("10000");
+        comBox5->addItem("5000");
+        comBox5->addItem("2000");
+        comBox5->addItem("1000");
+
+        ui->tableWidget->setCellWidget(i,0,comBox0);
+        ui->tableWidget->setCellWidget(i,1,comBox1);
+        ui->tableWidget->setCellWidget(i,2,comBox2);
+        ui->tableWidget->setCellWidget(i,3,comBox3);
+        ui->tableWidget->setCellWidget(i,4,comBox4);
+        ui->tableWidget->setCellWidget(i,5,comBox5);
     }
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
@@ -74,10 +123,20 @@ void NewProjectDialog::on_okbtn_clicked()
     auto table = ui->tableWidget;
     const int row = table->rowCount();
     const int column = table->columnCount();
-    for(int i = 0 ; i<row ; i ++){
-        for(int j = 0 ; j < column ; j ++){            
-            QComboBox * item = (QComboBox *)table->cellWidget(i,j);
-            qDebug()<<item->currentText()<<endl;
-        }
+    Project *project = new Project();
+    project->setProjectName(ui->lineEdit->text().toStdString());
+    //可能会出现转换错误
+    int sampleFrequency = ui->lineEdit_2->text().toInt();
+    if(sampleFrequency <= 0){
+        QMessageBox::warning(this,"错误","频率填写错误，应该为正整数");
+        return;
+    }
+    project->setProjectStatus(sampleFrequency);
+    project->setUserId(mv->theApp->user.getId());
+    mv->theApp->sampleFrequency = sampleFrequency;
+    Result res =  projectCon.addProject(project,projectId);
+    if (res.getCode() == 200){
+       QMessageBox::information(this,"提示","添加成功");
+        this->accept();
     }
 }

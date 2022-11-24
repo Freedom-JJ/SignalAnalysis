@@ -10,7 +10,11 @@
 #define NEWPROJECTDIALOG_H
 
 #include <QDialog>
+#include <map>
 #include"mainwindow.h"
+#include"Controller/channelcontroller.h"
+#include"Controller/projectcontroller.h"
+#include"Controller/dictionarycontroller.h"
 #include"spectrum.h"
 namespace Ui {
 class NewProjectDialog;
@@ -22,6 +26,7 @@ class NewProjectDialog : public QDialog
 
 public:
     explicit NewProjectDialog(MainWindow * mv,QWidget *parent = nullptr);
+    void initData();
     ~NewProjectDialog();
 
 private slots:
@@ -41,6 +46,15 @@ private:
     Ui::NewProjectDialog *ui;
     MainWindow *mv;
     int channelNumber = 4;
+    //为了适配Controller接口，暂时不考虑适配器
+    map<string,vector<Dictionary *>> channelParams;
+
+    //Controller
+    ChannelController channelCon;
+    ProjectController projectCon;
+    DictionaryController dictionCon;
+
+    long long projectId =0 ;
 };
 
 #endif // NEWPROJECTDIALOG_H

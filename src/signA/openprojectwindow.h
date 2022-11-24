@@ -7,6 +7,9 @@
 #include<QMessageBox>
 #include <QDebug>
 #include <QSqlQuery>
+#include"MainWindow.h"
+#include"Domain/project.h"
+#include"Controller/projectcontroller.h"
 namespace Ui {
 class OpenProjectWindow;
 }
@@ -18,6 +21,8 @@ class OpenProjectWindow : public QDialog
 public:
     explicit OpenProjectWindow(QWidget *parent = nullptr);
     ~OpenProjectWindow();
+
+    void setMw(MainWindow *value);
 
 private slots:
     void on_pushButton_clicked();
@@ -34,6 +39,9 @@ private slots:
 
 private:
     Ui::OpenProjectWindow *ui;
+    MainWindow *mw;
+    std::vector<Project> projectVec;
+    ProjectController projectCon;
 };
 
 #endif // OPENPROJECTWINDOW_H

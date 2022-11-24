@@ -35,12 +35,15 @@ void JDynamicWidget::init(int channelNum)
             this->spectrumVec.push_back(new Spectrum(this));
             gridLayout->addWidget(spectrumVec[var],int(var/2),var%2);
         }
+        gridLayout->update();
     }else if(spectrumVec.size() > channelNum){
         for (int var = spectrumVec.size(); var > channelNum; --var) {
-            auto widget = spectrumVec.back(); //得到最后一个
+            Spectrum * widget = spectrumVec.back(); //得到最后一个
+            widget->setVisible(false); //一定要隐藏,这样layout会自适应大小
             this->spectrumVec.pop_back(); //移除最后一个
             gridLayout->removeWidget(widget);
         }
+        gridLayout->update();
     }
     scrollContents->setLayout(gridLayout);
     setLayout(hlayout);

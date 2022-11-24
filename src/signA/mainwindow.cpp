@@ -1275,7 +1275,7 @@ void MainWindow::OnButtonStartCapture(){
     ui->dynamicSpectrum->resetWindow(ui->dockWidget_main,ui->dynamicSpectrum);
     ui->dynamicSpectrum->openAutoYAxisRescalse(2);
     ui->dynamicSpectrum->setAnalysisResult(this->theApp->getAnalysisResult());
-    ui->dynamicSpectrum->setInterval(500);
+    ui->dynamicSpectrum->setInterval(100);
     ui->dynamicSpectrum->start();
     ui->dynamicSpectrum->closeTimeAxis();
     sampleThread = new GetDataThread(this);
@@ -1363,6 +1363,9 @@ void MainWindow::OnButtonStartPlayBack(){
     theApp->clearAnalysisResult();
     OpenDataFileDialog *openfile = new OpenDataFileDialog(this,this);
     openfile->exec(); //模态对话框，会阻塞 ，show是非模态
+    if(openfile->result() != openfile->Accepted){
+        return; //没有点打开，而是关闭按钮
+    }
     if(theApp->m_iplaybackState == 1){
         return;         //正在回放就不能再点开始回放
     }
@@ -1464,6 +1467,7 @@ void MainWindow::CreateCaptureWindow(){
 void MainWindow::onActionOpenTriggered()
 {
     OpenProjectWindow *openProWin = new OpenProjectWindow;
+    openProWin->setMw(this);
     openProWin->show();
 }
 

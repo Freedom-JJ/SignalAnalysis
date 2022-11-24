@@ -21,9 +21,11 @@
 #include "Signal/StaticSpectralEchoSignal.h"
 #include <QScopedPointer>
 #include "Controller/SignalController.h"
+#include "Controller/projectcontroller.h"
 #include "Domain/sumSignal.h"
 #include "RedisTools/rediscontroller.h"
 #include "Vo/analysisresult.h"
+#include "Domain/user.h"
 class StaticSpectralEchoSignal;
 
 class AirCraftCasingVibrateSystem
@@ -95,17 +97,28 @@ public:
     enum PlayBackDataState{EXIST,NO_EXIST};
     PlayBackDataState playBackDataState = NO_EXIST;
 
+    //敏感数据，切换项目的时候会修改，所以使用的时候请检查
+    int sampleFrequency = 20000;
+    //一些数据
+    User user;
+    Project currentProject;
+    //controller
+    ProjectController procon;
+
+
     void AirCraftCasingVibrateSystemInit();
     void statrCapture();
     void stopCapture();
     void suspenCapture();
-/**********************************************************************************/
+
 
 
     std::shared_ptr<std::map<QString, QVector<AnalysisResult> > > getAnalysisResult() const;
     void clearAnalysisResult();
 private:
     std::shared_ptr<std::map<QString,QVector<AnalysisResult>>> analysisResult;
+
+/**********************************************************************************/
 };
 
 

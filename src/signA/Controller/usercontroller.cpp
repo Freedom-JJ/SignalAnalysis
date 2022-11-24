@@ -6,11 +6,13 @@ UserController::UserController()
     this->userService = new UserService();
 }
 
+//解决无法得到用户所有信息bug
 Result UserController::UserLogin(User* user)
 {
     User* quser = userService->getUsersByLoginName(user->getLoginName());
     if(quser){
         if(quser->getLoginPassword()==user->getLoginPassword()){
+            *user = *quser;
             return Result(200,"登录成功");
         }
         else{

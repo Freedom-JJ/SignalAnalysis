@@ -6,12 +6,16 @@
 #include "../Service/projectservice.h"
 #include "../Service/userservice.h"
 #include "../Result/result.h"
-
+#include "Tools/datautil.h"
 class ProjectController
 {
 public:
     ProjectController();
     ~ProjectController();
+
+    //加载默认项目
+    Result loadDefaultProject(Project &value);
+
 
     //添加项目,注意添加项目后返回的项目id,projectId 需要更新到project对象中，否则project的id仍然为初始化时的-1
     Result addProject(Project* project,long long &projectId);
