@@ -18,7 +18,7 @@ Result ProjectController::loadDefaultProject(Project &value)
 {
 
     auto res = projectService->listProjects();
-    std::sort(res.begin(),res.end(),[](Project *a ,Project *b){return a->getProjectCreateTime()>b->getProjectCreateTime();});
+    std::sort(res.begin(),res.end(),[](Project *a ,Project *b){return a->getProjectUpdateTime()>b->getProjectUpdateTime();});
     if (res.size()>0) {
         value=*res[0];
         return Result(200,"加载成功");
@@ -38,6 +38,7 @@ Result ProjectController::addProject(Project *project, long long &projectId)
         return Result(204,"该项目已经存在");
     }
     project->setProjectCreateTime(DataUtil::GetCurrentCStringTime());
+    project->setProjectUpdateTime(DataUtil::GetCurrentCStringTime());
     qInfo()<<"执行添加项目";
     projectId = projectService->insertProject(project);
     if(projectId == 0){

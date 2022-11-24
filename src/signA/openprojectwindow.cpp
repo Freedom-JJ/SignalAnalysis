@@ -20,10 +20,10 @@ OpenProjectWindow::OpenProjectWindow(QWidget *parent) :
     this->setWindowTitle(tr("打开项目"));
     //设置表格的列数，必须要先设置，不然表格显示不出来
     ui->tableWidget->resize(1021,300);                                  //设置长和宽
-    ui->tableWidget->setColumnCount(3);
+    ui->tableWidget->setColumnCount(4);
     //建立表头
     QStringList header;
-    header <<"项目序号" << "项目名称" << "项目创建时间";
+    header <<"项目序号" << "项目名称" << "项目创建时间"<<"项目更新时间";
     ui->tableWidget->setHorizontalHeaderLabels(header);
     //设置表头显示模式,这里设置的是拉伸模式
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -90,29 +90,17 @@ void OpenProjectWindow::on_open_clicked()                               //打开
 
     //表格有某行被选中
     if(!items.empty()){
-        //获取该行的成员数
-//        int count = items.count();
-//        // 获取该行的行号
+
         int rowindex = ui->tableWidget->row(items.at(0));
-//        QStringList project_list;                               //创建一个QStringlist存储所获取的内容
-//        // 打印该行所有成员内容
-//        for(int i = 0; i < count; i++)
-//        {
-//            QTableWidgetItem *item = items.at(i); //该行第i列的item
-//            project_list.append(item->text());
-//            //qDebug() << item->text(); //获取内容
-//        }
-//        qDebug() << project_list; //输出
-//        int id = (project_list[0]).toInt();
-//        QString name = project_list[1];
-//        QString time = project_list[2];
-//        qDebug()<<id << name <<time;
+
         mw->theApp->currentProject.setId(projectVec[rowindex].getId());
         mw->theApp->currentProject.setProjectName(projectVec[rowindex].getProjectName());
         mw->theApp->currentProject.setProjectCreateTime(projectVec[rowindex].getProjectCreateTime());
         mw->theApp->currentProject.setProjectStatus(projectVec[rowindex].getProjectStatus());
+        mw->theApp->currentProject.setProjectUpdateTime(DataUtil::GetCurrentCStringTime());
         mw->theApp->sampleFrequency = projectVec[rowindex].getProjectStatus();
         QMessageBox::information(this,"提示","切换项目成功");
+        projectCon.updateProject(&(mw->theApp->currentProject));
         this->accept();
       }
       else{
@@ -153,13 +141,14 @@ void OpenProjectWindow::select(QString sqlSelest)                   //打开项�
             QString name = query.value("projectName").toString();
             //qDebug() << name;
             QString time = query.value("projectCreateTime").toString();
+            QString updateTime = query.value("projectUpdateTime").toString();
             QString status = query.value("projectStatus").toString();
              //[3]每遍历一条记录，就更新到UI控件
             project_count ++;
             ui->tableWidget->setItem(count,y++,new QTableWidgetItem(QString::number(id)));
             ui->tableWidget->setItem(count,y++,new QTableWidgetItem(name));
             ui->tableWidget->setItem(count,y++,new QTableWidgetItem(time));
-
+            ui->tableWidget->setItem(count,y++,new QTableWidgetItem(updateTime));
             Project temp;
             temp.setId(id);
             temp.setProjectName(name.toStdString());

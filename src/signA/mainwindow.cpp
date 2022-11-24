@@ -1275,7 +1275,7 @@ void MainWindow::OnButtonStartCapture(){
     ui->dynamicSpectrum->resetWindow(ui->dockWidget_main,ui->dynamicSpectrum);
     ui->dynamicSpectrum->openAutoYAxisRescalse(2);
     ui->dynamicSpectrum->setAnalysisResult(this->theApp->getAnalysisResult());
-    ui->dynamicSpectrum->setInterval(500);
+    ui->dynamicSpectrum->setInterval(100);
     ui->dynamicSpectrum->start();
     ui->dynamicSpectrum->closeTimeAxis();
     sampleThread = new GetDataThread(this);

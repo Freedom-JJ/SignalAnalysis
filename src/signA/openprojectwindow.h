@@ -9,6 +9,7 @@
 #include <QSqlQuery>
 #include"MainWindow.h"
 #include"Domain/project.h"
+#include"Controller/projectcontroller.h"
 namespace Ui {
 class OpenProjectWindow;
 }
@@ -40,6 +41,7 @@ private:
     Ui::OpenProjectWindow *ui;
     MainWindow *mw;
     std::vector<Project> projectVec;
+    ProjectController projectCon;
 };
 
 #endif // OPENPROJECTWINDOW_H
