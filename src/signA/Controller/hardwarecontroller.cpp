@@ -84,7 +84,30 @@ bool HardWareController::InitLibrary(){
         qDebug() << "load m_pGetWaitDealMacInfo  error"  << endl;
         return false;
     }
-
+    m_pModifyMacChnParam = (ModifyMacChnParam)m_library->resolve("ModifyMacChnParam");
+    if(m_pModifyMacChnParam == NULL)
+    {
+        qDebug() << "load m_pModifyMacChnParam  error"  << endl;
+        return false;
+    }
+    m_pGetMacChnParamListValue = (GetMacChnParamListValue)m_library->resolve("GetMacChnParamListValue");
+    if(m_pGetMacChnParamListValue == NULL)
+    {
+        qDebug() << "load m_pGetMacChnParamListValue  error"  << endl;
+        return false;
+    }
+    m_pGetMacInfoFromIndex = (GetMacInfoFromIndex)m_library->resolve("GetMacInfoFromIndex");
+    if(m_pGetMacInfoFromIndex == NULL)
+    {
+        qDebug() << "load m_pGetMacInfoFromIndex  error"  << endl;
+        return false;
+    }
+    m_pGetMacChnCurrentParam = (GetMacChnCurrentParam)m_library->resolve("GetMacChnCurrentParam");
+    if(m_pGetMacChnCurrentParam == NULL)
+    {
+        qDebug() << "load m_pGetMacChnCurrentParam  error"  << endl;
+        return false;
+    }
 
     qDebug() << "load library function success"  << endl;
     return true;

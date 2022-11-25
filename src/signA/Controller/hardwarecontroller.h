@@ -14,6 +14,18 @@ public:
 public:
     bool InitLibrary();
 
+    char pMacInfo[256]; //仪器ip
+
+    std::string upFrequency = "PASS";   //默认上限频率    参数id:10
+
+    std::string fullValue = "10000";     //默认满度量程   参数id:5
+
+    std::string inputMode = "DIF_DC";    //默认输入方式   参数id:12
+
+    std::string elcPressure = "10000";    //默认电压测量范围  参数id:90
+
+    std::string measureType = "电压测量";   //默认测量方式 参数id:4
+
 public:
 
     /**
@@ -82,6 +94,29 @@ public:
     typedef int(*GetWaitDealMacInfo)(char*, int, int*);
     GetWaitDealMacInfo m_pGetWaitDealMacInfo;
 
+    /**
+     * @brief: 修改仪器参数
+     */
+    typedef bool(*ModifyMacChnParam)(int, const char*,int, int, const char*);
+    ModifyMacChnParam m_pModifyMacChnParam;
+
+    /**
+     * @brief: 获取通道参数可选列表
+     */
+    typedef int (*GetMacChnParamListValue)(int, const char*,int, int, char*, int, int*);
+    GetMacChnParamListValue m_pGetMacChnParamListValue;
+
+    /**
+     * @brief: 获取仪器信息
+     */
+    typedef int (*GetMacInfoFromIndex)(int, int*, char*, int,int*);
+    GetMacInfoFromIndex m_pGetMacInfoFromIndex;
+
+    /**
+     * @brief: 获取当前通道仪器参数
+     */
+    typedef int (*GetMacChnCurrentParam)(int,int, const char*,int, char*, int, int*);
+    GetMacChnCurrentParam m_pGetMacChnCurrentParam;
 };
 
 #endif // HARDWARECONTROLLER_H
