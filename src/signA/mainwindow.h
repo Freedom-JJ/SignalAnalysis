@@ -51,7 +51,9 @@ class MainWindowPrivate;
 #include "View/OpenDataFileDialog.h"
 #include "View/NewProjectDialog.h"
 #include "View/redissetupdialog.h"
+#include "View/hardwarewindow.h"
 #include "Utils/redisuploadthread.h"
+#include "Controller/hardwarecontroller.h"
 #include "View/alalysisresultview.h"
 
 class QProgressBar;
@@ -78,7 +80,9 @@ class SaveCollectionDataThread;
 class StaticSpectralEchoSignal;
 class AirCraftCasingVibrateSystem;
 class JSaveCollectionDataThread;
+class HardWareController;
 class RedisSetUpDialog;
+class HardwareWindow;
 using std::vector;
 using std::map;
 ///
@@ -119,6 +123,10 @@ public:
     PLayBackSingleThread *mainSinglePLayBack; //单线程回放数据
 
     GetAnalysisResultThread *mainGetAnalysisResult; //取redis结果线程
+
+    HardWareController *mainHardWareController;    //仪器控制
+
+
 
 
 
@@ -328,44 +336,14 @@ public:
     //设置数据显示列表显示的数据
     void setValueView(const QList<SAAbstractDatas *>& datas, bool showInNewTab = false);
 
-public:
-    //初始化标准库
-    bool InitLibrary();
-
-public:
-    typedef int(*GetOneMacChnDataEx)(int, long*, long*, long long*, long, long*);
-    GetOneMacChnDataEx m_pGetOneMacChnDataEx;
-
-    typedef void(*InitMacControl)(const char* pHardWareIniDir);
-    InitMacControl m_pInitMacControlEx;
-
-    typedef void(*QuitMacControl)();
-    QuitMacControl m_pQuitMacControl;
-
-    typedef bool(*RefindAndConnecMac)();
-    RefindAndConnecMac m_pRefindAndConnecMac;
-
-    typedef bool(*StopMacSample)();
-    StopMacSample m_pStopMacSample;
-
-    //启动采样
-    typedef bool(*StartMacSample)();
-    StartMacSample m_pStartMacSample;
-
-    //是否正在采样
-    typedef bool(*IsMacSampling)();
-    IsMacSampling m_pIsMacSampling;
-
-    //设置采样频率
-    typedef bool(*SetMacSampleFreq)(float fltSampleFreq);
-    SetMacSampleFreq m_pSetMacSampleFreq;
-
-    //设置每次获取数据的数据量
-    typedef int(*SetGetDataCountEveryTime)(long nDataCount);
-    SetGetDataCountEveryTime m_pSetGetDataCountEveryTime;
-
-
 signals:
+
+
+    /**
+     * @brief:清理采集相关资源
+     */
+    void cleanCapture();
+
     ///
 	/// \brief 准备清理项目
 	///
@@ -517,6 +495,9 @@ private slots:
 
     //redis
     void onRedisConnection();
+
+    //硬件连接
+    void onHardWareConnection();
 
     //趋势线图
     void onActionAddLineChartTriggered();

@@ -2,7 +2,7 @@
 
 void RedisUploadThread::run(){
 
-    qDebug()<<"redis线程开始了--------------------------------------------------------"<<endl;
+//    qDebug()<<"redis线程开始了--------------------------------------------------------"<<endl;
 
     consumerRedis = new QtRedis(this->redisHost,this->redisPort);
 
@@ -15,9 +15,9 @@ void RedisUploadThread::run(){
 
     int SignalSequenceId = 0;
 
-    while(saveRedis->theApp->m_iplaybackState){ //采集端把开关换了  m_icollectState
+    while(saveRedis->theApp->m_icollectState||saveRedis->theApp->m_iplaybackState){ //采集端把开关换了  m_icollectState
 
-        if (saveRedis->theApp->m_iplaybackState == 2){
+        if (saveRedis->theApp->m_icollectState == 2||saveRedis->theApp->m_iplaybackState == 2){
              //暂停状态就卡在这
             msleep(10);
             continue;
@@ -28,7 +28,12 @@ void RedisUploadThread::run(){
 
             QString signalCode = iter->first;
             ThreadSafeQueue<double> saveData;
-            QString redisKey = QString("redisCollectionData-%1").arg(signalCode);
+            QString redisKey;
+            if(saveRedis->theApp->analysisAlgorithm == saveRedis->theApp->StatisticalComparison){
+                   redisKey = QString("redisCollectionData-%1").arg(signalCode);
+                 }else if(saveRedis->theApp->analysisAlgorithm == saveRedis->theApp->Model_WDCNN){
+                redisKey = QString("redisCollectionData_forModel-%1").arg(signalCode);
+            }
 
 
             QVector<double> dataVector;
@@ -54,8 +59,12 @@ void RedisUploadThread::run(){
 
         QString signalCode = iter->first;
         ThreadSafeQueue<double> saveData;
-        QString redisKey = QString("redisCollectionData-%1").arg(signalCode);
-
+        QString redisKey;
+        if(saveRedis->theApp->analysisAlgorithm == saveRedis->theApp->StatisticalComparison){
+               redisKey = QString("redisCollectionData-%1").arg(signalCode);
+             }else if(saveRedis->theApp->analysisAlgorithm == saveRedis->theApp->Model_WDCNN){
+            redisKey = QString("redisCollectionData_forModel-%1").arg(signalCode);
+        }
         QVector<double> restVector;
            if(saveRedis->theApp->m_mpredisCollectionDataQueue[signalCode].size() > 0){
 

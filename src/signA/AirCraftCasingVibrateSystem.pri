@@ -3,6 +3,7 @@ HEADERS += \
     $$PWD/Controller/channelcontroller.h \
     $$PWD/Controller/collectionparacontroller.h \
     $$PWD/Controller/dictionarycontroller.h \
+    $$PWD/Controller/hardwarecontroller.h \
     $$PWD/Controller/projectcontroller.h \
     $$PWD/Controller/usercontroller.h \
     $$PWD/Dao/channeldao.h \
@@ -93,6 +94,7 @@ HEADERS += \
     $$PWD/View/NewProjectDialog.h \
     $$PWD/View/OpenDataFileDialog.h \
     $$PWD/View/alalysisresultview.h \
+    $$PWD/View/hardwarewindow.h \
     $$PWD/View/jbasesamplewindow.h \
     $$PWD/View/jdataviewecho.h \
     $$PWD/View/jdynamicwidget.h \
@@ -102,6 +104,10 @@ HEADERS += \
     $$PWD/View/qcustomplot.h \
     $$PWD/View/redissetupdialog.h \
     $$PWD/View/spectrum.h \
+    $$PWD/Vo/analysisresult.h \
+    $$PWD/Vo/sumsignalandprojectnamevo.h \
+    $$PWD/interface/isignaljumpable.h \
+    $$PWD/interface/itimeaxis.h \
     $$PWD/tDemo/singnalcontrollertest.h
 
 
@@ -111,6 +117,7 @@ SOURCES += \
     $$PWD/Controller/channelcontroller.cpp \
     $$PWD/Controller/collectionparacontroller.cpp \
     $$PWD/Controller/dictionarycontroller.cpp \
+    $$PWD/Controller/hardwarecontroller.cpp \
     $$PWD/Controller/projectcontroller.cpp \
     $$PWD/Controller/usercontroller.cpp \
     $$PWD/Dao/channeldao.cpp \
@@ -165,6 +172,7 @@ SOURCES += \
     $$PWD/View/NewProjectDialog.cpp \
     $$PWD/View/OpenDataFileDialog.cpp \
     $$PWD/View/alalysisresultview.cpp \
+    $$PWD/View/hardwarewindow.cpp \
     $$PWD/View/jbasesamplewindow.cpp \
     $$PWD/View/jdataviewecho.cpp \
     $$PWD/View/jdynamicwidget.cpp \
@@ -193,6 +201,7 @@ FORMS += \
     $$PWD/View/NewProjectDialog.ui \
     $$PWD/View/OpenDataFileDialog.ui \
     $$PWD/View/alalysisresultview.ui \
+    $$PWD/View/hardwarewindow.ui \
     $$PWD/View/jdynamicwidget.ui \
     $$PWD/View/redissetupdialog.ui \
     $$PWD/View/spectrum.ui \

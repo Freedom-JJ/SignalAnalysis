@@ -182,6 +182,10 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     actionConnectRedis->setObjectName(QStringLiteral("actionConnectRedis"));
     actionConnectRedis->setIcon(QIcon(":/icons/icons/newChart.png"));
 
+    actionConnectHardWare = new QAction(mainWinowPtr);
+    actionConnectHardWare->setObjectName(QStringLiteral("actionConnectHardWare"));
+    actionConnectHardWare->setIcon(QIcon(":/icons/icons/newChart.png"));
+
     actionNewTrend = new QAction(mainWinowPtr);
     actionNewTrend->setObjectName(QStringLiteral("actionNewTrend"));
     actionNewTrend->setIcon(QIcon(":/icons/icons/newTrend.png"));
@@ -717,9 +721,11 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     mainCategoryFilePannel->addLargeAction(actionOpen1);
 
     //Chart Pannel
-    mainCategoryChartPannel = mainRibbonCategory->addPannel(QStringLiteral("数据"));
+    mainCategoryChartPannel = mainRibbonCategory->addPannel(QStringLiteral("连接"));
 //    mainCategoryChartPannel->addLargeAction(actionOpenData);
     mainCategoryChartPannel->addLargeAction(actionConnectRedis);
+    mainCategoryChartPannel->addLargeAction(actionConnectHardWare);
+
 
     //Value Operate Pannel
 //    mainCategoryValuePannel = mainRibbonCategory->addPannel(QStringLiteral("参数"));隐藏这个pannel
@@ -1061,6 +1067,8 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
     actionDataFeatureDock->setText(QApplication::translate("MainWindow", "Data Feature", 0));
     actionOpenData->setText(QApplication::translate("MainWindow", "打开数据文件", 0));
     actionConnectRedis->setText(QApplication::translate("MainWindow", "连接远程数据库", 0));
+    actionConnectHardWare->setText(QApplication::translate("MainWindow", "硬件连接", 0));
+
 
     actionNewTrend->setText(QApplication::translate("MainWindow", "Trend Chart", 0));
 #ifndef QT_NO_TOOLTIP

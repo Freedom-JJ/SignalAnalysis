@@ -136,70 +136,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->spectrunView->setMainWindowObject(this);
 
+    mainHardWareController = new HardWareController();
+
     /*******wzx********************/
 }
-
-//初始化链接库
-bool MainWindow::InitLibrary()
-{
-    QLibrary *m_library = new QLibrary();
-    QString strPath = "./Hardware_Standard_C_Interface.dll";
-    m_library->setFileName(strPath);
-    bool bLoaded = m_library->load();
-    if (!bLoaded)
-    {
-        QString strError = m_library->errorString();
-        qDebug() << "[InitLibrary]load library Hardware_Standard_C_Interface.dll fail" << strError << endl;
-        return false;
-    }
-    qDebug() << "load library Hardware_Standard_C_Interface.dll success"  << endl;
-    m_pInitMacControlEx = (InitMacControl)m_library->resolve("InitMacControl");
-    if(m_pInitMacControlEx == NULL)
-    {
-        qDebug() << "load m_pInitMacControl error"  << endl;
-        return false;
-    }
-    m_pQuitMacControl = (QuitMacControl)m_library->resolve("QuitMacControl");
-    if(m_pQuitMacControl == NULL)
-    {
-        qDebug() << "load m_pQuitMacControl error"  << endl;
-        return false;
-    }
-    m_pRefindAndConnecMac = (RefindAndConnecMac)m_library->resolve("RefindAndConnecMac");
-    if(m_pRefindAndConnecMac == NULL)
-    {
-        qDebug() << "load m_pRefindAndConnecMac error"  << endl;
-        return false;
-    }
-    m_pStartMacSample = (StartMacSample)m_library->resolve("StartMacSample");
-    if(m_pStartMacSample == NULL)
-    {
-        qDebug() << "load m_pStartMacSample error"  << endl;
-        return false;
-    }
-    m_pStopMacSample = (StopMacSample)m_library->resolve("StopMacSample");
-    if(m_pStopMacSample == NULL)
-    {
-        qDebug() << "load m_pStopMacSample error"  << endl;
-        return false;
-    }
-    m_pGetOneMacChnDataEx = (GetOneMacChnDataEx)m_library->resolve("GetOneMacChnDataEx");
-    if(m_pGetOneMacChnDataEx == NULL)
-    {
-        qDebug() << "load m_pGetOneMacChnDataEx error"  << endl;
-        return false;
-    }
-    m_pIsMacSampling = (IsMacSampling)m_library->resolve("IsMacSampling");
-    if(m_pIsMacSampling == NULL)
-    {
-        qDebug() << "load m_pIsMacSampling error"  << endl;
-        return false;
-    }
-    qDebug() << "----------------------------------------"  << endl;
-    qDebug() << "load library function success"  << endl;
-    return true;
-}
-
 
 ///
 /// \brief 程序初始化
@@ -271,7 +211,8 @@ void MainWindow::initUI()
     //-------------------------------------
     // - start chart set menu signal/slots connect
     connect(ui->actionOpenData, &QAction::triggered, this, &MainWindow::onActionOpenData); //打开数据文件
-    connect(ui->actionConnectRedis, &QAction::triggered, this, &MainWindow::onRedisConnection); //连接redis
+    connect(ui->actionConnectRedis, &QAction::triggered, this, &MainWindow::onRedisConnection);     //连接redis
+    connect(ui->actionConnectHardWare,&QAction::triggered, this,&MainWindow::onHardWareConnection);  //连接硬件
     connect(ui->actionNewTrend, &QAction::triggered, this, &MainWindow::onActionAddLineChartTriggered);
     connect(ui->actionDrawBarChart, &QAction::triggered, this, &MainWindow::onActionAddBarChartTriggered);
     connect(ui->actionDrawHistogramChart, &QAction::triggered, this, &MainWindow::onActionAddHistogramChartTriggered);
@@ -926,6 +867,10 @@ SAUIInterface *MainWindow::uiInterface()
 MainWindow::~MainWindow()
 {
     saveSetting();
+    mainHardWareController->m_pQuitMacControl();
+    mainHardWareController->m_pStopMacSample();
+    delete sampleThread;
+    delete mainHardWareController;
 
 
 }
@@ -1246,17 +1191,29 @@ void MainWindow::appendRecentOpenFilesPath(const QString& path)
 //开始采集事件函数
 void MainWindow::OnButtonStartCapture(){
 
+    if(theApp->hardwareState == theApp->HW_CONNECTED){
+        bool lIsSampling = mainHardWareController->m_pIsSampling();
+        if(lIsSampling){
+            QMessageBox msgBox;
+            msgBox.setText("仪器采样中，请先停止采样!");
+            msgBox.exec();
+            return;
+        }
+    }
 
     int oldcollectState = theApp->m_icollectState;
     //如果当前状态为正在采集
     if (theApp->m_icollectState == 1) return;
     //设置当前状态为正在采集状态
     theApp->m_icollectState = 1;
-    //设置单个数据长度
-    int dataCount = 20000;
+
     if(oldcollectState == 2){
         return;
     }
+    if(theApp->hardwareState == theApp->HW_CONNECTED){
+        mainHardWareController->m_pStartMacSample();
+    }
+
     qDebug()<<"m_vchannelCodes-size"<<theApp->m_vchannelCodes.size()<<endl;
     // 初始化采集队列
     for (int i = 0; i < theApp->m_vchannelCodes.size(); i++){
@@ -1268,6 +1225,17 @@ void MainWindow::OnButtonStartCapture(){
         theApp->m_mpredisCollectionDataQueue.insert(std::pair<QString, ThreadSafeQueue<double>>(theApp->m_vchannelCodes[i], ThreadSafeQueue<double>()));
     }
 
+    mainRedisUpload = new RedisUploadThread(this,theApp->initHost,theApp->initPort);
+    connect(mainRedisUpload,&RedisUploadThread::AllRedisConsumerSaved,this,&MainWindow::mainCloseRedisResource);
+
+    mainGetAnalysisResult = new GetAnalysisResultThread(this,theApp->initHost,theApp->initPort,theApp->channelNumber);
+//    connect(mainPlayBack,SIGNAL(playbackDone()),mainGetAnalysisResult,SLOT(CloseGetResult()));
+
+    if(theApp->redisState == theApp->RedisState::REDIS_OPEND){
+            mainRedisUpload->start();
+            mainGetAnalysisResult->start();
+    }
+
     this->theApp->m_bThread = true;
     //界面相关设置,重新构造
     ui->dynamicSpectrum = new JDynamicWidget(this);
@@ -1275,9 +1243,10 @@ void MainWindow::OnButtonStartCapture(){
     ui->dynamicSpectrum->resetWindow(ui->dockWidget_main,ui->dynamicSpectrum);
     ui->dynamicSpectrum->openAutoYAxisRescalse(2);
     ui->dynamicSpectrum->setAnalysisResult(this->theApp->getAnalysisResult());
-    ui->dynamicSpectrum->setInterval(500);
+    ui->dynamicSpectrum->setInterval(100);
     ui->dynamicSpectrum->start();
-    ui->dynamicSpectrum->closeTimeAxis();
+    ui->dynamicSpectrum->openTimeAxis();
+    mainGetAnalysisResult->setTimeAxis(ui->dynamicSpectrum);
     sampleThread = new GetDataThread(this);
     mainSaveData = new SaveCollectionDataThread(this);
     mainRedisUpload = new RedisUploadThread(this,theApp->initHost,theApp->initPort);
@@ -1298,10 +1267,14 @@ void MainWindow::OnButtonStopCapture(){
     theApp->m_icollectState = 0;
     ui->dynamicSpectrum->stop();
     theApp->m_bThread = false;
+    if(theApp->hardwareState == theApp->HW_CONNECTED){
+        mainHardWareController->m_pStopMacSample();
+    }
 
     for(auto it = theApp->echoSignalQueue.begin();it!=theApp->echoSignalQueue.end();it++){
         it->second->clearEchoSignal();
     }
+
 }
 
 //暂停采集
@@ -1576,6 +1549,12 @@ void MainWindow::onRedisConnection()
 {
     RedisSetUpDialog *redisDialog = new RedisSetUpDialog(this);
     redisDialog->show();
+}
+
+void MainWindow::onHardWareConnection(){
+    HardwareWindow *hardwareWindow = new HardwareWindow(this);
+    hardwareWindow->show();
+
 }
 
 ///

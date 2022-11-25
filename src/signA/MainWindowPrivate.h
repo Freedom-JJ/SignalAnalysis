@@ -91,8 +91,9 @@ public:
     QAction *actionSave;
     QAction *actionQuit;
     QAction *actionDataFeatureDock;
-    QAction *actionOpenData;///打开数据文件
-    QAction *actionConnectRedis;///打开redis对话框
+    QAction *actionOpenData;        ///打开数据文件
+    QAction *actionConnectRedis;        ///打开redis对话框
+    QAction *actionConnectHardWare;     ///连接硬件对话框
     QAction *actionNewTrend;
     QAction *actionClearProject;
     QAction *actionInRangDataRemove;

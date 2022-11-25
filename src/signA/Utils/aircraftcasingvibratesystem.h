@@ -49,13 +49,15 @@ public:
 /******************************王泽鑫10月24日周更改****************************************************/
 
 
-    int m_icollectState = 0; //采集状态 0 ：停止采集 1：开始采集 2：暂停采集
+    //int m_icollectState = 0; //采集状态 0 ：停止采集 1：开始采集 2：暂停采集
+    std::atomic<int> m_icollectState;
 
     int data_length = 20000;
 
     int m_icollectSignalsStoreCount = 20000; //采集信号的存储数量。
 
-    bool m_bisSave = false; //保存状态
+   // bool m_bisSave = false; //保存状态
+    std::atomic<bool> m_bisSave;
 
     bool m_blocalSignalExist = true;    //回放的文件是否存在
 
@@ -68,7 +70,8 @@ public:
 
     std::map<QString,std::shared_ptr<StaticSpectralEchoSignal>> echoSignalQueue; //采集回显map
 
-    bool m_bThread; //采集标志位
+    //bool m_bThread; //采集标志位
+    std::atomic<bool> m_bThread;
 
     std::map<QString,ThreadSafeQueue<double>> m_mpcolllectioinDataQueue; //采集的数据
 
@@ -81,7 +84,13 @@ public:
     QMutex saveSignalMutex;
 
     enum RedisState{REDIS_OPEND,REDIS_NOT_OPEN};             //redis标志位
-    RedisState redisState = REDIS_OPEND;
+    RedisState redisState = REDIS_NOT_OPEN;
+
+    enum HardWareState{HW_CONNECTED,HW_NOTCONNECTED};             //硬件连接标志位
+    HardWareState hardwareState = HW_NOTCONNECTED;
+
+    enum AnalysisAlgorithm{StatisticalComparison,Model_WDCNN};       //模型后端分析算法
+    AnalysisAlgorithm analysisAlgorithm = StatisticalComparison;
 
     QString initHost = "localhost"; //redis   host
 

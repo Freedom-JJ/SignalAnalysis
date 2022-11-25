@@ -11,6 +11,8 @@ AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystem():
 void AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystemInit(){
 
     m_vchannelCodes = vector<QString>(channelNumber);
+    m_icollectState = 0;
+    m_bisSave = false;
     for(int i=0;i<channelNumber;i++){
         QString channelCode =  QString::number(i);
         m_vchannelCodes[i] = channelCode;

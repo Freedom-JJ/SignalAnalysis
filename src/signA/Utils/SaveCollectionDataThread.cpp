@@ -23,7 +23,7 @@ void SaveCollectionDataThread::run(){
         delete singleSig;
         iter++;
     }
-    qDebug()<<"threadsize------------------------------------------------------"<<threadVector.size()<<endl;;
+//    qDebug()<<"threadsize------------------------------------------------------"<<threadVector.size()<<endl;
     for (int i = 0; i < threadVector.size();i++){
         threadVector[i]->start();
     }

@@ -29,6 +29,8 @@ private slots:
 
     void on_InitButton_clicked();
 
+    void on_algorithmComboBox_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::RedisSetUpDialog *ui;
 

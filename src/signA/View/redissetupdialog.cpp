@@ -16,6 +16,11 @@ RedisSetUpDialog::RedisSetUpDialog(MainWindow *redisDia,QWidget *parent) :
     }else if(redisDia->theApp->redisState == redisDia->theApp->RedisState::REDIS_NOT_OPEN){
            ui->IsOPenRedisCheckBox->setCheckState(Qt::Unchecked);
     }
+
+
+    ui->algorithmComboBox->addItem(QString("统计值对比分析"));
+    ui->algorithmComboBox->addItem(QString("深度学习模型-WDCNN"));
+
 }
 
 RedisSetUpDialog::~RedisSetUpDialog()
@@ -86,4 +91,14 @@ void RedisSetUpDialog::on_InitButton_clicked()
     msgBox3.exec();
 
 
+}
+
+void RedisSetUpDialog::on_algorithmComboBox_currentIndexChanged(const QString &arg1)
+{
+    if(arg1 == "统计值对比分析"){
+        redisDia->theApp->analysisAlgorithm = redisDia->theApp->StatisticalComparison;
+
+    }else if (arg1 == "深度学习模型-WDCNN") {
+        redisDia->theApp->analysisAlgorithm = redisDia->theApp->Model_WDCNN;
+    }
 }
