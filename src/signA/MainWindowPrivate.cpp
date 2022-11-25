@@ -717,7 +717,7 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     mainCategoryFilePannel->setObjectName(QStringLiteral("mainCategoryFilePannel"));
 //    mainCategoryFilePannel->addLargeActionMenu(actionOpenProject, menuFile);
     mainCategoryFilePannel->addLargeAction(actionNew);
-    mainCategoryFilePannel->addLargeAction(actionSet);
+//    mainCategoryFilePannel->addLargeAction(actionSet); 删除项目设置按钮
     mainCategoryFilePannel->addLargeAction(actionOpen1);
 
     //Chart Pannel

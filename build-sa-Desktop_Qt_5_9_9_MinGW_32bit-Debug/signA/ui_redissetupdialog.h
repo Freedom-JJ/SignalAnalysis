@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -25,40 +26,61 @@ QT_BEGIN_NAMESPACE
 class Ui_RedisSetUpDialog
 {
 public:
-    QCheckBox *IsOPenRedisCheckBox;
-    QLineEdit *hostEdit;
-    QLineEdit *portEdit;
+    QGridLayout *gridLayout;
     QLabel *label;
     QLabel *label_2;
+    QCheckBox *IsOPenRedisCheckBox;
     QPushButton *redisButton;
     QPushButton *InitButton;
+    QLineEdit *portEdit;
+    QLineEdit *hostEdit;
 
     void setupUi(QDialog *RedisSetUpDialog)
     {
         if (RedisSetUpDialog->objectName().isEmpty())
             RedisSetUpDialog->setObjectName(QStringLiteral("RedisSetUpDialog"));
         RedisSetUpDialog->resize(428, 324);
-        IsOPenRedisCheckBox = new QCheckBox(RedisSetUpDialog);
-        IsOPenRedisCheckBox->setObjectName(QStringLiteral("IsOPenRedisCheckBox"));
-        IsOPenRedisCheckBox->setGeometry(QRect(80, 30, 151, 81));
-        hostEdit = new QLineEdit(RedisSetUpDialog);
-        hostEdit->setObjectName(QStringLiteral("hostEdit"));
-        hostEdit->setGeometry(QRect(100, 120, 151, 31));
-        portEdit = new QLineEdit(RedisSetUpDialog);
-        portEdit->setObjectName(QStringLiteral("portEdit"));
-        portEdit->setGeometry(QRect(100, 180, 151, 31));
+        gridLayout = new QGridLayout(RedisSetUpDialog);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
         label = new QLabel(RedisSetUpDialog);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(60, 130, 54, 12));
+
+        gridLayout->addWidget(label, 1, 0, 1, 1);
+
         label_2 = new QLabel(RedisSetUpDialog);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(60, 190, 54, 12));
+
+        gridLayout->addWidget(label_2, 2, 0, 1, 1);
+
+        IsOPenRedisCheckBox = new QCheckBox(RedisSetUpDialog);
+        IsOPenRedisCheckBox->setObjectName(QStringLiteral("IsOPenRedisCheckBox"));
+
+        gridLayout->addWidget(IsOPenRedisCheckBox, 0, 0, 1, 2);
+
         redisButton = new QPushButton(RedisSetUpDialog);
         redisButton->setObjectName(QStringLiteral("redisButton"));
-        redisButton->setGeometry(QRect(260, 260, 80, 20));
+
+        gridLayout->addWidget(redisButton, 3, 3, 1, 1);
+
         InitButton = new QPushButton(RedisSetUpDialog);
         InitButton->setObjectName(QStringLiteral("InitButton"));
-        InitButton->setGeometry(QRect(80, 250, 81, 31));
+
+        gridLayout->addWidget(InitButton, 3, 2, 1, 1);
+
+        portEdit = new QLineEdit(RedisSetUpDialog);
+        portEdit->setObjectName(QStringLiteral("portEdit"));
+
+        gridLayout->addWidget(portEdit, 2, 1, 1, 3);
+
+        hostEdit = new QLineEdit(RedisSetUpDialog);
+        hostEdit->setObjectName(QStringLiteral("hostEdit"));
+
+        gridLayout->addWidget(hostEdit, 1, 1, 1, 3);
+
+#ifndef QT_NO_SHORTCUT
+        label->setBuddy(hostEdit);
+        label_2->setBuddy(portEdit);
+#endif // QT_NO_SHORTCUT
 
         retranslateUi(RedisSetUpDialog);
 
@@ -68,9 +90,9 @@ public:
     void retranslateUi(QDialog *RedisSetUpDialog)
     {
         RedisSetUpDialog->setWindowTitle(QApplication::translate("RedisSetUpDialog", "\350\277\236\346\216\245\350\277\234\347\250\213\346\225\260\346\215\256\345\272\223", Q_NULLPTR));
-        IsOPenRedisCheckBox->setText(QApplication::translate("RedisSetUpDialog", "CheckBox", Q_NULLPTR));
         label->setText(QApplication::translate("RedisSetUpDialog", "Host", Q_NULLPTR));
         label_2->setText(QApplication::translate("RedisSetUpDialog", "port", Q_NULLPTR));
+        IsOPenRedisCheckBox->setText(QApplication::translate("RedisSetUpDialog", "CheckBox", Q_NULLPTR));
         redisButton->setText(QApplication::translate("RedisSetUpDialog", "\350\277\236\346\216\245", Q_NULLPTR));
         InitButton->setText(QApplication::translate("RedisSetUpDialog", "\351\207\215\347\275\256\346\225\260\346\215\256\345\272\223", Q_NULLPTR));
     } // retranslateUi

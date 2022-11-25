@@ -55,7 +55,7 @@ void GetAnalysisResultThread::run(){
         msleep(50);
     }
 
-   qDebug()<<"----------结果线程结束了------------"<<endl;
+//   qDebug()<<"----------结果线程结束了------------"<<endl;
 }
 
 void GetAnalysisResultThread::setTimeAxis(ITimeAxis *value)

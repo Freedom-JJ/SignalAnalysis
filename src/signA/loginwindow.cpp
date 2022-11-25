@@ -59,8 +59,10 @@ void LoginWindow::on_loginButton_clicked()
     user->setLoginPassword(mqstos(loginPassword));
     Result result = userController.UserLogin(user);
     if(result.getCode()==200){
+
         this->close();
         MainWindow *mainWindow = new MainWindow();
+        mainWindow->theApp->user = *user;
         mainWindow->show();
     }
     else if(result.getCode()==204){

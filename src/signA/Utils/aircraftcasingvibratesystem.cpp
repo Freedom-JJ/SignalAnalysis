@@ -4,6 +4,7 @@ AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystem():
     analysisResult(new std::map<QString,QVector<AnalysisResult>>())
 {
     AirCraftCasingVibrateSystemInit();
+    procon.loadDefaultProject(currentProject);
 
 }
 

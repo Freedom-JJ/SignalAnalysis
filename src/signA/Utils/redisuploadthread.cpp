@@ -8,7 +8,7 @@ void RedisUploadThread::run(){
 
     if (!consumerRedis->openConnection())
     {
-        qDebug() << "Could not connect to server...";
+//        qDebug() << "Could not connect to server...";
         return;
     }
 

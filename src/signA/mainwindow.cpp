@@ -1294,7 +1294,7 @@ void MainWindow::closeSaveDataThread(){
 
 
 void MainWindow::mainCloseRedisResource(){
-    qDebug()<<"---------redis上传数据线程结束---------"<<endl;
+//    qDebug()<<"---------redis上传数据线程结束---------"<<endl;
     mainRedisUpload->quit();
     mainRedisUpload->wait();
     mainRedisUpload = nullptr;
@@ -1336,6 +1336,9 @@ void MainWindow::OnButtonStartPlayBack(){
     theApp->clearAnalysisResult();
     OpenDataFileDialog *openfile = new OpenDataFileDialog(this,this);
     openfile->exec(); //模态对话框，会阻塞 ，show是非模态
+    if(openfile->result() != openfile->Accepted){
+        return; //没有点打开，而是关闭按钮
+    }
     if(theApp->m_iplaybackState == 1){
         return;         //正在回放就不能再点开始回放
     }
@@ -1389,7 +1392,7 @@ void MainWindow::OnButtonAnalysis(){
 
 //回放读取文件结束后的槽函数,自动调用
 void MainWindow::closePlaybackResource(){
-    qDebug()<<"-----------回放自动结束-------"<<endl;
+//    qDebug()<<"-----------回放自动结束-------"<<endl;
     ui->dynamicSpectrum->stop();
     theApp->m_iplaybackState = 0;
 
@@ -1437,6 +1440,7 @@ void MainWindow::CreateCaptureWindow(){
 void MainWindow::onActionOpenTriggered()
 {
     OpenProjectWindow *openProWin = new OpenProjectWindow;
+    openProWin->setMw(this);
     openProWin->show();
 }
 

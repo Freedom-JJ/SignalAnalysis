@@ -8,7 +8,7 @@ void SaveCollectionDataThread::run(){
     saveThread->theApp->m_sumSignal = new SumSignal();
     saveThread->theApp->m_sumSignal->setId(uuid);
     saveThread->theApp->m_sumSignal->setStartTime(DataUtil::GetCurrentCStringTime());
-    saveThread->theApp->m_sumSignal->setProjectId(10);
+    saveThread->theApp->m_sumSignal->setProjectId(saveThread->theApp->currentProject.getId());
     //调用controller 的 saveSumSignal
     saveThread->theApp->m_signalController.saveSumSignal(saveThread->theApp->m_sumSignal);
 
