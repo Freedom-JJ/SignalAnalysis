@@ -66,7 +66,7 @@ public:
 
     void retranslateUi(QDialog *OpenDataFileDialog)
     {
-        OpenDataFileDialog->setWindowTitle(QApplication::translate("OpenDataFileDialog", "Dialog", Q_NULLPTR));
+        OpenDataFileDialog->setWindowTitle(QApplication::translate("OpenDataFileDialog", "\351\200\211\346\213\251\345\233\236\346\224\276\346\226\207\344\273\266", Q_NULLPTR));
         pushButtonSearch->setText(QApplication::translate("OpenDataFileDialog", "\346\220\234\347\264\242", Q_NULLPTR));
         lineEdit->setPlaceholderText(QApplication::translate("OpenDataFileDialog", "\346\220\234\347\264\242", Q_NULLPTR));
         pushButtonOpen->setText(QApplication::translate("OpenDataFileDialog", "\346\211\223\345\274\200", Q_NULLPTR));

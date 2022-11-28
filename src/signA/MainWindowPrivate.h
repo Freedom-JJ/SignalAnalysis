@@ -50,8 +50,10 @@ public:
     };
     MainWindow *Parent;
 //    JSampleView *sampleView;
-    JSpectrumWindow *spectrunView;
+//    JSpectrumWindow *spectrunView; //废弃
     JDynamicWidget * dynamicSpectrum;
+    QLabel *leftButtomText;
+    QLabel *rightButtomText;
 
     QAction *actionNew;      ///<新建项目>
     QAction *actionSet;    ///<设置项目>

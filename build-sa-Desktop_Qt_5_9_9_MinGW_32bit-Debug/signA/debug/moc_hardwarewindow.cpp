@@ -1,16 +1,16 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'redissetupdialog.h'
+** Meta object code from reading C++ file 'hardwarewindow.h'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.9)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../src/signA/View/redissetupdialog.h"
+#include "../../../src/signA/View/hardwarewindow.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'redissetupdialog.h' doesn't include <QObject>."
+#error "The header file 'hardwarewindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
 #error "This file was generated using the moc from 5.9.9. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -20,34 +20,34 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_RedisSetUpDialog_t {
+struct qt_meta_stringdata_HardwareWindow_t {
     QByteArrayData data[7];
-    char stringdata0[145];
+    char stringdata0[131];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_RedisSetUpDialog_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_HardwareWindow_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_RedisSetUpDialog_t qt_meta_stringdata_RedisSetUpDialog = {
+static const qt_meta_stringdata_HardwareWindow_t qt_meta_stringdata_HardwareWindow = {
     {
-QT_MOC_LITERAL(0, 0, 16), // "RedisSetUpDialog"
-QT_MOC_LITERAL(1, 17, 35), // "on_IsOPenRedisCheckBox_stateC..."
-QT_MOC_LITERAL(2, 53, 0), // ""
-QT_MOC_LITERAL(3, 54, 4), // "arg1"
-QT_MOC_LITERAL(4, 59, 22), // "on_redisButton_clicked"
-QT_MOC_LITERAL(5, 82, 21), // "on_InitButton_clicked"
-QT_MOC_LITERAL(6, 104, 40) // "on_algorithmComboBox_currentI..."
+QT_MOC_LITERAL(0, 0, 14), // "HardwareWindow"
+QT_MOC_LITERAL(1, 15, 26), // "on_HWCheckBox_stateChanged"
+QT_MOC_LITERAL(2, 42, 0), // ""
+QT_MOC_LITERAL(3, 43, 5), // "state"
+QT_MOC_LITERAL(4, 49, 28), // "on_initConnectButton_clicked"
+QT_MOC_LITERAL(5, 78, 26), // "on_refindMacButton_clicked"
+QT_MOC_LITERAL(6, 105, 25) // "on_initParaButton_clicked"
 
     },
-    "RedisSetUpDialog\0on_IsOPenRedisCheckBox_stateChanged\0"
-    "\0arg1\0on_redisButton_clicked\0"
-    "on_InitButton_clicked\0"
-    "on_algorithmComboBox_currentIndexChanged"
+    "HardwareWindow\0on_HWCheckBox_stateChanged\0"
+    "\0state\0on_initConnectButton_clicked\0"
+    "on_refindMacButton_clicked\0"
+    "on_initParaButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_RedisSetUpDialog[] = {
+static const uint qt_meta_data_HardwareWindow[] = {
 
  // content:
        7,       // revision
@@ -64,52 +64,52 @@ static const uint qt_meta_data_RedisSetUpDialog[] = {
        1,    1,   34,    2, 0x08 /* Private */,
        4,    0,   37,    2, 0x08 /* Private */,
        5,    0,   38,    2, 0x08 /* Private */,
-       6,    1,   39,    2, 0x08 /* Private */,
+       6,    0,   39,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void,
 
        0        // eod
 };
 
-void RedisSetUpDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void HardwareWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        RedisSetUpDialog *_t = static_cast<RedisSetUpDialog *>(_o);
+        HardwareWindow *_t = static_cast<HardwareWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_IsOPenRedisCheckBox_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 1: _t->on_redisButton_clicked(); break;
-        case 2: _t->on_InitButton_clicked(); break;
-        case 3: _t->on_algorithmComboBox_currentIndexChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 0: _t->on_HWCheckBox_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 1: _t->on_initConnectButton_clicked(); break;
+        case 2: _t->on_refindMacButton_clicked(); break;
+        case 3: _t->on_initParaButton_clicked(); break;
         default: ;
         }
     }
 }
 
-const QMetaObject RedisSetUpDialog::staticMetaObject = {
-    { &QDialog::staticMetaObject, qt_meta_stringdata_RedisSetUpDialog.data,
-      qt_meta_data_RedisSetUpDialog,  qt_static_metacall, nullptr, nullptr}
+const QMetaObject HardwareWindow::staticMetaObject = {
+    { &QDialog::staticMetaObject, qt_meta_stringdata_HardwareWindow.data,
+      qt_meta_data_HardwareWindow,  qt_static_metacall, nullptr, nullptr}
 };
 
 
-const QMetaObject *RedisSetUpDialog::metaObject() const
+const QMetaObject *HardwareWindow::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *RedisSetUpDialog::qt_metacast(const char *_clname)
+void *HardwareWindow::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_RedisSetUpDialog.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_HardwareWindow.stringdata0))
         return static_cast<void*>(this);
     return QDialog::qt_metacast(_clname);
 }
 
-int RedisSetUpDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int HardwareWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QDialog::qt_metacall(_c, _id, _a);
     if (_id < 0)

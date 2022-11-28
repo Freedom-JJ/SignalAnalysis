@@ -94,6 +94,7 @@ public:
      void addDataTimeAxis(QVector<AnalysisResult> res) override;
      void addDataTimeAxis(AnalysisResult) override;
 
+     void clearWindow();
 protected:
     void mousePressEvent(QMouseEvent *ev);
     void mouseReleaseEvent(QMouseEvent *ev);

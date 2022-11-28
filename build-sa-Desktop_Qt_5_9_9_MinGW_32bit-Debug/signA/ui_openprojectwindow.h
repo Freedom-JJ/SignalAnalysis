@@ -99,7 +99,7 @@ public:
 
     void retranslateUi(QDialog *OpenProjectWindow)
     {
-        OpenProjectWindow->setWindowTitle(QApplication::translate("OpenProjectWindow", "Dialog", Q_NULLPTR));
+        OpenProjectWindow->setWindowTitle(QApplication::translate("OpenProjectWindow", "\346\211\223\345\274\200\351\241\271\347\233\256", Q_NULLPTR));
         label->setText(QApplication::translate("OpenProjectWindow", "\351\241\271\347\233\256\345\220\215:", Q_NULLPTR));
         label_2->setText(QApplication::translate("OpenProjectWindow", "\346\234\200\350\277\221\351\241\271\347\233\256", Q_NULLPTR));
         open->setText(QApplication::translate("OpenProjectWindow", "\346\211\223\345\274\200", Q_NULLPTR));

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>注册</string>
   </property>
   <widget class="QLineEdit" name="nameLineEdit">
    <property name="geometry">

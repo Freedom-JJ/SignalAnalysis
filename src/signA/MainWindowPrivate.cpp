@@ -944,15 +944,25 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     mdiArea->setTabsMovable(true);
     mdiArea->setTabShape(QTabWidget::Triangular);
 
-
-
     auto dockWidgetContents_jj = new QWidget();
     dockWidgetContents_jj->setObjectName(QStringLiteral("dockWidgetContents_jj"));
-    this->spectrunView = new JSpectrumWindow(dockWidgetContents_jj);
+//    this->spectrunView = new JSpectrumWindow(dockWidgetContents_jj);
 //    verticalLayout_4->addWidget(mdiArea);
     this->dynamicSpectrum = new JDynamicWidget();
     this->dynamicSpectrum->init(4);
     dockWidget_main->setWidget(this->dynamicSpectrum);
+    rightButtomText = new QLabel("状态");
+    leftButtomText = new QLabel("当前项目为:");
+    leftButtomText->setAlignment(Qt::AlignLeft);
+    rightButtomText->setAlignment(Qt::AlignRight);
+//    auto vbox = new QVBoxLayout(statusBar);
+//    vbox->addWidget(leftButtomText);
+//    vbox->addSpacerItem(new QSpacerItem(100,10));
+//    vbox->addWidget(rightButtomText);
+
+    statusBar->addPermanentWidget(leftButtomText,1);
+    statusBar->addPermanentWidget(rightButtomText);
+
     mainWinowPtr->addDockWidget(static_cast<Qt::DockWidgetArea>(4), dockWidget_main);
     dockWidget_valueViewer = new QDockWidget(mainWinowPtr);
     dockWidget_valueViewer->setObjectName(QStringLiteral("dockWidget_valueViewer"));
@@ -1020,7 +1030,7 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
 
 void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
 {
-    mainWinowPtr->setWindowTitle(QApplication::translate("MainWindow", "振动采集系统", 0));
+    mainWinowPtr->setWindowTitle(QApplication::translate("MainWindow", "振动采集系统——————哈尔滨工业大学", 0));
     actionOpen1->setText(QApplication::translate("MainWindow", "打开项目", 0));
     actionNew->setText(QApplication::translate("MainWindow", "新建项目", 0));
     actionSet->setText(QApplication::translate("MainWindow", "项目设置", 0));
