@@ -29,6 +29,8 @@ public:
     void initData();
     ~NewProjectDialog();
 
+    void SelectProduct();
+
 private slots:
     void on_lineEdit_3_editingFinished();
 
@@ -41,6 +43,8 @@ private slots:
     void on_lineEdit_3_textChanged(const QString &arg1);
 
     void on_okbtn_clicked();
+
+    void on_projuctComboBox_currentIndexChanged(const QString &arg1);
 
 private:
     Ui::NewProjectDialog *ui;
@@ -55,6 +59,10 @@ private:
     DictionaryController dictionCon;
 
     long long projectId =0 ;
+
+    std::map<int,QString> productMap;//记录产品的map
+
+    QString m_productName;
 };
 
 #endif // NEWPROJECTDIALOG_H

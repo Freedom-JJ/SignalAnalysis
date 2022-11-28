@@ -134,9 +134,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dockWidget_windowList->close();
     ui->dockWidget_valueViewer->close();
 
+    QFont ft;
+    ft.setPointSize(15);
+    ui->rightButtomText->setFont(ft);
+    ui->rightButtomText->setText("正在获取仪器连接，请稍等！");
+
 //    ui->spectrunView->setMainWindowObject(this);
 
-    mainHardWareController = new HardWareController();
+    mainProcessHardWare = new InitHardWareThread(this);
+    connect(mainProcessHardWare,&InitHardWareThread::hardwareInited,this,&MainWindow::mainInitHardware);
+//    mainProcessHardWare->start();
+
+    QMessageBox msgBox;
+    msgBox.setText("仪器检测中，请稍等！");
+    msgBox.exec();
 
     /*******wzx********************/
 }
@@ -156,7 +167,31 @@ void MainWindow::init()
 //    ui_status_progress = new progressStateWidget(this);
 //    ui->statusBar->addWidget(ui_status_progress);
 //    ui_status_progress->setVisible(false);
-       ui->leftButtomText->setText("当前项目:"+QString::fromStdString(theApp->currentProject.getProjectName()));
+
+    QFont ft;
+    ft.setPointSize(15);
+    ui->leftButtomText->setFont(ft);
+    ui->leftButtomText->setText("当前项目:"+QString::fromStdString(theApp->currentProject.getProjectName()));
+}
+
+void MainWindow::mainInitHardware(bool b_hwconnected){
+    if(b_hwconnected){
+        theApp->hardwareState = theApp->HW_CONNECTED;
+
+        ui->rightButtomText->setText("当前模式：在线模式");
+
+        QMessageBox msgBox;
+        msgBox.setText("检测到仪器，进入在线模式！");
+        msgBox.exec();
+
+    }else{
+        ui->rightButtomText->setText("当前模式：离线模式");
+        QMessageBox msgBox;
+        msgBox.setText("未检测到仪器，进入离线模式！");
+        msgBox.exec();
+    }
+
+
 }
 
 
@@ -872,6 +907,7 @@ MainWindow::~MainWindow()
     mainHardWareController->m_pStopMacSample();
     delete sampleThread;
     delete mainHardWareController;
+    delete mainProcessHardWare;
 
 
 }
@@ -1208,13 +1244,14 @@ void MainWindow::OnButtonStartCapture(){
     //设置当前状态为正在采集状态
     theApp->m_icollectState = 1;
 
-    if(oldcollectState == 2){
-        return;
-    }
+
     if(theApp->hardwareState == theApp->HW_CONNECTED){
         mainHardWareController->m_pStartMacSample();
     }
 
+    if(oldcollectState == 2){
+        return;
+    }
     qDebug()<<"m_vchannelCodes-size"<<theApp->m_vchannelCodes.size()<<endl;
     // 初始化采集队列
     for (int i = 0; i < theApp->m_vchannelCodes.size(); i++){
@@ -1283,6 +1320,12 @@ void MainWindow::OnBUttonSuspendCapture(){
 
     theApp->m_icollectState = 2;
     ui->dynamicSpectrum->pause();
+    if(theApp->hardwareState == theApp->HW_CONNECTED){
+        bool b_sampling = mainHardWareController->m_pIsSampling();
+        if(b_sampling){
+            mainHardWareController->m_pStopMacSample();
+        }
+    }
 
 }
 
@@ -1333,6 +1376,16 @@ void MainWindow::mainCloseSaveResource(){
 
 void MainWindow::OnButtonStartPlayBack(){
 
+    int oldcollectState = theApp->m_iplaybackState;
+    //如果当前状态为正在采集
+    if (theApp->m_iplaybackState == 1) return;
+    //设置当前状态为正在采集状态
+    theApp->m_iplaybackState = 1;
+
+    if(oldcollectState == 2){
+        return;
+    }
+
     //清理掉上一次的错误信息
     theApp->clearAnalysisResult();
     OpenDataFileDialog *openfile = new OpenDataFileDialog(this,this);
@@ -1340,10 +1393,10 @@ void MainWindow::OnButtonStartPlayBack(){
     if(openfile->result() != openfile->Accepted){
         return; //没有点打开，而是关闭按钮
     }
-    if(theApp->m_iplaybackState == 1){
-        return;         //正在回放就不能再点开始回放
-    }
-    theApp->m_iplaybackState = 1;
+//    if(theApp->m_iplaybackState == 1){
+//        return;         //正在回放就不能再点开始回放
+//    }
+//    theApp->m_iplaybackState = 1;
 
     //初始化redis采集队列
     for(int i = 0; i < theApp->m_vchannelCodes.size(); i++){
@@ -1379,8 +1432,8 @@ void MainWindow::OnButtonStartPlayBack(){
 //停止回放
 void MainWindow::OnButtonStopPlayBack(){
 
-    theApp->m_iplaybackState = 0;
-    ui->dynamicSpectrum->stop();
+    theApp->m_iplaybackState = 2;
+    ui->dynamicSpectrum->pause();
 
 }
 void MainWindow::OnButtonAnalysis(){
