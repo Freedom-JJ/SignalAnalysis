@@ -5,6 +5,7 @@
 #include <QString>
 #include <Windows.h>
 #include <QLibrary>
+#include <QCoreApplication>
 
 class HardWareController
 {
@@ -25,6 +26,24 @@ public:
     std::string elcPressure = "10000";    //默认电压测量范围  参数id:90
 
     std::string measureType = "电压测量";   //默认测量方式 参数id:4
+
+public:
+
+    /**
+     * @brief:初始化硬件连接并检测仪器
+     */
+    bool InitHardWare();
+
+    /**
+     * @brief: 初始化采样参数
+     */
+    void initSamplingPara();
+
+    /**
+     * @brief:初始化通道参数
+     */
+    void initChannelPara();
+
 
 public:
 

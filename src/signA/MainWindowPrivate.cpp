@@ -724,7 +724,7 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     mainCategoryChartPannel = mainRibbonCategory->addPannel(QStringLiteral("连接"));
 //    mainCategoryChartPannel->addLargeAction(actionOpenData);
     mainCategoryChartPannel->addLargeAction(actionConnectRedis);
-    mainCategoryChartPannel->addLargeAction(actionConnectHardWare);
+//    mainCategoryChartPannel->addLargeAction(actionConnectHardWare);
 
 
     //Value Operate Pannel
@@ -1067,7 +1067,7 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
     actionDataFeatureDock->setText(QApplication::translate("MainWindow", "Data Feature", 0));
     actionOpenData->setText(QApplication::translate("MainWindow", "打开数据文件", 0));
     actionConnectRedis->setText(QApplication::translate("MainWindow", "连接远程数据库", 0));
-    actionConnectHardWare->setText(QApplication::translate("MainWindow", "硬件连接", 0));
+//    actionConnectHardWare->setText(QApplication::translate("MainWindow", "硬件连接", 0));
 
 
     actionNewTrend->setText(QApplication::translate("MainWindow", "Trend Chart", 0));
