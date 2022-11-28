@@ -16,14 +16,22 @@ Spectrum::Spectrum(QWidget *parent) :
     layout->setMargin(0);
     layout->setSpacing(0);
     plot = new QCustomPlot(this);
-    plot->addGraph();
-    plot->graph(0)->setPen(QPen(QColor(Qt::red)));
+    plot->plotLayout()->clear();
+    dataAxis = new QCPAxisRect(plot);
+    dataAxis->setupFullAxesBox(true);
+    mainGrap = plot->addGraph(dataAxis->axis(QCPAxis::atBottom),dataAxis->axis(QCPAxis::atLeft));
+    mainGrap->setPen(QPen(QColor(Qt::red)));
+
+    plot->plotLayout()->addElement(0,0,dataAxis);
+//    plot->addGraph();
+//    plot->graph(0)->setPen(QPen(QColor(Qt::red)));
     layout->addWidget(plot,0,0);
     this->setLayout(layout);
 
     this->textItem = new QCPItemText(this->plot);
     textItem->setPositionAlignment(Qt::AlignTop|Qt::AlignLeft);
     textItem->setText("");
+    textItem->setTextAlignment(Qt::AlignLeft);
     textItem->setFont(QFont().family()); //设置Font没有边框,设置Pen有边框
     textItem->position->setType(QCPItemPosition::ptAxisRectRatio);
     textItem->position->setCoords(0,0);
@@ -40,7 +48,10 @@ Spectrum::~Spectrum()
     delete normalBars;
     delete abnormalBars;
     delete timer;
-
+    delete dataAxis;
+    delete mainGrap;
+    dataAxis = nullptr;
+    mainGrap = nullptr;
     axisRect = nullptr;
     normalBars = nullptr;
     abnormalBars = nullptr;
@@ -48,7 +59,6 @@ Spectrum::~Spectrum()
     ui=nullptr;
     plot = nullptr;
     textItem=nullptr;
-
 }
 
 void Spectrum::init(const QVector<double> *initData)
@@ -58,7 +68,8 @@ void Spectrum::init(const QVector<double> *initData)
         for (int var = 0; var < key->size(); ++var) {
             (*key)[var] = var;
         }
-        plot->graph(0)->addData(*key,*initData);
+//        plot->graph(0)->addData(*key,*initData);
+        mainGrap->addData(*key,*initData);
         plot->replot();
     }
 
@@ -125,7 +136,7 @@ void Spectrum::refresh(std::map<QString, double> statistic,const QVector<double>
     auto dataVec = new QVector<double>();
 
 
-    this->plot->graph(0)->data()->clear();
+    mainGrap->data()->clear();
     if(data.size() == 0 ){
         return;
     }
@@ -142,15 +153,17 @@ void Spectrum::refresh(std::map<QString, double> statistic,const QVector<double>
         this->init(&data);
     }
     refreshTimeAxis();
-
-    this->plot->graph(0)->addData(*key,data);
+    mainGrap->addData(*key,data);
+//    this->plot->graph(0)->addData(*key,data);
     if (yIsRescale == true){
 //        this->plot->graph(0)->rescaleValueAxis();
-        this->plot->graph(0)->rescaleKeyAxis();
-        this->plot->graph(0)->valueAxis()->setRange(yStart , feature->getMax() * rescaleRate);
+        mainGrap->rescaleKeyAxis();
+        //y轴不用动态变化太大
+        yStop = qMax(yStop , feature->getMax() * rescaleRate);
+        mainGrap->valueAxis()->setRange(yStart , yStop);
     }else{
-        this->plot->graph(0)->valueAxis()->setRange(yStart,yStop);
-        this->plot->graph(0)->keyAxis()->setRange(0.0,this->range/1.0);
+        mainGrap->valueAxis()->setRange(yStart,yStop);
+        mainGrap->keyAxis()->setRange(0.0,this->range/1.0);
     }
 //    this->plot->replot();
     plot->replot(QCustomPlot::rpQueuedReplot);
@@ -161,6 +174,17 @@ void Spectrum::autoRescale(double rate)
 {
     yIsRescale = true;
     this->rescaleRate = rate;
+}
+
+void Spectrum::clearWindow()
+{
+    if(textItem!=nullptr)
+        textItem->setText("");
+    if(mainGrap!=nullptr)
+        mainGrap->data()->clear();
+    clearTimeAxis();
+    yStop = 0;
+    plot->replot();
 }
 
 void Spectrum::start()
@@ -176,6 +200,7 @@ void Spectrum::start()
 
 void Spectrum::stop()
 {
+    yStop = 0;
     pause();
 }
 
@@ -203,21 +228,29 @@ void Spectrum::openTimeAxis()
 {
     if(isOpenTimeAxis)
         return;
-    analysisBuffer.reserve(10);
+    analysisBuffer.clear();
     //创建时间轴
     this->axisRect = new QCPAxisRect(plot);
+
     plot->plotLayout()->addElement(1,0,axisRect);
+    plot->plotLayout()->setRowStretchFactor(1,0.1);
     plot->plotLayout()->setRowSpacing(0);
     plot->plotLayout()->setMargins(QMargins(0,0,0,0));
     plot->setInteractions(QCP::iRangeDrag);
+
     axisRect->setMaximumSize(QSize(QWIDGETSIZE_MAX,10));
+//    axisRect->setMinimumSize(QSize(QWIDGETSIZE_MAX,50));
+
     axisRect->setRangeDrag(Qt::Horizontal);
+    axisRect->axis(QCPAxis::atBottom)->setLayer("axes");
+    axisRect->axis(QCPAxis::atBottom)->grid()->setLayer("grid");
     normalBars = new QCPBars(axisRect->axis(QCPAxis::atBottom),axisRect->axis(QCPAxis::atLeft));
     abnormalBars = new QCPBars(axisRect->axis(QCPAxis::atBottom),axisRect->axis(QCPAxis::atLeft));
 
     normalBars->setPen(Qt::NoPen);
     normalBars->setBrush(QColor(Qt::GlobalColor::green));
     normalBars->setWidth(barWidth-0.1);
+
     abnormalBars->setPen(Qt::NoPen);
     abnormalBars->setBrush(QColor(Qt::GlobalColor::red));
     abnormalBars->setWidth(barWidth-0.1);
@@ -257,7 +290,7 @@ void Spectrum::addDataTimeAxis(AnalysisResult &res)
     analysisBuffer.append(res);
 }
 
-//加锁了，速度变快还是会闪退
+
 void Spectrum::refreshTimeAxis()
 {
     if(isOpenTimeAxis ){
@@ -267,9 +300,9 @@ void Spectrum::refreshTimeAxis()
                 qDebug()<<"信号反馈祯ID不对应,内部id"<<count<<"----外部id"<<res.getId().toInt()<<endl;
             }
             if(res.getErrorInf()==AnalysisResult::ABNORMAL){
-                abnormalBars->addData(count*barWidth,20);
+                abnormalBars->addData(count*barWidth,5);
             }else{
-                normalBars->addData(count*barWidth,20);
+                normalBars->addData(count*barWidth,5);
             }
             count++;
             if(count>200){

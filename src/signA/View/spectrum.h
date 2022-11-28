@@ -102,6 +102,8 @@ public:
      /**
       * @brief 用定时器刷新,不用定时器禁止启动
       */
+     //清理窗口旧数据
+     void clearWindow();
      void start();
      void stop();
      void setInterval(int mec) ;
@@ -126,6 +128,9 @@ private:
 
     QVector<AnalysisResult> analysisBuffer;
     std::mutex mu;//添加时间轴buffer和消费时间轴buffer的锁
+
+    QCPAxisRect *dataAxis = nullptr; //频谱轴
+    QCPGraph *mainGrap = nullptr;
     QCPAxisRect *axisRect = nullptr; //时间轴
     QCPBars *normalBars = nullptr;  //正常信号显示
     QCPBars *abnormalBars = nullptr;//异常信号显示
@@ -149,7 +154,7 @@ private:
      * @brief 当Y轴不需要自动缩放时，使用这两个值
      */
     double yStart = 0;
-    double yStop;
+    double yStop = 0;
     bool isShowStatistic = true;
 
     SignalFeature *feature = SignalFeature::getInstance();

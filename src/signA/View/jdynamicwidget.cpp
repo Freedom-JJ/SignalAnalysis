@@ -221,6 +221,13 @@ void JDynamicWidget::addDataTimeAxis(AnalysisResult res)
     spectrumVec[index]->addDataTimeAxis(res);
 }
 
+void JDynamicWidget::clearWindow()
+{
+    for(int i=0;i<spectrumVec.size();i++){
+        spectrumVec[i]->clearWindow();
+    }
+}
+
 JDynamicWidget::~JDynamicWidget()
 {
     qDebug()<<"释放成功"<<endl;

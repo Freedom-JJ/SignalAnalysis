@@ -107,7 +107,7 @@ public:
 
     void retranslateUi(QDialog *LoginWindow)
     {
-        LoginWindow->setWindowTitle(QApplication::translate("LoginWindow", "Dialog", Q_NULLPTR));
+        LoginWindow->setWindowTitle(QApplication::translate("LoginWindow", "\347\231\273\345\275\225", Q_NULLPTR));
         label_2->setText(QApplication::translate("LoginWindow", "\347\231\273\351\231\206\345\257\206\347\240\201", Q_NULLPTR));
         registerButton->setText(QApplication::translate("LoginWindow", "\346\263\250\345\206\214", Q_NULLPTR));
         label->setText(QApplication::translate("LoginWindow", "\347\224\250\346\210\267\345\220\215", Q_NULLPTR));

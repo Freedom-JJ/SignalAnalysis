@@ -134,7 +134,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dockWidget_windowList->close();
     ui->dockWidget_valueViewer->close();
 
-    ui->spectrunView->setMainWindowObject(this);
+//    ui->spectrunView->setMainWindowObject(this);
 
     mainHardWareController = new HardWareController();
 
@@ -148,14 +148,15 @@ void MainWindow::init()
 {
 	//状态栏的进度条
 
-    ui_status_info = new SAInformationStatusWidget(this);
-    ui->statusBar->addWidget(ui_status_info);
-    ui_status_info->setVisible(false);
-    ui_status_info->setFadeIn(true, 500, 5);
-    ui_status_info->setFadeOut(true, 500, 5);
-    ui_status_progress = new progressStateWidget(this);
-    ui->statusBar->addWidget(ui_status_progress);
-    ui_status_progress->setVisible(false);
+//    ui_status_info = new SAInformationStatusWidget(this);
+//    ui->statusBar->addWidget(ui_status_info);
+//    ui_status_info->setVisible(false);
+//    ui_status_info->setFadeIn(true, 500, 5);
+//    ui_status_info->setFadeOut(true, 500, 5);
+//    ui_status_progress = new progressStateWidget(this);
+//    ui->statusBar->addWidget(ui_status_progress);
+//    ui_status_progress->setVisible(false);
+       ui->leftButtomText->setText("当前项目:"+QString::fromStdString(theApp->currentProject.getProjectName()));
 }
 
 
@@ -1241,7 +1242,7 @@ void MainWindow::OnButtonStartCapture(){
     ui->dynamicSpectrum = new JDynamicWidget(this);
     ui->dynamicSpectrum->init(this->theApp->echoSignalQueue);
     ui->dynamicSpectrum->resetWindow(ui->dockWidget_main,ui->dynamicSpectrum);
-    ui->dynamicSpectrum->openAutoYAxisRescalse(2);
+//    ui->dynamicSpectrum->openAutoYAxisRescalse(1.8);默认开启1.2倍
     ui->dynamicSpectrum->setAnalysisResult(this->theApp->getAnalysisResult());
     ui->dynamicSpectrum->setInterval(100);
     ui->dynamicSpectrum->start();
@@ -1441,7 +1442,9 @@ void MainWindow::onActionOpenTriggered()
 {
     OpenProjectWindow *openProWin = new OpenProjectWindow;
     openProWin->setMw(this);
-    openProWin->show();
+    openProWin->exec();
+    ui->leftButtomText->setText("当前项目:"+QString::fromStdString(theApp->currentProject.getProjectName()));
+    ui->dynamicSpectrum->clearWindow();
 }
 
 
@@ -1494,8 +1497,8 @@ void MainWindow::onActionNewProjectTriggered()
 {
     auto newProject = new NewProjectDialog(this,this);
     newProject->show();
-
-
+    ui->leftButtomText->setText("当前项目:"+QString::fromStdString(theApp->currentProject.getProjectName()));
+    ui->dynamicSpectrum->clearWindow();
 }
 
 

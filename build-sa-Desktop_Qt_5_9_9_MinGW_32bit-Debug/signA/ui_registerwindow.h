@@ -105,7 +105,7 @@ public:
 
     void retranslateUi(QDialog *RegisterWindow)
     {
-        RegisterWindow->setWindowTitle(QApplication::translate("RegisterWindow", "Dialog", Q_NULLPTR));
+        RegisterWindow->setWindowTitle(QApplication::translate("RegisterWindow", "\346\263\250\345\206\214", Q_NULLPTR));
         label_8->setText(QApplication::translate("RegisterWindow", "\347\224\250\346\210\267\347\261\273\345\236\213", Q_NULLPTR));
         label_7->setText(QApplication::translate("RegisterWindow", "\347\224\265\350\257\235", Q_NULLPTR));
         label_5->setText(QApplication::translate("RegisterWindow", "\347\231\273\351\231\206\345\257\206\347\240\201", Q_NULLPTR));

@@ -102,6 +102,7 @@ void JSpectrumWindow::refresh(){
         this->customPlot->at(index)->graph(0)->data()->clear();
         this->customPlot->at(index)->graph(0)->addData(*xAxis,it->second);
 
+
         QString info = "通道:"+it->first+"\n";
         info += feature->getFeaturesWithString(it->second);
         double maxY = feature->getMax();
