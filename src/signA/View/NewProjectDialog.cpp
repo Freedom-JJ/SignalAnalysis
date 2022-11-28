@@ -16,6 +16,12 @@ NewProjectDialog::NewProjectDialog(MainWindow *mv,QWidget *parent) :
     this->mv = mv;
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
+
+    SelectProduct();
+    for(auto iter=productMap.begin();iter!=productMap.end();iter++){
+        ui->projuctComboBox->addItem(iter->second);
+    }
+
 }
 
 void NewProjectDialog::initData()
@@ -61,10 +67,10 @@ void NewProjectDialog::on_lineEdit_3_textChanged(const QString &arg1)
         return;
     }
     QStringList lables;
-    lables<<"满度量程"<<"上限频率"<<"输入方式"<<"测量范围"<<"测量类型"<<"采样频率";
+    lables<<"满度量程"<<"上限频率"<<"输入方式"<<"测量范围"<<"测量类型";
     ui->tableWidget->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
     ui->tableWidget->setRowCount(number);
-    ui->tableWidget->setColumnCount(6);
+    ui->tableWidget->setColumnCount(5);
     ui->tableWidget->setHorizontalHeaderLabels(lables);
     for (int i = 0; i < number; ++i) {
         QComboBox *comBox0 = new QComboBox(this);
@@ -72,7 +78,7 @@ void NewProjectDialog::on_lineEdit_3_textChanged(const QString &arg1)
         QComboBox *comBox2 = new QComboBox(this);
         QComboBox *comBox3 = new QComboBox(this);
         QComboBox *comBox4 = new QComboBox(this);
-        QComboBox *comBox5 = new QComboBox(this);
+
         comBox0->addItem("10000");
         comBox0->addItem("5000");
         comBox0->addItem("2000");
@@ -83,12 +89,12 @@ void NewProjectDialog::on_lineEdit_3_textChanged(const QString &arg1)
         comBox1->addItem("300HZ");
         comBox1->addItem("3KZH");
 
-        comBox2->addItem("DIF_DC");
-        comBox2->addItem("SIN_DC");
-        comBox2->addItem("AC");
-        comBox2->addItem("SIN_IEPE");
-        comBox2->addItem("DIF_IEPE");
-        comBox2->addItem("GND");
+        comBox2->addItem("差分直流输入");               //DIF_DC
+        comBox2->addItem("单端直流输入");               //SIN_DC
+        comBox2->addItem("交流输入");                  //AC
+        comBox2->addItem("单端压电集成");               //SIN_IEPE
+        comBox2->addItem("差分压电集成");               //DIF_IEPE
+//        comBox2->addItem("GND");
 
         comBox3->addItem("10000");
         comBox3->addItem("5000");
@@ -102,18 +108,12 @@ void NewProjectDialog::on_lineEdit_3_textChanged(const QString &arg1)
         comBox4->addItem("桥式传感器");
         comBox4->addItem("热电偶测温");
 
-        comBox5->addItem("20000");
-        comBox5->addItem("10000");
-        comBox5->addItem("5000");
-        comBox5->addItem("2000");
-        comBox5->addItem("1000");
-
         ui->tableWidget->setCellWidget(i,0,comBox0);
         ui->tableWidget->setCellWidget(i,1,comBox1);
         ui->tableWidget->setCellWidget(i,2,comBox2);
         ui->tableWidget->setCellWidget(i,3,comBox3);
         ui->tableWidget->setCellWidget(i,4,comBox4);
-        ui->tableWidget->setCellWidget(i,5,comBox5);
+
     }
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
@@ -135,8 +135,40 @@ void NewProjectDialog::on_okbtn_clicked()
     project->setUserId(mv->theApp->user.getId());
     mv->theApp->sampleFrequency = sampleFrequency;
     Result res =  projectCon.addProject(project,projectId);
+    //添加产品id
+//    QSqlQuery query;
+//    query.prepare("UPDATE  product  SET productName =:productName WHERE id =:id ");
+
+//    query.bindValue(":productName",m_productName);
+//    query.bindValue(":id",projectId);
+//    query.exec();
+    QSqlQuery query;
+    QString str=QString("UPDATE  project  SET productName =%1 WHERE projectName =%2").arg(m_productName).arg(ui->lineEdit->text());
+    query.exec(str);
+
+
+
     if (res.getCode() == 200){
        QMessageBox::information(this,"提示","添加成功");
         this->accept();
+    }
+}
+
+void NewProjectDialog::on_projuctComboBox_currentIndexChanged(const QString &arg1)
+{
+
+    this->m_productName = arg1;
+
+}
+
+
+void NewProjectDialog::SelectProduct(){
+    QSqlQuery query;
+    query.exec("SELECT product_id,product_name FROM product");
+
+    while (query.next()) {
+            int product_id = query.value(0).toInt();
+            QString product_name = query.value(1).toString();
+            productMap.insert(std::make_pair(product_id,product_name));
     }
 }

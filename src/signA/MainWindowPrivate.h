@@ -61,6 +61,7 @@ public:
 
     QAction *actionNew;      ///<新建项目>
     QAction *actionSet;    ///<设置项目>
+    QAction *actionNewProduct;  ///添加产品
     QAction *actionOpen1;     ///<打开项目>
     QAction *actionExport;       ///< 导出通道参数
     QAction *actionImport;       ///< 导入通道参数

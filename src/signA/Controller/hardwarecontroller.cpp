@@ -5,6 +5,63 @@ HardWareController::HardWareController()
 
 }
 
+bool HardWareController::InitHardWare(){
+
+    //初始化仪器
+    m_pInitMacControlEx((QCoreApplication::applicationDirPath() + "/config/").toStdString().data());
+
+    //检测仪器是否在线
+    int nGpId = 0;
+    int nUseBuffer = 0;
+    bool b_hardwareConnect = m_pGetMacInfoFromIndex(0, &nGpId, this->pMacInfo, 256,&nUseBuffer);
+    pMacInfo[nUseBuffer] = '\0';
+
+    return  b_hardwareConnect;
+
+}
+
+void HardWareController::initSamplingPara(){
+
+    //设置采样频率和单次获取数据量
+    float sampleFrequency = 20000;
+    bool ifSetSampleFre = m_pSetMacSampleFreq(sampleFrequency);
+    bool ifSetGetDataCountEveryTime = m_pSetGetDataCountEveryTime(15624);
+    if(ifSetSampleFre&&ifSetGetDataCountEveryTime){
+            qDebug()<<"采样参数设置成功！";
+        }
+}
+
+void HardWareController::initChannelPara(){
+    //设置通道参数
+    for(int i=0;i<4;i++){
+
+        //修改上限频率
+        char*upTem=(char*)(upFrequency).data();
+        bool ifUpSucess = m_pModifyMacChnParam(0,pMacInfo,i,10,upTem);
+
+        //修改满度量程
+        char*fullTem=(char*)(fullValue).data();
+        bool ifFullSucess = m_pModifyMacChnParam(0,pMacInfo,i,5,fullTem);
+
+        //修改输入方式
+        char*inputTem=(char*)(inputMode).data();
+        bool ifInputSucess = m_pModifyMacChnParam(0,pMacInfo,i,12,inputTem);
+
+        //修改电压测量范围
+        char*elcTem=(char*)(elcPressure).data();
+        bool ifElcSucess = m_pModifyMacChnParam(0,pMacInfo,i,90,elcTem);
+
+        //修改测量方式
+        char*measureTem=(char*)(measureType).data();
+        bool ifMeasureSucess = m_pModifyMacChnParam(0,pMacInfo,i,4,measureTem);
+
+        if(ifUpSucess&&ifFullSucess&&ifInputSucess&&ifElcSucess&&ifMeasureSucess){
+            qDebug()<<"参数修改成功！"<<endl;
+        }
+
+    }
+}
+
 bool HardWareController::InitLibrary(){
 
     QLibrary *m_library = new QLibrary();

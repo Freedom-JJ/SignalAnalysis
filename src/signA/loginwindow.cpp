@@ -71,7 +71,7 @@ void LoginWindow::on_loginButton_clicked()
     else if(result.getCode()==203){
         QMessageBox::information(this,"提示",mstoqs(result.getMsg()));
     }
-    QMessageBox::information(this,"提示",mstoqs(result.getMsg()));
+//    QMessageBox::information(this,"提示",mstoqs(result.getMsg()));
     delete user;
 
 }

@@ -48,6 +48,7 @@ class MainWindowPrivate;
 #include "openprojectwindow.h"
 #include "Utils/JSaveCollectionDataThread.h"
 #include "Utils/getanalysisresultthread.h"
+#include "Utils/inithardwarethread.h"
 #include "View/OpenDataFileDialog.h"
 #include "View/NewProjectDialog.h"
 #include "View/redissetupdialog.h"
@@ -69,6 +70,7 @@ class SAFigureWindow;
 class SAChart2D;
 class QwtPlotItem;
 
+class InitHardWareThread;
 class PLayBackSingleThread;
 class PlayBackThread;
 class SAAbstractDataImportInterface;
@@ -105,6 +107,9 @@ private:
     //初始化UIReflation
     void initUIReflection();
 
+    //初始化硬件
+    void initHardWare();
+
 /******************************wzx*******************************************************/
 
 public:
@@ -126,9 +131,7 @@ public:
 
     HardWareController *mainHardWareController;    //仪器控制
 
-
-
-
+    InitHardWareThread *mainProcessHardWare;   //仪器初始化线程
 
     void CreateCaptureWindow(); //创建采集窗口（队列等初始化操作）
 
@@ -193,6 +196,11 @@ public slots:
 
     /// \}
     ///
+
+    /**
+     * @brief:接受初始化仪器线程信号并处理
+     */
+    void mainInitHardware(bool m_bhwconnected);
 
     /**
     * @brief ：释放所有采集保存相关的资源
