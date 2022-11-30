@@ -143,7 +143,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mainProcessHardWare = new InitHardWareThread(this);
     connect(mainProcessHardWare,&InitHardWareThread::hardwareInited,this,&MainWindow::mainInitHardware);
-//    mainProcessHardWare->start();
+    mainProcessHardWare->start();
 
     QMessageBox msgBox;
     msgBox.setText("仪器检测中，请稍等！");
