@@ -5,9 +5,9 @@ Channel::Channel()
     this->id = -1;
     this->channelCode = "";
     this->channelDesc = "";
-    this->measureType = 0;
-    this->fullValue = 0;
-    this->inputMode = 0;
+    this->measureType = "电压测量";
+    this->fullValue = 20000;
+    this->inputMode = "";
     this->upFreq = 0;
     this->elcPressure = 0;
     this->projectId = -1;
@@ -27,6 +27,11 @@ Channel::Channel(vector<string> channels_attribute)
     this->upFreq = mstoi(channels_attribute[6]);
     this->elcPressure = mstoi(channels_attribute[7]);
     this->projectId = mstoll(channels_attribute[8]);
+}
+
+Channel::~Channel()
+{
+
 }
 
 void Channel::setId(long long id)
@@ -59,12 +64,12 @@ string Channel::getChannelDesc()
     return this->channelDesc;
 }
 
-void Channel::setMeasureType(int measureType)
+void Channel::setMeasureType(string measureType)
 {
     this->measureType = measureType;
 }
 
-int Channel::getMeasureType()
+string Channel::getMeasureType()
 {
     return this->measureType;
 }
@@ -79,12 +84,12 @@ int Channel::getFullValue()
     return this->fullValue;
 }
 
-void Channel::setInputMode(int inputMode)
+void Channel::setInputMode(string inputMode)
 {
     this->inputMode = inputMode;
 }
 
-int Channel::getInputMode()
+string Channel::getInputMode()
 {
     return this->inputMode;
 }

@@ -16,6 +16,10 @@
 #include"Controller/projectcontroller.h"
 #include"Controller/dictionarycontroller.h"
 #include"spectrum.h"
+#include"Domain/product.h"
+#include"Domain/channel.h"
+#include"Dao/productdao.h"
+
 namespace Ui {
 class NewProjectDialog;
 }
@@ -60,8 +64,10 @@ private:
 
     long long projectId =0 ;
 
+    QVector<Product> productVec;
+    int comboxIndex = 0;
     std::map<int,QString> productMap;//记录产品的map
-
+    ProductDao productDao;
     QString m_productName;
 };
 

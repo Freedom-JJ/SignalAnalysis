@@ -52,7 +52,7 @@ void GetAnalysisResultThread::run(){
         }
         qDebug()<<"reslut size:"<<resultVector.size()<<endl;
         timeAxis->addDataTimeAxis(resultVector);
-        msleep(50);
+        msleep(200);
     }
 
 //   qDebug()<<"----------结果线程结束了------------"<<endl;

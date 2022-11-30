@@ -114,6 +114,7 @@
     </qresource>
     <qresource prefix="/windowIcons">
         <file>icons/windowIcon/figureWindow.svg</file>
+        <file>icons/windowIcon/school.png</file>
     </qresource>
     <qresource prefix="/dataFeatureTree">
         <file>icons/peakpeak.svg</file>

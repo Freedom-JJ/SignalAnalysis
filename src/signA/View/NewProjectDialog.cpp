@@ -16,20 +16,22 @@ NewProjectDialog::NewProjectDialog(MainWindow *mv,QWidget *parent) :
     this->mv = mv;
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
-
-    SelectProduct();
-    for(auto iter=productMap.begin();iter!=productMap.end();iter++){
-        ui->projuctComboBox->addItem(iter->second);
-    }
-
+    initData();
 }
 
 void NewProjectDialog::initData()
 {
-    channelParams["samplefrequency"].push_back(new Dictionary());
-    channelParams["collectionmethod"].push_back(new Dictionary());
-    dictionCon.findDictionariesByDictName("samplefrequency",channelParams["samplefrequency"]);
-    dictionCon.findDictionariesByDictName("collectionmethod",channelParams["collectionmethod"]);
+    productVec = productDao.seleAllByName("");
+    for (int var = 0; var < productVec.size(); ++var) {
+        ui->projuctComboBox->addItem(productVec[var].getProduct_name());
+    }
+
+
+//    channelParams["samplefrequency"].push_back(new Dictionary());
+//    channelParams["collectionmethod"].push_back(new Dictionary());
+//    dictionCon.findDictionariesByDictName("samplefrequency",channelParams["samplefrequency"]);
+//    dictionCon.findDictionariesByDictName("collectionmethod",channelParams["collectionmethod"]);
+
 }
 
 NewProjectDialog::~NewProjectDialog()
@@ -56,7 +58,7 @@ void NewProjectDialog::on_nextbtn_clicked()
 {
       ui->tabWidget->setCurrentIndex(ui->tabWidget->currentIndex() + 1);
 }
-
+//通道数的加载
 void NewProjectDialog::on_lineEdit_3_textChanged(const QString &arg1)
 {
     qDebug()<<arg1<<endl<<ui->lineEdit_3->text();
@@ -121,8 +123,6 @@ void NewProjectDialog::on_lineEdit_3_textChanged(const QString &arg1)
 void NewProjectDialog::on_okbtn_clicked()
 {
     auto table = ui->tableWidget;
-    const int row = table->rowCount();
-    const int column = table->columnCount();
     Project *project = new Project();
     project->setProjectName(ui->lineEdit->text().toStdString());
     //可能会出现转换错误
@@ -136,17 +136,21 @@ void NewProjectDialog::on_okbtn_clicked()
     mv->theApp->sampleFrequency = sampleFrequency;
     Result res =  projectCon.addProject(project,projectId);
     //添加产品id
-//    QSqlQuery query;
-//    query.prepare("UPDATE  product  SET productName =:productName WHERE id =:id ");
+    productDao.insertProductWithProject(projectId,productVec[comboxIndex].getProduct_id());
 
-//    query.bindValue(":productName",m_productName);
-//    query.bindValue(":id",projectId);
-//    query.exec();
-    QSqlQuery query;
-    QString str=QString("UPDATE  project  SET productName =%1 WHERE projectName =%2").arg(m_productName).arg(ui->lineEdit->text());
-    query.exec(str);
-
-
+    for(int i = 0 ; i< table->rowCount();i++){
+        Channel t;
+        t.setChannelCode(QString::number(i).toStdString());
+        t.setFullValue(((QComboBox*)table->cellWidget(i,0))->currentText().toInt());
+        t.setUpFreq(((QComboBox*)table->cellWidget(i,1))->currentText().toInt());
+        t.setInputMode(((QComboBox*)table->cellWidget(i,2))->currentText().toStdString());
+        t.setElcPressure(((QComboBox*)table->cellWidget(i,3))->currentText().toInt());
+        t.setMeasureType(((QComboBox*)table->cellWidget(i,4))->currentText().toStdString());
+        t.setProjectId(projectId);
+        long long channelId = 0;
+        Result res = channelCon.addChannel(&t,channelId);
+        qDebug()<<QString::fromStdString(res.getMsg());
+    }
 
     if (res.getCode() == 200){
        QMessageBox::information(this,"提示","添加成功");
@@ -158,6 +162,7 @@ void NewProjectDialog::on_projuctComboBox_currentIndexChanged(const QString &arg
 {
 
     this->m_productName = arg1;
+    comboxIndex = ui->projuctComboBox->currentIndex();
 
 }
 

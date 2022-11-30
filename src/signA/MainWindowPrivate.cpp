@@ -20,7 +20,7 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
         mainWinowPtr->setObjectName(QStringLiteral("MainWindow"));
     }
     mainWinowPtr->setWindowIcon(QIcon(":/windowIcons/icons/windowIcon/figureWindow.svg"));
-    mainWinowPtr->resize(1219, 689);
+    mainWinowPtr->showMaximized();
     menuBar = mainWinowPtr->ribbonBar();
     menuBar->setObjectName(QStringLiteral("menuBar"));
     menuBar->setRibbonStyle(SARibbonBar::WpsLiteStyle);
@@ -41,6 +41,11 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     actionNew = new QAction(mainWinowPtr);
     actionNew->setObjectName(QStringLiteral("新建项目"));
     actionNew->setIcon(QIcon(":/icons/icons/open.png"));
+
+    actionProduct = new QAction(mainWinowPtr);
+    actionProduct->setObjectName(QStringLiteral("新建项目"));
+    actionProduct->setIcon(QIcon(":/icons/icons/open.png"));
+
 
     actionSet = new QAction(mainWinowPtr);
     actionSet->setObjectName(QStringLiteral("项目设置"));
@@ -536,6 +541,7 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     menuFile->setObjectName(QStringLiteral("menuFile"));
     menuFile->addAction(actionOpen);
     menuFile->addAction(actionOpenProject);
+
     menuFile->addMenu(menuRecentOpenFile);
     menuFile->addMenu(menuRecentOpenProject);
     //menuFile->addAction(menuRecentOpenFile->menuAction());
@@ -719,12 +725,33 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     mainCategoryFilePannel->addLargeAction(actionNew);
 //    mainCategoryFilePannel->addLargeAction(actionSet); 删除项目设置按钮
     mainCategoryFilePannel->addLargeAction(actionOpen1);
+    mainCategoryFilePannel->addLargeAction(actionProduct);
+
 
     //Chart Pannel
     mainCategoryChartPannel = mainRibbonCategory->addPannel(QStringLiteral("连接"));
 //    mainCategoryChartPannel->addLargeAction(actionOpenData);
+
     mainCategoryChartPannel->addLargeAction(actionConnectRedis);
 //    mainCategoryChartPannel->addLargeAction(actionConnectHardWare);
+
+
+
+    //布局学校
+    schoolPannel = mainRibbonCategory->addPannel("");
+    schoolPannel->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    auto hbox = new QHBoxLayout();
+    auto ss = new QSpacerItem(1000,10,QSizePolicy::Expanding,QSizePolicy::Expanding);
+    auto ll = new QLabel();
+    ll->setPixmap(QPixmap(":/windowIcons/icons/windowIcon/school.png"));
+    ll->setContentsMargins(0,0,0,0);
+    ll->setFixedSize(70,70);
+    ll->setScaledContents(true);
+    hbox->addSpacerItem(ss);
+    hbox->addWidget(ll);
+    spacer->setLayout(hbox);
+    schoolPannel->addLargeWidget(spacer);
+
 
 
     //Value Operate Pannel
@@ -769,14 +796,31 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     chartLegendCategoryWindowPannel->addSmallAction(actionDefaultscale);
 
     //Grid pannel
-    chartGridCategoryWindowPannel = operateRibbonCategory->addPannel("采样");
+    chartGridCategoryWindowPannel = operateRibbonCategory->addPannel("回放");
     chartGridCategoryWindowPannel->addLargeAction(actionStartPlayBack);
     chartGridCategoryWindowPannel->addLargeAction(actionStopPlayBack);
+
 
     //figure Opt pannel
     figureOptRibbonPannel = operateRibbonCategory->addPannel("分析");//删除这个pannel
 //    figureOptRibbonPannel = new SARibbonPannel();
     figureOptRibbonPannel->addLargeAction(actionAnalsis);
+    //学校图标
+    auto schoolPannel1 = operateRibbonCategory->addPannel("");
+    schoolPannel1->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    auto hbox1 = new QHBoxLayout();
+    auto ss1 = new QSpacerItem(1000,10,QSizePolicy::Expanding,QSizePolicy::Expanding);
+    auto ll1 = new QLabel();
+    auto spacer1 = new QWidget();
+    ll1->setPixmap(QPixmap(":/windowIcons/icons/windowIcon/school.png"));
+    ll1->setContentsMargins(0,0,0,0);
+    ll1->setFixedSize(70,70);
+    ll1->setScaledContents(true);
+    hbox1->addSpacerItem(ss1);
+    hbox1->addWidget(ll1);
+    spacer1->setLayout(hbox1);
+    schoolPannel1->addLargeWidget(spacer1);
+
 
     //! 3.4 Analysis
     analysisRibbonCategory = menuBar->addCategoryPage(QStringLiteral("数据管理"));
@@ -1030,9 +1074,10 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
 
 void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
 {
-    mainWinowPtr->setWindowTitle(QApplication::translate("MainWindow", "振动采集系统——————哈尔滨工业大学", 0));
+    mainWinowPtr->setWindowTitle(QApplication::translate("MainWindow", "故障诊断系统-采集端", 0));
     actionOpen1->setText(QApplication::translate("MainWindow", "打开项目", 0));
     actionNew->setText(QApplication::translate("MainWindow", "新建项目", 0));
+    actionProduct->setText(QApplication::translate("MainWindow","产品管理",0));
     actionSet->setText(QApplication::translate("MainWindow", "项目设置", 0));
 
     actionCleanZero->setText(QApplication::translate("MainWindow", "清楚零点", 0));
@@ -1231,13 +1276,12 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
 //    tableRibbonContextCategory->setContextTitle(QApplication::translate("MainWindow", "Tab.Opt", 0));
 
     mainCategoryFilePannel->setWindowTitle(QApplication::translate("MainWindow", "项目", 0));
-    mainCategoryChartPannel->setWindowTitle(QApplication::translate("MainWindow", "数据", 0));
+    mainCategoryChartPannel->setWindowTitle(QApplication::translate("MainWindow", "连接", 0));
     mainCategoryValuePannel->setWindowTitle(QApplication::translate("MainWindow", "参数", 0));
     viewCategoryWindowPannel->setWindowTitle(QApplication::translate("MainWindow", "Window", 0));
     windowModeCategoryWindowPannel->setWindowTitle(QApplication::translate("MainWindow", "Sub Window Mode", 0));
     operateCategoryChartEditorPannel->setWindowTitle(QApplication::translate("MainWindow", "采集", 0));
     tableHighLightRibbonPannel->setWindowTitle(QApplication::translate("MainWindow", "Hight Light", 0));
-
 
 
     operateCategoryDataViewPannel->setWindowTitle(QApplication::translate("MainWindow", "显示", 0));
@@ -1246,7 +1290,8 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
     figureOptRibbonPannel->setWindowTitle(QApplication::translate("MainWindow", "采样", 0));
     menuShowCrowdedGrid->setTitle(QApplication::translate("MainWindow", "Crowded", 0));
 
-    ribbonApplicationButton->setText(QApplication::translate("MainWindow", "振动采集系统", 0));
+    ribbonApplicationButton->setFixedWidth(110);
+    ribbonApplicationButton->setText(QApplication::translate("MainWindow", "哈尔滨工业大学", 0));
 // figure window 菜单设置
     selectCurrentCursorToActiveChart->setText(QApplication::translate("MainWindow", "set to active chart", 0));
     sectionActionForFigureMenuDataView->setText(QApplication::translate("MainWindow", "Data View", 0));

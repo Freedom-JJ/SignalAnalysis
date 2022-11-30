@@ -226,6 +226,8 @@ public slots:
 
     void closeSinglePlaybackRescouce();
 
+    void clickActionProdcut();
+
 public:
 
     //获取进度栏上的进度条指针

@@ -41,6 +41,7 @@
 #include "View/JSpectrumWindow.h"
 #include "View/randdatawithdemo.h"
 #include "View/jdynamicwidget.h"
+#include "View/productdialog.h"
 class MainWindow;
 class MainWindowPrivate
 {
@@ -54,6 +55,10 @@ public:
     JDynamicWidget * dynamicSpectrum;
     QLabel *leftButtomText;
     QLabel *rightButtomText;
+    QPixmap *schoolIcon ;
+    QWidget *spacer = new QWidget();
+    SARibbonPannel *schoolPannel;
+    QAction *actionProduct;
 
     QAction *actionNew;      ///<新建项目>
     QAction *actionSet;    ///<设置项目>

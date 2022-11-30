@@ -214,6 +214,8 @@ void MainWindow::initUI()
     connect(ui->actionStopCapture,&QAction::triggered,this,&MainWindow::OnButtonStopCapture);
     connect(ui->actionSuspendCapture,&QAction::triggered,this,&MainWindow::OnBUttonSuspendCapture);
 
+    //项目管理
+    connect(ui->actionProduct,&QAction::triggered,this,&MainWindow::clickActionProdcut);
     //回放功能
     connect(ui->actionStartPlayBack,&QAction::triggered,this,&MainWindow::OnButtonStartPlayBack);
     connect(ui->actionStopPlayBack,&QAction::triggered,this,&MainWindow::OnButtonStopPlayBack);
@@ -1328,7 +1330,10 @@ void MainWindow::OnBUttonSuspendCapture(){
     }
 
 }
-
+void MainWindow::clickActionProdcut(){
+    auto aa = new ProductDialog(this);
+    aa->exec();
+}
 //采集线程结束之后的槽函数
 void MainWindow::closeSaveDataThread(){
     qDebug()<<"---------采集线程结束---------状态转为0"<<endl;

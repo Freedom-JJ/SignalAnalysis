@@ -48,11 +48,11 @@ long long ChannelDao::insertChannel(Channel *channel, bool insert_id)
     }
     QString sql;
     if(insert_id){
-        sql = "insert into channel(`id`,`channelCode`,`channelDesc`,`measureType`,`fullValue`,"
-              "`inputMode`,`upFreq`,`elcPressure`,`projectId`) values ('%1','%2','%3','%4','%5','%6','%7','%8','%9')";
-        sql = sql.arg(mstoqs(mlltos(channel->getId()))).arg(mstoqs(channel->getChannelCode()))
-                .arg(mstoqs(channel->getChannelDesc())).arg(mstoqs(mitos(channel->getMeasureType())))
-                .arg(mstoqs(mitos(channel->getFullValue()))).arg(mstoqs(mitos(channel->getInputMode())))
+        sql = "insert into channel(`channelCode`,`channelDesc`,`measureType`,`fullValue`,"
+              "`inputMode`,`upFreq`,`elcPressure`,`projectId`) values ('%1','%2','%3','%4','%5','%6','%7','%8')";
+        sql = sql.arg(mstoqs(channel->getChannelCode()))
+                .arg(mstoqs(channel->getChannelDesc())).arg(mstoqs(channel->getMeasureType()))
+                .arg(mstoqs(mitos(channel->getFullValue()))).arg(mstoqs(channel->getInputMode()))
                 .arg(mstoqs(mitos(channel->getUpFreq()))).arg(mstoqs(mitos(channel->getElcPressure())))
                 .arg(mstoqs(mlltos(channel->getProjectId())));
     }
@@ -60,8 +60,8 @@ long long ChannelDao::insertChannel(Channel *channel, bool insert_id)
         sql = "insert into channel(`channelCode`,`channelDesc`,`measureType`,`fullValue`,"
               "`inputMode`,`upFreq`,`elcPressure`,`projectId`) values ('%1','%2','%3','%4','%5','%6','%7','%8')";
         sql = sql.arg(mstoqs(channel->getChannelCode()))
-                .arg(mstoqs(channel->getChannelDesc())).arg(mstoqs(mitos(channel->getMeasureType())))
-                .arg(mstoqs(mitos(channel->getFullValue()))).arg(mstoqs(mitos(channel->getInputMode())))
+                .arg(mstoqs(channel->getChannelDesc())).arg(mstoqs(channel->getMeasureType()))
+                .arg(mstoqs(mitos(channel->getFullValue()))).arg(mstoqs(channel->getInputMode()))
                 .arg(mstoqs(mitos(channel->getUpFreq()))).arg(mstoqs(mitos(channel->getElcPressure())))
                 .arg(mstoqs(mlltos(channel->getProjectId())));
     }
@@ -89,10 +89,10 @@ int ChannelDao::updateChannelById(Channel* channel)
     sql = "update channel set channelCode = '%1', channelDesc = '%2', measureType = '%3'"
           ",fullValue = '%4',inputMode = '%5',upFreq = '%6', elcPressure = '%7', projectId = '%8' where id = '%9'";
     sql = sql.arg(mstoqs(channel->getChannelCode()))
-            .arg(mstoqs(channel->getChannelDesc())).arg(mstoqs(mitos(channel->getMeasureType())))
-            .arg(mstoqs(mitos(channel->getFullValue()))).arg(mstoqs(mitos(channel->getInputMode())))
+            .arg(mstoqs(channel->getChannelDesc())).arg(mstoqs(channel->getMeasureType()))
+            .arg(mstoqs(mitos(channel->getFullValue()))).arg(mstoqs(channel->getInputMode()))
             .arg(mstoqs(mitos(channel->getUpFreq()))).arg(mstoqs(mitos(channel->getElcPressure())))
-            .arg(mstoqs(mlltos(channel->getProjectId()))).arg(mstoqs(mlltos(channel->getId())));
+            .arg(mstoqs(mlltos(channel->getProjectId())));
     qInfo()<< "更新通道参数"<< sql;
     //执行更新命令
     global_pdsql->UpdateMysql(affected_num,mqstos(sql));

@@ -22,14 +22,15 @@ public:
     void setChannelDesc(string channelDesc);
     string getChannelDesc();
 
-    void setMeasureType(int measureType);
-    int getMeasureType();
+    void setMeasureType(string measureType);
+    string getMeasureType();
 
     void setFullValue(int fullValue);
     int getFullValue();
 
-    void setInputMode(int inputMode);
-    int getInputMode();
+    void setInputMode(string inputMode);
+    string getInputMode();
+
 
     void setUpFreq(int upFreq);
     int getUpFreq();
@@ -44,9 +45,9 @@ private:
     long long id;
     string channelCode; //传感器标识
     string channelDesc; //传感器描述
-    int measureType;
+    string measureType;
     int fullValue;
-    int inputMode;
+    string inputMode;
     int upFreq;
     int elcPressure;
     long long projectId;
