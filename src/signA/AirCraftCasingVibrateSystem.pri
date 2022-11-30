@@ -12,6 +12,7 @@ HEADERS += \
     $$PWD/Dao/pdsql.h \
     $$PWD/Dao/pdsqlinitialize.h \
     $$PWD/Dao/postdao.h \
+    $$PWD/Dao/productdao.h \
     $$PWD/Dao/projectdao.h \
     $$PWD/Dao/singlesignaldao.h \
     $$PWD/Dao/sumsignaldao.h \
@@ -20,6 +21,7 @@ HEADERS += \
     $$PWD/Domain/collectionparas.h \
     $$PWD/Domain/dictionary.h \
     $$PWD/Domain/post.h \
+    $$PWD/Domain/product.h \
     $$PWD/Domain/project.h \
     $$PWD/Domain/singlesignal.h \
     $$PWD/Domain/sumSignal.h \
@@ -103,6 +105,8 @@ HEADERS += \
     $$PWD/View/jsampleview.h \
     $$PWD/View/jvoiceranddata.h \
     $$PWD/View/jvoicesampleview.h \
+    $$PWD/View/productdialog.h \
+    $$PWD/View/projectdetail.h \
     $$PWD/View/qcustomplot.h \
     $$PWD/View/redissetupdialog.h \
     $$PWD/View/spectrum.h \
@@ -132,6 +136,7 @@ SOURCES += \
     $$PWD/Dao/pdsql.cpp \
     $$PWD/Dao/pdsqlinitialize.cpp \
     $$PWD/Dao/postdao.cpp \
+    $$PWD/Dao/productdao.cpp \
     $$PWD/Dao/projectdao.cpp \
     $$PWD/Dao/singlesignaldao.cpp \
     $$PWD/Dao/sumsignaldao.cpp \
@@ -140,6 +145,7 @@ SOURCES += \
     $$PWD/Domain/collectionparas.cpp \
     $$PWD/Domain/dictionary.cpp \
     $$PWD/Domain/post.cpp \
+    $$PWD/Domain/product.cpp \
     $$PWD/Domain/project.cpp \
     $$PWD/Domain/singlesignal.cpp \
     $$PWD/Domain/sumSignal.cpp \
@@ -186,6 +192,8 @@ SOURCES += \
     $$PWD/View/jsampleview.cpp \
     $$PWD/View/jvoiceranddata.cpp \
     $$PWD/View/jvoicesampleview.cpp \
+    $$PWD/View/productdialog.cpp \
+    $$PWD/View/projectdetail.cpp \
     $$PWD/View/qcustomplot.cpp \
     $$PWD/View/redissetupdialog.cpp \
     $$PWD/View/spectrum.cpp \
@@ -210,6 +218,8 @@ FORMS += \
     $$PWD/View/alalysisresultview.ui \
     $$PWD/View/hardwarewindow.ui \
     $$PWD/View/jdynamicwidget.ui \
+    $$PWD/View/productdialog.ui \
+    $$PWD/View/projectdetail.ui \
     $$PWD/View/redissetupdialog.ui \
     $$PWD/View/spectrum.ui \
 

@@ -40,7 +40,7 @@ public:
     QLineEdit *lineEdit_2;
     QPushButton *nextbtn;
     QLabel *label;
-    QComboBox *comboBox;
+    QComboBox *projuctComboBox;
     QWidget *tab_2;
     QGridLayout *gridLayout_3;
     QGridLayout *gridLayout_2;
@@ -95,10 +95,10 @@ public:
 
         gridLayout->addWidget(label, 0, 0, 1, 1);
 
-        comboBox = new QComboBox(tab);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
+        projuctComboBox = new QComboBox(tab);
+        projuctComboBox->setObjectName(QStringLiteral("projuctComboBox"));
 
-        gridLayout->addWidget(comboBox, 0, 1, 1, 3);
+        gridLayout->addWidget(projuctComboBox, 0, 1, 1, 3);
 
 
         gridLayout_4->addLayout(gridLayout, 0, 1, 1, 1);
@@ -144,13 +144,13 @@ public:
 
 #ifndef QT_NO_SHORTCUT
         label_2->setBuddy(lineEdit);
-        label->setBuddy(comboBox);
+        label->setBuddy(projuctComboBox);
         label_4->setBuddy(lineEdit_3);
 #endif // QT_NO_SHORTCUT
 
         retranslateUi(NewProjectDialog);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(NewProjectDialog);
@@ -158,23 +158,18 @@ public:
 
     void retranslateUi(QDialog *NewProjectDialog)
     {
-        NewProjectDialog->setWindowTitle(QApplication::translate("NewProjectDialog", "Dialog", Q_NULLPTR));
+        NewProjectDialog->setWindowTitle(QApplication::translate("NewProjectDialog", "\346\226\260\345\273\272\351\241\271\347\233\256", Q_NULLPTR));
         label_2->setText(QApplication::translate("NewProjectDialog", "\351\241\271\347\233\256\345\220\215", Q_NULLPTR));
         label_3->setText(QApplication::translate("NewProjectDialog", "\351\207\207\346\240\267\351\242\221\347\216\207", Q_NULLPTR));
         nextbtn->setText(QApplication::translate("NewProjectDialog", "\344\270\213\344\270\200\351\241\265", Q_NULLPTR));
         label->setText(QApplication::translate("NewProjectDialog", "\344\272\247\345\223\201\345\220\215", Q_NULLPTR));
-        comboBox->clear();
-        comboBox->insertItems(0, QStringList()
-         << QApplication::translate("NewProjectDialog", "\351\243\236\351\231\204\346\234\272\345\214\243s10b", Q_NULLPTR)
-         << QApplication::translate("NewProjectDialog", "\351\243\236\351\231\204\346\234\272\345\214\243s10c", Q_NULLPTR)
-        );
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("NewProjectDialog", "Tab 1", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("NewProjectDialog", "\351\241\271\347\233\256\350\256\276\347\275\256", Q_NULLPTR));
         okbtn->setText(QApplication::translate("NewProjectDialog", "\345\256\214\346\210\220", Q_NULLPTR));
         label_4->setText(QApplication::translate("NewProjectDialog", "\351\200\232\351\201\223\346\225\260", Q_NULLPTR));
         lineEdit_3->setText(QString());
         lineEdit_3->setPlaceholderText(QString());
         previousbtn->setText(QApplication::translate("NewProjectDialog", "\344\270\212\344\270\200\351\241\265", Q_NULLPTR));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("NewProjectDialog", "Tab 2", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("NewProjectDialog", "\351\200\232\351\201\223\350\256\276\347\275\256", Q_NULLPTR));
     } // retranslateUi
 
 };

@@ -20,10 +20,10 @@ OpenProjectWindow::OpenProjectWindow(QWidget *parent) :
     this->setWindowTitle(tr("打开项目"));
     //设置表格的列数，必须要先设置，不然表格显示不出来
     ui->tableWidget->resize(1021,300);                                  //设置长和宽
-    ui->tableWidget->setColumnCount(4);
+    ui->tableWidget->setColumnCount(5);
     //建立表头
     QStringList header;
-    header <<"项目序号" << "项目名称" << "项目创建时间"<<"项目更新时间";
+    header <<"项目序号" << "项目名称" << "项目创建时间"<<"项目更新时间"<<"项目名";
     ui->tableWidget->setHorizontalHeaderLabels(header);
     //设置表头显示模式,这里设置的是拉伸模式
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -123,6 +123,7 @@ void OpenProjectWindow::select(QString sqlSelest)                   //打开项�
 {
     qDebug()<< sqlSelest;
     QSqlQuery query;//在创建该数据对象时，系统会自动完成跟数据库的关联
+    QSqlQuery query2;
     if(!query.exec(sqlSelest))
     {
         qDebug() << "create tabel error";
@@ -143,12 +144,17 @@ void OpenProjectWindow::select(QString sqlSelest)                   //打开项�
             QString time = query.value("projectCreateTime").toString();
             QString updateTime = query.value("projectUpdateTime").toString();
             QString status = query.value("projectStatus").toString();
+            QString sql2 =QString("select product_name from product p inner join productwithproject pw on pw.productId = p.product_id and pw.projectId = '%1';").arg(id);
+            query2.exec(sql2);
+            query2.next();
+            QString productName = query2.value("product_name").toString();
              //[3]每遍历一条记录，就更新到UI控件
             project_count ++;
             ui->tableWidget->setItem(count,y++,new QTableWidgetItem(QString::number(id)));
             ui->tableWidget->setItem(count,y++,new QTableWidgetItem(name));
             ui->tableWidget->setItem(count,y++,new QTableWidgetItem(time));
             ui->tableWidget->setItem(count,y++,new QTableWidgetItem(updateTime));
+            ui->tableWidget->setItem(count,y++,new QTableWidgetItem(productName));
             Project temp;
             temp.setId(id);
             temp.setProjectName(name.toStdString());

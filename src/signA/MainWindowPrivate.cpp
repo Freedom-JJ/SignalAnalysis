@@ -42,6 +42,11 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     actionNew->setObjectName(QStringLiteral("新建项目"));
     actionNew->setIcon(QIcon(":/icons/icons/open.png"));
 
+    actionProduct = new QAction(mainWinowPtr);
+    actionProduct->setObjectName(QStringLiteral("新建项目"));
+    actionProduct->setIcon(QIcon(":/icons/icons/open.png"));
+
+
     actionSet = new QAction(mainWinowPtr);
     actionSet->setObjectName(QStringLiteral("项目设置"));
     actionSet->setIcon(QIcon(":/icons/icons/open.png"));
@@ -720,6 +725,7 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     mainCategoryFilePannel->addLargeAction(actionNew);
 //    mainCategoryFilePannel->addLargeAction(actionSet); 删除项目设置按钮
     mainCategoryFilePannel->addLargeAction(actionOpen1);
+    mainCategoryFilePannel->addLargeAction(actionProduct);
 
 
     //Chart Pannel
@@ -1071,6 +1077,7 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
     mainWinowPtr->setWindowTitle(QApplication::translate("MainWindow", "故障诊断系统-采集端", 0));
     actionOpen1->setText(QApplication::translate("MainWindow", "打开项目", 0));
     actionNew->setText(QApplication::translate("MainWindow", "新建项目", 0));
+    actionProduct->setText(QApplication::translate("MainWindow","产品管理",0));
     actionSet->setText(QApplication::translate("MainWindow", "项目设置", 0));
 
     actionCleanZero->setText(QApplication::translate("MainWindow", "清楚零点", 0));
