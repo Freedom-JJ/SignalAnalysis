@@ -1388,6 +1388,7 @@ void MainWindow::OnButtonStartPlayBack(){
     theApp->m_iplaybackState = 1;
 
     if(oldcollectState == 2){
+        ui->dynamicSpectrum->resume();
         return;
     }
 
@@ -1396,6 +1397,7 @@ void MainWindow::OnButtonStartPlayBack(){
     OpenDataFileDialog *openfile = new OpenDataFileDialog(this,this);
     openfile->exec(); //模态对话框，会阻塞 ，show是非模态
     if(openfile->result() != openfile->Accepted){
+         theApp->m_iplaybackState = 0;
         return; //没有点打开，而是关闭按钮
     }
 //    if(theApp->m_iplaybackState == 1){
@@ -1424,7 +1426,8 @@ void MainWindow::OnButtonStartPlayBack(){
     connect(mainPlayBack,&SumPlayBackThread:: playbackDone,this,&MainWindow::closePlaybackResource);
     mainPlayBack->start();
 
-
+    ui->dynamicSpectrum = new JDynamicWidget();
+    mainGetAnalysisResult->setTimeAxis(ui->dynamicSpectrum);
     ui->dynamicSpectrum->init(this->theApp->echoSignalQueue);//回显信号对象传入
     ui->dynamicSpectrum->openTimeAxis();
     ui->dynamicSpectrum->resetWindow(ui->dockWidget_main,ui->dynamicSpectrum);

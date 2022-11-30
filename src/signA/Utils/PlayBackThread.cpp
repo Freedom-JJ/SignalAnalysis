@@ -28,7 +28,7 @@ void SumPlayBackThread::run(){
         delete playBackThreadVector[i];
     }
 
-    msleep(5000); //延时释放资源，要不然redis线程结束了
+    msleep(8000); //延时释放资源，要不然redis线程结束了
     emit playbackDone(); //读取完毕发送信号释放资源
 
 

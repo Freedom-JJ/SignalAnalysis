@@ -1101,7 +1101,7 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
     actionDefaultscale->setText(QApplication::translate("MainWindow", "默认刻度", 0));
 
     actionStartPlayBack->setText(QApplication::translate("MainWindow", "开始回放", 0));
-    actionStopPlayBack->setText(QApplication::translate("MainWindow", "停止回放", 0));
+    actionStopPlayBack->setText(QApplication::translate("MainWindow", "暂停回放", 0));
     actionAnalsis->setText("分析回放");
 
     menuRecentOpenFile->setTitle(QApplication::translate("MainWindow", "Recent Open Files", 0));

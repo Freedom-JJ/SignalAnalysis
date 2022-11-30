@@ -156,6 +156,7 @@ void NewProjectDialog::on_okbtn_clicked()
        QMessageBox::information(this,"提示","添加成功");
         this->accept();
     }
+
 }
 
 void NewProjectDialog::on_projuctComboBox_currentIndexChanged(const QString &arg1)
