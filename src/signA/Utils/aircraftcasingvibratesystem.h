@@ -124,8 +124,11 @@ public:
 
     std::shared_ptr<std::map<QString, QVector<AnalysisResult> > > getAnalysisResult() const;
     void clearAnalysisResult();
+    std::shared_ptr<QVector<AnalysisResult> > getAnalysisResultNoChannel() const;
+
 private:
     std::shared_ptr<std::map<QString,QVector<AnalysisResult>>> analysisResult;
+    std::shared_ptr<QVector<AnalysisResult>> analysisResultNoChannel;
 
 /**********************************************************************************/
 };

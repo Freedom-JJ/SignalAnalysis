@@ -42,6 +42,7 @@
 #include "View/randdatawithdemo.h"
 #include "View/jdynamicwidget.h"
 #include "View/productdialog.h"
+#include "View/jtimeaxis.h"
 class MainWindow;
 class MainWindowPrivate
 {
@@ -59,6 +60,8 @@ public:
     QWidget *spacer = new QWidget();
     SARibbonPannel *schoolPannel;
     QAction *actionProduct;
+    JTimeAxis *timeAxis;
+
 
     QAction *actionNew;      ///<新建项目>
     QAction *actionSet;    ///<设置项目>

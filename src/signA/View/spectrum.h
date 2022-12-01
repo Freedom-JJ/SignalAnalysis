@@ -10,6 +10,7 @@
 
 #include <QWidget>
 #include<mutex>
+#include<QSharedPointer>
 #include "qcustomplot.h"
 #include "Signal/BaseEchoSignal.h"
 #include "Utils/SignalFeature.h"
@@ -118,8 +119,11 @@ public:
      void addDataTimeAxis(AnalysisResult &res);
 
 
+     double getSampleFrequency() const;
+     void setSampleFrequency(double value);
+
 private:
-      void refreshTimeAxis();
+     void refreshTimeAxis();
 
 private:
      Ui::Spectrum *ui;
@@ -132,9 +136,12 @@ private:
     QCPAxisRect *dataAxis = nullptr; //频谱轴
     QCPGraph *mainGrap = nullptr;
     QCPAxisRect *axisRect = nullptr; //时间轴
+    QSharedPointer<QCPAxisTickerText> textTricker;
     QCPBars *normalBars = nullptr;  //正常信号显示
     QCPBars *abnormalBars = nullptr;//异常信号显示
     bool isOpenTimeAxis = false;
+
+    double sampleFrequency = 20000;
 
     double barWidth = 1;
     int count = 0; //信号数
