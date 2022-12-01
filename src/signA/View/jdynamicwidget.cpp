@@ -60,6 +60,7 @@ void JDynamicWidget::init(std::map<QString, std::shared_ptr<StaticSpectralEchoSi
 
 void JDynamicWidget::resume()
 {
+    b_suspand = false;
     for (int var = 0; var < spectrumVec.size(); ++var) {
         spectrumVec[var]->resume();
     }
@@ -67,6 +68,7 @@ void JDynamicWidget::resume()
 
 void JDynamicWidget::pause()
 {
+    b_suspand = true;
     for (int var = 0; var < spectrumVec.size(); ++var) {
         spectrumVec[var]->pause();
     }
@@ -88,6 +90,10 @@ void JDynamicWidget::show()
 
 void JDynamicWidget::refresh()
 {
+    if(b_suspand){
+        qDebug()<<"已经暂停"<<endl;
+        return;
+    }
     auto it = this->mapData.begin();
     while (it!=mapData.end()) {
 
@@ -108,6 +114,7 @@ void JDynamicWidget::refresh()
 void JDynamicWidget::start()
 {
 
+    b_suspand = false;
     for (int var = 0; var < spectrumVec.size(); ++var) {
         spectrumVec[var]->clearTimeAxis();
     }
@@ -119,6 +126,7 @@ void JDynamicWidget::start()
 
 void JDynamicWidget::stop()
 {
+    b_suspand = true;
     if(timer->isActive()){
         timer->stop();
     }

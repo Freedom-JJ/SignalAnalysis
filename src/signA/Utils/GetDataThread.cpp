@@ -37,8 +37,17 @@ void GetDataThread::run(){
                     fftwInputArray[k] = sumsignal;
                     r += 0.01;
                 }
-                //data_thread->theApp->staticEchoSignal->PushEchoSignal(fftwInputArray);
-                data_thread->theApp->echoSignalQueue[channelCode]->PushEchoSignal(fftwInputArray);
+                int receiceIndex = 0;
+                for(int m=0;m<4;m++){
+                    double * fftwInputArrayEvery = new double[5000];
+                    for(int n =0 ;n<5000;n++){
+                        fftwInputArrayEvery[n] = fftwInputArray[n+receiceIndex];
+                    }
+                    receiceIndex += 5000;
+                    data_thread->theApp->echoSignalQueue[channelCode]->PushEchoSignal(fftwInputArrayEvery);
+                }
+
+//                data_thread->theApp->echoSignalQueue[channelCode]->PushEchoSignal(fftwInputArray);
         }
                  msleep(100);
         }
@@ -81,7 +90,17 @@ void GetDataThread::run(){
                     }
                     fftwInputArray[k] = fltData;
                 }
+                int receiceIndex = 0;
+                for(int m=0;m<10;m++){
+                    double * fftwInputArrayEvery = new double[lReceiveCount/10];
+                    for(int n =0 ;n<lReceiveCount/10;n++){
+                        fftwInputArrayEvery[n] = fftwInputArray[n+receiceIndex];
+                    }
+                    receiceIndex += lReceiveCount/10;
+                    data_thread->theApp->echoSignalQueue[channelCode]->PushEchoSignal(fftwInputArrayEvery);
+                }
                 data_thread->theApp->echoSignalQueue[channelCode]->PushEchoSignal(fftwInputArray);
+
         }
                  msleep(10);
         }

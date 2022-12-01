@@ -34,7 +34,8 @@ void GetAnalysisResultThread::run(){
             QString redisKey = QString("AnalysisResult-%1").arg(signalCode);
             QString result = resultRedis->rpop(redisKey);
             if(result == "NULL"){
-                i--;
+//                i--;
+                i+=channelNumber;
                 msleep(10);
                 continue;
             }
@@ -52,7 +53,7 @@ void GetAnalysisResultThread::run(){
         }
         qDebug()<<"reslut size:"<<resultVector.size()<<endl;
         timeAxis->addDataTimeAxis(resultVector);
-        msleep(200);
+        msleep(100);
     }
 
 //   qDebug()<<"----------结果线程结束了------------"<<endl;
