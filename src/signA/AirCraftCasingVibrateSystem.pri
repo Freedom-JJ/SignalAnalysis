@@ -108,6 +108,7 @@ HEADERS += \
     $$PWD/View/jvoicesampleview.h \
     $$PWD/View/productdialog.h \
     $$PWD/View/projectdetail.h \
+    $$PWD/View/projectsetting.h \
     $$PWD/View/qcustomplot.h \
     $$PWD/View/redissetupdialog.h \
     $$PWD/View/spectrum.h \
@@ -196,6 +197,7 @@ SOURCES += \
     $$PWD/View/jvoicesampleview.cpp \
     $$PWD/View/productdialog.cpp \
     $$PWD/View/projectdetail.cpp \
+    $$PWD/View/projectsetting.cpp \
     $$PWD/View/qcustomplot.cpp \
     $$PWD/View/redissetupdialog.cpp \
     $$PWD/View/spectrum.cpp \
@@ -222,6 +224,7 @@ FORMS += \
     $$PWD/View/jdynamicwidget.ui \
     $$PWD/View/productdialog.ui \
     $$PWD/View/projectdetail.ui \
+    $$PWD/View/projectsetting.ui \
     $$PWD/View/redissetupdialog.ui \
     $$PWD/View/spectrum.ui \
 

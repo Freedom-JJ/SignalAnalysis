@@ -89,11 +89,11 @@ Result ChannelController::updateChannel(Channel *channel)
     }
 
     int affected_num = channelService->updateChannelById(channel);
-    if(affected_num == 0){
-        return Result(201,"传入通道的参数无需更新，或者数据库中不存在");
+    if(affected_num >= 0){
+        return Result(200,"更新通道成功");
     }
     else{
-        return Result(200,"更新通道成功");
+        return Result(400,"更新失败");
     }
 
 }

@@ -330,7 +330,7 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     actionSaveAs->setIcon(QIcon(":/icons/icons/saveAs.png"));
 
     actionProjectSetting = new QAction(mainWinowPtr);
-    actionProjectSetting->setObjectName(QStringLiteral("actionProjectSetting"));
+    actionProjectSetting->setObjectName(QStringLiteral("项目设置"));
     actionProjectSetting->setIcon(QIcon(":/icons/icons/project.png"));
 
     actionSetZoomBase = new QAction(mainWinowPtr);
@@ -725,6 +725,7 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     mainCategoryFilePannel->addLargeAction(actionNew);
 //    mainCategoryFilePannel->addLargeAction(actionSet); 删除项目设置按钮
     mainCategoryFilePannel->addLargeAction(actionOpen1);
+    mainCategoryFilePannel->addLargeAction(actionProjectSetting);
     mainCategoryFilePannel->addLargeAction(actionProduct);
 
 
@@ -1202,7 +1203,7 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
 #endif // QT_NO_TOOLTIP
     actionOpenProject->setText(QApplication::translate("MainWindow", "Open Project", 0));
     actionSaveAs->setText(QApplication::translate("MainWindow", "Save As", 0));
-    actionProjectSetting->setText(QApplication::translate("MainWindow", "Project Setting", 0));
+    actionProjectSetting->setText(QApplication::translate("MainWindow", "项目设置", 0));
     actionSetZoomBase->setText(QApplication::translate("MainWindow", "Set Zoom Base", 0));
     actionZoomIn->setText(QApplication::translate("MainWindow", "Zoom In", 0));
     actionZoomIn->setShortcut(QApplication::translate("MainWindow", "Ctrl+=", 0));

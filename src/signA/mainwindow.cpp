@@ -127,12 +127,23 @@ MainWindow::MainWindow(QWidget *parent) :
 
     /*******wzx********************/
     ui->timeAxis->setMw(this);
+    ui->dockWidget_valueManage->show();
     ui->dockWidget_valueManage->close();
+
+    ui->dockWidget_message->show();
     ui->dockWidget_message->close();
 
+    ui->dockWidget_chartDataViewer->show();
     ui->dockWidget_chartDataViewer->close();
+
+    ui->dockWidget_windowList->show();
     ui->dockWidget_windowList->close();
+
+    ui->dockWidget_valueViewer->show();
     ui->dockWidget_valueViewer->close();
+
+    ui->dockWidget_DataFeature->activateWindow();
+//    ui->dockWidget_DataFeature->raise();
 
     QFont ft;
     ft.setPointSize(15);
@@ -692,10 +703,13 @@ void MainWindow::onActionFigureSetDockTriggered(bool on)
     ui->dockWidget_set->raise();
 }
 
-
+//打开项目设置
 void MainWindow::onActionProjectSettingTriggered()
 {
-    setProjectInfomation();
+    auto w = new ProjectSetting(this);
+    w->exec();
+    //原来的代码
+//    setProjectInfomation();
 }
 
 

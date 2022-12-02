@@ -56,7 +56,7 @@ class MainWindowPrivate;
 #include "Utils/redisuploadthread.h"
 #include "Controller/hardwarecontroller.h"
 #include "View/alalysisresultview.h"
-
+#include "View/projectsetting.h"
 class QProgressBar;
 class QActionGroup;
 

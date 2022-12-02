@@ -92,7 +92,7 @@ int ChannelDao::updateChannelById(Channel* channel)
             .arg(mstoqs(channel->getChannelDesc())).arg(mstoqs(channel->getMeasureType()))
             .arg(mstoqs(mitos(channel->getFullValue()))).arg(mstoqs(channel->getInputMode()))
             .arg(mstoqs(mitos(channel->getUpFreq()))).arg(mstoqs(mitos(channel->getElcPressure())))
-            .arg(mstoqs(mlltos(channel->getProjectId())));
+            .arg(mstoqs(mlltos(channel->getProjectId()))).arg(QString::number(channel->getId()));
     qInfo()<< "更新通道参数"<< sql;
     //执行更新命令
     global_pdsql->UpdateMysql(affected_num,mqstos(sql));
