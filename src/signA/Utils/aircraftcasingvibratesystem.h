@@ -83,12 +83,12 @@ public:
 
     SignalController m_signalController;
 
-    SumSignal *m_sumSignal;
+    SumSignal *m_sumSignal = new SumSignal();
 
     QMutex saveSignalMutex;
 
     enum RedisState{REDIS_OPEND,REDIS_NOT_OPEN};             //redis标志位
-    RedisState redisState = REDIS_NOT_OPEN;
+    RedisState redisState = REDIS_OPEND;
 
     enum HardWareState{HW_CONNECTED,HW_NOTCONNECTED};             //硬件连接标志位
     HardWareState hardwareState = HW_NOTCONNECTED;

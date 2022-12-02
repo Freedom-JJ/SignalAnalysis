@@ -1253,6 +1253,7 @@ void MainWindow::OnButtonStartCapture(){
     }
 
     if(oldcollectState == 2){
+        ui->dynamicSpectrum->resume();
         return;
     }
     qDebug()<<"m_vchannelCodes-size"<<theApp->m_vchannelCodes.size()<<endl;

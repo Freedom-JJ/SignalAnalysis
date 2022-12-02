@@ -805,12 +805,12 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     chartGridCategoryWindowPannel->addLargeAction(actionStartPlayBack);
     chartGridCategoryWindowPannel->addLargeAction(actionStopPlayBack);
     chartGridCategoryWindowPannel->addLargeAction(actionKillPlayBack);
-    chartGridCategoryWindowPannel->addLargeAction(actionAnalsis);
+//    chartGridCategoryWindowPannel->addLargeAction(actionAnalsis);
 
-    //figure Opt pannel
-//    figureOptRibbonPannel = operateRibbonCategory->addPannel("分析");//删除这个pannel
+//    figure Opt pannel
+    figureOptRibbonPannel = operateRibbonCategory->addPannel("分析");//删除这个pannel
 //    figureOptRibbonPannel = new SARibbonPannel();
-//    figureOptRibbonPannel->addLargeAction(actionAnalsis);
+    figureOptRibbonPannel->addLargeAction(actionAnalsis);
     //学校图标
     auto schoolPannel1 = operateRibbonCategory->addPannel("");
     schoolPannel1->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
@@ -1122,7 +1122,7 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
     actionStartPlayBack->setText(QApplication::translate("MainWindow", "开始回放", 0));
     actionStopPlayBack->setText(QApplication::translate("MainWindow", "暂停回放", 0));
     actionKillPlayBack->setText(QApplication::translate("MainWindow", "停止回放", 0));
-    actionAnalsis->setText("分析回放");
+    actionAnalsis->setText("异常结果记录");
 
     menuRecentOpenFile->setTitle(QApplication::translate("MainWindow", "Recent Open Files", 0));
     menuRecentOpenProject->setTitle(QApplication::translate("MainWindow", "Recent Open Projects", 0));

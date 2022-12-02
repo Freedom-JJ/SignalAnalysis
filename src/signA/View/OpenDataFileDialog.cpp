@@ -66,6 +66,13 @@ void OpenDataFileDialog::on_pushButtonOpen_clicked()
     }
     vector<SingleSignal *> singels;
     Result ss = controller.findSingleSignalsBySumSignalId(res[index].getId(),singels);
+    SumSignal temp;
+    temp.setProjectId(res[index].getProjectId());
+    temp.setId(res[index].getId());
+    temp.setStartTime(res[index].getStartTime());
+    temp.setEndTime(res[index].getEndTime());
+
+    *(mv->theApp->m_sumSignal) = temp;
     if(ss.getCode() == 206){
         qDebug()<<"子信号查询为空"<<endl;
     }else if(ss.getCode() == 200){

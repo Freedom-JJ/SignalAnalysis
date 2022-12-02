@@ -91,12 +91,18 @@ void JTimeAxis::resume()
 void JTimeAxis::refresh(AnalysisResult &value)
 {
     if(count == 0){
-        startTime = QDateTime::currentDateTime().toTime_t();
+        if(mw->theApp->m_iplaybackState > 0){
+            startTime = QDateTime::fromString(QString::fromStdString( mw->theApp->m_sumSignal->getStartTime()),"yyyy-MM-dd hh:mm:ss").toTime_t();
+        }else{
+            startTime = QDateTime::currentDateTime().toTime_t();
+        }
     }
     if(value.getId().toInt() !=count){
         qDebug()<<"ID 不对应 也刷新"<<endl;
     }
     if(value.getErrorInf()!=AnalysisResult::NORMAL){
+        value.setStart(QDateTime::fromTime_t(startTime + count).toString("hh:mm:ss"));
+//        value.setEnd(QDateTime::fromTime_t(startTime + count+1).toString("hh:mm:ss"));
         anares->push_back(value);
         qDebug()<<"添加错误祯!"<<endl;
     }
