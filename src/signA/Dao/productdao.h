@@ -17,8 +17,6 @@ public:
     QVector<Product> seleAllProduct();
     Product seleOneById(long long id);
     QVector<Product> seleAllByName(QString name);
-
-
 };
 
 #endif // PRODUCTDAO_H

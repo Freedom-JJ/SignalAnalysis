@@ -895,8 +895,20 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
 
     verticalLayout_2->addWidget(dataFeatureWidget);
 
-    dockWidget_DataFeature->setWidget(dockWidgetContents_2);
-    mainWinowPtr->addDockWidget(static_cast<Qt::DockWidgetArea>(2), dockWidget_DataFeature);
+
+
+    // 江德鸿时间轴
+    //*****************
+    //*****************
+    //*****************
+    //*****************
+
+    timeAxis = new JTimeAxis();
+    dockWidget_DataFeature->setWidget(timeAxis);
+    dockWidget_DataFeature->setContentsMargins(0,0,0,0);
+    timeAxis->init();
+//    dockWidget_DataFeature->setWidget(dockWidgetContents_2);
+    mainWinowPtr->addDockWidget(static_cast<Qt::DockWidgetArea>(1), dockWidget_DataFeature);
 
 
     dockWidget_windowList = new QDockWidget(mainWinowPtr);
@@ -1259,7 +1271,7 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
     menuHistogramChart->setTitle(QApplication::translate("MainWindow", "Histogram", 0));
     menuSkinList->setTitle(QApplication::translate("MainWindow", "Skin", 0));
     menuRibbonStyle->setTitle(QApplication::translate("MainWindow", "Ribbon UI Style", 0));
-    dockWidget_DataFeature->setWindowTitle(QApplication::translate("MainWindow", "Data Feature", 0));
+    dockWidget_DataFeature->setWindowTitle(QApplication::translate("MainWindow", "时间轴分析", 0));
 //    toolBar_chart->setWindowTitle(QApplication::translate("MainWindow", "toolBar", 0));
 //    toolBar_chartSet->setWindowTitle(QApplication::translate("MainWindow", "toolBar", 0));
 //    toolBar_plot->setWindowTitle(QApplication::translate("MainWindow", "toolBar", 0));

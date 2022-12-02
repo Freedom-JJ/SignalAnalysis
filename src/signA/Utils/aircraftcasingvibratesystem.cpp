@@ -1,7 +1,8 @@
 #include "aircraftcasingvibratesystem.h"
 
 AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystem():
-    analysisResult(new std::map<QString,QVector<AnalysisResult>>())
+    analysisResult(new std::map<QString,QVector<AnalysisResult>>()),
+    analysisResultNoChannel(new QVector<AnalysisResult>())
 {
     AirCraftCasingVibrateSystemInit();
     procon.loadDefaultProject(currentProject);
@@ -43,6 +44,11 @@ void AirCraftCasingVibrateSystem::clearAnalysisResult()
         (*analysisResult)[it->first].clear();
         it++;
     }
+}
+
+std::shared_ptr<QVector<AnalysisResult> > AirCraftCasingVibrateSystem::getAnalysisResultNoChannel() const
+{
+    return analysisResultNoChannel;
 }
 
 

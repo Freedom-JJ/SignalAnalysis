@@ -8,7 +8,8 @@ QSize Spectrum::sizeHint()
 
 Spectrum::Spectrum(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::Spectrum)
+    ui(new Ui::Spectrum),
+    textTricker(new QCPAxisTickerText)
 {
     ui->setupUi(this);
     timer = new QTimer(parent);
@@ -27,7 +28,7 @@ Spectrum::Spectrum(QWidget *parent) :
 //    plot->graph(0)->setPen(QPen(QColor(Qt::red)));
     layout->addWidget(plot,0,0);
     this->setLayout(layout);
-
+    dataAxis->axis(QCPAxis::atBottom)->setTicker(textTricker);
     this->textItem = new QCPItemText(this->plot);
     textItem->setPositionAlignment(Qt::AlignTop|Qt::AlignLeft);
     textItem->setText("");
@@ -35,6 +36,7 @@ Spectrum::Spectrum(QWidget *parent) :
     textItem->setFont(QFont().family()); //设置Font没有边框,设置Pen有边框
     textItem->position->setType(QCPItemPosition::ptAxisRectRatio);
     textItem->position->setCoords(0,0);
+
     init(nullptr);
 }
 
@@ -64,9 +66,14 @@ Spectrum::~Spectrum()
 void Spectrum::init(const QVector<double> *initData)
 {
     if (initData != nullptr){
+        //根据key值分布范围
         key = new QVector<double>(initData->size());
         for (int var = 0; var < key->size(); ++var) {
             (*key)[var] = var;
+        }
+        //显示10个频谱轴,采样率固定为20000，有点不合理
+        for (int var = 0; var < 10; ++var) {
+            textTricker->addTick(var*key->size()/10,QString::number(sampleFrequency/2/10*var));
         }
 //        plot->graph(0)->addData(*key,*initData);
         mainGrap->addData(*key,*initData);
@@ -132,10 +139,7 @@ void Spectrum::refresh(const QVector<double> &data)
 
 void Spectrum::refresh(std::map<QString, double> statistic,const QVector<double> &data)
 {
-
     auto dataVec = new QVector<double>();
-
-
     mainGrap->data()->clear();
     if(data.size() == 0 ){
         return;
@@ -313,5 +317,15 @@ void Spectrum::refreshTimeAxis()
         }
         analysisBuffer.clear();
     }
+}
+
+double Spectrum::getSampleFrequency() const
+{
+    return sampleFrequency;
+}
+
+void Spectrum::setSampleFrequency(double value)
+{
+    sampleFrequency = value;
 }
 

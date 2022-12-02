@@ -103,6 +103,7 @@ HEADERS += \
     $$PWD/View/jdataviewecho.h \
     $$PWD/View/jdynamicwidget.h \
     $$PWD/View/jsampleview.h \
+    $$PWD/View/jtimeaxis.h \
     $$PWD/View/jvoiceranddata.h \
     $$PWD/View/jvoicesampleview.h \
     $$PWD/View/productdialog.h \
@@ -190,6 +191,7 @@ SOURCES += \
     $$PWD/View/jdataviewecho.cpp \
     $$PWD/View/jdynamicwidget.cpp \
     $$PWD/View/jsampleview.cpp \
+    $$PWD/View/jtimeaxis.cpp \
     $$PWD/View/jvoiceranddata.cpp \
     $$PWD/View/jvoicesampleview.cpp \
     $$PWD/View/productdialog.cpp \

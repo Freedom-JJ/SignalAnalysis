@@ -126,10 +126,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     /*******wzx********************/
-
+    ui->timeAxis->setMw(this);
     ui->dockWidget_valueManage->close();
     ui->dockWidget_message->close();
-    ui->dockWidget_DataFeature->close();
+//    ui->dockWidget_DataFeature->close();
     ui->dockWidget_chartDataViewer->close();
     ui->dockWidget_windowList->close();
     ui->dockWidget_valueViewer->close();
@@ -1286,8 +1286,9 @@ void MainWindow::OnButtonStartCapture(){
     ui->dynamicSpectrum->setAnalysisResult(this->theApp->getAnalysisResult());
     ui->dynamicSpectrum->setInterval(100);
     ui->dynamicSpectrum->start();
-    ui->dynamicSpectrum->openTimeAxis();
-    mainGetAnalysisResult->setTimeAxis(ui->dynamicSpectrum);
+//    ui->dynamicSpectrum->openTimeAxis();
+    mainGetAnalysisResult->setTimeAxis(ui->timeAxis);
+    ui->timeAxis->start(200);
     sampleThread = new GetDataThread(this);
     mainSaveData = new SaveCollectionDataThread(this);
     mainRedisUpload = new RedisUploadThread(this,theApp->initHost,theApp->initPort);
@@ -1307,6 +1308,7 @@ void MainWindow::OnButtonStartCapture(){
 void MainWindow::OnButtonStopCapture(){
     theApp->m_icollectState = 0;
     ui->dynamicSpectrum->stop();
+    ui->timeAxis->stop();
     theApp->m_bThread = false;
     if(theApp->hardwareState == theApp->HW_CONNECTED){
         mainHardWareController->m_pStopMacSample();
@@ -1416,7 +1418,7 @@ void MainWindow::OnButtonStartPlayBack(){
 
     mainGetAnalysisResult = new GetAnalysisResultThread(this,theApp->initHost,theApp->initPort,theApp->channelNumber);
 //    connect(mainPlayBack,SIGNAL(playbackDone()),mainGetAnalysisResult,SLOT(CloseGetResult()));
-    mainGetAnalysisResult->setTimeAxis(ui->dynamicSpectrum);
+    mainGetAnalysisResult->setTimeAxis(ui->timeAxis);
     if(theApp->redisState == theApp->RedisState::REDIS_OPEND){
             mainRedisUpload->start();
             mainGetAnalysisResult->start();
@@ -1430,12 +1432,12 @@ void MainWindow::OnButtonStartPlayBack(){
     ui->dynamicSpectrum = new JDynamicWidget();
     mainGetAnalysisResult->setTimeAxis(ui->dynamicSpectrum);
     ui->dynamicSpectrum->init(this->theApp->echoSignalQueue);//回显信号对象传入
-    ui->dynamicSpectrum->openTimeAxis();
+//    ui->dynamicSpectrum->openTimeAxis();
     ui->dynamicSpectrum->resetWindow(ui->dockWidget_main,ui->dynamicSpectrum);
     ui->dynamicSpectrum->setInterval(200);
     ui->dynamicSpectrum->setAnalysisResult(this->theApp->getAnalysisResult());
     ui->dynamicSpectrum->start();//开始显示
-
+    ui->timeAxis->start(200);
 }
 
 //暂停回放
@@ -1443,6 +1445,7 @@ void MainWindow::OnButtonStopPlayBack(){
 
     theApp->m_iplaybackState = 2;
     ui->dynamicSpectrum->pause();
+    ui->timeAxis->stop();
 
 }
 
