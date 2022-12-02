@@ -7,7 +7,7 @@ void init_database(){
     global_pdsql = new PDSQL();
     string strIPp = "localhost";
     string strUser = "root";
-    string strPassword = "123456";
+    string strPassword = "kissme520";
     string strDatabase = "aricraft_db";
     int iPort = 3306;
     global_pdsql->SetMysql(strIPp,strUser,strPassword,strDatabase,iPort);

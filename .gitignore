@@ -67,6 +67,6 @@ src/bin_qt5.9.9_debug/plugin/textImport.dll
 build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signADataProc/Makefile
 build-sa-Desktop_Qt_5_9_9_MinGW_32bit-Debug/signAServe/Makefile
 src/bin_qt5.9.9_debug/libs/signAServe.dll
-
+src/bin_qt5.9.9_debug
 
 src/bin_qt5.9.9_debug

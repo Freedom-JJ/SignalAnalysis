@@ -113,12 +113,11 @@ public:
     //一些数据
     User user;
     Project currentProject;
-
-    std::vector<Channel*> currentChannels;
+    QVector<Channel *> channelVec;
     //controller
     ProjectController procon;
 
-    ChannelController channelcon;
+    ChannelController channelCon;
 
     HardWareController hardwarecon;
 

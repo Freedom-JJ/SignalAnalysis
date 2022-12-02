@@ -129,7 +129,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->timeAxis->setMw(this);
     ui->dockWidget_valueManage->close();
     ui->dockWidget_message->close();
-//    ui->dockWidget_DataFeature->close();
+
     ui->dockWidget_chartDataViewer->close();
     ui->dockWidget_windowList->close();
     ui->dockWidget_valueViewer->close();
@@ -1288,7 +1288,8 @@ void MainWindow::OnButtonStartCapture(){
     ui->dynamicSpectrum->start();
 //    ui->dynamicSpectrum->openTimeAxis();
     mainGetAnalysisResult->setTimeAxis(ui->timeAxis);
-    ui->timeAxis->start(200);
+    ui->timeAxis->clearTimeAxis();
+//    ui->timeAxis->start(200);
     sampleThread = new GetDataThread(this);
     mainSaveData = new SaveCollectionDataThread(this);
     mainRedisUpload = new RedisUploadThread(this,theApp->initHost,theApp->initPort);
@@ -1430,14 +1431,15 @@ void MainWindow::OnButtonStartPlayBack(){
     mainPlayBack->start();
 
     ui->dynamicSpectrum = new JDynamicWidget();
-    mainGetAnalysisResult->setTimeAxis(ui->dynamicSpectrum);
+//    mainGetAnalysisResult->setTimeAxis(ui->dynamicSpectrum);
     ui->dynamicSpectrum->init(this->theApp->echoSignalQueue);//回显信号对象传入
 //    ui->dynamicSpectrum->openTimeAxis();
     ui->dynamicSpectrum->resetWindow(ui->dockWidget_main,ui->dynamicSpectrum);
     ui->dynamicSpectrum->setInterval(200);
     ui->dynamicSpectrum->setAnalysisResult(this->theApp->getAnalysisResult());
     ui->dynamicSpectrum->start();//开始显示
-    ui->timeAxis->start(200);
+    ui->timeAxis->clearTimeAxis();//多次回放准备的
+//    ui->timeAxis->start(200);
 }
 
 //暂停回放

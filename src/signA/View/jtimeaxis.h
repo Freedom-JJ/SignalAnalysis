@@ -36,13 +36,14 @@ private:
     QCustomPlot *plot;
 //    QCPGraph *graph;
     QCPAxisRect *axisRect;
-    QSharedPointer<QCPAxisTickerTime> trickerTime;
+    QSharedPointer<QCPAxisTickerDateTime> trickerTime;
     QVector<QCPBars *> barVec;
-
+    QTime currentTime ;
+    double startTime=0;
     QVector<AnalysisResult> analysisBuffer;
 
     double barWidth = 1;
-    int range=300;
+    int range=60 * 10;
 
     MainWindow *mw;
 

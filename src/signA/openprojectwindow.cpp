@@ -99,6 +99,7 @@ void OpenProjectWindow::on_open_clicked()                               //打开
         mw->theApp->currentProject.setProjectStatus(projectVec[rowindex].getProjectStatus());
         mw->theApp->currentProject.setProjectUpdateTime(DataUtil::GetCurrentCStringTime());
         mw->theApp->sampleFrequency = projectVec[rowindex].getProjectStatus();
+        channelCon.getChannelsByProjectId(mw->theApp->channelVec,mw->theApp->currentProject.getId()); //同时切换项目参数
         QMessageBox::information(this,"提示","切换项目成功");
         projectCon.updateProject(&(mw->theApp->currentProject));
         this->accept();

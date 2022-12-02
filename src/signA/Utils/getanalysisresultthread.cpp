@@ -26,33 +26,25 @@ void GetAnalysisResultThread::run(){
             msleep(10);
             continue;
          }
-
-        QVector<AnalysisResult> resultVector;
-        for(int i=0;i<channelNumber;i++){
-            AnalysisResult anares;
-            QString signalCode = QString::number(i);
-            QString redisKey = QString("AnalysisResult-%1").arg(signalCode);
-            QString result = resultRedis->rpop(redisKey);
-            if(result == "NULL"){
-//                i--;
-                i+=channelNumber;
-                msleep(10);
-                continue;
-            }
-            if(count.count(signalCode) == 0){
-                count[signalCode] = 0;
-            }
-            int id = count[signalCode];
-            anares.setId(QString::number(id));
-            anares.setChannel(signalCode);
-            anares.setErrorInf(AnalysisResult::Level(result.toInt()));
-            anares.setStart(QString::number(id));
-            anares.setEnd(QString::number(id+1));
-            resultVector.push_back(anares);
-            count[signalCode] = id+1;
-        }
-        qDebug()<<"reslut size:"<<resultVector.size()<<endl;
-        timeAxis->addDataTimeAxis(resultVector);
+         AnalysisResult anares;
+         QString signalCode = QString::number(0);
+         QString redisKey = QString("AnalysisResult");
+         QString result = resultRedis->rpop(redisKey);
+         if(result == "NULL"){
+            msleep(10);
+            continue;
+         }
+         if(count.count(signalCode) == 0){
+            count[signalCode] = 0;
+         }
+         int id = count[signalCode];
+         anares.setId(QString::number(id));
+         anares.setChannel(signalCode);
+         anares.setErrorInf(AnalysisResult::Level(result.toInt()));
+         anares.setStart(QString::number(id));
+         anares.setEnd(QString::number(id+1));
+         count[signalCode] = id+1;
+        timeAxis->addDataTimeAxis(anares);
         msleep(100);
     }
 

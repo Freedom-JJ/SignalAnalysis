@@ -5,11 +5,12 @@ AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystem():
     analysisResultNoChannel(new QVector<AnalysisResult>())
 {
     AirCraftCasingVibrateSystemInit();
+    //加载默认项目和相关的通道参数
     procon.loadDefaultProject(currentProject);
     this->sampleFrequency = currentProject.getProjectStatus();
-    channelcon.getChannelsByProjectId(currentChannels,currentProject.getId());
+    // channelcon.getChannelsByProjectId(currentChannels,currentProject.getId());
     hardwarecon.SetChannels(currentChannels);
-
+    channelCon.getChannelsByProjectId(channelVec,currentProject.getId());
 }
 
 
