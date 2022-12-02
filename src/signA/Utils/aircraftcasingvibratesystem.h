@@ -23,6 +23,7 @@
 #include "Controller/SignalController.h"
 #include "Controller/projectcontroller.h"
 #include "Controller/channelcontroller.h"
+#include "Controller/hardwarecontroller.h"
 #include "Domain/sumSignal.h"
 #include "RedisTools/rediscontroller.h"
 #include "Vo/analysisresult.h"
