@@ -10,6 +10,7 @@
 #include"MainWindow.h"
 #include"Domain/project.h"
 #include"Controller/projectcontroller.h"
+#include"Controller/channelcontroller.h"
 namespace Ui {
 class OpenProjectWindow;
 }
@@ -42,6 +43,7 @@ private:
     MainWindow *mw;
     std::vector<Project> projectVec;
     ProjectController projectCon;
+    ChannelController channelCon;
 };
 
 #endif // OPENPROJECTWINDOW_H

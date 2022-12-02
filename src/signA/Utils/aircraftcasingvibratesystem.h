@@ -22,6 +22,7 @@
 #include <QScopedPointer>
 #include "Controller/SignalController.h"
 #include "Controller/projectcontroller.h"
+#include "Controller/channelcontroller.h"
 #include "Domain/sumSignal.h"
 #include "RedisTools/rediscontroller.h"
 #include "Vo/analysisresult.h"
@@ -111,9 +112,10 @@ public:
     //一些数据
     User user;
     Project currentProject;
+    QVector<Channel *> channelVec;
     //controller
     ProjectController procon;
-
+    ChannelController channelCon;
 
     void AirCraftCasingVibrateSystemInit();
     void statrCapture();

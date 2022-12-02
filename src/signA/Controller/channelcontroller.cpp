@@ -98,6 +98,12 @@ Result ChannelController::updateChannel(Channel *channel)
 
 }
 
+Result ChannelController::getChannelsByProjectId(QVector<Channel *> &res, long long projectId)
+{
+    res = QVector<Channel *>::fromStdVector( channelService->getChannelsByProjectId(projectId));
+    return Result(200,"更新通道成功");
+}
+
 
 
 

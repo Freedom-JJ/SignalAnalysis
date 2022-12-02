@@ -1,12 +1,12 @@
 #include "jtimeaxis.h"
 
-JTimeAxis::JTimeAxis(QWidget *parent) : QWidget(parent),trickerTime(new QCPAxisTickerTime)
+JTimeAxis::JTimeAxis(QWidget *parent) : QWidget(parent),trickerTime(new QCPAxisTickerDateTime)
 {
     timer = new QTimer();
     auto hbox  = new QHBoxLayout();
     hbox->setMargin(0);
     plot= new QCustomPlot();
-    trickerTime->setTimeFormat("%h:%m:%s");
+    trickerTime->setDateTimeFormat("hh:mm:ss");
     hbox->addWidget(plot);
     setLayout(hbox);
     setContentsMargins(0,0,0,0);
@@ -41,7 +41,7 @@ void JTimeAxis::init()
         barVec[i]->setWidth(barWidth-0.1);
     }
     axisRect->axis(QCPAxis::atLeft)->setVisible(false);
-    axisRect->axis(QCPAxis::atBottom)->setRange(0,100);
+    axisRect->axis(QCPAxis::atBottom)->setRange(QDateTime::currentDateTime().toTime_t(),QDateTime::currentDateTime().toTime_t()+range);
 }
 
 void JTimeAxis::clearTimeAxis()
@@ -90,8 +90,9 @@ void JTimeAxis::resume()
 
 void JTimeAxis::refresh(AnalysisResult &value)
 {
-    static QTime time = QTime::currentTime();
-    double key = time.elapsed()/1000;
+    if(count == 0){
+        startTime = QDateTime::currentDateTime().toTime_t();
+    }
     if(value.getId().toInt() !=count){
         qDebug()<<"ID 不对应 也刷新"<<endl;
     }
@@ -99,12 +100,16 @@ void JTimeAxis::refresh(AnalysisResult &value)
         anares->push_back(value);
         qDebug()<<"添加错误祯!"<<endl;
     }
-    barVec[int(value.getErrorInf())]->addData(key,5);
+    qDebug()<<"添加时间轴!"<<endl;
+    int index = int(value.getErrorInf());
+    barVec[index]->addData(count + startTime,5);
     if(count > range){
         axisRect->axis(QCPAxis::atBottom)->rescale();
+    }else{
+        axisRect->axis(QCPAxis::atBottom)->setRange(startTime,startTime+range); //十分钟
     }
     count++;
-    this->plot->replot();
+    plot->replot(QCustomPlot::rpQueuedReplot);
 }
 
 void JTimeAxis::refesh()
@@ -132,11 +137,12 @@ void JTimeAxis::addDataTimeAxis(QVector<AnalysisResult> res)
         addDataTimeAxis(res[var]);
     }
 }
-
+//实时刷新
 void JTimeAxis::addDataTimeAxis(AnalysisResult value)
 {
-    std::lock_guard<std::mutex> lk(mu);
-    analysisBuffer.push_back(value);
+    refresh(value);
+//    std::lock_guard<std::mutex> lk(mu);
+//    analysisBuffer.push_back(value);
 
 }
 
