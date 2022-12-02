@@ -34,13 +34,13 @@ public:
     QWidget *tab;
     QGridLayout *gridLayout_4;
     QGridLayout *gridLayout;
-    QLabel *label_2;
+    QComboBox *projuctComboBox;
+    QLabel *label;
     QLabel *label_3;
     QLineEdit *lineEdit;
-    QLineEdit *lineEdit_2;
+    QLabel *label_2;
     QPushButton *nextbtn;
-    QLabel *label;
-    QComboBox *projuctComboBox;
+    QComboBox *frequencyComboBox;
     QWidget *tab_2;
     QGridLayout *gridLayout_3;
     QGridLayout *gridLayout_2;
@@ -65,10 +65,15 @@ public:
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
         gridLayout = new QGridLayout();
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        label_2 = new QLabel(tab);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        projuctComboBox = new QComboBox(tab);
+        projuctComboBox->setObjectName(QStringLiteral("projuctComboBox"));
 
-        gridLayout->addWidget(label_2, 1, 0, 1, 1);
+        gridLayout->addWidget(projuctComboBox, 0, 1, 1, 2);
+
+        label = new QLabel(tab);
+        label->setObjectName(QStringLiteral("label"));
+
+        gridLayout->addWidget(label, 0, 0, 1, 1);
 
         label_3 = new QLabel(tab);
         label_3->setObjectName(QStringLiteral("label_3"));
@@ -78,30 +83,25 @@ public:
         lineEdit = new QLineEdit(tab);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
 
-        gridLayout->addWidget(lineEdit, 1, 1, 1, 3);
+        gridLayout->addWidget(lineEdit, 1, 1, 1, 2);
 
-        lineEdit_2 = new QLineEdit(tab);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
+        label_2 = new QLabel(tab);
+        label_2->setObjectName(QStringLiteral("label_2"));
 
-        gridLayout->addWidget(lineEdit_2, 2, 1, 1, 3);
+        gridLayout->addWidget(label_2, 1, 0, 1, 1);
 
         nextbtn = new QPushButton(tab);
         nextbtn->setObjectName(QStringLiteral("nextbtn"));
 
-        gridLayout->addWidget(nextbtn, 3, 3, 1, 1);
+        gridLayout->addWidget(nextbtn, 3, 2, 1, 1);
 
-        label = new QLabel(tab);
-        label->setObjectName(QStringLiteral("label"));
+        frequencyComboBox = new QComboBox(tab);
+        frequencyComboBox->setObjectName(QStringLiteral("frequencyComboBox"));
 
-        gridLayout->addWidget(label, 0, 0, 1, 1);
-
-        projuctComboBox = new QComboBox(tab);
-        projuctComboBox->setObjectName(QStringLiteral("projuctComboBox"));
-
-        gridLayout->addWidget(projuctComboBox, 0, 1, 1, 3);
+        gridLayout->addWidget(frequencyComboBox, 2, 1, 1, 2);
 
 
-        gridLayout_4->addLayout(gridLayout, 0, 1, 1, 1);
+        gridLayout_4->addLayout(gridLayout, 0, 0, 1, 1);
 
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
@@ -143,8 +143,8 @@ public:
         gridLayout_5->addWidget(tabWidget, 0, 0, 1, 1);
 
 #ifndef QT_NO_SHORTCUT
-        label_2->setBuddy(lineEdit);
         label->setBuddy(projuctComboBox);
+        label_2->setBuddy(lineEdit);
         label_4->setBuddy(lineEdit_3);
 #endif // QT_NO_SHORTCUT
 
@@ -159,10 +159,10 @@ public:
     void retranslateUi(QDialog *NewProjectDialog)
     {
         NewProjectDialog->setWindowTitle(QApplication::translate("NewProjectDialog", "\346\226\260\345\273\272\351\241\271\347\233\256", Q_NULLPTR));
-        label_2->setText(QApplication::translate("NewProjectDialog", "\351\241\271\347\233\256\345\220\215", Q_NULLPTR));
-        label_3->setText(QApplication::translate("NewProjectDialog", "\351\207\207\346\240\267\351\242\221\347\216\207", Q_NULLPTR));
-        nextbtn->setText(QApplication::translate("NewProjectDialog", "\344\270\213\344\270\200\351\241\265", Q_NULLPTR));
         label->setText(QApplication::translate("NewProjectDialog", "\344\272\247\345\223\201\345\220\215", Q_NULLPTR));
+        label_3->setText(QApplication::translate("NewProjectDialog", "\351\207\207\346\240\267\351\242\221\347\216\207", Q_NULLPTR));
+        label_2->setText(QApplication::translate("NewProjectDialog", "\351\241\271\347\233\256\345\220\215", Q_NULLPTR));
+        nextbtn->setText(QApplication::translate("NewProjectDialog", "\344\270\213\344\270\200\351\241\265", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("NewProjectDialog", "\351\241\271\347\233\256\350\256\276\347\275\256", Q_NULLPTR));
         okbtn->setText(QApplication::translate("NewProjectDialog", "\345\256\214\346\210\220", Q_NULLPTR));
         label_4->setText(QApplication::translate("NewProjectDialog", "\351\200\232\351\201\223\346\225\260", Q_NULLPTR));
