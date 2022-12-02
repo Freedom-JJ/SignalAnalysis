@@ -7,7 +7,7 @@ void InitHardWareThread::run(){
 
     bool m_bConnect = initHardWare->mainHardWareController->InitHardWare();
 
-    initHardWare->mainHardWareController->initSamplingPara();
+    initHardWare->mainHardWareController->initSamplingPara(initHardWare->theApp->sampleFrequency);
 
     initHardWare->mainHardWareController->initChannelPara();
 

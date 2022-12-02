@@ -401,6 +401,8 @@ private slots:
 
     void OnButtonStopPlayBack();
 
+    void OnButtonKillPlayBack();
+
     void OnButtonAnalysis();
     //焦点变换触发的槽
     void onFocusChanged(QWidget *old, QWidget *now);

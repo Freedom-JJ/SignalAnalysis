@@ -33,6 +33,7 @@ public:
 
 private:
     ChannelService* channelService;
+
 };
 
 #endif // CHANNELCONTROLLER_H

@@ -51,15 +51,15 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     actionSet->setObjectName(QStringLiteral("项目设置"));
     actionSet->setIcon(QIcon(":/icons/icons/open.png"));
 
-    actionCleanZero = new QAction(mainWinowPtr);
-    actionCleanZero->setObjectName(QStringLiteral("actionCleanZero"));
-    actionCleanZero->setCheckable(true);
-    actionCleanZero->setIcon(QIcon(":/icons/icons/selectionRegionDataMove.png"));
+//    actionCleanZero = new QAction(mainWinowPtr);
+//    actionCleanZero->setObjectName(QStringLiteral("actionCleanZero"));
+//    actionCleanZero->setCheckable(true);
+//    actionCleanZero->setIcon(QIcon(":/icons/icons/selectionRegionDataMove.png"));
 
-    actionBalance = new QAction(mainWinowPtr);
-    actionBalance->setObjectName(QStringLiteral("actionBalance"));
-    actionBalance->setCheckable(true);
-    actionBalance->setIcon(QIcon(":/icons/icons/selectionRegionDataMove.png"));
+//    actionBalance = new QAction(mainWinowPtr);
+//    actionBalance->setObjectName(QStringLiteral("actionBalance"));
+//    actionBalance->setCheckable(true);
+//    actionBalance->setIcon(QIcon(":/icons/icons/selectionRegionDataMove.png"));
 
     actionStartCapture = new QAction(mainWinowPtr);//开始采集
     actionStartCapture->setObjectName(QStringLiteral("actionStartCapture"));
@@ -133,6 +133,11 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     actionStopPlayBack->setObjectName(QStringLiteral("actionStopPlayBack"));
     actionStopPlayBack->setCheckable(true);
     actionStopPlayBack->setIcon(QIcon(":/icons/icons/selectionRegionDataMove.png"));
+
+    actionKillPlayBack = new QAction(mainWinowPtr);
+    actionKillPlayBack->setObjectName(QStringLiteral("actionKillPlayBack"));
+    actionKillPlayBack->setCheckable(true);
+    actionKillPlayBack->setIcon(QIcon(":/icons/icons/selectionRegionDataMove.png"));
 
     actionStartPlayBack = new QAction(mainWinowPtr);
     actionStartPlayBack->setObjectName(QStringLiteral("actionStartPlayBack"));
@@ -769,8 +774,8 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     //Selector Editor
     operateCategoryChartEditorPannel = operateRibbonCategory->addPannel(QStringLiteral("采集"));
     operateCategoryChartEditorPannel->setObjectName(QStringLiteral("operateCategorySelectEditorPannel"));
-//    operateCategoryChartEditorPannel->addLargeAction(actionBalance); 平衡
-//    operateCategoryChartEditorPannel->addLargeAction(actionCleanZero); 清楚零点
+//    operateCategoryChartEditorPannel->addLargeAction(actionBalance);
+//    operateCategoryChartEditorPannel->addLargeAction(actionCleanZero);
     operateCategoryChartEditorPannel->addLargeAction(actionStartCapture);
     operateCategoryChartEditorPannel->addLargeAction(actionSuspendCapture);
     operateCategoryChartEditorPannel->addLargeAction(actionStopCapture);
@@ -800,11 +805,12 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     chartGridCategoryWindowPannel = operateRibbonCategory->addPannel("回放");
     chartGridCategoryWindowPannel->addLargeAction(actionStartPlayBack);
     chartGridCategoryWindowPannel->addLargeAction(actionStopPlayBack);
+    chartGridCategoryWindowPannel->addLargeAction(actionKillPlayBack);
+//    chartGridCategoryWindowPannel->addLargeAction(actionAnalsis);
 
-
-    //figure Opt pannel
-    figureOptRibbonPannel = operateRibbonCategory->addPannel("分析");//删除这个pannel
-//    figureOptRibbonPannel = new SARibbonPannel();
+//    figure Opt pannel
+//    figureOptRibbonPannel = operateRibbonCategory->addPannel("分析");//删除这个pannel
+    figureOptRibbonPannel = new SARibbonPannel();
     figureOptRibbonPannel->addLargeAction(actionAnalsis);
     //学校图标
     auto schoolPannel1 = operateRibbonCategory->addPannel("");
@@ -824,13 +830,13 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
 
 
     //! 3.4 Analysis
-    analysisRibbonCategory = new SARibbonCategory();
 //    analysisRibbonCategory = menuBar->addCategoryPage(QStringLiteral("数据管理"));
-    analysisRibbonCategory->setObjectName(QStringLiteral("analysisRibbonCategory"));
+//    analysisRibbonCategory->setObjectName(QStringLiteral("analysisRibbonCategory"));
     //Analysis Pannel
-    analysisCategoryFunctionPannel = analysisRibbonCategory->addPannel(QStringLiteral("统计数据"));
-    analysisCategoryFunctionPannel->addLargeMenu(menuAnalysis);
-    ribbonGalleryFuntions = analysisCategoryFunctionPannel->addGallery();
+//    analysisCategoryFunctionPannel = analysisRibbonCategory->addPannel(QStringLiteral("统计数据"));
+//    analysisCategoryFunctionPannel->addLargeMenu(menuAnalysis);
+//    ribbonGalleryFuntions = analysisCategoryFunctionPannel->addGallery();
+
 //    analysisCategoryshebeiPannel = analysisRibbonCategory->addPannel(QStringLiteral("设备"));
 //    analysisCategoryshebeiPannel ->addLargeAction(actionShowLegend);
     //! 3.5 View Category Page
@@ -1094,8 +1100,8 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
     actionProduct->setText(QApplication::translate("MainWindow","产品管理",0));
     actionSet->setText(QApplication::translate("MainWindow", "项目设置", 0));
 
-    actionCleanZero->setText(QApplication::translate("MainWindow", "清楚零点", 0));
-    actionBalance->setText(QApplication::translate("MainWindow", "平衡", 0));
+//    actionCleanZero->setText(QApplication::translate("MainWindow", "清楚零点", 0));
+//    actionBalance->setText(QApplication::translate("MainWindow", "平衡", 0));
     actionStartCapture->setText(QApplication::translate("MainWindow", "开始采集", 0));
     actionSuspendCapture->setText(QApplication::translate("MainWindow", "暂停采集", 0));
     actionStopCapture->setText(QApplication::translate("MainWindow", "停止采集", 0));
@@ -1116,7 +1122,8 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
 
     actionStartPlayBack->setText(QApplication::translate("MainWindow", "开始回放", 0));
     actionStopPlayBack->setText(QApplication::translate("MainWindow", "暂停回放", 0));
-    actionAnalsis->setText("分析回放");
+    actionKillPlayBack->setText(QApplication::translate("MainWindow", "停止回放", 0));
+    actionAnalsis->setText("异常结果记录");
 
     menuRecentOpenFile->setTitle(QApplication::translate("MainWindow", "Recent Open Files", 0));
     menuRecentOpenProject->setTitle(QApplication::translate("MainWindow", "Recent Open Projects", 0));
@@ -1285,7 +1292,7 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
     mainRibbonCategory->setWindowTitle(QApplication::translate("MainWindow", "项目", 0));
     viewRibbonCategory->setWindowTitle(QApplication::translate("MainWindow", "视图", 0));
     operateRibbonCategory->setWindowTitle(QApplication::translate("MainWindow", "控制", 0));
-    analysisRibbonCategory->setWindowTitle(QApplication::translate("MainWindow", "数据管理", 0));
+//    analysisRibbonCategory->setWindowTitle(QApplication::translate("MainWindow", "数据管理", 0));
     tableRibbonCategory->setWindowTitle(QApplication::translate("MainWindow", "设置", 0));
 //    tableRibbonContextCategory->setContextTitle(QApplication::translate("MainWindow", "Tab.Opt", 0));
 
@@ -1301,7 +1308,7 @@ void MainWindowPrivate::retranslateUi(MainWindow *mainWinowPtr)
     operateCategoryDataViewPannel->setWindowTitle(QApplication::translate("MainWindow", "显示", 0));
     chartLegendCategoryWindowPannel->setWindowTitle(QApplication::translate("MainWindow", "观测", 0));
     chartGridCategoryWindowPannel->setWindowTitle(QApplication::translate("MainWindow", "回放", 0));
-    figureOptRibbonPannel->setWindowTitle(QApplication::translate("MainWindow", "采样", 0));
+//    figureOptRibbonPannel->setWindowTitle(QApplication::translate("MainWindow", "采样", 0));
     menuShowCrowdedGrid->setTitle(QApplication::translate("MainWindow", "Crowded", 0));
 
     ribbonApplicationButton->setFixedWidth(110);

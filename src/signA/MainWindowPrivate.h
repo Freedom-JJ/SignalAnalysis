@@ -89,7 +89,9 @@ public:
     QAction *actionAutomaticscale;///自动刻度
     QAction *actionDefaultscale;///默认刻度
     QAction *actionStartPlayBack;///开始回放
-    QAction *actionStopPlayBack;///停止回放
+    QAction *actionStopPlayBack;///暂停回放
+    QAction *actionKillPlayBack;///停止回放
+
     QAction *actionAnalsis;
 
     QAction *actionOpen;

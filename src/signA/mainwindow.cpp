@@ -230,6 +230,7 @@ void MainWindow::initUI()
     //回放功能
     connect(ui->actionStartPlayBack,&QAction::triggered,this,&MainWindow::OnButtonStartPlayBack);
     connect(ui->actionStopPlayBack,&QAction::triggered,this,&MainWindow::OnButtonStopPlayBack);
+    connect(ui->actionKillPlayBack,&QAction::triggered,this,&MainWindow::OnButtonKillPlayBack);
     //分析结果
     connect(ui->actionAnalsis,&QAction::triggered,this,&MainWindow::OnButtonAnalysis);
 	//////////////////////////////////////////////////////////////////////////
@@ -1266,6 +1267,7 @@ void MainWindow::OnButtonStartCapture(){
     }
 
     if(oldcollectState == 2){
+        ui->dynamicSpectrum->resume();
         return;
     }
     qDebug()<<"m_vchannelCodes-size"<<theApp->m_vchannelCodes.size()<<endl;
@@ -1440,7 +1442,7 @@ void MainWindow::OnButtonStartPlayBack(){
 
      ///多线程回放
     mainPlayBack = new SumPlayBackThread(this);
-    connect(mainPlayBack,&SumPlayBackThread:: playbackDone,this,&MainWindow::closePlaybackResource);
+    connect(mainPlayBack,&SumPlayBackThread::playbackDone,this,&MainWindow::closePlaybackResource);
     mainPlayBack->start();
 
     ui->dynamicSpectrum = new JDynamicWidget();
@@ -1455,7 +1457,7 @@ void MainWindow::OnButtonStartPlayBack(){
 //    ui->timeAxis->start(200);
 }
 
-//停止回放
+//暂停回放
 void MainWindow::OnButtonStopPlayBack(){
 
     theApp->m_iplaybackState = 2;
@@ -1463,6 +1465,14 @@ void MainWindow::OnButtonStopPlayBack(){
     ui->timeAxis->stop();
 
 }
+
+//停止回放
+void MainWindow::OnButtonKillPlayBack(){
+    theApp->m_iplaybackState = 0;
+    ui->dynamicSpectrum->pause();
+//    closePlaybackResource();
+}
+
 void MainWindow::OnButtonAnalysis(){
 
     auto e = new AlalysisResultView(this);
@@ -1473,7 +1483,7 @@ void MainWindow::OnButtonAnalysis(){
 
 //回放读取文件结束后的槽函数,自动调用
 void MainWindow::closePlaybackResource(){
-//    qDebug()<<"-----------回放自动结束-------"<<endl;
+    qDebug()<<"-----------回放自动结束-------"<<endl;
     ui->dynamicSpectrum->stop();
     theApp->m_iplaybackState = 0;
 

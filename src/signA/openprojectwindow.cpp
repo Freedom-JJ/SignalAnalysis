@@ -107,6 +107,7 @@ void OpenProjectWindow::on_open_clicked()                               //打开
       else{
           QMessageBox::warning(this,"警告","请先选择一行再进行操作");
       }
+
 }
 
 void OpenProjectWindow::alignVCenter(int count)                     //将tablewidget中的内容进行居中对齐

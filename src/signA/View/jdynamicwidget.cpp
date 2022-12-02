@@ -91,7 +91,7 @@ void JDynamicWidget::show()
 void JDynamicWidget::refresh()
 {
     if(b_suspand){
-        qDebug()<<"已经暂停"<<endl;
+//        qDebug()<<"已经暂停"<<endl;
         return;
     }
     auto it = this->mapData.begin();
@@ -119,8 +119,10 @@ void JDynamicWidget::start()
         spectrumVec[var]->clearTimeAxis();
     }
     if(timer->isActive()){
+        qDebug()<<"已经在活动中"<<endl;
         return;
     }
+    qDebug()<<"激活"<<endl;
     this->timer->start();
 }
 

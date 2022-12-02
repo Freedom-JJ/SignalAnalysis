@@ -7,6 +7,9 @@ AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystem():
     AirCraftCasingVibrateSystemInit();
     //加载默认项目和相关的通道参数
     procon.loadDefaultProject(currentProject);
+    this->sampleFrequency = currentProject.getProjectStatus();
+    // channelcon.getChannelsByProjectId(currentChannels,currentProject.getId());
+//    hardwarecon.SetChannels();
     channelCon.getChannelsByProjectId(channelVec,currentProject.getId());
 }
 

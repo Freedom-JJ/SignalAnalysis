@@ -5,7 +5,7 @@ void SaveCollectionDataThread::run(){
     string uuid;
     UUIDUtil::GetUUID(uuid);
 
-    saveThread->theApp->m_sumSignal = new SumSignal();
+//    saveThread->theApp->m_sumSignal = new SumSignal();
     saveThread->theApp->m_sumSignal->setId(uuid);
     saveThread->theApp->m_sumSignal->setStartTime(DataUtil::GetCurrentCStringTime());
     saveThread->theApp->m_sumSignal->setProjectId(saveThread->theApp->currentProject.getId());
@@ -34,7 +34,7 @@ void SaveCollectionDataThread::run(){
     saveThread->theApp->m_sumSignal->setEndTime(DataUtil::GetCurrentCStringTime());
     //调用controller的updateSumSignal
     saveThread->theApp->m_signalController.updateSumSignal(saveThread->theApp->m_sumSignal);
-    saveThread->theApp->m_sumSignal = nullptr;
+//    saveThread->theApp->m_sumSignal = nullptr;
     //所有线程都完事了，执行保存操作
     saveThread->theApp->m_bisSave = false;
     for(int i=0;i<threadVector.size();i++){

@@ -23,6 +23,7 @@
 #include "Controller/SignalController.h"
 #include "Controller/projectcontroller.h"
 #include "Controller/channelcontroller.h"
+#include "Controller/hardwarecontroller.h"
 #include "Domain/sumSignal.h"
 #include "RedisTools/rediscontroller.h"
 #include "Vo/analysisresult.h"
@@ -82,12 +83,12 @@ public:
 
     SignalController m_signalController;
 
-    SumSignal *m_sumSignal;
+    SumSignal * m_sumSignal = new SumSignal();
 
     QMutex saveSignalMutex;
 
     enum RedisState{REDIS_OPEND,REDIS_NOT_OPEN};             //redis标志位
-    RedisState redisState = REDIS_NOT_OPEN;
+    RedisState redisState = REDIS_OPEND;
 
     enum HardWareState{HW_CONNECTED,HW_NOTCONNECTED};             //硬件连接标志位
     HardWareState hardwareState = HW_NOTCONNECTED;
@@ -108,14 +109,18 @@ public:
     PlayBackDataState playBackDataState = NO_EXIST;
 
     //敏感数据，切换项目的时候会修改，所以使用的时候请检查
-    int sampleFrequency = 20000;
+    float sampleFrequency = 20000;
     //一些数据
     User user;
     Project currentProject;
     QVector<Channel *> channelVec;
     //controller
     ProjectController procon;
+
     ChannelController channelCon;
+
+    HardWareController hardwarecon;
+
 
     void AirCraftCasingVibrateSystemInit();
     void statrCapture();

@@ -50,6 +50,10 @@ private slots:
 
     void on_projuctComboBox_currentIndexChanged(const QString &arg1);
 
+    void initFrequencyCombox();
+
+    void on_frequencyComboBox_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::NewProjectDialog *ui;
     MainWindow *mv;
@@ -69,6 +73,9 @@ private:
     std::map<int,QString> productMap;//记录产品的map
     ProductDao productDao;
     QString m_productName;
+
+    int sampleFrequency;
+    std::vector<QString> frequencyVector;
 };
 
 #endif // NEWPROJECTDIALOG_H
