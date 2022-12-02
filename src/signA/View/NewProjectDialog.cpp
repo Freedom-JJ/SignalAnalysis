@@ -17,6 +17,7 @@ NewProjectDialog::NewProjectDialog(MainWindow *mv,QWidget *parent) :
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
     initData();
+    initFrequencyCombox();
 }
 
 void NewProjectDialog::initData()
@@ -125,15 +126,9 @@ void NewProjectDialog::on_okbtn_clicked()
     auto table = ui->tableWidget;
     Project *project = new Project();
     project->setProjectName(ui->lineEdit->text().toStdString());
-    //可能会出现转换错误
-    int sampleFrequency = ui->lineEdit_2->text().toInt();
-    if(sampleFrequency <= 0){
-        QMessageBox::warning(this,"错误","频率填写错误，应该为正整数");
-        return;
-    }
+
     project->setProjectStatus(sampleFrequency);
     project->setUserId(mv->theApp->user.getId());
-    mv->theApp->sampleFrequency = sampleFrequency;
     Result res =  projectCon.addProject(project,projectId);
     //添加产品id
     productDao.insertProductWithProject(projectId,productVec[comboxIndex].getProduct_id());
@@ -177,4 +172,32 @@ void NewProjectDialog::SelectProduct(){
             QString product_name = query.value(1).toString();
             productMap.insert(std::make_pair(product_id,product_name));
     }
+}
+
+void NewProjectDialog::initFrequencyCombox(){
+
+    frequencyVector.push_back("10");
+    frequencyVector.push_back("20");
+    frequencyVector.push_back("50");
+    frequencyVector.push_back("100");
+    frequencyVector.push_back("200");
+    frequencyVector.push_back("500");
+    frequencyVector.push_back("1000");
+    frequencyVector.push_back("2000");
+    frequencyVector.push_back("5000");
+    frequencyVector.push_back("10000");
+    frequencyVector.push_back("20000");
+    frequencyVector.push_back("50000");
+    frequencyVector.push_back("100000");
+    frequencyVector.push_back("200000");
+
+    for(int i=0;i<frequencyVector.size();i++){
+        ui->frequencyComboBox->addItem(frequencyVector[i]);
+    }
+
+}
+
+void NewProjectDialog::on_frequencyComboBox_currentIndexChanged(const QString &arg1)
+{
+    sampleFrequency = arg1.toInt();
 }

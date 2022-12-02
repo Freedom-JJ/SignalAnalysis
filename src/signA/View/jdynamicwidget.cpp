@@ -91,7 +91,7 @@ void JDynamicWidget::show()
 void JDynamicWidget::refresh()
 {
     if(b_suspand){
-        qDebug()<<"已经暂停"<<endl;
+//        qDebug()<<"已经暂停"<<endl;
         return;
     }
     auto it = this->mapData.begin();

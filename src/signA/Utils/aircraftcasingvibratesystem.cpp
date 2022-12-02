@@ -5,6 +5,9 @@ AirCraftCasingVibrateSystem::AirCraftCasingVibrateSystem():
 {
     AirCraftCasingVibrateSystemInit();
     procon.loadDefaultProject(currentProject);
+    this->sampleFrequency = currentProject.getProjectStatus();
+    channelcon.getChannelsByProjectId(currentChannels,currentProject.getId());
+    hardwarecon.SetChannels(currentChannels);
 
 }
 

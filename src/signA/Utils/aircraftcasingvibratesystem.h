@@ -22,6 +22,7 @@
 #include <QScopedPointer>
 #include "Controller/SignalController.h"
 #include "Controller/projectcontroller.h"
+#include "Controller/channelcontroller.h"
 #include "Domain/sumSignal.h"
 #include "RedisTools/rediscontroller.h"
 #include "Vo/analysisresult.h"
@@ -107,12 +108,18 @@ public:
     PlayBackDataState playBackDataState = NO_EXIST;
 
     //敏感数据，切换项目的时候会修改，所以使用的时候请检查
-    int sampleFrequency = 20000;
+    float sampleFrequency = 20000;
     //一些数据
     User user;
     Project currentProject;
+
+    std::vector<Channel*> currentChannels;
     //controller
     ProjectController procon;
+
+    ChannelController channelcon;
+
+    HardWareController hardwarecon;
 
 
     void AirCraftCasingVibrateSystemInit();

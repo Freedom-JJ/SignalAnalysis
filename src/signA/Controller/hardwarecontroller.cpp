@@ -20,11 +20,10 @@ bool HardWareController::InitHardWare(){
 
 }
 
-void HardWareController::initSamplingPara(){
+void HardWareController::initSamplingPara(float frequency){
 
     //设置采样频率和单次获取数据量
-    float sampleFrequency = 20000;
-    bool ifSetSampleFre = m_pSetMacSampleFreq(sampleFrequency);
+    bool ifSetSampleFre = m_pSetMacSampleFreq(frequency);
     bool ifSetGetDataCountEveryTime = m_pSetGetDataCountEveryTime(15624);
     if(ifSetSampleFre&&ifSetGetDataCountEveryTime){
             qDebug()<<"采样参数设置成功！";
@@ -33,6 +32,9 @@ void HardWareController::initSamplingPara(){
 
 void HardWareController::initChannelPara(){
     //设置通道参数
+
+
+
     for(int i=0;i<4;i++){
 
         //修改上限频率
@@ -60,6 +62,11 @@ void HardWareController::initChannelPara(){
         }
 
     }
+}
+
+void HardWareController::SetChannels(std::vector<Channel *> channels){
+    this->m_channels = channels;
+
 }
 
 bool HardWareController::InitLibrary(){

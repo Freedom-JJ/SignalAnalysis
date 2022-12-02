@@ -26,12 +26,13 @@ public:
     //更新通道（根据通道id找到要更新的通道）
     Result updateChannel(Channel* channel);
 
-
+    Result getChannelsByProjectId(std::vector<Channel*> &channel,long long projectId);
 
 
 
 private:
     ChannelService* channelService;
+
 };
 
 #endif // CHANNELCONTROLLER_H

@@ -6,6 +6,7 @@
 #include <Windows.h>
 #include <QLibrary>
 #include <QCoreApplication>
+#include "Domain/channel.h"
 
 class HardWareController
 {
@@ -27,6 +28,8 @@ public:
 
     std::string measureType = "电压测量";   //默认测量方式 参数id:4
 
+    std::vector<Channel *> m_channels;
+
 public:
 
     /**
@@ -37,12 +40,14 @@ public:
     /**
      * @brief: 初始化采样参数
      */
-    void initSamplingPara();
+    void initSamplingPara(float frequency);
 
     /**
      * @brief:初始化通道参数
      */
     void initChannelPara();
+
+    void SetChannels(std::vector<Channel*> channels);
 
 
 public:
