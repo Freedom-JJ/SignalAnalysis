@@ -83,7 +83,7 @@ public:
 
     SignalController m_signalController;
 
-    SumSignal *m_sumSignal = new SumSignal();
+    SumSignal * m_sumSignal = new SumSignal();
 
     QMutex saveSignalMutex;
 
