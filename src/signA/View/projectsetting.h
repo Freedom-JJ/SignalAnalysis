@@ -4,6 +4,7 @@
 #include <QDialog>
 #include<QMessageBox>
 #include<QPushButton>
+#include<QObject>
 #include"Controller/projectcontroller.h"
 #include"Controller/channelcontroller.h"
 
@@ -27,6 +28,7 @@ private slots:
     void on_deleteBtn_clicked();
 
 private:
+
     Ui::ProjectSetting *ui;
     std::vector<Project *> projectVec;
     QVector<Channel *> channelVec;

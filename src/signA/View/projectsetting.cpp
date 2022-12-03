@@ -16,15 +16,33 @@ ProjectSetting::~ProjectSetting()
 
 void ProjectSetting::initAllProject()
 {
+     qDebug()<<"初始化"<<endl;
+
+    qDebug()<<"clear contents"<<endl;
+    projectVec.clear();
+     qDebug()<<"clear project"<<endl;
     projectCon.getAllProjects(projectVec);
+    qDebug()<<"size:"<<projectVec.size();
     ui->comboBox->clear();
+    //替代clear
+//    for (int var =ui->comboBox->count() -1; var >=0 ;var--) {
+//        ui->comboBox->removeItem(var);
+//    }
     for (int var = 0; var < projectVec.size(); ++var) {
+        if(projectVec[var] == nullptr){
+            qDebug()<<"空指针"<<endl;
+        }
         ui->comboBox->addItem(QString::fromStdString(projectVec[var]->getProjectName()));
     }
 }
 
 void ProjectSetting::on_comboBox_currentIndexChanged(int index)
 {
+    //再一次血泪
+    if(index < 0){
+        qDebug()<<index<<endl;
+        return;
+    }
     long long projectId = projectVec[index]->getId();
     channelCon.getChannelsByProjectId(channelVec,projectId);
 

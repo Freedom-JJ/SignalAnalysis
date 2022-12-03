@@ -136,6 +136,7 @@ Result ProjectController::deleteProject(Project *project)
 Result ProjectController::getAllProjects(vector<Project *> &projects)
 {
 
+
     projects = projectService->listProjects();
     return Result(200,"成功返回所有已经保存的项目");
 }

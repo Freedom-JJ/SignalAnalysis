@@ -809,8 +809,8 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
 //    chartGridCategoryWindowPannel->addLargeAction(actionAnalsis);
 
 //    figure Opt pannel
-//    figureOptRibbonPannel = operateRibbonCategory->addPannel("分析");//删除这个pannel
-    figureOptRibbonPannel = new SARibbonPannel();
+    figureOptRibbonPannel = operateRibbonCategory->addPannel("分析");//删除这个pannel
+//    figureOptRibbonPannel = new SARibbonPannel();
     figureOptRibbonPannel->addLargeAction(actionAnalsis);
     //学校图标
     auto schoolPannel1 = operateRibbonCategory->addPannel("");
