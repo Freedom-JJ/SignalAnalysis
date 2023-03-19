@@ -303,7 +303,7 @@ void Spectrum::refreshTimeAxis()
             if(count!=res.getId().toInt()){
                 qDebug()<<"信号反馈祯ID不对应,内部id"<<count<<"----外部id"<<res.getId().toInt()<<endl;
             }
-            if(res.getErrorInf()==AnalysisResult::ABNORMAL){
+            if(res.getErrorInf()!=AnalysisResult::NORMAL){
                 abnormalBars->addData(count*barWidth,5);
             }else{
                 normalBars->addData(count*barWidth,5);

@@ -9,6 +9,8 @@
 #include"Utils/SignalFeature.h"
 #include "interface/itimeaxis.h"
 #include "interface/isignaljumpable.h"
+#include "httputil/httplib.h"
+#include "Tools/stringutils.h"
 namespace Ui {
 class JDynamicWidget;
 }
@@ -88,17 +90,18 @@ public:
       void openTimeAxis() override;
      void closeTimeAxis() override;
      /**
-      * @brief 往时间轴添加数据,供外部调用
+      * @brief 往时间轴添加数据,供外部调用，已经废弃
       * @param res
       */
      void addDataTimeAxis(QVector<AnalysisResult> res) override;
      void addDataTimeAxis(AnalysisResult) override;
 
      void clearWindow();
+     void setTimeAxis(ITimeAxis *axis);
 protected:
-    void mousePressEvent(QMouseEvent *ev);
-    void mouseReleaseEvent(QMouseEvent *ev);
-    void resizeEvent(QResizeEvent *event);
+    void mousePressEvent(QMouseEvent *ev) override;
+    void mouseReleaseEvent(QMouseEvent *ev) override;
+    void resizeEvent(QResizeEvent *event) override;
 private:
     Ui::JDynamicWidget *ui;
     QTimer *timer = nullptr;
@@ -120,7 +123,13 @@ private:
     mutex mu;
     int number= 0;
 
+    //一些控制条件
     bool b_suspand = false;
+
+    httplib::Client *cli = new httplib::Client("http://127.0.0.1:8000");
+    //单时间轴，多时间轴已经废弃
+    ITimeAxis *singleAxis;
+
 
  signals:
     void clicked();

@@ -907,9 +907,11 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     timeAxis = new JTimeAxis();
     dockWidget_DataFeature->setWidget(timeAxis);
     dockWidget_DataFeature->setContentsMargins(0,0,0,0);
+//    dockWidget_DataFeature->setFixedHeight(110); //无奈之举
+
     timeAxis->init();
 //    dockWidget_DataFeature->setWidget(dockWidgetContents_2);
-    mainWinowPtr->addDockWidget(static_cast<Qt::DockWidgetArea>(1), dockWidget_DataFeature);
+    mainWinowPtr->addDockWidget(Qt::BottomDockWidgetArea, dockWidget_DataFeature);
 
 
     dockWidget_windowList = new QDockWidget(mainWinowPtr);
@@ -1017,8 +1019,11 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
     dockWidget_main->setWidget(this->dynamicSpectrum);
     rightButtomText = new QLabel("状态");
     leftButtomText = new QLabel("当前项目为:");
+    centerButtomText = new QLabel("");
     leftButtomText->setAlignment(Qt::AlignLeft);
     rightButtomText->setAlignment(Qt::AlignRight);
+    centerButtomText->setAlignment(Qt::AlignCenter);
+
 //    auto vbox = new QVBoxLayout(statusBar);
 //    vbox->addWidget(leftButtomText);
 //    vbox->addSpacerItem(new QSpacerItem(100,10));
@@ -1026,6 +1031,7 @@ void MainWindowPrivate::setupUi(MainWindow *mainWinowPtr)
 
     statusBar->addPermanentWidget(leftButtomText,1);
     statusBar->addPermanentWidget(rightButtomText);
+    statusBar->addPermanentWidget(centerButtomText);
 
     mainWinowPtr->addDockWidget(static_cast<Qt::DockWidgetArea>(4), dockWidget_main);
     dockWidget_valueViewer = new QDockWidget(mainWinowPtr);

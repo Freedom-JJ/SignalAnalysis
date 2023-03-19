@@ -7,6 +7,7 @@ ProjectSetting::ProjectSetting(QWidget *parent) :
 {
     ui->setupUi(this);
     initAllProject();
+    this->setWindowTitle("项目设置");
 }
 
 ProjectSetting::~ProjectSetting()

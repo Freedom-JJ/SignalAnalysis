@@ -65,9 +65,11 @@
 #include "SAProjectManager.h"
 #include "SAValueManagerMimeData.h"
 #include "SAGlobalConfig.h"
+
 //===SAChart
 #include "SAChart.h"
 #include "SAQwtSerialize.h"
+
 
 #include <SAThemeManager.h>
 
@@ -122,35 +124,28 @@ MainWindow::MainWindow(QWidget *parent) :
     saElapsed("loaded settings");
 
     showNormalMessageInfo(QStringLiteral("程序初始化完成"));
-    qDebug() << "window font:" << font().family();
-
 
     /*******wzx********************/
     ui->timeAxis->setMw(this);
-    ui->dockWidget_valueManage->show();
     ui->dockWidget_valueManage->close();
 
-    ui->dockWidget_message->show();
     ui->dockWidget_message->close();
 
-    ui->dockWidget_chartDataViewer->show();
     ui->dockWidget_chartDataViewer->close();
 
-    ui->dockWidget_windowList->show();
     ui->dockWidget_windowList->close();
 
-    ui->dockWidget_valueViewer->show();
     ui->dockWidget_valueViewer->close();
+    ui->dockWidget_plotLayer->close();
+    ui->dockWidget_set->close();
 
-    ui->dockWidget_DataFeature->activateWindow();
-//    ui->dockWidget_DataFeature->raise();
-
+    addDockWidget(Qt::BottomDockWidgetArea,ui->dockWidget_DataFeature);
+    ui->dockWidget_DataFeature->show();
     QFont ft;
     ft.setPointSize(15);
     ui->rightButtomText->setFont(ft);
+    ui->centerButtomText->setFont(ft);
     ui->rightButtomText->setText("正在获取仪器连接，请稍等！");
-
-//    ui->spectrunView->setMainWindowObject(this);
 
     mainProcessHardWare = new InitHardWareThread(this);
     connect(mainProcessHardWare,&InitHardWareThread::hardwareInited,this,&MainWindow::mainInitHardware);
@@ -158,8 +153,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QMessageBox msgBox;
     msgBox.setText("仪器检测中，请稍等！");
-    msgBox.exec();
-
+    msgBox.show();
+    qDebug()<<"time axis height="<<ui->dockWidget_DataFeature->height();
     /*******wzx********************/
 }
 
@@ -178,12 +173,20 @@ void MainWindow::init()
 //    ui_status_progress = new progressStateWidget(this);
 //    ui->statusBar->addWidget(ui_status_progress);
 //    ui_status_progress->setVisible(false);
-
+//    setWindowState(Qt::WindowMaximized);
     QFont ft;
     ft.setPointSize(15);
     ui->leftButtomText->setFont(ft);
     ui->leftButtomText->setText("当前项目:"+QString::fromStdString(theApp->currentProject.getProjectName()));
 }
+
+//没有实现居中效果
+void MainWindow::setCenterButtomText(QString v){
+    ui->centerButtomText->setText(v);
+}
+
+
+
 
 void MainWindow::mainInitHardware(bool b_hwconnected){
     if(b_hwconnected){
@@ -516,6 +519,7 @@ void MainWindow::initUIReflection()
 ///
 void MainWindow::onActionSetDefalutDockPosTriggered()
 {
+#if 1
     addDockWidget(Qt::LeftDockWidgetArea, ui->dockWidget_valueManage);//从最左上角的dock开始布置，先把列布置完
     splitDockWidget(ui->dockWidget_valueManage, ui->dockWidget_main, Qt::Horizontal);
     splitDockWidget(ui->dockWidget_main, ui->dockWidget_plotLayer, Qt::Horizontal);
@@ -537,6 +541,12 @@ void MainWindow::onActionSetDefalutDockPosTriggered()
     ui->dockWidget_message->show();
     ui->dockWidget_chartDataViewer->raise();
     ui->dockWidget_main->raise();
+#endif
+
+//    addDockWidget(Qt::TopDockWidgetArea,ui->dockWidget_main);
+//    splitDockWidget(ui->dockWidget_main,ui->dockWidget_DataFeature,Qt::Vertical);
+//    ui->dockWidget_main->show();
+//    ui->dockWidget_DataFeature->show();
 }
 
 
@@ -953,6 +963,7 @@ void MainWindow::loadSetting()
     }
     if (!isLoadGeometry) {
         showMaximized();
+        qDebug()<<"showMaximized"; //执行了可能导致程序最开始无法拉伸 ，为什么会执行到这一步呢
     }
     var = saConfig.getValue("skin", "name");
     if (var.isValid()) {
@@ -977,6 +988,7 @@ void MainWindow::saveSetting()
     saConfig.setValue("path", "openProjectFolders", m_recentOpenProjectFolders);
     qDebug() << m_recentOpenFiles;
     qDebug() << m_recentOpenProjectFolders;
+    qDebug() << "保存设置";
     saConfig.save();
 }
 

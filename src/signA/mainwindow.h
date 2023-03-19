@@ -229,6 +229,8 @@ public slots:
     void clickActionProdcut();
 
 public:
+    //设置底部中央的文本
+    void setCenterButtomText(QString v);
 
     //获取进度栏上的进度条指针
     QProgressBar *getProgressStatusBar();

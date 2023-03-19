@@ -137,3 +137,4 @@ DISTFILES += \
     AirCraftCasingVibrateSystem.pri
 
 LIBS+= $$PWD\lib\libfftw3-3.lib
+LIBS += -lWs2_32

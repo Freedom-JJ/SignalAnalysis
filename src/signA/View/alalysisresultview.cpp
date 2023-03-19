@@ -8,7 +8,8 @@ AlalysisResultView::AlalysisResultView(MainWindow * context, QWidget *parent):
 {
     ui->setupUi(this);
     this->mw= context;
-    analysisResult = context->theApp->getAnalysisResult();
+    analysisResult = context->theApp->getAnalysisResultNoChannel();
+    setWindowTitle("异常结果显示");
     initChannelData();
 }
 
@@ -43,7 +44,7 @@ void AlalysisResultView::on_comboBox_currentIndexChanged(int index)
 //        QTableWidgetItem *item1 = new QTableWidgetItem(res[i].getChannel());
 //        QTableWidgetItem *item2 = new QTableWidgetItem(res[i].getId());
 //        QTableWidgetItem *item3 = new QTableWidgetItem(res[i].getErrorInf());
-        QTableWidgetItem *item3 = new QTableWidgetItem("异常");
+        QTableWidgetItem *item3 = new QTableWidgetItem(res[i].strLevel());
         QTableWidgetItem *item4 = new QTableWidgetItem(res[i].getStart());
 //        QTableWidgetItem *item5 = new QTableWidgetItem(res[i].getEnd());
 
@@ -57,7 +58,7 @@ void AlalysisResultView::on_comboBox_currentIndexChanged(int index)
 
 }
 
-void AlalysisResultView::setAnalysisResult( std::shared_ptr<std::map<QString, QVector<AnalysisResult> > > value)
+void AlalysisResultView::setAnalysisResult( std::shared_ptr<QVector<AnalysisResult>> value)
 {
     analysisResult = value;
 }

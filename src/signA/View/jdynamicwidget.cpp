@@ -102,6 +102,14 @@ void JDynamicWidget::refresh()
         if(data.size()==0){ //血泪！！！！！！！
             return;
         }
+//        if (index == 0){
+//            httplib::Params para;
+//            string value = StringUtils::join(data.toStdVector(),",","[","]");
+//            para.emplace("value","[1,2,3,4,5,6]");
+//            auto res = cli->Post("/model/predict/","{\"value\":"+value+"}","application\json");
+//            qDebug()<<QString::fromStdString(res->body);
+//        }
+
         //测试异常判断，极其相关接口
         int num = count[it->first];
         spectrumVec[index]->refresh(data); //内部排除了size为0
@@ -214,7 +222,7 @@ void JDynamicWidget::addDataTimeAxis(QVector<AnalysisResult> res)
     }
 }
 
-//需要预防多线程调用
+//需要预防多线程调用,已经废弃
 void JDynamicWidget::addDataTimeAxis(AnalysisResult res)
 {
     std::lock_guard<mutex> lk(mu);
@@ -223,7 +231,7 @@ void JDynamicWidget::addDataTimeAxis(AnalysisResult res)
         qDebug()<<"信号反馈结果，的通道不存在"<<endl;
         return;
     }
-    if(res.getErrorInf()==AnalysisResult::ABNORMAL){
+    if(res.getErrorInf()!=AnalysisResult::NORMAL){
         (*analysisResult)[res.getChannel()].append(res);
     }
 
@@ -236,6 +244,11 @@ void JDynamicWidget::clearWindow()
     for(int i=0;i<spectrumVec.size();i++){
         spectrumVec[i]->clearWindow();
     }
+}
+
+void JDynamicWidget::setTimeAxis(ITimeAxis *axis)
+{
+    this->singleAxis = axis;
 }
 
 JDynamicWidget::~JDynamicWidget()
@@ -273,8 +286,9 @@ void JDynamicWidget::resizeEvent(QResizeEvent *event)
     double pageHeight = event->size().height(); //一页的高度
     this->scrollContents->setFixedHeight(pageCount * pageHeight -40); //-10的原因是，QScrollArea无法完全占据QWidget区域
 //    this->scrollContents->resize(event->size().width()/2,event->size().height()/2);
-//    qDebug()<<"old size: w = "<<event->oldSize().width() <<" h = "<<event->oldSize().height()<<endl;
-//    qDebug()<<"new size: w = "<<event->size().width() <<" h = "<<event->size().height()<<endl;
+    qDebug()<<"old size: w = "<<event->oldSize().width() <<" h = "<<event->oldSize().height()<<endl;
+    qDebug()<<"new size: w = "<<event->size().width() <<" h = "<<event->size().height()<<endl;
+
 }
 
 void JDynamicWidget::setAnalysisResult(const std::shared_ptr<std::map<QString, QVector<AnalysisResult> > > &value)

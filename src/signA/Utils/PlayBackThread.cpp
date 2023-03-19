@@ -50,14 +50,14 @@ void PlayBackThread::run(){
     }
     QDataStream inputStream(&file);
     inputStream.setVersion(QDataStream::Qt_5_9);
-    int count = 0;
+//    int count = 0;
     while (!inputStream.atEnd()&&playThread->theApp->m_iplaybackState){
         if (playThread->theApp->m_iplaybackState == 2){
             msleep(20);
             continue;
         }
         ///从文件中拿到collectionPoints条数据
-        double * fftwInputArray;//傅里叶输入
+        double * fftwInputArray;//没有傅里叶输入
         playThread->theApp->m_signalController.GetCollectionData(inputStream, collectionPoints, fftwInputArray);
 
         playThread->theApp->echoSignalQueue[signalCode]->PushEchoSignal(fftwInputArray);
@@ -65,9 +65,13 @@ void PlayBackThread::run(){
         for(int i=0;i<collectionPoints;i++){
             playThread->theApp->m_mpredisCollectionDataQueue[this->signalCode].push(fftwInputArray[i]);
         }
+//        if(this->signalCode == "0"){
+//            count++;
+//        }
         msleep(100);
     }
 
+//    qDebug()<<"文件读取:"<<count<<"帧";
 }
 
 

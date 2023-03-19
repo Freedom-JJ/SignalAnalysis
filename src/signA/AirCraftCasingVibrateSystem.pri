@@ -77,6 +77,8 @@ HEADERS += \
     $$PWD/Signal/BaseEchoSignal.h \
     $$PWD/Signal/StaticSpectralEchoSignal.h \
     $$PWD/Tools/datautil.h \
+    $$PWD/Tools/jsonutils.h \
+    $$PWD/Tools/stringutils.h \
     $$PWD/Tools/tool.h \
     $$PWD/Utils/DataModal.h \
     $$PWD/Utils/DataStructure.h \
@@ -114,6 +116,7 @@ HEADERS += \
     $$PWD/View/spectrum.h \
     $$PWD/Vo/analysisresult.h \
     $$PWD/Vo/sumsignalandprojectnamevo.h \
+    $$PWD/httputil/httplib.h \
     $$PWD/interface/isignaljumpable.h \
     $$PWD/interface/itimeaxis.h \
     $$PWD/tDemo/channelcontrollertest.h \
@@ -167,6 +170,7 @@ SOURCES += \
     $$PWD/Signal/BaseEchoSignal.cpp \
     $$PWD/Signal/StaticSpectralEchoSignal.cpp \
     $$PWD/Tools/datautil.cpp \
+    $$PWD/Tools/stringutils.cpp \
     $$PWD/Tools/tool.cpp \
     $$PWD/Utils/DataModal.cpp \
     $$PWD/Utils/FFTWUtil.cpp \

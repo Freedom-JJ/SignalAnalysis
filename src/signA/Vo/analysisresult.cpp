@@ -2,7 +2,11 @@
 
 AnalysisResult::AnalysisResult()
 {
-
+    errorMap[Level::ABNORMAL1] = QString("棒轴承");
+    errorMap[Level::ABNORMAL2] = QString("棒轴承加铁屑剥落");
+    errorMap[Level::ABNORMAL3] = QString("齿轮啮合故障");
+    errorMap[Level::ABNORMAL4] = QString("轴心偏离30");
+    errorMap[Level::ABNORMAL5] = QString("轴心偏离70");
 }
 
 AnalysisResult::AnalysisResult(const QString &vid,const QString &vchannel,const Level &vinf,const QString &vstart,const QString &vend)
@@ -60,9 +64,32 @@ AnalysisResult::Level AnalysisResult::getErrorInf() const
     return errorInf;
 }
 
+QString AnalysisResult::strLevel()
+{
+    return errorMap[this->errorInf];
+}
+
 void AnalysisResult::setErrorInf(const Level &value)
 {
     errorInf = value;
+}
+
+QMap<AnalysisResult::Level, QString> AnalysisResult::getErrorMap()
+{
+    return errorMap;
+}
+
+AnalysisResult::Level AnalysisResult::getLevelByQStr(QString value)
+{
+    value = value.simplified();
+    auto it = errorMap.begin();
+    while(it != errorMap.end()){
+        if (it.value() == value){
+            return it.key();
+        }
+        it++;
+    }
+    return Level::NORMAL;
 }
 
 

@@ -3,18 +3,24 @@
 JTimeAxis::JTimeAxis(QWidget *parent) : QWidget(parent),trickerTime(new QCPAxisTickerDateTime)
 {
     timer = new QTimer();
-    auto hbox  = new QHBoxLayout();
-    hbox->setMargin(0);
+
+
     plot= new QCustomPlot();
     trickerTime->setDateTimeFormat("hh:mm:ss");
-    hbox->addWidget(plot);
-    setLayout(hbox);
     setContentsMargins(0,0,0,0);
     connect(this->timer,&QTimer::timeout,this,&JTimeAxis::refesh);
+    QPalette pal(this->palette());
+    pal.setColor(QPalette::Background,Qt::black);
+    setAutoFillBackground(true);
+    setPalette(pal);
+    setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Fixed);
 }
 
 void JTimeAxis::init()
 {
+    auto hbox  = new QVBoxLayout();
+    hbox->setMargin(0);
+
     axisRect = new QCPAxisRect(plot);
     axisRect->setupFullAxesBox();
     axisRect->axis(QCPAxis::atBottom)->setTicker(trickerTime);
@@ -26,7 +32,7 @@ void JTimeAxis::init()
     plot->plotLayout()->setMargins(QMargins(0,0,0,0));
     plot->setInteractions(QCP::iRangeDrag);
     axisRect->setMaximumSize(QSize(QWIDGETSIZE_MAX,5));
-    for (int i = AnalysisResult::NORMAL; i<=AnalysisResult::ABNORMAL;i++ ){
+    for (int i = AnalysisResult::NORMAL; i<=AnalysisResult::ABNORMAL1;i++ ){
         barVec.push_back(new QCPBars(axisRect->axis(QCPAxis::atBottom),axisRect->axis(QCPAxis::atLeft)));
         switch (i) {
         case 0:
@@ -42,6 +48,11 @@ void JTimeAxis::init()
     }
     axisRect->axis(QCPAxis::atLeft)->setVisible(false);
     axisRect->axis(QCPAxis::atBottom)->setRange(QDateTime::currentDateTime().toTime_t(),QDateTime::currentDateTime().toTime_t()+range);
+
+
+    hbox->addWidget(plot);
+    setLayout(hbox);
+    adjustSize();
 }
 
 void JTimeAxis::clearTimeAxis()
@@ -106,9 +117,12 @@ void JTimeAxis::refresh(AnalysisResult &value)
         anares->push_back(value);
         qDebug()<<"添加错误祯!"<<endl;
     }
-    qDebug()<<"添加时间轴!"<<endl;
+//    qDebug()<<"添加时间轴!"<<endl;
     int index = int(value.getErrorInf());
-    barVec[index]->addData(count + startTime,5);
+    if (index !=0){
+        index = 1;
+    }
+    barVec[index]->addData(count + startTime,5);//暂时没有实现多颜色
     if(count > range){
         axisRect->axis(QCPAxis::atBottom)->rescale();
     }else{
@@ -116,6 +130,22 @@ void JTimeAxis::refresh(AnalysisResult &value)
     }
     count++;
     plot->replot(QCustomPlot::rpQueuedReplot);
+}
+
+QSize JTimeAxis::sizeHint() const
+{
+
+    QSize t(this->width(),100);
+    qDebug()<<"plot height:"<<this->plot->height();
+    qDebug()<<"axisRect height:"<<axisRect->height(); // 高度为0
+    qDebug()<<"widget height:"<<height(); //plot高度与widget高度一致
+    return t;
+}
+
+void JTimeAxis::resizeEvent(QResizeEvent *event)
+{
+    qDebug()<<"old height-----"<<event->oldSize().height();
+    qDebug()<<"new height-----"<<event->size().height();
 }
 
 void JTimeAxis::refesh()

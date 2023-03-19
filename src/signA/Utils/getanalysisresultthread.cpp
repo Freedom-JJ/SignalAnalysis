@@ -29,26 +29,36 @@ void GetAnalysisResultThread::run(){
          AnalysisResult anares;
          QString signalCode = QString::number(0);
          QString redisKey = QString("AnalysisResult");
-         QString result = resultRedis->rpop(redisKey);
-         if(result == "NULL"){
+         QString res = resultRedis->rpop(redisKey);
+         if(res == "NULL"){
             msleep(10);
             continue;
          }
          if(count.count(signalCode) == 0){
             count[signalCode] = 0;
          }
+         QString conditonOrFalut = res.split("-")[1].simplified();
+         res = res.split("-")[0];
+         result->setCenterButtomText(conditonOrFalut);
          int id = count[signalCode];
          anares.setId(QString::number(id));
          anares.setChannel(signalCode);
-         anares.setErrorInf(AnalysisResult::Level(result.toInt()));
-         anares.setStart(QString::number(id));
+         anares.setStart(QString::number(id)); //这是一种无赖的写法，不合理
          anares.setEnd(QString::number(id+1));
          count[signalCode] = id+1;
+         if (res =="False"){
+            anares.setErrorInf(anares.getLevelByQStr(conditonOrFalut));
+//            result->theApp->getAnalysisResultNoChannel()->push_back(anares);因为时间轴添加了，没有设计好可恶
+         }else{
+             anares.setErrorInf(AnalysisResult::Level::NORMAL);
+         }
+
+
         timeAxis->addDataTimeAxis(anares);
         msleep(100);
     }
-
-//   qDebug()<<"----------结果线程结束了------------"<<endl;
+    resultRedis->disconnectHost();
+   qDebug()<<"----------结果线程结束了 关闭redis连接------------"<<endl;
 }
 
 void GetAnalysisResultThread::setTimeAxis(ITimeAxis *value)

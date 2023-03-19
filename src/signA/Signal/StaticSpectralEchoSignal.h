@@ -35,7 +35,7 @@ public:
     void PushEchoSignal(double* chartPoints);
 
     /**
-     * @brief ：从回显队列中取出数据
+     * @brief ：从回显队列中取出FFT数据，相当于FFT中心
      */
     QVector<double> PopEchoSignal();
 

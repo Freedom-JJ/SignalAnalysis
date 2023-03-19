@@ -27,6 +27,9 @@ public:
      */
     void refresh(AnalysisResult &value);
 
+    QSize sizeHint() const override;
+    void resizeEvent(QResizeEvent *event) override;
+
 
 signals:
 private:
@@ -64,6 +67,8 @@ public:
     void addDataTimeAxis(AnalysisResult) override;
     MainWindow *getMw() const;
     void setMw(MainWindow *value);
+
+
 };
 
 #endif // JTIMEAXIS_H

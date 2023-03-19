@@ -63,7 +63,7 @@ void LoginWindow::on_loginButton_clicked()
         this->close();
         MainWindow *mainWindow = new MainWindow();
         mainWindow->theApp->user = *user;
-        mainWindow->show();
+        mainWindow->showFullScreen();
     }
     else if(result.getCode()==204){
         QMessageBox::information(this,"提示",mstoqs(result.getMsg()));

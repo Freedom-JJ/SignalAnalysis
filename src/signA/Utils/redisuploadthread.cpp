@@ -8,11 +8,11 @@ void RedisUploadThread::run(){
 
     if (!consumerRedis->openConnection())
     {
-//        qDebug() << "Could not connect to server...";
+        qDebug() << "redis连接失败";
         return;
     }
 
-
+//    int count = 0 ;
     int SignalSequenceId = 0;
 
     while(saveRedis->theApp->m_icollectState||saveRedis->theApp->m_iplaybackState){ //采集端把开关换了  m_icollectState
@@ -45,12 +45,15 @@ void RedisUploadThread::run(){
 
              QString jsonStr = saveRedis->theApp->m_redis->VectorDataSerialize(dataVector);
              consumerRedis->lpush(redisKey,jsonStr);
-
+//            if(signalCode == "0"){
+//                count++;
+//            }
            }
 
         SignalSequenceId +=1;
         iter++;
      }
+//    qDebug()<<count<<"帧";
 
     }
 
@@ -84,7 +87,8 @@ void RedisUploadThread::run(){
     iter++;
 
     }
-
+    consumerRedis->disconnectHost();
+    qDebug()<<"关闭redis连接";
     emit AllRedisConsumerSaved();
 
 }

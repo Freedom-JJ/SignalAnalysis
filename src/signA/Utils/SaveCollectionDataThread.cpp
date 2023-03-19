@@ -84,7 +84,7 @@ void ConsumerThread::run(){
             //qDebug()<<"\n队列长度%d\n", m_mpcolllectioinDataQueue[signalCode].size()<<endl;
 
             saveData.push(*(consumer->theApp->m_mpcolllectioinDataQueue[signalCode].wait_and_pop()));
-            if (saveData.size() == consumer->theApp->m_icollectSignalsStoreCount){
+            if (saveData.size() == consumer->theApp->m_icollectSignalsStoreCount){ // 应该用触发或者缓冲区的形式写入
                 consumer->theApp->m_signalController.SaveCollectionData2Binary(outputStream,saveData);
         }
       }

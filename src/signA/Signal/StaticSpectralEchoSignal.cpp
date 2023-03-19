@@ -11,6 +11,10 @@ void StaticSpectralEchoSignal::PushEchoSignal(double *chartPoints){
     //qDebug()<<"数据送进去了111_______________________________"<<endl;
 
 }
+/**
+ * @brief 能够得到FFT数据，相当于FFT变换中心
+ * @return
+ */
 
 QVector<double> StaticSpectralEchoSignal::PopEchoSignal(){
 
@@ -28,7 +32,7 @@ QVector<double> StaticSpectralEchoSignal::PopEchoSignal(){
 
     echoSignal.append(0);
     for(int j = 1 ; j < line ; j++){
-        echoSignal.append(2 * sqrt(out[j][0] * out[j][0] + out[j][1] * out[j][1]));
+        echoSignal.append(2 * sqrt(out[j][0] * out[j][0] + out[j][1] * out[j][1])/20000);
     }
 
     delete fftinput;

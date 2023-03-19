@@ -39,7 +39,6 @@ public:
     int getAnalysisSwitch;
     ITimeAxis *timeAxis;
     QtRedis * resultRedis;
-
     std::map<QString,int> count;
 
 public slots:

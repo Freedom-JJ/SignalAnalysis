@@ -11,12 +11,12 @@
 #define ANALYSISRESULT_H
 
 #include<QString>
-
+#include<QMap>
 class AnalysisResult
 {
 
 public:
-    enum Level{NORMAL,ABNORMAL}; //信号等级，(暂时)正常和不正常
+    enum Level{NORMAL,ABNORMAL1,ABNORMAL2,ABNORMAL3,ABNORMAL4,ABNORMAL5}; //信号等级，(暂时)正常和不正常
 public:
     AnalysisResult();
     AnalysisResult(const QString &vid,const QString &vchannel,const Level &vinf,const QString &vstart,const QString &vend);
@@ -35,8 +35,12 @@ public:
     void setEnd(const QString &value);
 
     Level getErrorInf() const;
+    QString strLevel();
     void setErrorInf(const Level &value);
 
+    QMap<Level ,QString> getErrorMap();
+
+    Level getLevelByQStr(QString value);
 private:
     //表达了第几祯信号
     QString id;
@@ -49,6 +53,8 @@ private:
     QString start;
     //信号结束时间
     QString end;
+
+    QMap<Level , QString> errorMap;
 
 };
 

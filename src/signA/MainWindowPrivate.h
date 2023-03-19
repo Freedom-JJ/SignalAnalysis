@@ -56,6 +56,7 @@ public:
     JDynamicWidget * dynamicSpectrum;
     QLabel *leftButtomText;
     QLabel *rightButtomText;
+    QLabel *centerButtomText;
     QPixmap *schoolIcon ;
     QWidget *spacer = new QWidget();
     SARibbonPannel *schoolPannel;
